@@ -1,0 +1,41 @@
+Programming in C#
+Question£º
+You are a developer for a consulting company named Action IT. You have been asked to create a Tutorial Scheduling application in C# that will perform the following functions:
+*?????????Create an MVP C# project in Visual Studio
+*?????????Create 2 C# classes that will encapsulate a Teacher and a Subject
+*?????????Create another C# class which encapsulates a Tutorial i.e. Year, Semester, Teacher and Subject
+o?? Each class will have a Constructor method which will create a new object from the method¡¯s parameters 
+*?????????Create a Teacher, Subject and Tutorial collection to store the Teacher, Subject and Tutorial objects
+*?????????Read a list of Teachers, Subjects and Tutorials from flat files 
+o?? Trap exceptions that may occur when reading from the flat files
+o?? Create a new object for each Teacher, Subject and Tutorial that we read by calling the class constructor
+o?? Add the object to the appropriate collection
+*?????????Use MainWindow.XAML to create a form to display a list of Tutorials. The form will also have the following buttons
+o?? Create - display a new XAML form which will allow new Tutorial to be created. It will have controls to allow the user to select a Year, Semester, Teacher and Subject 
+* The OK button will 
+???Call the constructor method of the Tutorial class to create a new Tutorial object. It will then add the Tutorial object to the Tutorial collection
+???Append the new Tutorial to the Tutorial flat file
+??? Trap exceptions that may occur when writing to the flat files 
+*   Count - this will 
+o Call a method to return a count of the number of Tutorials. 
+* The method must return the count using a reference parameter. 
+* The method must use LINQ to determine the number of Tutorials
+o Display the count in a message box
+* Search ¨C this will
+o Use the algorithm found at http://anh.cs.luc.edu/170/notes/CSharpHtml/binarysearching.html as a reference
+o The parameters in this case will be the collection of Teachers (parameter 1) and the Teacher ID of the teacher that is being searched for
+o Display a XAML form in which the user selects a Teacher ID from a list and then displays the teacher First Name and Last Name
+o The form must call the Search method asynchronously. 
+
+
+The program will be completed in the following stages
+Stage 1 ¨C Design
+* The student will need to produce a class diagram to show the design of the Teacher, Subject and Tutorial classes
+* The student will need to produce a sequence diagram to show how objects interact with each other and in which order
+* These design documents need to be submitted to the instructor, who will then provide feedback
+
+Stage 2 ¨C Implementation
+* Code the solution
+
+
+

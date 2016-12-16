@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{994435A9-4E75-4CF5-B798-44ED82A4DD51}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WindowsFormsApplication4</RootNamespace>
+    <AssemblyName>WindowsFormsApplication4</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;LYDEV</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.Synchronization, Version=1.0.0.0" />
+    <Reference Include="Microsoft.Synchronization.Data, Version=2.0.0.0" />
+    <Reference Include="Microsoft.Synchronization.Data.Server, Version=2.0.0.0" />
+    <Reference Include="Microsoft.Synchronization.Data.SqlServerCe, Version=2.0.0.0" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="basic data.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basic data.Designer.cs">
+      <DependentUpon>basic data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ceshiDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ceshiDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ceshiDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ceshiDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ceshiDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ceshiDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DatagridviewColumn.cs" />
+    <Compile Include="qtdczck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="qtdczck.Designer.cs">
+      <DependentUpon>qtdczck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCFoodMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCFoodMenu.Designer.cs">
+      <DependentUpon>UCFoodMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="yhdl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="yhdl.Designer.cs">
+      <DependentUpon>yhdl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="yhzc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="yhzc.Designer.cs">
+      <DependentUpon>yhzc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xgspzl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="xgspzl.Designer.cs">
+      <DependentUpon>xgspzl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="huiyuanguanli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="huiyuanguanli.Designer.cs">
+      <DependentUpon>huiyuanguanli.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="zck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="zck.Designer.cs">
+      <DependentUpon>zck.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="basic data.resx">
+      <DependentUpon>basic data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="qtdczck.resx">
+      <DependentUpon>qtdczck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCFoodMenu.resx">
+      <DependentUpon>UCFoodMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="yhdl.resx">
+      <DependentUpon>yhdl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="yhzc.resx">
+      <DependentUpon>yhzc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xgspzl.resx">
+      <DependentUpon>xgspzl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="huiyuanguanli.resx">
+      <DependentUpon>huiyuanguanli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="spzl.resx">
+      <DependentUpon>spzl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="splbcx.resx">
+      <DependentUpon>splbcx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xiaoshou.resx">
+      <DependentUpon>xiaoshou.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xzspzl.resx">
+      <DependentUpon>xzspzl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="zck.resx">
+      <DependentUpon>zck.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ceshiDataSet.xsc">
+      <DependentUpon>ceshiDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ceshiDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ceshiDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ceshiDataSet.xss">
+      <DependentUpon>ceshiDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ceshiDataSet1.xsc">
+      <DependentUpon>ceshiDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ceshiDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ceshiDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ceshiDataSet1.xss">
+      <DependentUpon>ceshiDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ceshiDataSet2.xsc">
+      <DependentUpon>ceshiDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="ceshiDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ceshiDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ceshiDataSet2.xss">
+      <DependentUpon>ceshiDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="SQLScripts\ceshiCache.ceshi.sql" />
+    <None Include="SQLScripts\ceshiCache.dbo.Table2.sql" />
+    <None Include="SQLUndoScripts\ceshiCache.ceshi.disable.sql" />
+    <None Include="SQLUndoScripts\ceshiCache.dbo.Table2.disable.sql" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="spzl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="spzl.Designer.cs">
+      <DependentUpon>spzl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="splbcx.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="splbcx.Designer.cs">
+      <DependentUpon>splbcx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xiaoshou.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="xiaoshou.Designer.cs">
+      <DependentUpon>xiaoshou.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xzspzl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="xzspzl.Designer.cs">
+      <DependentUpon>xzspzl.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.3.5">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 3.5 SP2</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
