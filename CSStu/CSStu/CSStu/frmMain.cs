@@ -142,5 +142,16 @@ namespace CSStu
             frmAveByCourse frmAveCourse = new frmAveByCourse();
             frmAveCourse.ShowDialog();
         }
+
+        private void dgvScore_SelectionChanged(object sender, EventArgs e)
+        {
+            var rows = this.dgvScore.SelectedRows;
+            if (rows != null && rows.Count > 0)
+            {
+                DataGridViewRow r0 = rows[0];
+                this.txtMajor.Text = r0.Cells[3].Value.ToString();
+                this.numMark.Value = (int)r0.Cells[4].Value;
+            }
+        }
     }
 }

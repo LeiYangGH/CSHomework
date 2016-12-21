@@ -99,8 +99,10 @@
             this.dgvScore.Name = "dgvScore";
             this.dgvScore.ReadOnly = true;
             this.dgvScore.RowTemplate.Height = 28;
+            this.dgvScore.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvScore.Size = new System.Drawing.Size(801, 393);
             this.dgvScore.TabIndex = 2;
+            this.dgvScore.SelectionChanged += new System.EventHandler(this.dgvScore_SelectionChanged);
             // 
             // numMark
             // 
