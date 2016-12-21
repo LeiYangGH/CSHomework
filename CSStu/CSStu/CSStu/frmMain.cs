@@ -118,5 +118,17 @@ namespace CSStu
         {
             CheckControlsEmpty();
         }
+
+        private void txtStuNo_TextChanged(object sender, EventArgs e)
+        {
+            this.lstScore = new BindingList<Score>(Repository.Default.ListScores
+                .Where(x => x.StudentNo.Contains(this.txtStuNo.Text.Trim())).ToArray());
+            this.dgvScore.DataSource = this.lstScore;
+            this.dgvScore.Columns[0].HeaderText = "学号";
+            this.dgvScore.Columns[1].HeaderText = "姓名";
+            this.dgvScore.Columns[2].HeaderText = "专业";
+            this.dgvScore.Columns[3].HeaderText = "课程编号";
+            this.dgvScore.Columns[4].HeaderText = "成绩";
+        }
     }
 }

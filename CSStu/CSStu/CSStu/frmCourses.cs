@@ -25,7 +25,7 @@ namespace CSStu
         {
             this.lstCourse = new BindingList<Course>(Repository.Default.ListCourses);
             this.dgvCourse.DataSource = this.lstCourse;
-            this.dgvCourse.Columns[0].HeaderText = "学号";
+            this.dgvCourse.Columns[0].HeaderText = "课程号";
             this.dgvCourse.Columns[1].HeaderText = "姓名";
             this.dgvCourse.Columns[2].HeaderText = "开课时间";
             this.dgvCourse.Columns[3].HeaderText = "课程学时";

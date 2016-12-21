@@ -41,6 +41,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.txtStuNo = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMark)).BeginInit();
@@ -89,12 +91,11 @@
             this.dgvScore.AllowUserToAddRows = false;
             this.dgvScore.AllowUserToDeleteRows = false;
             this.dgvScore.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvScore.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dgvScore.Location = new System.Drawing.Point(0, 33);
+            this.dgvScore.Location = new System.Drawing.Point(22, 94);
             this.dgvScore.Name = "dgvScore";
             this.dgvScore.ReadOnly = true;
             this.dgvScore.RowTemplate.Height = 28;
-            this.dgvScore.Size = new System.Drawing.Size(801, 481);
+            this.dgvScore.Size = new System.Drawing.Size(801, 393);
             this.dgvScore.TabIndex = 2;
             // 
             // numMark
@@ -116,9 +117,9 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(1047, 414);
+            this.btnSave.Location = new System.Drawing.Point(1050, 414);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(170, 42);
+            this.btnSave.Size = new System.Drawing.Size(167, 42);
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "保存成绩到文件";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -168,11 +169,30 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "成绩";
             // 
+            // txtStuNo
+            // 
+            this.txtStuNo.Location = new System.Drawing.Point(187, 52);
+            this.txtStuNo.Name = "txtStuNo";
+            this.txtStuNo.Size = new System.Drawing.Size(162, 26);
+            this.txtStuNo.TabIndex = 8;
+            this.txtStuNo.TextChanged += new System.EventHandler(this.txtStuNo_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(51, 55);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(121, 20);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "请输入学号查询";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1255, 514);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtStuNo);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -213,6 +233,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtStuNo;
+        private System.Windows.Forms.Label label5;
     }
 }
 
