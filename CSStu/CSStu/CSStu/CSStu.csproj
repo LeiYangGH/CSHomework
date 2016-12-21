@@ -45,7 +45,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AveStu.cs" />
     <Compile Include="Course.cs" />
+    <Compile Include="frmAveByCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAveByCourse.Designer.cs">
+      <DependentUpon>frmAveByCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAveByStu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAveByStu.Designer.cs">
+      <DependentUpon>frmAveByStu.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCourseEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +82,12 @@
     <Compile Include="Repository.cs" />
     <Compile Include="Score.cs" />
     <Compile Include="Student.cs" />
+    <EmbeddedResource Include="frmAveByCourse.resx">
+      <DependentUpon>frmAveByCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAveByStu.resx">
+      <DependentUpon>frmAveByStu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCourseEditor.resx">
       <DependentUpon>frmCourseEditor.cs</DependentUpon>
     </EmbeddedResource>

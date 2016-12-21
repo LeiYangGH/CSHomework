@@ -130,5 +130,17 @@ namespace CSStu
             this.dgvScore.Columns[3].HeaderText = "课程编号";
             this.dgvScore.Columns[4].HeaderText = "成绩";
         }
+
+        private void menuAveByStu_Click(object sender, EventArgs e)
+        {
+            frmAveByStu frmAveStu = new frmAveByStu();
+            frmAveStu.ShowDialog();
+        }
+
+        private void menuAveByCourse_Click(object sender, EventArgs e)
+        {
+            frmAveByCourse frmAveCourse = new frmAveByCourse();
+            frmAveCourse.ShowDialog();
+        }
     }
 }

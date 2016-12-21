@@ -43,6 +43,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtStuNo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.menuAveByStu = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuAveByCourse = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMark)).BeginInit();
@@ -52,7 +54,9 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.courseToolStripMenuItem});
+            this.courseToolStripMenuItem,
+            this.menuAveByStu,
+            this.menuAveByCourse});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1255, 33);
@@ -186,6 +190,20 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "请输入学号查询";
             // 
+            // menuAveByStu
+            // 
+            this.menuAveByStu.Name = "menuAveByStu";
+            this.menuAveByStu.Size = new System.Drawing.Size(119, 29);
+            this.menuAveByStu.Text = "按学生统计";
+            this.menuAveByStu.Click += new System.EventHandler(this.menuAveByStu_Click);
+            // 
+            // menuAveByCourse
+            // 
+            this.menuAveByCourse.Name = "menuAveByCourse";
+            this.menuAveByCourse.Size = new System.Drawing.Size(119, 29);
+            this.menuAveByCourse.Text = "按课程统计";
+            this.menuAveByCourse.Click += new System.EventHandler(this.menuAveByCourse_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -235,6 +253,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtStuNo;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolStripMenuItem menuAveByStu;
+        private System.Windows.Forms.ToolStripMenuItem menuAveByCourse;
     }
 }
 
