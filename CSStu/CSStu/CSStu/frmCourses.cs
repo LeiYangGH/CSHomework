@@ -21,9 +21,9 @@ namespace CSStu
         /// <summary>
         /// 根据是否特价查看
         /// </summary>
-        private void ViewAllCourse()
+        private void ViewAllCourses()
         {
-            this.lstCourse = new BindingList<Course>(Repository.Default.AllCourses);
+            this.lstCourse = new BindingList<Course>(Repository.Default.ListCourses);
             this.dgvCourse.DataSource = this.lstCourse;
         }
 
@@ -32,8 +32,8 @@ namespace CSStu
             frmCourseEditor editor = new frmCourseEditor();
             if (editor.ShowDialog() == DialogResult.OK)
             {
-                Repository.Default.AllCourses.Add(editor.Course);
-                this.ViewAllCourse();
+                Repository.Default.ListCourses.Add(editor.Course);
+                this.ViewAllCourses();
             }
         }
 
@@ -62,13 +62,23 @@ namespace CSStu
                 int oldId = selCourse.Id;
                 if (editor.ShowDialog() == DialogResult.OK)
                 {
-                    Course course = Repository.Default.AllCourses.First(x => x.Id == oldId);
+                    Course course = Repository.Default.ListCourses.First(x => x.Id == oldId);
                     course.Name = selCourse.Name;
                     course.StartDate = selCourse.StartDate;
                     course.Duration = selCourse.Duration;
-                    this.ViewAllCourse();
+                    this.ViewAllCourses();
                 }
             }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            Repository.Default.SaveCoursesToFile();
+        }
+
+        private void frmCourses_Load(object sender, EventArgs e)
+        {
+            this.ViewAllCourses();
         }
     }
 }

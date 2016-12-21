@@ -13,12 +13,10 @@ namespace CSStu
     public partial class frmCourseEditor : Form
     {
         public Course Course;//待编辑或增加的商品
-        private bool isAdding;//是添加（还是编辑）
         public frmCourseEditor()
         {
             InitializeComponent();
             this.Course = new Course();
-            this.isAdding = true;
         }
 
 
@@ -29,7 +27,6 @@ namespace CSStu
         public frmCourseEditor(Course Course) : this()
         {
             this.Course = Course;
-            this.isAdding = false;
             this.SyncFromCourseToControl();
         }
 
