@@ -149,7 +149,9 @@ namespace CSStu
             if (rows != null && rows.Count > 0)
             {
                 DataGridViewRow r0 = rows[0];
-                this.txtMajor.Text = r0.Cells[3].Value.ToString();
+                this.cboStu.Text = r0.Cells[1].Value.ToString();
+                this.cboCourse.Text = Repository.Default.ListCourses.First(x => x.Id == (int)r0.Cells[3].Value).Name;
+                this.txtMajor.Text = r0.Cells[2].Value.ToString();
                 this.numMark.Value = (int)r0.Cells[4].Value;
             }
         }
