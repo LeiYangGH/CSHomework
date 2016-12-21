@@ -11,6 +11,7 @@ namespace CSStu
     public class Repository
     {
         private string coursesFileName = "Courses.txt";
+        private string scoresFileName = "Scores.txt";
         public static Repository Default;
         public Repository()
         {
@@ -23,9 +24,11 @@ namespace CSStu
                     new Student("20160004","Lucy")
                 };
             this.ReadAllCourses();
+            this.ReadAllScores();
         }
         public List<Student> ListStudents { get; set; }
         public List<Course> ListCourses { get; set; }
+        public List<Score> ListScores { get; set; }
 
 
         /// <summary>
@@ -36,6 +39,23 @@ namespace CSStu
             try
             {
                 File.WriteAllLines(this.coursesFileName, this.ListCourses.Select(x => x.ToString()));
+                MessageBox.Show("成功保存！");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        /// <summary>
+        /// 保存用户文件
+        /// </summary>
+        public void SaveScoresToFile()
+        {
+            try
+            {
+                File.WriteAllLines(this.scoresFileName, this.ListScores.Select(x => x.ToString()));
                 MessageBox.Show("成功保存！");
             }
             catch (Exception ex)
@@ -62,6 +82,19 @@ namespace CSStu
             );
         }
 
+        public static Score CreateScoreFromLine(string line)
+        {
+            string[] ss = line.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+            return new Score(
+                ss[0],
+                ss[1],
+                ss[2],
+               Convert.ToInt32(ss[3].Trim()),
+             Convert.ToInt32(ss[4].Trim())
+            );
+        }
+
         public void ReadAllCourses()
         {
             this.ListCourses = new List<Course>();
@@ -69,6 +102,17 @@ namespace CSStu
             {
                 this.ListCourses = File.ReadLines(this.coursesFileName)
                     .Select(x => CreateCourseFromLine(x))
+                    .ToList();
+            }
+        }
+
+        public void ReadAllScores()
+        {
+            this.ListScores = new List<Score>();
+            if (File.Exists(scoresFileName))
+            {
+                this.ListScores = File.ReadLines(this.scoresFileName)
+                    .Select(x => CreateScoreFromLine(x))
                     .ToList();
             }
         }

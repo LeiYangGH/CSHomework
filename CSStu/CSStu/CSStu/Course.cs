@@ -12,14 +12,14 @@ namespace CSStu
         private const string dateFormatString = @"yyyy-MM-dd";
         public Course()
         {
-            this.Id = id++;
+            this.Id = Course.id++;
         }
 
         public Course(int id, string name, DateTime date, int duration)
         {
             this.Id = id;
             if (Course.id <= id)
-                Course.id++;
+                Course.id = id + 1;
             this.Name = name;
             this.StartDate = date;
             this.Duration = duration;
