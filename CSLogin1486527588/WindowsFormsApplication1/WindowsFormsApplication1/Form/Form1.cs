@@ -12,8 +12,8 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        
-       
+
+
         public Form1()
         {
             InitializeComponent();
@@ -27,22 +27,23 @@ namespace WindowsFormsApplication1
                 String password = txtpwd.Text.Trim();
 
                 StringBuilder sb = new StringBuilder();
-                sb.AppendFormat("select count(*)from User where zh='{0}'and mm='{1}'", username, password);
+                sb.AppendFormat("select count(*) from [User] where zh='{0}'and mm='{1}'", username, password);
 
                 SqlConnection myconnection = new SqlConnection();
 
                 SqlCommand mycommand = new SqlCommand(sb.ToString(), myconnection);
 
                 //SqlCommand mycommand = new SqlCommand("select count(*)from User where zh='" + this.txtname.Text.ToString() + "'and mm='" + this.txtpwd.Text + "'", myconnection);
-                
-               myconnection.Open();
+                //注意integrated security=true是本机验证，你可能得改成你原来的User ID=sa;Pwd=sa
+                myconnection.ConnectionString = "Data Source=.;Initial Catalog=CWWZ;integrated security=true";
+                myconnection.Open();
 
                 //mycommand.Connection.Open();
-            
+
                 int num = (int)mycommand.ExecuteScalar();
                 //mycommand.Connection.Close();
                 if (num == 1)
-                {                   
+                {
                     Form2 f2 = new Form2();
                     this.Hide();
                     f2.Show();
@@ -70,9 +71,9 @@ namespace WindowsFormsApplication1
                 txtname.Focus();
                 return false;
             }
-            
+
             else { return true; }
 
-        }   
+        }
     }
 }
