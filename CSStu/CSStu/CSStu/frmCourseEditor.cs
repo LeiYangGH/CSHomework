@@ -17,6 +17,7 @@ namespace CSStu
         {
             InitializeComponent();
             this.Course = new Course();
+            this.txtId.Text = this.Course.Id.ToString();
         }
 
 

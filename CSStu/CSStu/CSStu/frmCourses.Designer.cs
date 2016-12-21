@@ -44,6 +44,7 @@
             this.dgvCourse.Dock = System.Windows.Forms.DockStyle.Left;
             this.dgvCourse.Location = new System.Drawing.Point(0, 0);
             this.dgvCourse.Name = "dgvCourse";
+            this.dgvCourse.ReadOnly = true;
             this.dgvCourse.RowTemplate.Height = 28;
             this.dgvCourse.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCourse.Size = new System.Drawing.Size(747, 516);
@@ -53,7 +54,7 @@
             // 
             this.btnAdd.Location = new System.Drawing.Point(815, 171);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(94, 41);
+            this.btnAdd.Size = new System.Drawing.Size(116, 33);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "添加";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -61,9 +62,9 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(815, 323);
+            this.btnUpdate.Location = new System.Drawing.Point(815, 271);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(94, 37);
+            this.btnUpdate.Size = new System.Drawing.Size(116, 33);
             this.btnUpdate.TabIndex = 2;
             this.btnUpdate.Text = "修改";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -71,9 +72,9 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(815, 437);
+            this.btnSave.Location = new System.Drawing.Point(815, 372);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(116, 42);
+            this.btnSave.Size = new System.Drawing.Size(116, 32);
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "保存到文件";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -89,7 +90,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dgvCourse);
             this.Name = "frmCourses";
-            this.Text = "frmCourses";
+            this.Text = "课程管理";
             this.Load += new System.EventHandler(this.frmCourses_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCourse)).EndInit();
             this.ResumeLayout(false);

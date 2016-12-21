@@ -130,7 +130,7 @@
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtId);
             this.Name = "frmCourseEditor";
-            this.Text = "frmCourseEditor";
+            this.Text = "课程编辑";
             ((System.ComponentModel.ISupportInitialize)(this.numDuration)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -24,6 +24,11 @@ namespace CSStu
         {
             this.lstScore = new BindingList<Score>(Repository.Default.ListScores);
             this.dgvScore.DataSource = this.lstScore;
+            this.dgvScore.Columns[0].HeaderText = "学号";
+            this.dgvScore.Columns[1].HeaderText = "姓名";
+            this.dgvScore.Columns[2].HeaderText = "专业";
+            this.dgvScore.Columns[3].HeaderText = "课程编号";
+            this.dgvScore.Columns[4].HeaderText = "成绩";
         }
 
         private void courseToolStripMenuItem_Click(object sender, EventArgs e)
