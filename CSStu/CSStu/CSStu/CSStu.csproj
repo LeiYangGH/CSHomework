@@ -46,6 +46,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Course.cs" />
+    <Compile Include="frmCourseEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCourseEditor.Designer.cs">
+      <DependentUpon>frmCourseEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCourses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCourses.Designer.cs">
+      <DependentUpon>frmCourses.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,6 +69,15 @@
     <Compile Include="Repository.cs" />
     <Compile Include="Score.cs" />
     <Compile Include="Student.cs" />
+    <EmbeddedResource Include="frmCourseEditor.resx">
+      <DependentUpon>frmCourseEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCourses.resx">
+      <DependentUpon>frmCourses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

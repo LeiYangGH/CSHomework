@@ -15,6 +15,13 @@ namespace CSStu
         public frmMain()
         {
             InitializeComponent();
+            Repository r = new Repository();
+        }
+
+        private void courseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCourses frmC = new frmCourses();
+            frmC.ShowDialog();
         }
     }
 }
