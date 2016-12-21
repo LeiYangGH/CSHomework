@@ -38,7 +38,7 @@ namespace CSStu
         {
             try
             {
-                File.WriteAllLines(this.coursesFileName, this.ListCourses.Select(x => x.ToString()));
+                File.WriteAllLines(this.coursesFileName, this.ListCourses.Select(x => x.ToString()), Encoding.UTF8);
                 MessageBox.Show("成功保存！");
             }
             catch (Exception ex)
@@ -55,7 +55,7 @@ namespace CSStu
         {
             try
             {
-                File.WriteAllLines(this.scoresFileName, this.ListScores.Select(x => x.ToString()));
+                File.WriteAllLines(this.scoresFileName, this.ListScores.Select(x => x.ToString()), Encoding.UTF8);
                 MessageBox.Show("成功保存！");
             }
             catch (Exception ex)
@@ -100,7 +100,7 @@ namespace CSStu
             this.ListCourses = new List<Course>();
             if (File.Exists(coursesFileName))
             {
-                this.ListCourses = File.ReadLines(this.coursesFileName)
+                this.ListCourses = File.ReadLines(this.coursesFileName, Encoding.UTF8)
                     .Select(x => CreateCourseFromLine(x))
                     .ToList();
             }
@@ -111,7 +111,7 @@ namespace CSStu
             this.ListScores = new List<Score>();
             if (File.Exists(scoresFileName))
             {
-                this.ListScores = File.ReadLines(this.scoresFileName)
+                this.ListScores = File.ReadLines(this.scoresFileName, Encoding.UTF8)
                     .Select(x => CreateScoreFromLine(x))
                     .ToList();
             }
