@@ -59,7 +59,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(62, 350);
+            this.button1.Location = new System.Drawing.Point(59, 430);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 42);
             this.button1.TabIndex = 2;
@@ -68,7 +68,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(216, 350);
+            this.button2.Location = new System.Drawing.Point(213, 430);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(94, 42);
             this.button2.TabIndex = 2;
@@ -77,7 +77,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(363, 350);
+            this.button3.Location = new System.Drawing.Point(360, 430);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(94, 42);
             this.button3.TabIndex = 2;
@@ -86,7 +86,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(498, 350);
+            this.button4.Location = new System.Drawing.Point(495, 430);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(94, 42);
             this.button4.TabIndex = 2;
@@ -97,7 +97,7 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(46, 116);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(527, 206);
+            this.pictureBox1.Size = new System.Drawing.Size(560, 285);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
@@ -115,14 +115,14 @@
             this.txtPercent.Location = new System.Drawing.Point(627, 212);
             this.txtPercent.Name = "txtPercent";
             this.txtPercent.ReadOnly = true;
-            this.txtPercent.Size = new System.Drawing.Size(78, 26);
+            this.txtPercent.Size = new System.Drawing.Size(205, 26);
             this.txtPercent.TabIndex = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(788, 500);
+            this.ClientSize = new System.Drawing.Size(905, 500);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button4);

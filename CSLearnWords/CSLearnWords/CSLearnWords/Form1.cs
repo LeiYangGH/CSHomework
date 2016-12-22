@@ -16,15 +16,54 @@ namespace CSLearnWords
         string[] english;
         string[] chinese;
         Random r = new Random();
+        Button[] buttons;
+        int total;
+        int correct;
+        string correctCh;
         public Form1()
         {
             InitializeComponent();
+            this.RegisterButtons();
+        }
+
+        private void Judge(string selection)
+        {
+            if (selection == this.correctCh)
+            {
+                this.pictureBox1.Image = Properties.Resources.ok;
+                this.correct++;
+            }
+            else
+                this.pictureBox1.Image = Properties.Resources.fail;
+            this.txtPercent.Text = string.Format("{0}/{1},{2:P2}",
+            this.correct, this.total,
+            this.correct / (float)this.total);
+            this.Refresh();
+        }
+
+        private void RegisterButtons()
+        {
+            this.buttons = new Button[] { button1, button2, button3, button4 };
+            foreach (var btn in this.buttons)
+                btn.Click += (s, e) =>
+                  {
+                      this.Judge((s as Button).Text);
+                      this.Test();
+                  };
         }
 
         private void Test()
         {
+
             string en = english.OrderBy(x => r.Next()).First();
             this.txtWord.Text = en;
+            string[] chi = chinese.OrderBy(x => r.Next()).ToArray();
+            for (int i = 0; i < 4; i++)
+            {
+                this.buttons[i].Text = chi[i];
+            }
+            this.correctCh = this.chinese[this.english.ToList().IndexOf(en)];
+            this.total++;
         }
 
         private void ReadWords()
