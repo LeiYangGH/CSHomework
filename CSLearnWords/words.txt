@@ -1,0 +1,5 @@
+﻿apple|苹果|car|汽车|house|房子
+apple1|苹果|car1|汽车1|house1|房子1
+apple2|苹果2|car2|汽车2|house2|房子2
+apple3|苹果3|car3|汽车3|house3|房子3
+apple4|苹果4|car4|汽车4|house4|房子4
