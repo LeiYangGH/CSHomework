@@ -8,15 +8,17 @@ namespace MonkeyKing
 {
     static class Program
     {
-        //[STAThread]
-        //static void Main()
-        //{
-        //    Application.EnableVisualStyles();
-        //    Application.SetCompatibleTextRenderingDefault(false);
-        //    Application.Run(new frmPyramid());
-        //}
-
+        [STAThread]
         static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new frmShape());
+        }
+
+        //把Main改成其他名字为了防止与Winform的冲突
+        //如果需要控制台程序则要反过来改
+        static void Main1()
         {
             //3.
             CalcFirstAndLastDay();
