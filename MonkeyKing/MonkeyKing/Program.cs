@@ -18,7 +18,33 @@ namespace MonkeyKing
 
         static void Main()
         {
+            //3.
             CalcFirstAndLastDay();
+
+
+            //4.
+            Console.WriteLine("请输入n，并以回车结束");
+            int n = Convert.ToInt32(Console.ReadLine());
+            int sum = CalcSum(n);
+            Console.WriteLine("1-2+3-4+5-6+7……+n = " + sum.ToString());
+
+
+
+            //5.
+            Cat cat = new Cat();
+            Mouse m1 = new Mouse("Micky");
+            Mouse m2 = new Mouse("Kathy");
+            Mouse m3 = new Mouse("Jim");
+            Man man = new Man();
+            cat.EvCatMiao += (s, e) =>
+              {
+                  m1.Run();
+                  m1.Run();
+                  m1.Run();
+                  man.Wakeup();
+              };
+            cat.Miao();
+
             Console.ReadLine();
         }
 
@@ -31,6 +57,60 @@ namespace MonkeyKing
             DateTime lastDay = new DateTime(year, 12, 31).Date;
             Console.WriteLine("今年第一天" + firstDay.ToShortDateString());
             Console.WriteLine("今年最后一天" + lastDay.ToShortDateString());
+        }
+
+        static int CalcSum(int n)
+        {
+            int sum = 0;
+            for (int i = 1; i <= n; i++)
+            {
+                if (i % 2 == 1)
+                {
+                    sum += i;
+                }
+                else
+                {
+                    sum -= i;
+                }
+            }
+            return sum;
+        }
+
+    }
+
+    public class Cat
+    {
+        public event EventHandler EvCatMiao;
+
+        public void Miao()
+        {
+            Console.WriteLine("猫在叫！");
+            if (this.EvCatMiao != null)
+            {
+                this.EvCatMiao(this, null);
+            }
+        }
+    }
+
+    public class Mouse
+    {
+        public Mouse(string name)
+        {
+            this.Name = name;
+        }
+        public void Run()
+        {
+            Console.WriteLine("鼠{0}逃跑...", this.Name);
+        }
+
+        public string Name { get; set; }
+    }
+
+    public class Man
+    {
+        public void Wakeup()
+        {
+            Console.WriteLine("主人醒来...");
         }
 
     }
