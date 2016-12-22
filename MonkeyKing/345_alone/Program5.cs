@@ -8,7 +8,7 @@ namespace MonkeyKing
 {
     static class Program5
     {
-        static void Main5()
+        static void Main()
         {
             //5.
             Cat cat = new Cat();
