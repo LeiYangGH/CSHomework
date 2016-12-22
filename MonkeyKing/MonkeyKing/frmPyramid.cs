@@ -30,7 +30,8 @@ namespace MonkeyKing
         private void button1_Click(object sender, EventArgs e)
         {
             Graphics g = this.pictureBox1.CreateGraphics();
-            DrawAt(g, 10, 10);
+            g.TranslateTransform(this.pictureBox1.Width / 2, 10);
+            DrawAt(g, -10, -10);
         }
 
         private void DrawAt(Graphics g, int x, int y)
