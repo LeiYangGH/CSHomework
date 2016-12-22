@@ -10,7 +10,7 @@ namespace MonkeyKing
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmShape());
+            Application.Run(new frmRunHorse());
         }
     }
 }

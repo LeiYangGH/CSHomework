@@ -60,6 +60,12 @@
     <Compile Include="frmPyramid.Designer.cs">
       <DependentUpon>frmPyramid.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRunHorse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRunHorse.Designer.cs">
+      <DependentUpon>frmRunHorse.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmShape.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPyramid.resx">
       <DependentUpon>frmPyramid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRunHorse.resx">
+      <DependentUpon>frmRunHorse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmShape.resx">
       <DependentUpon>frmShape.cs</DependentUpon>
