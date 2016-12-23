@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSchenyi96225
 {
     class Program2
     {
-        static void Main(string[] args)
+        static void Main2(string[] args)
         {
             int num = 1000;
             int need = 10;
