@@ -5,7 +5,7 @@ namespace CSchenyi96225
 {
     class Program5
     {
-        static void Main(string[] args)
+        static void Main5(string[] args)
         {
             Console.Write("请输入n:");
             int n = Convert.ToInt32(Console.ReadLine());
