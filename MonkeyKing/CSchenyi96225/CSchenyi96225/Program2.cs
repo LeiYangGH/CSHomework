@@ -6,17 +6,21 @@ using System.Threading.Tasks;
 
 namespace CSchenyi96225
 {
-    class Program1
+    class Program2
     {
-        static void Main1(string[] args)
+        static void Main(string[] args)
         {
             int num = 1000;
+            int need = 10;
+            int cnt = 0;
+            Console.WriteLine("1000以内的最大素数:");
             while (true)
             {
                 if (IsPrime(num--))
                 {
-                    Console.WriteLine("1000以内的最大素数:{0}", num);
-                    break;
+                    Console.WriteLine(num);
+                    if (++cnt == need)
+                        break;
                 }
             }
             Console.ReadLine();
