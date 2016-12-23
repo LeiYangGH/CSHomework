@@ -31,7 +31,7 @@ namespace CSchenyi96225
             for (int i = 100; i <= 500; i++)
             {
                 if (i % 2 == 1)
-                    odds.Add(i);
+                    this.odds.Add(i);
             }
             this.ShowSum();
         }
