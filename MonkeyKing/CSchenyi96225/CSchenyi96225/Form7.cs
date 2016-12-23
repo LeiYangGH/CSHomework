@@ -48,7 +48,10 @@ namespace CSchenyi96225
             else
             {
                 int workDays = this.WorkDays(fromDate, toDate);
-                this.lblMsg.Text = workDays.ToString();
+                this.lblMsg.Text = string.Format("{0}到{1}的工作日共有{2}天",
+                    fromDate.ToString("yyyy年MM月d日"),
+                    toDate.ToString("yyyy年MM月d日"),
+                    workDays);
             }
         }
 

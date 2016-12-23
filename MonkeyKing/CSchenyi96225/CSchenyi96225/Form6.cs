@@ -22,7 +22,7 @@ namespace CSchenyi96225
             float r;
             if (!float.TryParse(this.textBox1.Text.Trim(), out r) || r <= 0)
             {
-                MessageBox.Show("输入的长度不合法，请重新输入!");
+                MessageBox.Show("输入的半径不合法，请重新输入!");
             }
             else
             {
