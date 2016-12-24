@@ -12,12 +12,12 @@ namespace CSJigsaw
 {
     public partial class Form1 : Form
     {
-        private int level = 2;
+        private int level = 3;
         private int btnsCount;
         private Size btnSize = new Size(50, 50);
         private List<JigButton> lstButtons;
         private Point blankPoint;
-
+        private int stepsCount;
         public Form1()
         {
             InitializeComponent();
@@ -57,10 +57,12 @@ namespace CSJigsaw
                 if (btn.CurPoint.Y == this.blankPoint.Y - 1)
                 {
                     this.blankPoint = btn.MoveStep(0, 1);
+                    this.stepsCount++;
                 }
                 else if (btn.CurPoint.Y == this.blankPoint.Y + 1)
                 {
                     this.blankPoint = btn.MoveStep(0, -1);
+                    this.stepsCount++;
                 }
             }
             else if (btn.CurPoint.Y == this.blankPoint.Y)
@@ -68,12 +70,15 @@ namespace CSJigsaw
                 if (btn.CurPoint.X == this.blankPoint.X - 1)
                 {
                     this.blankPoint = btn.MoveStep(1, 0);
+                    this.stepsCount++;
                 }
                 else if (btn.CurPoint.X == this.blankPoint.X + 1)
                 {
                     this.blankPoint = btn.MoveStep(-1, 0);
+                    this.stepsCount++;
                 }
             }
+            this.lblSteps.Text = "步数：" + this.stepsCount.ToString();
             if (this.CheckSucceed())
             {
                 MessageBox.Show("恭喜你成功！");
@@ -93,6 +98,7 @@ namespace CSJigsaw
                 btn.Left = 10 + p.X * btnSize.Width;
                 btn.Top = 10 + p.Y * btnSize.Height;
             }
+            this.stepsCount = 0;
         }
 
         private void btnShuffle_Click(object sender, EventArgs e)
