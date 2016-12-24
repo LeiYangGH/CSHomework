@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{A49959A6-E30A-46BF-A2C2-45BD42B0D8A9}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>YYBroadcast</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DefineConstants>TRIAL5</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <DefineConstants>TRIAL5</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="YYBroadcast.Properties\Resources.cs" />
+    <Compile Include="YYBroadcast.Properties\Settings.cs" />
+    <Compile Include="YYBroadcast\Constants.cs" />
+    <Compile Include="YYBroadcast\FormUpgrade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YYBroadcast\FormYYBroadast.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YYBroadcast\GlobalVariable.cs" />
+    <Compile Include="YYBroadcast\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YYBroadcast\Method.cs" />
+    <Compile Include="YYBroadcast\Program.cs" />
+    <Compile Include="YYBroadcast\Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YYBroadcast\ShutDown.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="YYBroadcast.Properties\Resources.resources" />
+    <EmbeddedResource Include="YYBroadcast\FormUpgrade.resources" />
+    <EmbeddedResource Include="YYBroadcast\FormYYBroadast.resources" />
+    <EmbeddedResource Include="YYBroadcast\LoginForm.resources" />
+    <EmbeddedResource Include="YYBroadcast\Register.resources" />
+    <EmbeddedResource Include="YYBroadcast\ShutDown.resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
