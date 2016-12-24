@@ -36,6 +36,8 @@ namespace Petzold.JeuDeTacquin
                 unigrid.Rows = NumberRows;
                 unigrid.Columns = NumberCols;
 
+
+
                 // Create Tile objects to fill all but one cell.
                 for (int i = 0; i < NumberRows * NumberCols - 1; i++)
                 {
