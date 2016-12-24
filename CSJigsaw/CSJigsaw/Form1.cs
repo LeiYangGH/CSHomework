@@ -27,9 +27,10 @@ namespace CSJigsaw
         {
             int cnt = 0;
             this.lstButtons = new List<JigButton>();
-            for (int j = 0; j < level; j++)
+            this.panel1.Controls.Clear();
+            for (int j = 0; j < this.level; j++)
             {
-                for (int i = 0; i < level; i++)
+                for (int i = 0; i < this.level; i++)
                 {
                     JigButton btn = new JigButton(new Point(i, j));
                     btn.Size = btnSize;
@@ -38,11 +39,11 @@ namespace CSJigsaw
                     btn.Left = 10 + i * btnSize.Width;
                     btn.Top = 10 + j * btnSize.Height;
                     this.lstButtons.Add(btn);
-                    this.Controls.Add(btn);
+                    this.panel1.Controls.Add(btn);
                 }
             }
             JigButton last = this.lstButtons.Last();
-            this.Controls.Remove(last);
+            this.panel1.Controls.Remove(last);
             this.lstButtons.Remove(last);
             this.btnsCount = this.level * this.level - 1;
             this.blankPoint = new Point(this.level - 1, this.level - 1);
@@ -120,6 +121,12 @@ namespace CSJigsaw
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
 
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            this.level = (int)this.numericUpDown1.Value;
+            this.AddJigButtons();
         }
     }
 }
