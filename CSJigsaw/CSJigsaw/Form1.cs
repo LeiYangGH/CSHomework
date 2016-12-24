@@ -17,6 +17,7 @@ namespace CSJigsaw
         Keys[] keys = { Keys.Left, Keys.Right, Keys.Up, Keys.Down };
         int xEmpty, yEmpty, iCounter;
         private List<JigButton> lstJigButtons;
+        private Point blankPoint;
         public Form1()
         {
             InitializeComponent();
@@ -34,7 +35,7 @@ namespace CSJigsaw
                     JigButton btn = new JigButton(new Point(i, j));
                     btn.Size = btnSize;
                     btn.Text = (++cnt).ToString();
-                    //tile.MouseLeftJigButtonDown += TileOnMouseLeftJigButtonDown; ;
+                    btn.Click += Btn_Click;
                     btn.Left = 10 + i * btnSize.Width;
                     btn.Top = 10 + j * btnSize.Height;
                     this.lstJigButtons.Add(btn);
@@ -45,6 +46,40 @@ namespace CSJigsaw
             this.Controls.Remove(last);
             this.lstJigButtons.Remove(last);
             this.btnsCount = this.level * this.level - 1;
+            this.blankPoint = new Point(this.level - 1, this.level - 1);
+        }
+
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            //this.Text = "d";
+            JigButton btn = sender as JigButton;
+            if (btn.CurPoint.X == this.blankPoint.X)
+            {
+                if (btn.CurPoint.Y == this.blankPoint.Y - 1)
+                {
+                    this.blankPoint = btn.CurPoint;
+                    btn.MoveStep(0, 1);
+
+                }
+                else if (btn.CurPoint.Y == this.blankPoint.Y + 1)
+                {
+                    this.blankPoint = btn.CurPoint;
+                    btn.MoveStep(0, -1);
+                }
+            }
+            else if (btn.CurPoint.Y == this.blankPoint.Y)
+            {
+                if (btn.CurPoint.X == this.blankPoint.X - 1)
+                {
+                    this.blankPoint = btn.CurPoint;
+                    btn.MoveStep(1, 0);
+                }
+                else if (btn.CurPoint.X == this.blankPoint.X + 1)
+                {
+                    this.blankPoint = btn.CurPoint;
+                    btn.MoveStep(-1, 0);
+                }
+            }
         }
 
         private void Shuffle()
