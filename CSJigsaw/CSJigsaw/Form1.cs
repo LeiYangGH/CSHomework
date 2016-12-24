@@ -12,12 +12,12 @@ namespace CSJigsaw
 {
     public partial class Form1 : Form
     {
-        public int level = 4;
-        public int btnsCount;
-        Keys[] keys = { Keys.Left, Keys.Right, Keys.Up, Keys.Down };
-        int xEmpty, yEmpty, iCounter;
-        private List<JigButton> lstJigButtons;
+        private int level = 2;
+        private int btnsCount;
+        private Size btnSize = new Size(50, 50);
+        private List<JigButton> lstButtons;
         private Point blankPoint;
+
         public Form1()
         {
             InitializeComponent();
@@ -26,8 +26,7 @@ namespace CSJigsaw
         private void AddJigButtons()
         {
             int cnt = 0;
-            Size btnSize = new Size(50, 50);
-            this.lstJigButtons = new List<JigButton>();
+            this.lstButtons = new List<JigButton>();
             for (int j = 0; j < level; j++)
             {
                 for (int i = 0; i < level; i++)
@@ -38,58 +37,61 @@ namespace CSJigsaw
                     btn.Click += Btn_Click;
                     btn.Left = 10 + i * btnSize.Width;
                     btn.Top = 10 + j * btnSize.Height;
-                    this.lstJigButtons.Add(btn);
+                    this.lstButtons.Add(btn);
                     this.Controls.Add(btn);
                 }
             }
-            JigButton last = this.lstJigButtons.Last();
+            JigButton last = this.lstButtons.Last();
             this.Controls.Remove(last);
-            this.lstJigButtons.Remove(last);
+            this.lstButtons.Remove(last);
             this.btnsCount = this.level * this.level - 1;
             this.blankPoint = new Point(this.level - 1, this.level - 1);
         }
 
         private void Btn_Click(object sender, EventArgs e)
         {
-            //this.Text = "d";
             JigButton btn = sender as JigButton;
+
             if (btn.CurPoint.X == this.blankPoint.X)
             {
                 if (btn.CurPoint.Y == this.blankPoint.Y - 1)
                 {
-                    this.blankPoint = btn.CurPoint;
-                    btn.MoveStep(0, 1);
-
+                    this.blankPoint = btn.MoveStep(0, 1);
                 }
                 else if (btn.CurPoint.Y == this.blankPoint.Y + 1)
                 {
-                    this.blankPoint = btn.CurPoint;
-                    btn.MoveStep(0, -1);
+                    this.blankPoint = btn.MoveStep(0, -1);
                 }
             }
             else if (btn.CurPoint.Y == this.blankPoint.Y)
             {
                 if (btn.CurPoint.X == this.blankPoint.X - 1)
                 {
-                    this.blankPoint = btn.CurPoint;
-                    btn.MoveStep(1, 0);
+                    this.blankPoint = btn.MoveStep(1, 0);
                 }
                 else if (btn.CurPoint.X == this.blankPoint.X + 1)
                 {
-                    this.blankPoint = btn.CurPoint;
-                    btn.MoveStep(-1, 0);
+                    this.blankPoint = btn.MoveStep(-1, 0);
                 }
+            }
+            if (this.CheckSucceed())
+            {
+                MessageBox.Show("恭喜你成功！");
             }
         }
 
         private void Shuffle()
         {
             Random r = new Random();
-            var randIds = Enumerable.Range(1, this.btnsCount)
-                .OrderBy(x => r.Next()).ToArray();
+            var randPoints = this.lstButtons.Select(x => x.CurPoint)
+                 .OrderBy(x => r.Next()).ToArray();
             for (int i = 0; i < btnsCount; i++)
             {
-                this.lstJigButtons[i].Text = randIds[i].ToString();
+                JigButton btn = this.lstButtons[i];
+                Point p = randPoints[i];
+                btn.ShuffleTo(p);
+                btn.Left = 10 + p.X * btnSize.Width;
+                btn.Top = 10 + p.Y * btnSize.Height;
             }
         }
 
@@ -98,12 +100,11 @@ namespace CSJigsaw
             this.Shuffle();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private bool CheckSucceed()
         {
-            //this.lstJigButtons.Last().MoveStep(0, -1);
-            //this.lstJigButtons.Last().MoveStep(1, 0);
-            this.lstJigButtons[11].MoveStep(0, 1);
+            return this.lstButtons.All(x => x.IsBack());
         }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -114,7 +115,5 @@ namespace CSJigsaw
         {
 
         }
-
-
     }
 }
