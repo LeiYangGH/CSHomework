@@ -34,6 +34,17 @@ namespace 金圣洁A14.课程知识演示软件
             }
         }
 
+        private void SelectFirstItem(ListBox lb)
+        {
+            if (lb.Items.Count > 0)
+                lb.SelectedItem = lb.Items.OfType<string>().First();
+        }
+
+        private void SelectNextItem(ListBox lb)
+        {
+            lb.SelectedItem = lb.Items[lb.Items.IndexOf(lb.SelectedItem) + 1];
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             var sel = this.listBox2.SelectedItem;
@@ -63,7 +74,7 @@ namespace 金圣洁A14.课程知识演示软件
             {
                 this.listBox1.Items.Add(Path.GetFileName(dir));
             }
-            this.listBox1.SelectedItem = this.listBox1.Items.OfType<string>().First();
+            this.SelectFirstItem(this.listBox1);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -82,7 +93,7 @@ namespace 金圣洁A14.课程知识演示软件
                 {
                     this.listBox2.Items.Add(Path.GetFileName(file));
                 }
-                this.listBox2.SelectedItem = this.listBox2.Items.OfType<string>().First();
+                this.SelectFirstItem(this.listBox2);
             }
         }
 
@@ -100,13 +111,12 @@ namespace 金圣洁A14.课程知识演示软件
                     }
                     else
                     {
-                        this.listBox1.SelectedItem = this.listBox1.Items[this.listBox1.Items.IndexOf(selCh) + 1];
+                        this.SelectNextItem(this.listBox1);
                     }
                 }
                 else
                 {
-                    string selSec = sel as string;
-                    this.listBox2.SelectedItem = this.listBox2.Items[this.listBox2.Items.IndexOf(selSec) + 1];
+                    this.SelectNextItem(this.listBox2);
                 }
                 this.OpenSection(this.listBox2.SelectedItem as string);
             }
