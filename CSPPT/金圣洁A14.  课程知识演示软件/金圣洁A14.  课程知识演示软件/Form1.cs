@@ -12,44 +12,57 @@ namespace 金圣洁A14.课程知识演示软件
 {
     public partial class Form1 : Form
     {
+        private string bookFolder = @"C:\G\CSHomework\CSPPT\金圣洁A14.  课程知识演示软件\金圣洁A14.  课程知识演示软件\bin\Debug\课程内容";
+        private string currentChapter;
         public Form1()
         {
             InitializeComponent();
         }
 
-
+        private void OpenSection(string sec)
+        {
+            try
+            {
+                string section = Path.Combine(this.currentChapter, sec);
+                string content = File.ReadAllText(section, Encoding.GetEncoding("GB2312"));
+                this.textBox3.Text = content;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string a;
-            a= listBox2.SelectedIndex.ToString();
-            FileStream fs = new FileStream(Application.StartupPath + @"a.txt", FileMode.Open);
-            StreamReader b = new StreamReader(fs, System.Text.Encoding.Default);
-            textBox3.Text = b.ReadToEnd();
-            b.Close();
+            var sel = this.listBox2.SelectedItem;
+            if (sel != null)
+            {
+                this.OpenSection(sel as string);
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog s = new FolderBrowserDialog();
-            DialogResult x = s.ShowDialog();
-            if (x == DialogResult.OK)
-                textBox1.Text = s.SelectedPath;
+            //FolderBrowserDialog s = new FolderBrowserDialog();
+            //DialogResult x = s.ShowDialog();
+            //if (x == DialogResult.OK)
+            //{
+            //    this.bookFolder = s.SelectedPath;
+            //    textBox1.Text = this.bookFolder;
+            //}
+            textBox1.Text = this.bookFolder;
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FileInfo f = new FileInfo(textBox1.Text);
-            string[] a = Directory.GetDirectories(textBox1.Text);
-            
-            listBox1.Items.AddRange(a);
-            string[] b = Directory.GetFiles(textBox1.Text);
-            listBox2.Items.AddRange(b);
-
-            
-
-
+            this.listBox1.Items.Clear();
+            foreach (string dir in Directory.GetDirectories(this.bookFolder))
+            {
+                this.listBox1.Items.Add(Path.GetFileName(dir));
+            }
+            this.listBox1.SelectedItem = this.listBox1.Items.OfType<string>().First();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -57,6 +70,45 @@ namespace 金圣洁A14.课程知识演示软件
 
         }
 
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var sel = this.listBox1.SelectedItem;
+            if (sel != null)
+            {
+                this.listBox2.Items.Clear();
+                this.currentChapter = Path.Combine(this.bookFolder, sel as string);
+                foreach (string file in Directory.GetFiles(this.currentChapter, "*.txt"))
+                {
+                    this.listBox2.Items.Add(Path.GetFileName(file));
+                }
+                this.listBox2.SelectedItem = this.listBox2.Items.OfType<string>().First();
+            }
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            object sel = this.listBox2.SelectedItem;
+            if (sel != null)
+            {
+                if (sel.ToString() == this.listBox2.Items.OfType<string>().Last())
+                {
+                    string selCh = this.listBox1.SelectedItem.ToString();
+                    if (selCh.ToString() == this.listBox1.Items.OfType<string>().Last())
+                    {
+                        MessageBox.Show("已经到了末尾！");
+                    }
+                    else
+                    {
+                        this.listBox1.SelectedItem = this.listBox1.Items[this.listBox1.Items.IndexOf(selCh) + 1];
+                    }
+                }
+                else
+                {
+                    string selSec = sel as string;
+                    this.listBox2.SelectedItem = this.listBox2.Items[this.listBox2.Items.IndexOf(selSec) + 1];
+                }
+                this.OpenSection(this.listBox2.SelectedItem as string);
+            }
+        }
     }
 }
