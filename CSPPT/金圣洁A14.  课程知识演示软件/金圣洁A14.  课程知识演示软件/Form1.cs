@@ -12,7 +12,8 @@ namespace 金圣洁A14.课程知识演示软件
 {
     public partial class Form1 : Form
     {
-        private string bookFolder = @"C:\G\CSHomework\CSPPT\金圣洁A14.  课程知识演示软件\金圣洁A14.  课程知识演示软件\bin\Debug\课程内容";
+        //private string bookFolder = @"C:\G\CSHomework\CSPPT\金圣洁A14.  课程知识演示软件\金圣洁A14.  课程知识演示软件\bin\Debug\课程内容";
+        private string bookFolder = @"课程内容";
         private string currentChapter;
         public Form1()
         {
@@ -44,14 +45,14 @@ namespace 金圣洁A14.课程知识演示软件
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //FolderBrowserDialog s = new FolderBrowserDialog();
-            //DialogResult x = s.ShowDialog();
-            //if (x == DialogResult.OK)
-            //{
-            //    this.bookFolder = s.SelectedPath;
-            //    textBox1.Text = this.bookFolder;
-            //}
-            textBox1.Text = this.bookFolder;
+            FolderBrowserDialog s = new FolderBrowserDialog();
+            DialogResult x = s.ShowDialog();
+            if (x == DialogResult.OK)
+            {
+                this.bookFolder = s.SelectedPath;
+                textBox1.Text = this.bookFolder;
+            }
+            //textBox1.Text = this.bookFolder;
 
         }
 
