@@ -12,8 +12,8 @@ namespace 金圣洁A14.课程知识演示软件
 {
     public partial class Form1 : Form
     {
-        //private string bookFolder = @"C:\G\CSHomework\CSPPT\金圣洁A14.  课程知识演示软件\金圣洁A14.  课程知识演示软件\bin\Debug\课程内容";
-        private string bookFolder = @"课程内容";
+        private string bookFolder = @"C:\G\CSHomework\CSPPT\金圣洁A14.  课程知识演示软件\金圣洁A14.  课程知识演示软件\bin\Debug\课程内容";
+        //private string bookFolder = @"课程内容";
         private string currentChapter;
         public Form1()
         {
@@ -34,16 +34,7 @@ namespace 金圣洁A14.课程知识演示软件
             }
         }
 
-        private void SelectFirstItem(ListBox lb)
-        {
-            if (lb.Items.Count > 0)
-                lb.SelectedItem = lb.Items.OfType<string>().First();
-        }
 
-        private void SelectNextItem(ListBox lb)
-        {
-            lb.SelectedItem = lb.Items[lb.Items.IndexOf(lb.SelectedItem) + 1];
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -64,7 +55,6 @@ namespace 金圣洁A14.课程知识演示软件
                 textBox1.Text = this.bookFolder;
             }
             //textBox1.Text = this.bookFolder;
-
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -74,7 +64,7 @@ namespace 金圣洁A14.课程知识演示软件
             {
                 this.listBox1.Items.Add(Path.GetFileName(dir));
             }
-            this.SelectFirstItem(this.listBox1);
+            this.listBox1.SelectedIndex = 0;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -93,7 +83,7 @@ namespace 金圣洁A14.课程知识演示软件
                 {
                     this.listBox2.Items.Add(Path.GetFileName(file));
                 }
-                this.SelectFirstItem(this.listBox2);
+                this.listBox2.SelectedIndex = 0;
             }
         }
 
@@ -111,12 +101,12 @@ namespace 金圣洁A14.课程知识演示软件
                     }
                     else
                     {
-                        this.SelectNextItem(this.listBox1);
+                        this.listBox1.SelectedIndex += 1;
                     }
                 }
                 else
                 {
-                    this.SelectNextItem(this.listBox2);
+                    this.listBox2.SelectedIndex += 1;
                 }
                 this.OpenSection(this.listBox2.SelectedItem as string);
             }
