@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
@@ -12,8 +7,9 @@ namespace 金圣洁A14.课程知识演示软件
 {
     public partial class Form1 : Form
     {
-        private string bookFolder = @"C:\G\CSHomework\CSPPT\金圣洁A14.  课程知识演示软件\金圣洁A14.  课程知识演示软件\bin\Debug\课程内容";
-        //private string bookFolder = @"课程内容";
+
+        private string bookFolder = @"课程内容";
+        private bool goingForward;//是否在向前
         private string currentChapter;
         public Form1()
         {
@@ -22,19 +18,10 @@ namespace 金圣洁A14.课程知识演示软件
 
         private void OpenSection(string sec)
         {
-            try
-            {
-                string section = Path.Combine(this.currentChapter, sec);
-                string content = File.ReadAllText(section, Encoding.GetEncoding("GB2312"));
-                this.textBox3.Text = content;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            string section = Path.Combine(this.currentChapter, sec);
+            string content = File.ReadAllText(section, Encoding.GetEncoding("GB2312"));
+            this.textBox3.Text = content;
         }
-
-
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -45,17 +32,7 @@ namespace 金圣洁A14.课程知识演示软件
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog s = new FolderBrowserDialog();
-            DialogResult x = s.ShowDialog();
-            if (x == DialogResult.OK)
-            {
-                this.bookFolder = s.SelectedPath;
-                textBox1.Text = this.bookFolder;
-            }
-            //textBox1.Text = this.bookFolder;
-        }
+
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -64,6 +41,7 @@ namespace 金圣洁A14.课程知识演示软件
             {
                 this.listBox1.Items.Add(Path.GetFileName(dir));
             }
+            this.goingForward = true;//开始时默认向前
             this.listBox1.SelectedIndex = 0;
         }
 
@@ -83,21 +61,22 @@ namespace 金圣洁A14.课程知识演示软件
                 {
                     this.listBox2.Items.Add(Path.GetFileName(file));
                 }
-                this.listBox2.SelectedIndex = 0;
+                //选中章的时候，根据向前还是向后设置节选中第一还是最后一项
+                this.listBox2.SelectedIndex = this.goingForward ? 0 : this.listBox2.Items.Count - 1;
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            object sel = this.listBox2.SelectedItem;
-            if (sel != null)
+            this.goingForward = true;//向前
+            if (this.listBox2.SelectedItem != null)
             {
-                if (sel.ToString() == this.listBox2.Items.OfType<string>().Last())
+                if (this.listBox2.SelectedIndex == this.listBox2.Items.Count - 1)
                 {
                     string selCh = this.listBox1.SelectedItem.ToString();
-                    if (selCh.ToString() == this.listBox1.Items.OfType<string>().Last())
+                    if (this.listBox1.SelectedIndex == this.listBox1.Items.Count - 1)
                     {
-                        MessageBox.Show("已经到了末尾！");
+                        MessageBox.Show("已经没有下一节！");
                     }
                     else
                     {
@@ -107,6 +86,31 @@ namespace 金圣洁A14.课程知识演示软件
                 else
                 {
                     this.listBox2.SelectedIndex += 1;
+                }
+                this.OpenSection(this.listBox2.SelectedItem as string);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.goingForward = false;//向后
+            if (this.listBox2.SelectedItem != null)
+            {
+                if (this.listBox2.SelectedIndex == 0)
+                {
+                    string selCh = this.listBox1.SelectedItem.ToString();
+                    if (this.listBox1.SelectedIndex == 0)
+                    {
+                        MessageBox.Show("已经没有上一节！");
+                    }
+                    else
+                    {
+                        this.listBox1.SelectedIndex -= 1;
+                    }
+                }
+                else
+                {
+                    this.listBox2.SelectedIndex -= 1;
                 }
                 this.OpenSection(this.listBox2.SelectedItem as string);
             }
