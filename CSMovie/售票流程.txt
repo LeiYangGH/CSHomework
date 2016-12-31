@@ -1,0 +1,120 @@
+数据库设计
+
+影片售票数据库 yp
+
+影片表 movie
+
+标识 id   nvarchar(36)   --主键 not null
+名称 name  nvarchar(50)    null
+类型标识 movieTypeId tinyint  not null  --引用类型表
+时长 duration  tinyint   not null
+海报poster varbinary(max)  null
+
+
+
+影片类型表 movieType
+
+标识 id tinyint   --主键  not null
+类型名 name nvarchar(50)  not null
+
+
+
+影片档期表 movieSchedule
+
+标识 PK nvarchar(36) --主键  not null
+影片 movieId nvarchar(36)   not null   --引用影片表
+档期标识scheduleId int   not null   --引用档期表
+
+
+
+档期表schedule
+
+标识id int  --主键  not null
+名字name nvarchar(50)    not null
+开始日期beginDate date   not null
+持续时间duration smallint  not null
+放映厅hall
+标识id smallint   --主键  not null
+名字name nvarchar(50)  not null
+主题 theme nvarchar(50)  null
+布局标识 layoutId int    null  --引用布局表
+
+
+场次表play
+
+标识 nvarchar(36)   --主键 not null
+放映厅标识hallId smallint   not null   --引用放映厅表
+日期date date   not null
+开始时间beginTime time(7)   not null 
+影片档期标识movieScheduleId nvarchar(36)   not null
+
+
+位置表 position
+
+标识 id int   --主键 not null
+行号rowNum int  not null
+列号colNum int    not null
+位置类型标识positionTypeId tinyint   not null  --引用位置类型表
+可用状态useAble bit   not null
+布局标识 layoutId  not null
+
+
+位置类型表positionType
+
+标识id tinyint    --主键 not null
+类型名name nvarchar(50)  not null
+
+
+
+布局表layout
+
+标识id int  --主键 not null
+名字style nvarchar(50)   not null
+
+
+原价表orginPrice
+
+价格模板标识priceTempletId    not null  --引用价格表
+位置类型标识positionTypeId  not null  --引用位置类型表
+场次标识playId nvarchar(36)   not null   --引用场次表
+
+
+
+价格模板表priceTemplet
+
+标识id  int   --主键 not null
+价格price  numeric(10,2)  not null
+名称name nvarchar(50)  null
+
+
+
+优惠表 discount
+
+顾客类型标识customerTypeId tinyint     not null
+优惠方式标识discountModeId tinyint    not null  --引用优惠方式表
+额度number numeric(10,2)    not null
+开始时间startDateTime datetime  not null
+持续时间duration int   not null
+
+
+优惠方式表discountMode
+
+标识id tinyint   --主键  not null
+名称name nvarchar(50) not  null
+
+
+
+顾客类型表customerType
+
+标识id  tinyint   --主键  not null
+类型名name nvarchar(50)    not  null
+
+
+售票表ticket
+
+
+位置标识positionId int   not  null  --引用位置表
+顾客类型标识customerTypeId tinyint  not  null  --引用顾客类型表
+售价sellPrice numeric(10,2)  not  null
+出售时间sellDateTime datetime  not  null
+场次标识playId nvarchar(36)  not  null  --引用场次表
