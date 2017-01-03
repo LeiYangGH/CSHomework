@@ -1,5 +1,6 @@
 ﻿using Model;
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
@@ -58,7 +59,16 @@ namespace DAL
         /// <returns></returns>
         public List<MovieSchedule> GetAllFromSqlSever()
         {
-            throw new NotImplementedException();
+            List<MovieSchedule> MovieSchedules = new List<MovieSchedule>();
+            SqlDataReader reader = SqlHelper.ExecuteReader(
+                SqlHelper.ConnString
+                , CommandType.Text
+                , "SELECT * FROM vw_movieSchedule");
+            while (reader.Read())
+            {
+                MovieSchedules.Add(FromSqlDataReader(reader));
+            }
+            return MovieSchedules;
         }
         /// <summary>
         /// 按电影查询所有电影档期
@@ -67,7 +77,21 @@ namespace DAL
         /// <returns></returns>
         public List<MovieSchedule> SearchByMovieId(string movieId)
         {
-            throw new NotImplementedException();
+            List<MovieSchedule> ms = new List<MovieSchedule>();
+            SqlParameter[] parms = new SqlParameter[]
+            {
+                new SqlParameter("@id",SqlDbType.NVarChar,50)
+            };
+            SqlDataReader reader = SqlHelper.ExecuteReader(
+                SqlHelper.ConnString
+                , CommandType.Text
+                , "SELECT * FROM movieSchedule WHERE id LIKE I'@id@'"
+                , parms);
+            while (reader.Read())
+            {
+                ms.Add(FromSqlDataReader(reader));
+            }
+            return ms;
         }
         /// <summary>
         ///  按档期查询所有电影档期
@@ -76,19 +100,59 @@ namespace DAL
         /// <returns></returns>
         public List<MovieSchedule> SearchByScheduleId(string scheduleId)
         {
-            throw new NotImplementedException();
+            List<MovieSchedule> mse = new List<MovieSchedule>();
+            SqlParameter[] parms = new SqlParameter[]
+            {
+                new SqlParameter("@id",SqlDbType.NVarChar,50)
+            };
+            SqlDataReader reader = SqlHelper.ExecuteReader(
+                SqlHelper.ConnString
+                , CommandType.Text
+                , "SELECT * FROM movieSchedule WHERE id LIKE I'@id@'"
+                , parms);
+            while (reader.Read())
+            {
+                mse.Add(FromSqlDataReader(reader));
+            }
+            return mse;
         }
         public string Insert(MovieSchedule movieSchedule)
         {
-            throw new NotImplementedException();
+            SqlParameter[] parms = new SqlParameter[]
+            {
+                new SqlParameter("@id",SqlDbType.NVarChar,36) { Value=movieSchedule.Id}
+                ,new SqlParameter("@movieId",SqlDbType.NVarChar,36) {Value=movieSchedule.MovieId }
+                ,new SqlParameter("@scheduleId",SqlDbType.Int) { Value=movieSchedule.MovieTypeId}
+            };
+            object id = SqlHelper.ExecuteScalar(
+                SqlHelper.ConnString
+                , CommandType.Text
+                , "INSERT INTO MovieSchedule VALUES(@id)"
+                , parms);
+            return Convert.ToString(id);
         }
         public void Delete(string movieScheduleId)
         {
-            throw new NotImplementedException();
+            SqlParameter parms = new SqlParameter("@id", SqlDbType.Int) { Value = movieScheduleId };
+            SqlHelper.ExecuteNonQuery(
+                SqlHelper.ConnString
+                , CommandType.Text
+                , "DELECT FROM movieSchedule WHERE id=@id"
+                , parms);
         }
         public void Update(MovieSchedule movieSchedule)
         {
-            throw new NotImplementedException();
+            SqlParameter[] parms = new SqlParameter[]
+            {
+                new SqlParameter("@id",SqlDbType.NVarChar,36) { Value=movieSchedule.Id}
+                ,new SqlParameter("@movieId",SqlDbType.NVarChar,36) { Value=movieSchedule.MovieId}
+                ,new SqlParameter("@scheduleId",SqlDbType.Int) { Value=movieSchedule.ScheduleId}
+            };
+            SqlHelper.ExecuteNonQuery(
+                SqlHelper.ConnString
+                , CommandType.Text
+                , "UPDATE movieSchedule SET id=@id WHERE movieId=@movieId WHERE scheduleId=@scheduleId"
+                , parms);
         }
     }
 }

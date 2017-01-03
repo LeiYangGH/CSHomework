@@ -35,7 +35,7 @@ namespace DAL
             }
             return ptypes;
         }
-        public int Insert(PositionType pType)
+        public byte Insert(PositionType pType)
         {
             SqlParameter[] parms = new SqlParameter[]
             {
@@ -44,7 +44,7 @@ namespace DAL
             object id = SqlHelper.ExecuteScalar(
                 SqlHelper.ConnString
                 , CommandType.Text
-                , "INSERT INTO positionType VALUES(@name)"
+                , "INSERT INTO positionType VALUES(@name); SELECT SCOPE_IDENTITY()"
                 , parms
                 );
             return Convert.ToByte(id);

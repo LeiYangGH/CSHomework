@@ -47,7 +47,7 @@ namespace DAL
             }
             return halls;
         }
-        public int Insert(Hall hall)
+        public short Insert(Hall hall)
         {
             SqlParameter[] parms = new SqlParameter[]
             {
@@ -58,10 +58,10 @@ namespace DAL
             object id = SqlHelper.ExecuteScalar(
                 SqlHelper.ConnString
                 , CommandType.Text
-                , "INSERT INTO hall VALUES (@layoutId,@name,@theme)"
+                , "INSERT INTO hall VALUES (@layoutId,@name,@theme); SELECT SCOPE_IDENTITY()"
                 , parms
                 );
-            return Convert.ToInt32(id);
+            return Convert.ToInt16(id);
         }
         public void Delete(short id)
         {
@@ -85,8 +85,8 @@ namespace DAL
             SqlHelper.ExecuteNonQuery(
                     SqlHelper.ConnString
                     , CommandType.Text
-                    , "UPDATE hall SET layoutId = @id, name = @name, theme = @theme WHERE id = @id"
-                    ,parms
+                    , "UPDATE hall SET layoutId = @layoutId, name = @name, theme = @theme WHERE id = @id"
+                    , parms
                 );
         }
         public void Update(short id, string theme)

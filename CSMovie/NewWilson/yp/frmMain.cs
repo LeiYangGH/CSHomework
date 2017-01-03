@@ -16,40 +16,118 @@ namespace yp
         {
             InitializeComponent();
         }
-
+        private Dictionary<string, Form> FormCache { get; set; } = new Dictionary<string, Form>();
         private void frmMain_Load(object sender, EventArgs e)
         {
 
         }
-
+        private void Frm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form frm = sender as Form;
+            FormCache.Remove(frm.Text);
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            HallManager.frmMain form = new HallManager.frmMain();
-            form.Show();
-        }
+            ToolStripButton tsb = sender as ToolStripButton;
+            if (tsb == null) return;
+            Form frm;
+            if (FormCache.TryGetValue(tsb.Text, out frm) == false)
+            {
+                frm = new HallManager.frmMain();
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Text = tsb.Text;
+                frm.FormClosed += Frm_FormClosed;
+                FormCache.Add(tsb.Text, frm);
+                frm.Show();
+            }
+            else
+            {
+                frm.Activate();
+            }
 
+        }
         private void button2_Click(object sender, EventArgs e)
         {
-            MovieManage.frmMain form = new MovieManage.frmMain();
-            form.Show();
-        }
+            ToolStripButton tsb = sender as ToolStripButton;
+            if (tsb == null) return;
+            Form frm;
+            if (FormCache.TryGetValue(tsb.Text, out frm) == false)
+            {
+                frm = new MovieManage.frmMain();
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Text = tsb.Text;
+                frm.FormClosed += Frm_FormClosed;
+                FormCache.Add(tsb.Text, frm);
+                frm.Show();
+            }
+            else
+            {
+                frm.Activate();
+            }
 
+        }
         private void button3_Click(object sender, EventArgs e)
         {
-            PlayManager.frmMain form = new PlayManager.frmMain();
-            form.Show();
+            ToolStripButton tsb = sender as ToolStripButton;
+            if (tsb == null) return;
+            Form frm;
+            if (FormCache.TryGetValue(tsb.Text, out frm) == false)
+            {
+                frm = new PlayManager.frmMain();
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Text = tsb.Text;
+                frm.FormClosed += Frm_FormClosed;
+                FormCache.Add(tsb.Text, frm);
+                frm.Show();
+            }
+            else
+            {
+                frm.Activate();
+            }
         }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            DiscountManager.frmMain form = new DiscountManager.frmMain();
-            form.Show();
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
-            PlayManager.frmMain form = new PlayManager.frmMain();
-            form.Show();
+            ToolStripButton tsb = sender as ToolStripButton;
+            if (tsb == null) return;
+            Form frm;
+            if (FormCache.TryGetValue(tsb.Text, out frm) == false)
+            {
+                frm = new DiscountManager.frmMain();
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Text = tsb.Text;
+                frm.FormClosed += Frm_FormClosed;
+                FormCache.Add(tsb.Text, frm);
+                frm.Show();
+            }
+            else
+            {
+                frm.Activate();
+            }
+
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ToolStripButton tsb = sender as ToolStripButton;
+            if (tsb == null) return;
+            Form frm;
+            if (FormCache.TryGetValue(tsb.Text, out frm) == false)
+            {
+                frm = new ShouPiao.frmMain();
+                frm.MdiParent = this;
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Text = tsb.Text;
+                frm.FormClosed += Frm_FormClosed;
+                FormCache.Add(tsb.Text, frm);
+                frm.Show();
+            }
+            else
+            {
+                frm.Activate();
+            }
         }
     }
 }

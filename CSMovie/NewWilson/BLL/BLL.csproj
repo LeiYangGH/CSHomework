@@ -47,6 +47,7 @@
     <Compile Include="LayoutBLL.cs" />
     <Compile Include="MovieBLL.cs" />
     <Compile Include="MovieScheduleBLL.cs" />
+    <Compile Include="MovieTypeBLL.cs" />
     <Compile Include="OriginPriceBLL.cs" />
     <Compile Include="PlayBLL.cs" />
     <Compile Include="PositionBLL.cs" />

@@ -49,6 +49,7 @@
     <Compile Include="LayoutDAL.cs" />
     <Compile Include="MovieDAL.cs" />
     <Compile Include="MovieSchedule.cs" />
+    <Compile Include="MovieTypeDAL.cs" />
     <Compile Include="OriginPriceDAL.cs" />
     <Compile Include="PlayDAL.cs" />
     <Compile Include="PositionDAL.cs" />

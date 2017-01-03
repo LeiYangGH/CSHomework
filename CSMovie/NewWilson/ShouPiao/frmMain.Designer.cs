@@ -57,13 +57,16 @@
             this.lblMovieName = new System.Windows.Forms.Label();
             this.片名 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.dgvPosition = new System.Windows.Forms.DataGridView();
             this.tabControl2.SuspendLayout();
             this.tpToday.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tbSeat.SuspendLayout();
+            this.tpCinema.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMovie)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPosition)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl2
@@ -132,6 +135,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "确认";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // comboBox2
             // 
@@ -187,6 +191,7 @@
             // 
             // tpCinema
             // 
+            this.tpCinema.Controls.Add(this.dgvPosition);
             this.tpCinema.Location = new System.Drawing.Point(4, 25);
             this.tpCinema.Margin = new System.Windows.Forms.Padding(4);
             this.tpCinema.Name = "tpCinema";
@@ -195,6 +200,7 @@
             this.tpCinema.TabIndex = 0;
             this.tpCinema.Text = "放映厅";
             this.tpCinema.UseVisualStyleBackColor = true;
+            this.tpCinema.Click += new System.EventHandler(this.tpCinema_Click);
             // 
             // groupBox1
             // 
@@ -392,6 +398,15 @@
             this.pictureBox1.TabIndex = 28;
             this.pictureBox1.TabStop = false;
             // 
+            // dgvPosition
+            // 
+            this.dgvPosition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPosition.Location = new System.Drawing.Point(7, 9);
+            this.dgvPosition.Name = "dgvPosition";
+            this.dgvPosition.RowTemplate.Height = 27;
+            this.dgvPosition.Size = new System.Drawing.Size(979, 500);
+            this.dgvPosition.TabIndex = 0;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -410,10 +425,12 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tbSeat.ResumeLayout(false);
+            this.tpCinema.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMovie)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPosition)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -449,6 +466,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView dgvPosition;
     }
 }
 

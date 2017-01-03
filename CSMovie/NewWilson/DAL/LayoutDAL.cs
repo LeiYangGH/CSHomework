@@ -10,16 +10,20 @@ namespace DAL
     {
         public Layout FromSqlDatalReader(SqlDataReader reader)
         {
-            Layout ly = new Layout();
+            Layout obj = new Layout();
             if (reader["id"] is DBNull == false)
             {
-                ly.Id = Convert.ToInt32(reader["id"]);
+                obj.Id = Convert.ToInt32(reader["id"]);
             }
             if (reader["style"] is DBNull == false)
             {
-                ly.Style = Convert.ToString(reader["style"]);
+                obj.Style = Convert.ToString(reader["style"]);
             }
-            return ly;
+            if (reader["refNum"] is DBNull == false)
+            {
+                obj.RefNum = Convert.ToInt32(reader["refNum"]);
+            }
+            return obj;
         }
         public List<Layout> GetAllFromSqlServer()
         {
@@ -27,7 +31,7 @@ namespace DAL
             SqlDataReader reader = SqlHelper.ExecuteReader(
                 SqlHelper.ConnString
                 , CommandType.Text
-                , "select * from layout");
+                , "select * from vw_layout");
             while (reader.Read())
             {
                 Layout ly = FromSqlDatalReader(reader);
@@ -53,7 +57,8 @@ namespace DAL
             SqlHelper.ExecuteNonQuery(
                 SqlHelper.ConnString
                 , CommandType.Text
-                , "DELTE FROM layout WHERE id = @id"
+                , "DELETE layout WHERE id = @id"
+                ,sp
                 );
         }
         public void Update(Layout layout)

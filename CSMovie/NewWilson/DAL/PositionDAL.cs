@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text;
 
 namespace DAL
 {
@@ -45,6 +46,18 @@ namespace DAL
             }
             return p;
         }
+
+        public void DeleteBy(int layoutId)
+        {
+            SqlParameter parms = new SqlParameter("@id", SqlDbType.Int) { Value = layoutId };
+            SqlHelper.ExecuteNonQuery(
+                SqlHelper.ConnString
+                , CommandType.Text
+                , "DELETE FROM position WHERE layoutId = @id"
+                , parms
+                );
+        }
+
         public List<Position> GetAllFromSqlServer()
         {
             List<Position> positions = new List<Position>();
@@ -72,10 +85,17 @@ namespace DAL
             object id = SqlHelper.ExecuteScalar(
                 SqlHelper.ConnString
                 , CommandType.Text
-                , "INSERT Position VALUES (@row,@col,@spTId,@useAble,@layId)"
+                , "INSERT position VALUES (@row,@col,@spTId,@useAble,@layId);SELECT SCOPE_IDENTITY()"
                 , parms
                 );
             return Convert.ToInt32(id);
+        }
+        public void Insert(List<Position> positions)
+        {
+            foreach (Position pos in positions)
+            {
+                pos.Id = Insert(pos);
+            }
         }
         public void Delete(int id)
         {
@@ -120,6 +140,22 @@ namespace DAL
                 , CommandType.Text
                 , "SELECT * FROM vw_position WHERE positionTypeId = @typeId"
                 ,sp
+                );
+            while (reader.Read())
+            {
+                positions.Add(FromSqlDataReader(reader));
+            }
+            return positions;
+        }
+        public List<Position> Search(int layoutId)
+        {
+            SqlParameter sp = new SqlParameter("@layoutId", SqlDbType.TinyInt) { Value = layoutId };
+            List<Position> positions = new List<Position>();
+            SqlDataReader reader = SqlHelper.ExecuteReader(
+                SqlHelper.ConnString
+                , CommandType.Text
+                , "SELECT * FROM vw_position WHERE layoutId = @layoutId"
+                , sp
                 );
             while (reader.Read())
             {

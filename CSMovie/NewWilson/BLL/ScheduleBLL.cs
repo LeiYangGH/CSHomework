@@ -1,14 +1,16 @@
 ﻿using DAL;
 using System;
+using Model;
 using System.Collections.Generic;
 
 namespace BLL
 {
     public class ScheduleBLL
     {
-        public List<ScheduleDAL> GetAllSchedule()
+        private ScheduleDAL sl = new ScheduleDAL();
+        public List<Schedule> GetAllSchedule()
         {
-            throw new NotImplementedException();
+            return sl.GetAllFromSqlServer();
         }
 
         /// <summary>
@@ -16,26 +18,26 @@ namespace BLL
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
-        public List<ScheduleDAL> Search(DateTime date)
+        public List<Schedule> Search(DateTime date)
         {
-            throw new NotImplementedException();
+            return sl.Search(date);
         }
         /// <summary>
         /// 获取某个档期的详细信息
         /// </summary>
         /// <param name="scheduleId"></param>
         /// <returns></returns>
-        public ScheduleDAL Search(int scheduleId)
+        public Schedule Search(int scheduleId)
         {
-            throw new NotImplementedException();
+            return sl.Search(scheduleId);
         }
-        public int AddSchedule(ScheduleDAL schedule)
+        public int AddSchedule(Schedule schedule)
         {
-            throw new NotImplementedException();
+            return sl.Insert(schedule);
         }
-        public void ResetSchedule(ScheduleDAL schedule)
+        public void ResetSchedule(Schedule schedule)
         {
-            throw new NotImplementedException();
+            sl.Update(schedule);
         }
         /// <summary>
         /// 重置档期名称
@@ -44,7 +46,7 @@ namespace BLL
         /// <param name="name"></param>
         public void ChangeScheduleName(int id, string name)
         {
-            throw new NotImplementedException();
+            sl.Update(id, name);
         }
         /// <summary>
         /// 重置档期开始日期
@@ -53,7 +55,7 @@ namespace BLL
         /// <param name="beginDate"></param>
         public void ChangeScheduleBeginDate(int id, DateTime beginDate)
         {
-            throw new NotImplementedException();
+            sl.Update(id, beginDate);
         }
         /// <summary>
         /// 重置档期时限
@@ -62,11 +64,11 @@ namespace BLL
         /// <param name="duration"></param>
         public void ChangeScheduleDuration(int id, short duration)
         {
-            throw new NotImplementedException();
+            sl.Update(id, duration);
         }
         public void DropSchedule(int schedule)
         {
-            throw new NotImplementedException();
+            sl.Delete(schedule);
         }
     }
 }

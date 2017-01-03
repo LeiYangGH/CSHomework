@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 namespace Model
 {
@@ -6,17 +7,8 @@ namespace Model
     {
         public byte Id { get; set; } 
         public string Name { get; set; }
-        public MovieType() { }
-        public MovieType(SqlDataReader reader)
-        {
-            if (reader["id"] is DBNull == false)
-            {
-                Id = Convert.ToByte(reader["id"]);
-            }
-            if (reader["name"] is DBNull == false)
-            {
-                Name = Convert.ToString(reader["name"]);
-            }
-        }
+        
+      
+
     }
 }

@@ -11,7 +11,7 @@ namespace BLL
         {
             return dal.GetALL();
         }
-        public int AddNewPositionType(PositionType pType)
+        public byte AddNewPositionType(PositionType pType)
         {
             return dal.Insert(pType);
         }

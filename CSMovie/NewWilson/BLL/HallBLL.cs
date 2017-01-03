@@ -11,7 +11,7 @@ namespace BLL
         {
             return dal.GetAllFromSqlServer();
         }
-        public int AddHall(Hall hall)
+        public short AddHall(Hall hall)
         {
             return dal.Insert(hall);
         }

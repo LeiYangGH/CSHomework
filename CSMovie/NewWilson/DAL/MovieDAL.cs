@@ -40,25 +40,128 @@ namespace DAL
             return obj;
         }
 
-        public List<Movie> GetAllFromSqlSever()
+        public List<Movie> GetAllFromSqlSever(byte movieTypeId)
         {
-            throw new NotImplementedException();
+            List<Movie> mes = new List<Movie>();
+            using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "proc_movie";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                SqlParameter par = new SqlParameter("@typeID", System.Data.SqlDbType.TinyInt);
+                par.Value = movieTypeId;
+                cmd.Parameters.Add(par);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Movie mo = FromSqlDataReader(reader);
+                    mes.Add(mo);
+                }
+            }
+            return mes;
         }
-        public string Insert(Movie movie)
+        public void Insert(Movie movie)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = @" INSERT INTO movie
+                                    ([id],[name],[movieTypeId],[duration])  
+                                    VALUES(@id,@name,@movieTypeId,@duration);SELECT @@IDENTITY";
+                SqlParameter[] pars = new SqlParameter[]
+                {
+                    new SqlParameter("@id",System.Data.SqlDbType.NVarChar,36),
+                     new SqlParameter("@name",System.Data.SqlDbType.NVarChar,50),
+                       new SqlParameter("@movieTypeId",System.Data.SqlDbType.TinyInt),
+                       new SqlParameter("@duration",System.Data.SqlDbType.TinyInt)
+                };
+
+                pars[0].Value = Guid.NewGuid().ToString();
+                pars[1].Value = movie.Name;
+                pars[2].Value = movie.MovieTypeId;
+                pars[3].Value = movie.Duration;
+
+                cmd.Parameters.AddRange(pars);
+
+
+                cmd.ExecuteNonQuery();
+
+            }
         }
         public void Delete(string movieId)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "delete from movie where id=@idd";
+                SqlParameter par = new SqlParameter("@idd", System.Data.SqlDbType.NVarChar, 36);
+                par.Value = movieId;
+                cmd.Parameters.Add(par);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
         }
         public List<Movie> Search(byte movieTypeId)
         {
-            throw new NotImplementedException();
+            List<Movie> mos = new List<Movie>();
+            using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "select * from vw_movie where movieTypeId=@movieTypeId ";
+
+
+                SqlParameter par = new SqlParameter("@movieTypeId", System.Data.SqlDbType.TinyInt);
+                par.Value = movieTypeId;
+                cmd.Parameters.Add(par);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Movie mv = FromSqlDataReader(reader);
+                    mos.Add(mv);
+                }
+
+            }
+            return mos;
         }
         public List<Movie> Search(string unclearName)
         {
-            throw new NotImplementedException();
+            List<Movie> mos = new List<Movie>();
+            using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                //cmd.CommandText = 
+                //"select * from vw_movie where name like '@name%' ";
+
+                cmd.CommandText =
+                    "select * from vw_movie where name like @name ";
+                SqlParameter par = new SqlParameter("@name", System.Data.SqlDbType.NVarChar, 50);
+                par.Value = string.Format("{0}%", unclearName);
+                cmd.Parameters.Add(par);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Movie mv = FromSqlDataReader(reader);
+                    mos.Add(mv);
+                }
+            }
+            return mos;
         }
         public Movie GetMovie(string movieId)
         {
@@ -66,7 +169,60 @@ namespace DAL
         }
         public void Update(string movieId, byte[] img)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "update movie set poster=@photo where id=@id";
+                SqlParameter[] par = new SqlParameter[]
+                {
+                  new SqlParameter("@photo",System.Data.SqlDbType.VarBinary),
+                  new SqlParameter ( "@id", System.Data.SqlDbType.NVarChar,36)
+
+                };
+
+                par[0].Value = img;
+                par[1].Value = movieId;
+                cmd.Parameters.AddRange(par);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+        public void Update(Movie mv)
+        {
+            using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "update movie set name=@name,movieTypeId=@movieTypeId,duration=@duration where id=@id";
+                SqlParameter[] pars = new SqlParameter[]
+                {
+
+                        new SqlParameter("@name",System.Data.SqlDbType.NVarChar,50),
+                       new SqlParameter("@movieTypeId",System.Data.SqlDbType.TinyInt),
+                       new SqlParameter("@duration",System.Data.SqlDbType.TinyInt),
+                       new SqlParameter("@id",System.Data.SqlDbType.NVarChar,36)
+                };
+
+
+                pars[0].Value = mv.Name;
+                pars[1].Value = mv.MovieTypeId;
+                pars[2].Value = mv.Duration;
+                pars[3].Value = mv.Id;
+
+                cmd.Parameters.AddRange(pars);
+
+                int ds= cmd.ExecuteNonQuery();
+              
+            }
         }
     }
 }

@@ -15,9 +15,17 @@ namespace BLL
         {
             return dal.Insert(position);
         }
+        public void AddPositions(List<Position> positions)
+        {
+            dal.Insert(positions);
+        }
         public void DropPosition(int id)
         {
-            dal.Update(id, false);
+            dal.Delete(id);
+        }
+        public void DropPositionBelongLayout(int layoutId)
+        {
+            dal.DeleteBy(layoutId);
         }
         public void EnablePosition(int id)
         {
@@ -31,6 +39,10 @@ namespace BLL
         public List<Position> Search(byte typeId)
         {
             return dal.Search(typeId);
+        }
+        public List<Position> SearchByLayout(int layoutId)
+        {
+            return dal.Search(layoutId);
         }
     }
 }

@@ -15,13 +15,14 @@ namespace BLL
         {
             throw new NotImplementedException();
         }
-        public string AddMovie(Movie movie)
+        public void Insert(Movie movie)
         {
-            throw new NotImplementedException();
+
+            dal.Insert(movie);
         }
-        public void DropMovie(string movieId)
+        public void Delete(string movieId)
         {
-            throw new NotImplementedException();
+            dal.Delete(movieId);
         }
         public List<Movie> Search(byte movieTypeId)
         {
@@ -29,15 +30,23 @@ namespace BLL
         }
         public List<Movie> Search(string unclearName)
         {
-            throw new NotImplementedException();
+            return dal.Search(unclearName);
         }
-        public Movie GetMovie(string movieId)
+        public void Update(Movie mv)
         {
-            throw new NotImplementedException();
+            dal.Update(mv);
         }
-        public void ChangeMoviePoster(string movieId, byte[] poster)
+        public void Update(string movieId, byte[] img)
         {
-            throw new NotImplementedException();
+             dal.Update(movieId,img);
+        }
+        public List<Movie> GetAllFromSqlSever(byte movieTypeId)
+        {
+            return dal.GetAllFromSqlSever(movieTypeId);
+        }
+        public List<Movie> SearchA(byte movieTypeId)
+        {
+            return dal.Search(movieTypeId);
         }
     }
 }

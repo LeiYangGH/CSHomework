@@ -10,5 +10,14 @@
         public int LayoutId { get; set; }
         public string PositionTypeName { get; set; }
         public string LayoutStyle { get; set; }
+        public override string ToString()
+        {
+            if (UseAble)
+            return PositionTypeName;
+            else
+            {
+                return "不可用";
+            }
+        }
     }
 }
