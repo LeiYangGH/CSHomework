@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
 using Model;
-
+using BLL;
 namespace ShouPiao
 {
     public partial class frmMain : Form
@@ -36,53 +36,30 @@ namespace ShouPiao
         {
 
         }
+
+        private void GetAndBindMoviesInType(TreeNode tNode, MovieType t)
+        {
+            MovieBLL mbll = new MovieBLL();
+            var lstMovies = mbll.GetAllFromSqlSever(t.Id);
+            foreach (Movie m in lstMovies)
+            {
+                tNode.Nodes.Add(m.Name);
+            }
+        }
+
         /// <summary>
         /// 获取放映列表绑定到TreeView
         /// </summary>
         private void BingTreeView()
         {
             this.tvMovies.Nodes.Clear();
-            //加载数据库数据
-            string sql = "select distinct a.id,a.name,b.beginTime from movie a,play b";
-            ds = new DataSet();
-            ds.Clear();
-            ds = DbSqlHelper.Query(sql);
-            DataTable dt = DbSqlHelper.Query(sql).Tables[0];
-            for (int i = 0; i < dt.Rows.Count; i++)
+            MovieTypeBLL tbll = new MovieTypeBLL();
+            var lstTypes = tbll.GetLeixi();
+            foreach (MovieType t in lstTypes)
             {
-                DataRow dr = dt.Rows[i];
-                string id = dt.Rows[i]["id"].ToString();
-                string name = dt.Rows[i]["name"].ToString();
-                string ss = id + ":" + name;
-                string beginTime = dt.Rows[i]["beginTime"].ToString();
-                if (dta[ss] == null)
-                {
-                    dta.Add(ss, beginTime);
-                }
-                else
-                {
-                    dta[ss] = dta[ss] + "&" + beginTime;
-                }
+                TreeNode tNode = this.tvMovies.Nodes.Add(t.Name);
+                this.GetAndBindMoviesInType(tNode, t);
             }
-            //绑定到TreeView
-            TreeNode root = null;
-            foreach (string item in dta.Keys)
-            {
-                string p = dta[item].ToString();
-                string []tis=p.Split('&');
-                if (root == null || root.Text != item.Split(':')[1])
-                {
-                    //根节点
-                    root = new TreeNode(item.Split(':')[1]);
-                    this.tvMovies.Nodes.Add(root);
-                }
-                //子节点
-                for (int m = 0; m < tis.Length; m++)
-                {
-                    root.Nodes.Add(tis[m].Substring(0,tis[m].LastIndexOf(":")));
-                }
-            }
-
         }
 
         private void button1_Click(object sender, EventArgs e)
