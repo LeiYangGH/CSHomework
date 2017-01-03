@@ -19,5 +19,9 @@ namespace WCComTransfer
         {
             return r.Next(this.Min, this.Max);
         }
+        public decimal GetRandomF2(Random r)
+        {
+            return r.Next(this.Min, this.Max) / 100m;
+        }
     }
 }

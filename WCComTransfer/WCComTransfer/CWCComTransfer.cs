@@ -301,10 +301,10 @@ namespace WCComTransfer
             decimal dec_zdgb = System.Math.Round((dec_jgdg + dec_sxp) / dec_jgdg, 2);
 
             bool b_change = false;
-            decimal d86 = this.lstRandPairs[1].GetRandom(r);
-            decimal d93 = this.lstRandPairs[2].GetRandom(r);
-            decimal d781 = this.lstRandPairs[3].GetRandom(r);
-            decimal d782 = this.lstRandPairs[4].GetRandom(r);
+            decimal d86 = this.lstRandPairs[1].GetRandomF2(r);
+            decimal d93 = this.lstRandPairs[2].GetRandomF2(r);
+            decimal d781 = this.lstRandPairs[3].GetRandomF2(r);
+            decimal d782 = this.lstRandPairs[4].GetRandomF2(r);
 
             if (dec_zdgb < 0.85m)  //增加随机取数程序，将0.86改成随机取数的值，取值范围0.85至0.95 --------------2
             {
