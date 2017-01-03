@@ -99,7 +99,7 @@ namespace WCComTransfer
             this.mThreadHandle.Start();
 
             CLogWriter.Instance.WriteLog("服务已启动。");
-            
+
         }
 
         private List<byte> mBuffer = new List<byte>();
@@ -113,7 +113,7 @@ namespace WCComTransfer
         /// 这个函数是递归调用，从n_index++可以看出是从前往后依次遍历每个字节处理
         /// </summary>
         /// <param name="bt_data"></param>
-        private void ProcessDataReceive(ref byte[] bt_data,ref int n_index)
+        private void ProcessDataReceive(ref byte[] bt_data, ref int n_index)
         {
             if (this.mDataReceive == false)
             {
@@ -127,26 +127,26 @@ namespace WCComTransfer
                         this.mBuffer.Clear();
 
                         this.mBuffer.Add(bt_data[n_index]);
-                        
+
 
                         n_index++;
                         CLogWriter.Instance.WriteLog("数据字节开始" + n_index.ToString());
                         //处理后续字节
-                        this.ProcessDataReceive(ref bt_data,ref n_index);
+                        this.ProcessDataReceive(ref bt_data, ref n_index);
                     }
                     else
                     {
-                        this.mInPort.Write(new byte[]{bt_data[n_index]},0,1);
+                        this.mInPort.Write(new byte[] { bt_data[n_index] }, 0, 1);
 
                         CLogWriter.Instance.WriteLog("控制字符：INDEX=" + n_index.ToString() + ";内容=" + bt_data[n_index].ToString("X"));
                         n_index++;
-                        this.ProcessDataReceive(ref bt_data,ref n_index);
+                        this.ProcessDataReceive(ref bt_data, ref n_index);
                     }
                 }
             }
             else
             {
-                while (n_index <bt_data.Length)
+                while (n_index < bt_data.Length)
                 {
                     if (bt_data[n_index] == 0xff)
                     {
@@ -167,7 +167,7 @@ namespace WCComTransfer
                             CLogWriter.Instance.WriteLog(ex);
                         }
                         //处理后续字节
-                        this.ProcessDataReceive(ref bt_data,ref n_index);
+                        this.ProcessDataReceive(ref bt_data, ref n_index);
                     }
                     else
                     {
@@ -176,7 +176,7 @@ namespace WCComTransfer
                         n_index++;
                     }
                 }
-            }         
+            }
         }
 
         /// <summary>
@@ -245,10 +245,10 @@ namespace WCComTransfer
         public void PutTestValue(byte[] bt_arr)
         {
             //从bt_arr里截取各个有用的信息（具体什么用要看硬件的协议）
-            int n_dgqd =  (int)(this.ParseValue(bt_arr, 12, 4));
+            int n_dgqd = (int)(this.ParseValue(bt_arr, 12, 4));
 
             CLogWriter.Instance.WriteLog("光强（100CD）：" + n_dgqd.ToString());
-           
+
             decimal dec_zyp = -this.ParseValue(bt_arr, 2, 5);
             CLogWriter.Instance.WriteLog("左右偏(CM/10M)：" + dec_zyp.ToString());
             decimal dec_sxp = -this.ParseValue(bt_arr, 7, 5);
@@ -257,17 +257,20 @@ namespace WCComTransfer
             CLogWriter.Instance.WriteLog("近光左右偏（CM/10M）：" + dec_jzyp.ToString());
             decimal dec_jsxp = -this.ParseValue(bt_arr, 24, 5);
             CLogWriter.Instance.WriteLog("近光上下偏（CM/10M）：" + dec_jsxp.ToString());
-            decimal dec_jdgb =  this.ParseValue(bt_arr, 29, 4);
+            decimal dec_jdgb = this.ParseValue(bt_arr, 29, 4);
             CLogWriter.Instance.WriteLog("近光灯高比(H):" + dec_jdgb.ToString());
             //}
             //灯高
             //this.mTestResults.PutValue(s_keydg, this.ParseValue(bt_arr, 16, 3)*10);
-            decimal dec_jgdg = this.ParseValue(bt_arr, 16, 3) ;
+            decimal dec_jgdg = this.ParseValue(bt_arr, 16, 3);
             CLogWriter.Instance.WriteLog("近光灯高（CM）:" + dec_jgdg.ToString());
             //硬件业务逻辑，处理某些越界极致
+
+            Random r = new Random();
+
             if ((n_dgqd >= 80) && (n_dgqd < 160)) //满足这个条件，增加随机取数程序，取数的范围在160至230随机取，取值后赋给 n_dgqd ---------------------------1
             {
-                n_dgqd = 160;  
+                n_dgqd = r.Next(160, 230);
             }
 
 
@@ -277,32 +280,36 @@ namespace WCComTransfer
             }
             //下面都是有关硬件参数的具体算法
             //Math.Round是四舍五入
-            decimal dec_zdgb = System.Math.Round((dec_jgdg + dec_sxp) / dec_jgdg,2);
+            decimal dec_zdgb = System.Math.Round((dec_jgdg + dec_sxp) / dec_jgdg, 2);
 
             bool b_change = false;
-            if (dec_zdgb < (decimal)0.85)  //增加随机取数程序，将0.86改成随机取数的值，取值范围0.85至0.95 --------------2
+            decimal d86 = r.Next(85, 95) / 100m;
+            decimal d93 = (r.Next(85, 95)) / 100m;
+            decimal d781 = (r.Next(70, 80)) / 100m;
+            decimal d782 = (r.Next(70, 80)) / 100m;
+
+            if (dec_zdgb < 0.85m)  //增加随机取数程序，将0.86改成随机取数的值，取值范围0.85至0.95 --------------2
             {
                 b_change = true;
-                dec_sxp = System.Math.Round(-((decimal)1 - (decimal)0.86) * (decimal)dec_jgdg ,1);   
-                
+                dec_sxp = System.Math.Round(-((decimal)1 - d86) * (decimal)dec_jgdg, 1);
+
             }
-            else if (dec_zdgb > (decimal)0.95)  //增加随机取数程序，将0.93改成随机取数的值，取值范围0.85至0.95  -------------3
+            else if (dec_zdgb > 0.95m)  //增加随机取数程序，将0.93改成随机取数的值，取值范围0.85至0.95  -------------3
             {
                 b_change = true;
-                dec_sxp = System.Math.Round(-((decimal)1 - (decimal)0.93) * (decimal)dec_jgdg ,1);  
+                dec_sxp = System.Math.Round(-((decimal)1 - d93) * (decimal)dec_jgdg, 1);
             }
 
             if (dec_jdgb < (decimal)0.7)  //增加随机取数程序，将0.78改成随机取数的值，取值范围0.70至0.80 --------------4
             {
                 b_change = true;
-                dec_jsxp = System.Math.Round(-((decimal)1 - (decimal)0.78) * (decimal)dec_jgdg ,1);  
+                dec_jsxp = System.Math.Round(-((decimal)1 - d781) * (decimal)dec_jgdg, 1);
             }
             else if (dec_jdgb > (decimal)0.9)   //增加随机取数程序，将0.78改成随机取数的值，取值范围0.70至0.80 --------------5
             {
                 b_change = true;
-                dec_jsxp = System.Math.Round(-((decimal)1 - (decimal)0.78) * (decimal)dec_jgdg ,1); 
-
-                 
+                dec_jsxp = System.Math.Round(-((decimal)1 - d782) * (decimal)dec_jgdg, 1);
+            }
             //最后一次使用的远光上下偏
             if (b_change)
             {
@@ -313,10 +320,10 @@ namespace WCComTransfer
                 this.mLastYGSXP = 0;
             }
 
-            if (b_change==false)
+            if (b_change == false)
             {
                 //没有描红
-                this.mInPort.Write(bt_arr,0,bt_arr.Length);
+                this.mInPort.Write(bt_arr, 0, bt_arr.Length);
             }
             else
             {
@@ -350,8 +357,10 @@ namespace WCComTransfer
                 //写入数据
                 //发送数据到串口
                 this.mInPort.Write(bt_arr, 0, bt_arr.Length);
-            } 
-        
+
+            }
+        }
+
 
         /// <summary>
         /// 从方法名看：推送数据（不符合命名规范）
@@ -361,7 +370,7 @@ namespace WCComTransfer
         /// <param name="n_len">长度</param>
         /// <param name="b_hashh"></param>
         /// <param name="dec_value">小数值</param>
-        private void PushValue(ref byte[] bt_arr, int n_start, int n_len,bool b_hashh,decimal dec_value)
+        private void PushValue(ref byte[] bt_arr, int n_start, int n_len, bool b_hashh, decimal dec_value)
         {
             string s_value = "";
 
@@ -382,7 +391,7 @@ namespace WCComTransfer
             //字符串
             string s_tmp = dec_value.ToString();
 
-           
+
             if (s_tmp.Length < n_len)
             {
                 int n_oldlen = s_tmp.Length;
@@ -420,7 +429,7 @@ namespace WCComTransfer
             try
             {
                 //又把字母拼接起来的字符串转换为小数
-                decimal dec_tmp= System.Convert.ToDecimal(s_tmp);
+                decimal dec_tmp = System.Convert.ToDecimal(s_tmp);
                 //小数的字符串
                 string s_tmp1 = dec_tmp.ToString();
                 int n_count = 0;
@@ -468,14 +477,14 @@ namespace WCComTransfer
 
                 //转换为字符串保存到日志文件
                 string s_temp = "";
-                for(int i =0;i<bt_temp.Length;i++)
+                for (int i = 0; i < bt_temp.Length; i++)
                 {
                     s_temp = s_temp + bt_temp[i].ToString("X") + " ";
                 }
 
                 CLogWriter.Instance.WriteLog("出口数据收到(" + s_temp + ")");
 
-                
+
                 if (this.mIfWork == false)
                 {
                     //发送给接收端口
@@ -583,7 +592,7 @@ namespace WCComTransfer
             }
             //}
             this.mExitOkEvent.Set();
-            
+
         }
         #endregion
 
@@ -631,6 +640,6 @@ namespace WCComTransfer
             return false;
         }
 
-        
+
     }
 }
