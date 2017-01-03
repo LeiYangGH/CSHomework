@@ -265,11 +265,11 @@ namespace WCComTransfer
             decimal dec_jgdg = this.ParseValue(bt_arr, 16, 3) ;
             CLogWriter.Instance.WriteLog("近光灯高（CM）:" + dec_jgdg.ToString());
             //硬件业务逻辑，处理某些越界极致
-            if ((n_dgqd >= 80) && (n_dgqd < 160))
+            if ((n_dgqd >= 80) && (n_dgqd < 160)) //满足这个条件，增加随机取数程序，取数的范围在160至230随机取，取值后赋给 n_dgqd ---------------------------1
             {
-                n_dgqd = 160;
+                n_dgqd = 160;  
             }
- 
+
 
             if (dec_jgdg <= 0)
             {
@@ -280,28 +280,27 @@ namespace WCComTransfer
             decimal dec_zdgb = System.Math.Round((dec_jgdg + dec_sxp) / dec_jgdg,2);
 
             bool b_change = false;
-            if (dec_zdgb < (decimal)0.85)
+            if (dec_zdgb < (decimal)0.85)  //增加随机取数程序，将0.86改成随机取数的值，取值范围0.85至0.95 --------------2
             {
                 b_change = true;
-                dec_sxp = System.Math.Round(-((decimal)1 - (decimal)0.86) * (decimal)dec_jgdg ,1);
+                dec_sxp = System.Math.Round(-((decimal)1 - (decimal)0.86) * (decimal)dec_jgdg ,1);   
                 
             }
-            else if (dec_zdgb > (decimal)0.95)
+            else if (dec_zdgb > (decimal)0.95)  //增加随机取数程序，将0.93改成随机取数的值，取值范围0.85至0.95  -------------3
             {
                 b_change = true;
-                dec_sxp = System.Math.Round(-((decimal)1 - (decimal)0.93) * (decimal)dec_jgdg ,1);
+                dec_sxp = System.Math.Round(-((decimal)1 - (decimal)0.93) * (decimal)dec_jgdg ,1);  
             }
 
-            if (dec_jdgb < (decimal)0.7)
+            if (dec_jdgb < (decimal)0.7)  //增加随机取数程序，将0.78改成随机取数的值，取值范围0.70至0.80 --------------4
             {
                 b_change = true;
-                dec_jsxp = System.Math.Round(-((decimal)1 - (decimal)0.78) * (decimal)dec_jgdg ,1);
+                dec_jsxp = System.Math.Round(-((decimal)1 - (decimal)0.78) * (decimal)dec_jgdg ,1);  
             }
-            else if (dec_jdgb > (decimal)0.9)
+            else if (dec_jdgb > (decimal)0.9)   //增加随机取数程序，将0.78改成随机取数的值，取值范围0.70至0.80 --------------5
             {
                 b_change = true;
-                dec_jsxp = System.Math.Round(-((decimal)1 - (decimal)0.78) * (decimal)dec_jgdg ,1); ;
-            }
+                dec_jsxp = System.Math.Round(-((decimal)1 - (decimal)0.78) * (decimal)dec_jgdg ,1); 
 
                  
             //最后一次使用的远光上下偏
@@ -351,8 +350,8 @@ namespace WCComTransfer
                 //写入数据
                 //发送数据到串口
                 this.mInPort.Write(bt_arr, 0, bt_arr.Length);
-            }
-        }
+            } 
+        
 
         /// <summary>
         /// 从方法名看：推送数据（不符合命名规范）
