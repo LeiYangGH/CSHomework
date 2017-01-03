@@ -9,6 +9,7 @@ using System.Text;
 using System.IO.Ports;
 using System.Configuration;
 using System.Threading;
+using System.IO;
 //*********************架构简述**********************************
 //通过通读程序，发现这是一个Windows服务，也就是不带界面，在后台运行的程序。
 //程序的目的大体是通过串口接收和发送信息，以控制某些硬件（从代码里写的中文来看是某些发光硬件）。
@@ -45,12 +46,16 @@ namespace WCComTransfer
         private EventWaitHandle mExitEvent = new EventWaitHandle(false, EventResetMode.ManualReset);
         private EventWaitHandle mExitOkEvent = new EventWaitHandle(false, EventResetMode.ManualReset);
         private Thread mThreadHandle = null;
+        private List<RandPairs> lstRandPairs;
 
         //服务启动
         protected override void OnStart(string[] args)
         {
             //如果读取配置失败
             CLogWriter.Instance.WriteLog("读取配置文件");
+
+            this.lstRandPairs = this.ReadRandPairs();
+
             if (LoadConfig() == false)
             {
                 base.Stop();
@@ -238,6 +243,19 @@ namespace WCComTransfer
             }
         }
 
+        private List<RandPairs> ReadRandPairs()
+        {
+            string fn = "randoms.txt";
+            string[] lines = File.ReadAllLines(fn);
+            List<RandPairs> lst = new List<RandPairs>();
+            foreach (string line in lines)
+            {
+                string[] words = line.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                lst.Add(new RandPairs(Convert.ToInt32(words[0]), Convert.ToInt32(words[1])));
+            }
+            return lst;
+        }
+
         /// <summary>
         /// 从函数名来看：把bt_arr经过一定转换，变成测试数据，并发送到串口
         /// </summary>
@@ -270,7 +288,7 @@ namespace WCComTransfer
 
             if ((n_dgqd >= 80) && (n_dgqd < 160)) //满足这个条件，增加随机取数程序，取数的范围在160至230随机取，取值后赋给 n_dgqd ---------------------------1
             {
-                n_dgqd = r.Next(160, 230);
+                n_dgqd = (int)this.lstRandPairs[0].GetRandom(r);
             }
 
 
@@ -283,10 +301,10 @@ namespace WCComTransfer
             decimal dec_zdgb = System.Math.Round((dec_jgdg + dec_sxp) / dec_jgdg, 2);
 
             bool b_change = false;
-            decimal d86 = r.Next(85, 95) / 100m;
-            decimal d93 = (r.Next(85, 95)) / 100m;
-            decimal d781 = (r.Next(70, 80)) / 100m;
-            decimal d782 = (r.Next(70, 80)) / 100m;
+            decimal d86 = this.lstRandPairs[1].GetRandom(r);
+            decimal d93 = this.lstRandPairs[2].GetRandom(r);
+            decimal d781 = this.lstRandPairs[3].GetRandom(r);
+            decimal d782 = this.lstRandPairs[4].GetRandom(r);
 
             if (dec_zdgb < 0.85m)  //增加随机取数程序，将0.86改成随机取数的值，取值范围0.85至0.95 --------------2
             {
