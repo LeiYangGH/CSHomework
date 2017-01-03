@@ -1,14 +1,16 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
-
+using DAL;
 namespace BLL
 {
     public class CustomerTypeBLL
     {
+        private CustomerTypeDAL dal = new CustomerTypeDAL();
+
         public List<CustomerType> GetAllCustomerType()
         {
-            throw new NotImplementedException();
+            return dal.GetAllCustomerType();
         }
         public int Insert(CustomerType customerType)
         {

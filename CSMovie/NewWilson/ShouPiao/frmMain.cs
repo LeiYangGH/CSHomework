@@ -23,9 +23,19 @@ namespace ShouPiao
         }
 
 
+        private void AddCustomerTypes()
+        {
+            CustomerTypeBLL cbll = new CustomerTypeBLL();
+            this.comboBox1.Items.Clear();
+            foreach (CustomerType cu in cbll.GetAllCustomerType())
+            {
+                this.comboBox1.Items.Add(cu.Name);
+            }
+        }
+
         private void FrmCinema_Load(object sender, EventArgs e)
         {
-            //加载treeview
+            this.AddCustomerTypes();
             BingTreeView();
             dgvPosition.RowCount = 10;
             dgvPosition.ColumnCount = 10;
@@ -34,16 +44,44 @@ namespace ShouPiao
 
         private void tvMovies_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            TreeNode sel = this.tvMovies.SelectedNode;
+            Movie m = sel.Tag as Movie;
+
+            if (m != null)
+            {
+                this.lblMovieName.Text = m.Name;
+                this.lblType.Text = m.MovieTypeName;
+                this.lblTime.Text = ((int)m.Duration).ToString();
+                this.picMovie.Image = m.Poster;
+            }
+            else
+            {
+                this.lblMovieName.Text = "";
+                this.lblType.Text = "";
+                this.lblTime.Text = "";
+                this.picMovie.Image = null;
+
+            }
 
         }
 
-        private void GetAndBindMoviesInType(TreeNode tNode, MovieType t)
+        private void GetAndBindMoviesTime(TreeNode t, Movie m)
+        {
+            //MovieScheduleBLL sbll = new MovieScheduleBLL();
+            //var  = mbll.GetAllFromSqlSever(t.Id);
+            //foreach (Movie m in lstMovies)
+            //{
+            //    this.tvMovies.Nodes.Add(m.Name).Tag = m;
+            //}
+        }
+
+        private void GetAndBindMoviesInType(MovieType t)
         {
             MovieBLL mbll = new MovieBLL();
             var lstMovies = mbll.GetAllFromSqlSever(t.Id);
             foreach (Movie m in lstMovies)
             {
-                tNode.Nodes.Add(m.Name);
+                this.tvMovies.Nodes.Add(m.Name).Tag = m;
             }
         }
 
@@ -55,10 +93,12 @@ namespace ShouPiao
             this.tvMovies.Nodes.Clear();
             MovieTypeBLL tbll = new MovieTypeBLL();
             var lstTypes = tbll.GetLeixi();
+
             foreach (MovieType t in lstTypes)
             {
-                TreeNode tNode = this.tvMovies.Nodes.Add(t.Name);
-                this.GetAndBindMoviesInType(tNode, t);
+                //TreeNode tNode = this.tvMovies.Nodes.Add(t.Name);
+                //tNode.Tag = t;
+                this.GetAndBindMoviesInType(t);
             }
         }
 

@@ -1,6 +1,8 @@
 ﻿using Model;
 using System;
+using System.Linq;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace DAL
@@ -23,7 +25,20 @@ namespace DAL
 
         public List<CustomerType> GetAllCustomerType()
         {
-            throw new NotImplementedException();
+            List<CustomerType> mes = new List<CustomerType>();
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
+            {
+                SqlDataAdapter da = new SqlDataAdapter("select * from [customerType]", conn);
+                da.Fill(dt);
+            }
+            return dt.Rows.OfType<DataRow>().Select(x =>
+            new CustomerType()
+            {
+                Id = (byte)(x[0]),
+                Name = x[1].ToString()
+            }
+            ).ToList();
         }
         public int Insert(CustomerType customerType)
         {
