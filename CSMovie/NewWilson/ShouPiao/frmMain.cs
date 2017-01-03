@@ -53,6 +53,7 @@ namespace ShouPiao
                 this.lblType.Text = m.MovieTypeName;
                 this.lblTime.Text = ((int)m.Duration).ToString();
                 this.picMovie.Image = m.Poster;
+                this.lblPrice.Text = "60";
             }
             else
             {
@@ -60,7 +61,7 @@ namespace ShouPiao
                 this.lblType.Text = "";
                 this.lblTime.Text = "";
                 this.picMovie.Image = null;
-
+                this.lblPrice.Text = "";
             }
 
         }
