@@ -179,8 +179,8 @@ namespace ShouPiao
 
         private void dgvPosition_SelectionChanged(object sender, EventArgs e)
         {
-            //this.selPoint = new Point(this.dgvPosition.CurrentRow.Index + 1, this.dgvPosition.CurrentCell.ColumnIndex + 1);
-            this.selPositions = this.dgvPosition.SelectedCells.OfType<DataGridViewCell>()
+            this.selPositions = this.dgvPosition.SelectedCells
+                .OfType<DataGridViewCell>().Where(x => x.Value?.ToString() != "不可用")
                   .Select(c => new Position(c.RowIndex + 1, c.ColumnIndex + 1)).ToList();
         }
     }
