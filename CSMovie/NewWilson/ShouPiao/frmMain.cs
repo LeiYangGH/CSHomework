@@ -17,7 +17,7 @@ namespace ShouPiao
 
         private Movie selMovie;
         private string selCusTypeName;
-        private Point selPoint;
+        private List<Position> selPositions;
 
         public frmMain()
         {
@@ -123,14 +123,15 @@ namespace ShouPiao
         //confirm
         private void button1_Click(object sender, EventArgs e)
         {
-            if(this.selMovie==null 
-                || string.IsNullOrWhiteSpace(this.selCusTypeName) 
-                || this.selPoint==new Point())
+            if (this.selMovie == null
+                || string.IsNullOrWhiteSpace(this.selCusTypeName)
+                || this.selPositions.Count == 0)
             {
                 MessageBox.Show("请先选择电影、客户类型、座位");
                 return;
             }
-            string msg = this.selMovie.Name + "\r\n" + this.selCusTypeName + "\r\n" + this.selPoint.X+"排"+ this.selPoint.Y+"座";
+            string msg = this.selMovie.Name + "\r\n" + this.selCusTypeName + "\r\n";
+            msg += string.Join("\r\n", this.selPositions.Select(x => x.GetMessagePoint()));
             if (MessageBox.Show(msg, "确认", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 this.Text = "yes";
@@ -178,7 +179,9 @@ namespace ShouPiao
 
         private void dgvPosition_SelectionChanged(object sender, EventArgs e)
         {
-            this.selPoint = new Point(this.dgvPosition.CurrentRow.Index + 1, this.dgvPosition.CurrentCell.ColumnIndex + 1);
+            //this.selPoint = new Point(this.dgvPosition.CurrentRow.Index + 1, this.dgvPosition.CurrentCell.ColumnIndex + 1);
+            this.selPositions = this.dgvPosition.SelectedCells.OfType<DataGridViewCell>()
+                  .Select(c => new Position(c.RowIndex + 1, c.ColumnIndex + 1)).ToList();
         }
     }
 }
