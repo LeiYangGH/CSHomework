@@ -21,11 +21,11 @@ using System.IO;
 namespace WCComTransfer
 {
     //https://msdn.microsoft.com/zh-cn/library/system.serviceprocess.servicebase(v=vs.110).aspx
-    public partial class CWCComTransfer : ServiceBase
+    public class CWCComTransfer //: ServiceBase
     {
         public CWCComTransfer()
         {
-            InitializeComponent();
+
         }
 
         //定义两个串口，从变量名看一个是收，一个是发
@@ -48,9 +48,14 @@ namespace WCComTransfer
         private Thread mThreadHandle = null;
         private List<RandPairs> lstRandPairs;
 
+
+
+
         //服务启动
-        protected override void OnStart(string[] args)
+        public void OnStart()
         {
+            Console.WriteLine("启动。。。");
+
             //如果读取配置失败
             CLogWriter.Instance.WriteLog("读取配置文件");
 
@@ -58,7 +63,8 @@ namespace WCComTransfer
 
             if (LoadConfig() == false)
             {
-                base.Stop();
+                Console.WriteLine("读取配置文件失败");
+                return;
             }
 
             //启动时候设置串口参数，并开启串口
@@ -556,7 +562,7 @@ namespace WCComTransfer
         }
 
         //服务停止
-        protected override void OnStop()
+        public void OnStop()
         {
             //下面代码写法有问题，可能有更好的写法
             //主要是为了保证正常退出
@@ -572,8 +578,7 @@ namespace WCComTransfer
                     }
                 }
             }
-
-            CLogWriter.Instance.WriteLog("服务已退出。");
+            CLogWriter.Instance.WriteLog("程序已退出。");
         }
 
         #region MainThreadEntry

@@ -8,18 +8,20 @@ namespace WCComTransfer
 {
     static class Program
     {
+        static CWCComTransfer v = new CWCComTransfer();
+
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
         static void Main()
         {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[] 
-			{ 
-				new CWCComTransfer() 
-			};
-            //开启Windows服务，可以推测这个程序是以服务的形式存在，而不是带界面的程序
-            ServiceBase.Run(ServicesToRun);
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
+            v.OnStart();
+        }
+        static void CurrentDomain_ProcessExit(object sender, EventArgs e)
+        {
+            v.OnStop();
+            Console.WriteLine("程序退出。");
         }
     }
 }
