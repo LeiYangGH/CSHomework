@@ -14,6 +14,11 @@ namespace ShouPiao
         DbSqlHelper db = new DbSqlHelper();
         DataSet ds = null;
         Hashtable dta = new Hashtable();
+
+        private Movie selMovie;
+        private string selCusTypeName;
+        private Point selPoint;
+
         public frmMain()
         {
             InitializeComponent();
@@ -48,6 +53,7 @@ namespace ShouPiao
 
             if (m != null)
             {
+                this.selMovie = m;
                 this.lblMovieName.Text = m.Name;
                 this.lblType.Text = m.MovieTypeName;
                 this.lblTime.Text = ((int)m.Duration).ToString();
@@ -69,22 +75,23 @@ namespace ShouPiao
         {
             PositionBLL pbll = new PositionBLL();
             var lstPositions = pbll.GetAllPosition();
+            this.FillPositions(lstPositions);
 
-            foreach (DataGridViewRow row in this.dgvPosition.Rows)
-                foreach (DataGridViewColumn col in this.dgvPosition.Columns)
-                {
-                    DataGridViewCell cell = row.Cells[col.Index];
-                    var foundPosition = lstPositions.FirstOrDefault(p => p.RowNum == row.Index + 1 && p.ColNum == col.Index + 1);
-                    if (foundPosition == null)
-                        cell.Style.BackColor = Color.White;
-                    else
-                    {
-                        if (foundPosition.UseAble)
-                            cell.Style.BackColor = Color.Blue;
-                        else
-                            cell.Style.BackColor = Color.Red;
-                    }
-                }
+            //foreach (DataGridViewRow row in this.dgvPosition.Rows)
+            //    foreach (DataGridViewColumn col in this.dgvPosition.Columns)
+            //    {
+            //        DataGridViewCell cell = row.Cells[col.Index];
+            //        var foundPosition = lstPositions.FirstOrDefault(p => p.RowNum == row.Index + 1 && p.ColNum == col.Index + 1);
+            //        if (foundPosition == null)
+            //            cell.Style.BackColor = Color.White;
+            //        else
+            //        {
+            //            if (foundPosition.UseAble)
+            //                cell.Style.BackColor = Color.Blue;
+            //            else
+            //                cell.Style.BackColor = Color.Red;
+            //        }
+            //    }
         }
 
         private void GetAndBindMoviesInType(MovieType t)
@@ -113,8 +120,23 @@ namespace ShouPiao
 
         }
 
+        //confirm
         private void button1_Click(object sender, EventArgs e)
         {
+            if(this.selMovie==null 
+                || string.IsNullOrWhiteSpace(this.selCusTypeName) 
+                || this.selPoint==new Point())
+            {
+                MessageBox.Show("请先选择电影、客户类型、座位");
+                return;
+            }
+            string msg = this.selMovie.Name + "\r\n" + this.selCusTypeName + "\r\n" + this.selPoint.X+"排"+ this.selPoint.Y+"座";
+            if (MessageBox.Show(msg, "确认", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                this.Text = "yes";
+            }
+            else
+                this.Text = "no";
 
         }
 
@@ -122,7 +144,7 @@ namespace ShouPiao
         {
 
         }
-        private void FillDataGridView(List<Position> posList)
+        private void FillPositions(List<Position> posList)
         {
             int rowMin = int.MaxValue, colMin = int.MaxValue;
             int rowMax = int.MinValue, colMax = int.MinValue;
@@ -147,6 +169,16 @@ namespace ShouPiao
                 cell.Value = p;
                 cell.ToolTipText = p.PositionTypeName;
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.selCusTypeName = this.comboBox1.Text;
+        }
+
+        private void dgvPosition_SelectionChanged(object sender, EventArgs e)
+        {
+            this.selPoint = new Point(this.dgvPosition.CurrentRow.Index + 1, this.dgvPosition.CurrentCell.ColumnIndex + 1);
         }
     }
 }

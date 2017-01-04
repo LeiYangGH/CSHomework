@@ -178,6 +178,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(196, 28);
             this.comboBox1.TabIndex = 0;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // tbSeat
             // 
@@ -211,6 +212,7 @@
             this.dgvPosition.RowTemplate.Height = 27;
             this.dgvPosition.Size = new System.Drawing.Size(1101, 667);
             this.dgvPosition.TabIndex = 0;
+            this.dgvPosition.SelectionChanged += new System.EventHandler(this.dgvPosition_SelectionChanged);
             // 
             // groupBox1
             // 
