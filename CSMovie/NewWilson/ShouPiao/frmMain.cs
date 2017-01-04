@@ -48,7 +48,9 @@ namespace ShouPiao
                 foreach (DataGridViewColumn col in this.dgvPosition.Columns)
                 {
                     DataGridViewCell cell = row.Cells[col.Index];
-                    var foundPosition = positions.FirstOrDefault(p => p.RowNum == row.Index + 1 && p.ColNum == col.Index + 1);
+                    //看当前坐标有没有在已售列表里
+                    var foundPosition = positions.FirstOrDefault(p =>
+                    p.RowNum == row.Index + 1 && p.ColNum == col.Index + 1);
                     if (foundPosition != null)
                     {
                         this.EnableCell(cell, false);
@@ -78,7 +80,7 @@ namespace ShouPiao
                 this.lblTime.Text = ((int)m.Duration).ToString();
                 this.picMovie.Image = m.Poster;
                 this.lblPrice.Text = "60";
-
+                //换选电影时候先清空，再绑定，再把已售加上
                 this.ClearAllPositions();
                 this.GetAndBindPositions();
                 this.ShowSoldPositonsByMovieName(m.Name);
@@ -109,7 +111,7 @@ namespace ShouPiao
             var lstMovies = mbll.GetAllFromSqlSever(t.Id);
             foreach (Movie m in lstMovies)
             {
-                this.tvMovies.Nodes.Add(m.Name).Tag = m;
+                this.tvMovies.Nodes.Add(m.Name).Tag = m;//tag没啥用
             }
         }
 
@@ -140,6 +142,7 @@ namespace ShouPiao
             SaleBLL sbll = new SaleBLL();
             if (sbll.InsertSale(sale))
             {
+                //如果保存成功则把当前选中的改成已售
                 ShowSoldPositonsByListPositions(this.selPositions);
                 MessageBox.Show("购票成功！");
                 return true;
@@ -164,6 +167,7 @@ namespace ShouPiao
             string msg = this.selMovie.Name + "\r\n" + this.selCusTypeName + "\r\n";
             msg += string.Join("\r\n", this.selPositions.Select(x => x.GetMessagePoint()));
             msg += "\r\n总价：" + this.CalcTotal().ToString();
+            //弹出框应该是和其他接口的地方
             if (MessageBox.Show(msg, "确认", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 //确认购买
@@ -206,6 +210,7 @@ namespace ShouPiao
             return CanCellSelect(p);
         }
 
+        //原有代码我基本没改
         private void FillPositions(List<Position> posList)
         {
             int rowMin = int.MaxValue, colMin = int.MaxValue;
@@ -237,6 +242,7 @@ namespace ShouPiao
             this.selCusTypeName = this.comboBox1.Text;
         }
 
+        //标记可用和不可用的样式
         private void EnableCell(DataGridViewCell dc, bool enabled)
         {
             dc.ReadOnly = !enabled;
@@ -266,6 +272,7 @@ namespace ShouPiao
             if (!this.CanCellSelect(cell))
             {
                 MessageBox.Show("请选择其他座位！");
+                //一旦选择不可用的就把所有选中取消，因为目前如果要实现只取消选中不可用的那个代码量会多不少
                 this.dgvPosition.ClearSelection();
                 this.dgvPosition.CurrentCell = null;
             }
