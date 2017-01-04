@@ -45,6 +45,27 @@ namespace ShouPiao
 
         }
 
+        private void ShowSoldPositonsByListPositions(List<Position> positions)
+        {
+            foreach (DataGridViewRow row in this.dgvPosition.Rows)
+                foreach (DataGridViewColumn col in this.dgvPosition.Columns)
+                {
+                    DataGridViewCell cell = row.Cells[col.Index];
+                    var foundPosition = positions.FirstOrDefault(p => p.RowNum == row.Index + 1 && p.ColNum == col.Index + 1);
+                    if (foundPosition != null)
+                    {
+                        this.EnableCell(cell, false);
+                        (cell.Value as Position).PositionTypeName = "已售";
+                    }
+                }
+        }
+
+        private void ShowSoldPositonsByMovieName(string movieName)
+        {
+            SaleBLL sbll = new SaleBLL();
+            var lstPositions = sbll.GetSoldPositionsByMovieName(movieName);
+            ShowSoldPositonsByListPositions(lstPositions);
+        }
 
         private void tvMovies_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -59,6 +80,7 @@ namespace ShouPiao
                 this.lblTime.Text = ((int)m.Duration).ToString();
                 this.picMovie.Image = m.Poster;
                 this.lblPrice.Text = "60";
+                this.ShowSoldPositonsByMovieName(m.Name);
             }
             else
             {
@@ -76,22 +98,6 @@ namespace ShouPiao
             PositionBLL pbll = new PositionBLL();
             var lstPositions = pbll.GetAllPosition();
             this.FillPositions(lstPositions);
-
-            //foreach (DataGridViewRow row in this.dgvPosition.Rows)
-            //    foreach (DataGridViewColumn col in this.dgvPosition.Columns)
-            //    {
-            //        DataGridViewCell cell = row.Cells[col.Index];
-            //        var foundPosition = lstPositions.FirstOrDefault(p => p.RowNum == row.Index + 1 && p.ColNum == col.Index + 1);
-            //        if (foundPosition == null)
-            //            cell.Style.BackColor = Color.White;
-            //        else
-            //        {
-            //            if (foundPosition.UseAble)
-            //                cell.Style.BackColor = Color.Blue;
-            //            else
-            //                cell.Style.BackColor = Color.Red;
-            //        }
-            //    }
         }
 
         private void GetAndBindMoviesInType(MovieType t)
@@ -126,6 +132,31 @@ namespace ShouPiao
             return 60 * this.selPositions.Count;
         }
 
+        private void DisableJustSold()
+        {
+            foreach (Position p in this.selPositions)
+            {
+
+            }
+        }
+
+        private bool SaveSale()
+        {
+            Sale sale = new Sale(this.selMovie.Name, this.selCusTypeName, 60f, this.selPositions);
+            SaleBLL sbll = new SaleBLL();
+            if (sbll.InsertSale(sale))
+            {
+                ShowSoldPositonsByListPositions(this.selPositions);
+                MessageBox.Show("购票成功！");
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("购票失败！");
+                return false;
+            }
+        }
+
         //confirm
         private void button1_Click(object sender, EventArgs e)
         {
@@ -141,11 +172,11 @@ namespace ShouPiao
             msg += "\r\n总价：" + this.CalcTotal().ToString();
             if (MessageBox.Show(msg, "确认", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                this.Text = "yes";
                 //确认购买
+                this.SaveSale();
             }
             else
-                this.Text = "no";
+                MessageBox.Show("您取消了购买。");
             //取消购买
 
 
@@ -158,7 +189,9 @@ namespace ShouPiao
 
         private bool CanCellSelect(Position p)
         {
-            return p != null && p.UseAble && p.PositionTypeName != "通道";
+            return p != null && p.UseAble
+                && p.PositionTypeName != "通道"
+                && p.PositionTypeName != "已售";
         }
 
         private bool CanCellSelect(DataGridViewCell cell)
@@ -190,7 +223,6 @@ namespace ShouPiao
                 DataGridViewCell cell = dgvPosition.Rows[p.RowNum - rowMin].Cells[p.ColNum - colMin];
                 cell.Value = p;
                 this.EnableCell(cell, CanCellSelect(p));
-                cell.ToolTipText = p.PositionTypeName;
             }
         }
 
