@@ -78,6 +78,9 @@ namespace ShouPiao
                 this.lblTime.Text = ((int)m.Duration).ToString();
                 this.picMovie.Image = m.Poster;
                 this.lblPrice.Text = "60";
+
+                this.ClearAllPositions();
+                this.GetAndBindPositions();
                 this.ShowSoldPositonsByMovieName(m.Name);
             }
             else
@@ -182,6 +185,19 @@ namespace ShouPiao
             return p != null && p.UseAble
                 && p.PositionTypeName != "通道"
                 && p.PositionTypeName != "已售";
+        }
+
+        private void ClearAllPositions()
+        {
+            foreach (DataGridViewRow row in this.dgvPosition.Rows)
+                foreach (DataGridViewColumn col in this.dgvPosition.Columns)
+                {
+                    DataGridViewCell cell = row.Cells[col.Index];
+                    this.EnableCell(cell, true);
+                }
+
+            this.dgvPosition.ClearSelection();
+            this.dgvPosition.CurrentCell = null;
         }
 
         private bool CanCellSelect(DataGridViewCell cell)
