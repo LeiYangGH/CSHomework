@@ -145,6 +145,18 @@ namespace ShouPiao
         {
 
         }
+
+        private bool CanCellSelect(Position p)
+        {
+            return p != null && p.PositionTypeName != "通道" && p.UseAble;
+        }
+
+        private bool CanCellSelect(DataGridViewCell cell)
+        {
+            Position p = cell.Value as Position;
+            return CanCellSelect(p);
+        }
+
         private void FillPositions(List<Position> posList)
         {
             int rowMin = int.MaxValue, colMin = int.MaxValue;
@@ -165,9 +177,9 @@ namespace ShouPiao
 
             foreach (Position p in posList)
             {
-                DataGridViewCell cell =
-                    dgvPosition.Rows[p.RowNum - rowMin].Cells[p.ColNum - colMin];
+                DataGridViewCell cell = dgvPosition.Rows[p.RowNum - rowMin].Cells[p.ColNum - colMin];
                 cell.Value = p;
+                this.EnableCell(cell, CanCellSelect(p));
                 cell.ToolTipText = p.PositionTypeName;
             }
         }
@@ -177,11 +189,42 @@ namespace ShouPiao
             this.selCusTypeName = this.comboBox1.Text;
         }
 
+        private void EnableCell(DataGridViewCell dc, bool enabled)
+        {
+            //toggle read-only state
+            dc.ReadOnly = !enabled;
+            if (enabled)
+            {
+                //restore cell style to the default value
+                dc.Style.BackColor = dc.OwningColumn.DefaultCellStyle.BackColor;
+                dc.Style.ForeColor = dc.OwningColumn.DefaultCellStyle.ForeColor;
+            }
+            else
+            {
+                //gray out the cell
+                dc.Style.BackColor = Color.LightGray;
+                dc.Style.ForeColor = Color.DarkGray;
+            }
+        }
+
+
         private void dgvPosition_SelectionChanged(object sender, EventArgs e)
         {
+
             this.selPositions = this.dgvPosition.SelectedCells
-                .OfType<DataGridViewCell>().Where(x => x.Value?.ToString() != "不可用")
-                  .Select(c => new Position(c.RowIndex + 1, c.ColumnIndex + 1)).ToList();
+                .OfType<DataGridViewCell>().Where(x => this.CanCellSelect(x))
+                  .Select(c => c.Value as Position).ToList();
+        }
+
+        private void dgvPosition_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewCell cell = this.dgvPosition.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            if (!this.CanCellSelect(cell))
+            {
+                MessageBox.Show("请选择其他座位！");
+                this.dgvPosition.ClearSelection();
+                this.dgvPosition.CurrentCell = null;
+            }
         }
     }
 }

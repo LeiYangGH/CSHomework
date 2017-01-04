@@ -212,6 +212,7 @@
             this.dgvPosition.RowTemplate.Height = 27;
             this.dgvPosition.Size = new System.Drawing.Size(1101, 667);
             this.dgvPosition.TabIndex = 0;
+            this.dgvPosition.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPosition_CellClick);
             this.dgvPosition.SelectionChanged += new System.EventHandler(this.dgvPosition_SelectionChanged);
             // 
             // groupBox1
