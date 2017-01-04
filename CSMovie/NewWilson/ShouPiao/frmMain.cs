@@ -120,6 +120,12 @@ namespace ShouPiao
 
         }
 
+        private int CalcTotal()
+        {
+            //总价算法需要改
+            return 60 * this.selPositions.Count;
+        }
+
         //confirm
         private void button1_Click(object sender, EventArgs e)
         {
@@ -132,12 +138,16 @@ namespace ShouPiao
             }
             string msg = this.selMovie.Name + "\r\n" + this.selCusTypeName + "\r\n";
             msg += string.Join("\r\n", this.selPositions.Select(x => x.GetMessagePoint()));
+            msg += "\r\n总价：" + this.CalcTotal().ToString();
             if (MessageBox.Show(msg, "确认", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 this.Text = "yes";
+                //确认购买
             }
             else
                 this.Text = "no";
+            //取消购买
+
 
         }
 
@@ -148,7 +158,7 @@ namespace ShouPiao
 
         private bool CanCellSelect(Position p)
         {
-            return p != null && p.PositionTypeName != "通道" && p.UseAble;
+            return p != null && p.UseAble && p.PositionTypeName != "通道";
         }
 
         private bool CanCellSelect(DataGridViewCell cell)
@@ -191,17 +201,14 @@ namespace ShouPiao
 
         private void EnableCell(DataGridViewCell dc, bool enabled)
         {
-            //toggle read-only state
             dc.ReadOnly = !enabled;
             if (enabled)
             {
-                //restore cell style to the default value
                 dc.Style.BackColor = dc.OwningColumn.DefaultCellStyle.BackColor;
                 dc.Style.ForeColor = dc.OwningColumn.DefaultCellStyle.ForeColor;
             }
             else
             {
-                //gray out the cell
                 dc.Style.BackColor = Color.LightGray;
                 dc.Style.ForeColor = Color.DarkGray;
             }
@@ -210,10 +217,9 @@ namespace ShouPiao
 
         private void dgvPosition_SelectionChanged(object sender, EventArgs e)
         {
-
             this.selPositions = this.dgvPosition.SelectedCells
                 .OfType<DataGridViewCell>().Where(x => this.CanCellSelect(x))
-                  .Select(c => c.Value as Position).ToList();
+                .Select(c => c.Value as Position).ToList();
         }
 
         private void dgvPosition_CellClick(object sender, DataGridViewCellEventArgs e)
