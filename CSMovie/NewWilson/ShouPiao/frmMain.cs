@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
 using Model;
@@ -39,6 +36,8 @@ namespace ShouPiao
             BingTreeView();
             dgvPosition.RowCount = 10;
             dgvPosition.ColumnCount = 10;
+            this.GetAndBindPositions();
+
         }
 
 
@@ -66,14 +65,26 @@ namespace ShouPiao
 
         }
 
-        private void GetAndBindMoviesTime(TreeNode t, Movie m)
+        private void GetAndBindPositions()
         {
-            //MovieScheduleBLL sbll = new MovieScheduleBLL();
-            //var  = mbll.GetAllFromSqlSever(t.Id);
-            //foreach (Movie m in lstMovies)
-            //{
-            //    this.tvMovies.Nodes.Add(m.Name).Tag = m;
-            //}
+            PositionBLL pbll = new PositionBLL();
+            var lstPositions = pbll.GetAllPosition();
+
+            foreach (DataGridViewRow row in this.dgvPosition.Rows)
+                foreach (DataGridViewColumn col in this.dgvPosition.Columns)
+                {
+                    DataGridViewCell cell = row.Cells[col.Index];
+                    var foundPosition = lstPositions.FirstOrDefault(p => p.RowNum == row.Index + 1 && p.ColNum == col.Index + 1);
+                    if (foundPosition == null)
+                        cell.Style.BackColor = Color.White;
+                    else
+                    {
+                        if (foundPosition.UseAble)
+                            cell.Style.BackColor = Color.Blue;
+                        else
+                            cell.Style.BackColor = Color.Red;
+                    }
+                }
         }
 
         private void GetAndBindMoviesInType(MovieType t)
@@ -97,10 +108,9 @@ namespace ShouPiao
 
             foreach (MovieType t in lstTypes)
             {
-                //TreeNode tNode = this.tvMovies.Nodes.Add(t.Name);
-                //tNode.Tag = t;
                 this.GetAndBindMoviesInType(t);
             }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
