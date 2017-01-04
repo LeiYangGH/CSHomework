@@ -11,10 +11,7 @@ namespace ShouPiao
 {
     public partial class frmMain : Form
     {
-        DbSqlHelper db = new DbSqlHelper();
-        DataSet ds = null;
-        Hashtable dta = new Hashtable();
-
+        //选中的项目，作为全局变量，以减少函数之间传递参数
         private Movie selMovie;
         private string selCusTypeName;
         private List<Position> selPositions;
@@ -38,13 +35,13 @@ namespace ShouPiao
         private void FrmCinema_Load(object sender, EventArgs e)
         {
             this.AddCustomerTypes();
-            BingTreeView();
+            GetAndBindAllMovies();
             dgvPosition.RowCount = 10;
             dgvPosition.ColumnCount = 10;
             this.GetAndBindPositions();
-
         }
 
+        //显示已售
         private void ShowSoldPositonsByListPositions(List<Position> positions)
         {
             foreach (DataGridViewRow row in this.dgvPosition.Rows)
@@ -60,6 +57,7 @@ namespace ShouPiao
                 }
         }
 
+        //显示某部电影的已售
         private void ShowSoldPositonsByMovieName(string movieName)
         {
             SaleBLL sbll = new SaleBLL();
@@ -93,6 +91,7 @@ namespace ShouPiao
 
         }
 
+        //获取和显示所有座位
         private void GetAndBindPositions()
         {
             PositionBLL pbll = new PositionBLL();
@@ -100,6 +99,7 @@ namespace ShouPiao
             this.FillPositions(lstPositions);
         }
 
+        //显示某类型电影列表
         private void GetAndBindMoviesInType(MovieType t)
         {
             MovieBLL mbll = new MovieBLL();
@@ -111,9 +111,9 @@ namespace ShouPiao
         }
 
         /// <summary>
-        /// 获取放映列表绑定到TreeView
+        /// 显示所有类型电影列表
         /// </summary>
-        private void BingTreeView()
+        private void GetAndBindAllMovies()
         {
             this.tvMovies.Nodes.Clear();
             MovieTypeBLL tbll = new MovieTypeBLL();
@@ -123,21 +123,12 @@ namespace ShouPiao
             {
                 this.GetAndBindMoviesInType(t);
             }
-
         }
 
         private int CalcTotal()
         {
             //总价算法需要改
             return 60 * this.selPositions.Count;
-        }
-
-        private void DisableJustSold()
-        {
-            foreach (Position p in this.selPositions)
-            {
-
-            }
         }
 
         private bool SaveSale()
@@ -177,7 +168,6 @@ namespace ShouPiao
             }
             else
                 MessageBox.Show("您取消了购买。");
-            //取消购买
 
 
         }
