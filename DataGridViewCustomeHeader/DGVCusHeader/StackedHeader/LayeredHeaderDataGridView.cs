@@ -87,21 +87,18 @@ namespace StackedHeader
         void dgv_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
             this.Invalidate(this.DisplayRectangle);
-
         }
 
         void dgv_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
             RegenerateHeaders();
             this.Invalidate(this.DisplayRectangle);
-
         }
 
         void dgv_ColumnRemoved(object sender, DataGridViewColumnEventArgs e)
         {
             RegenerateHeaders();
             this.Invalidate(this.DisplayRectangle);
-
         }
 
         void dgv_Paint(object sender, PaintEventArgs e)
@@ -118,17 +115,8 @@ namespace StackedHeader
 
         void dgv_Scroll(object sender, ScrollEventArgs e)
         {
-            //Refresh1();
             this.Invalidate(this.DisplayRectangle);
-
         }
-
-        //private void Refresh1()
-        //{
-
-        //    Rectangle rtHeader = this.DisplayRectangle;
-        //    this.Invalidate(rtHeader);
-        //}
 
         private void RegenerateHeaders()
         {
@@ -140,7 +128,6 @@ namespace StackedHeader
             g.FillRectangle(new SolidBrush(this.ColumnHeadersDefaultCellStyle.BackColor),
                                       new Rectangle(this.DisplayRectangle.X, this.DisplayRectangle.Y,
                                                     this.DisplayRectangle.Width, this.ColumnHeadersHeight));
-
             foreach (Header child in hTree.Children)
             {
                 child.Measure(this, 0, this.ColumnHeadersHeight / level);
