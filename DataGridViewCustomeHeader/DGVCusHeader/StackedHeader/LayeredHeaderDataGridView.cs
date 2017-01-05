@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Reflection;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace StackedHeader
 {
@@ -12,6 +13,9 @@ namespace StackedHeader
         private Header hTree;
         private int level;
         private readonly StringFormat fmt;
+        private JsonHeader jh;
+
+
         public LayeredHeaderDataGridView()
         {
             fmt = new StringFormat();
@@ -26,22 +30,49 @@ namespace StackedHeader
             hTree = this.GenerateStackedHeader();
         }
 
+        public void GenerateColumns(JsonHeader jh)
+        {
+            this.jh = jh;
+            hTree = this.GenerateStackedHeader();
+        }
+
 
         private Header GenerateStackedHeader()
         {
+
             Header paHeader = new Header();
-            var h11 = new Header { Name = "11" };
-            h11.ColumnId = 0;
-            var h12 = new Header { Name = "12" };
-            h12.ColumnId = 3;
-            var h111 = new Header { Name = "111" };
-            h111.ColumnId = 1;
-            var h112 = new Header { Name = "112" };
-            h112.ColumnId = 2;
-            paHeader.Children.Add(h11);
-            h11.Children.Add(h111);
-            h11.Children.Add(h112);
-            paHeader.Children.Add(h12);
+            if (jh == null)
+                return paHeader;
+            int id = -1;
+            foreach (JsonHeader j1 in jh.C)
+            {
+                var h1 = new Header { Name = j1.T };
+                if (j1.C.Count == 0)
+                    id++;
+                h1.ColumnId = id;
+                paHeader.Children.Add(h1);
+                foreach (JsonHeader j2 in j1.C)
+                {
+                    var h2 = new Header { Name = j2.T };
+                    h2.ColumnId = ++id;
+                    h1.Children.Add(h2);
+                }
+                paHeader.Children.Add(h1);
+
+            }
+            //Header paHeader = new Header();
+            //var h11 = new Header { Name = "11" };
+            //h11.ColumnId = 0;
+            //var h12 = new Header { Name = "12" };
+            //h12.ColumnId = 3;
+            //var h111 = new Header { Name = "111" };
+            //h111.ColumnId = 2;
+            //var h112 = new Header { Name = "112" };
+            //h112.ColumnId = 1;
+            //paHeader.Children.Add(h11);
+            //h11.Children.Add(h112);
+            //h11.Children.Add(h111);
+            //paHeader.Children.Add(h12);
             return paHeader;
         }
         private Header GenerateStackedHeader0()
