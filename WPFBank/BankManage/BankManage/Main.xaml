@@ -77,6 +77,16 @@
                         </Button>
                     </StackPanel>
                 </Expander>
+                <Expander Header="挂失">
+                    <StackPanel>
+                        <Button Height="50" Width="60" Tag="money/ReportLost.xaml"  Click="Button_Click">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="images/btn1.png" Width="30" />
+                                <TextBlock Text="挂失" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Expander>
                 <Expander Header="其他功能">
                     <StackPanel>
                         <Button Height="50" Width="90" Tag="other/ChangeAccount.xaml" Click="Button_Click">
