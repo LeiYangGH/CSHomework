@@ -10,62 +10,62 @@ namespace StackedHeader
         {
         }
 
-        public Header GenerateStackedHeader(DataGridView objGridView)
+        public Header GenerateStackedHeader(DataGridView dgv)
         {
-            Header objParentHeader = new Header();
-            Dictionary<string, Header> objHeaderTree = new Dictionary<string, Header>();
+            Header paHeader = new Header();
+            Dictionary<string, Header> headerTree = new Dictionary<string, Header>();
             int iX = 0;
-            foreach (DataGridViewColumn objColumn in objGridView.Columns)
+            foreach (DataGridViewColumn col in dgv.Columns)
             {
-                string[] segments = objColumn.HeaderText.Split('.');
-                if (segments.Length > 0)
+                string[] seg = col.HeaderText.Split('.');
+                if (seg.Length > 0)
                 {
-                    string segment = segments[0];
-                    Header tempHeader, lastTempHeader = null;
-                    if (objHeaderTree.ContainsKey(segment))
+                    string segment = seg[0];
+                    Header tmpHeader, lastTmpHeader = null;
+                    if (headerTree.ContainsKey(segment))
                     {
-                        tempHeader = objHeaderTree[segment];
+                        tmpHeader = headerTree[segment];
                     }
                     else
                     {
-                        tempHeader = new Header { Name = segment, X = iX };
-                        objParentHeader.Children.Add(tempHeader);
-                        objHeaderTree[segment] = tempHeader;
-                        tempHeader.ColumnId = objColumn.Index;
+                        tmpHeader = new Header { Name = segment, X = iX };
+                        paHeader.Children.Add(tmpHeader);
+                        headerTree[segment] = tmpHeader;
+                        tmpHeader.ColumnId = col.Index;
                     }
-                    for (int i = 1; i < segments.Length; ++i)
+                    for (int i = 1; i < seg.Length; ++i)
                     {
-                        segment = segments[i];
+                        segment = seg[i];
                         bool found = false;
-                        foreach (Header child in tempHeader.Children)
+                        foreach (Header child in tmpHeader.Children)
                         {
                             if (0 == string.Compare(child.Name, segment, StringComparison.InvariantCultureIgnoreCase))
                             {
                                 found = true;
-                                lastTempHeader = tempHeader;
-                                tempHeader = child;
+                                lastTmpHeader = tmpHeader;
+                                tmpHeader = child;
                                 break;
                             }
                         }
-                        if (!found || i == segments.Length - 1)
+                        if (!found || i == seg.Length - 1)
                         {
                             Header temp = new Header { Name = segment, X = iX };
-                            temp.ColumnId = objColumn.Index;
-                            if (found && i == segments.Length - 1 && null != lastTempHeader)
+                            temp.ColumnId = col.Index;
+                            if (found && i == seg.Length - 1 && null != lastTmpHeader)
                             {
-                                lastTempHeader.Children.Add(temp);
+                                lastTmpHeader.Children.Add(temp);
                             }
                             else
                             {
-                                tempHeader.Children.Add(temp);
+                                tmpHeader.Children.Add(temp);
                             }
-                            tempHeader = temp;
+                            tmpHeader = temp;
                         }
                     }
                 }
-                iX += objColumn.Width;
+                iX += col.Width;
             }
-            return objParentHeader;
+            return paHeader;
         }
     }
 }
