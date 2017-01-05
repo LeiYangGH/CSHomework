@@ -27,6 +27,13 @@
           <Property Name="idCard" Type="nchar" MaxLength="18" />
           <Property Name="photo" Type="nchar" MaxLength="1" />
         </EntityType>
+        <EntityType Name="LoadRate">
+          <Key>
+            <PropertyRef Name="rationType" />
+          </Key>
+          <Property Name="rationType" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="rationValue" Type="float" />
+        </EntityType>
         <EntityType Name="LoginInfo">
           <Key>
             <PropertyRef Name="Bno" />
@@ -74,6 +81,7 @@
         <EntityContainer Name="BankModelStoreContainer">
           <EntitySet Name="AccountInfo" EntityType="Self.AccountInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeInfo" EntityType="Self.EmployeeInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoadRate" EntityType="Self.LoadRate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoginInfo" EntityType="Self.LoginInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lost" EntityType="Self.Lost" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MoneyInfo" EntityType="Self.MoneyInfo" Schema="dbo" store:Type="Tables" />
@@ -152,12 +160,20 @@
           <EntitySet Name="RateInfo" EntityType="Self.RateInfo" />
           <EntitySet Name="Salary" EntityType="Self.Salary" />
           <EntitySet Name="Lost" EntityType="BankModel.Lost" />
+          <EntitySet Name="LoadRate" EntityType="BankModel.LoadRate" />
         </EntityContainer>
         <EntityType Name="Lost">
           <Key>
             <PropertyRef Name="accountNo" />
           </Key>
           <Property Name="accountNo" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LoadRate">
+          <Key>
+            <PropertyRef Name="rationType" />
+          </Key>
+          <Property Name="rationType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="rationValue" Type="Double" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -235,6 +251,14 @@
             <EntityTypeMapping TypeName="BankModel.Lost">
               <MappingFragment StoreEntitySet="Lost">
                 <ScalarProperty Name="accountNo" ColumnName="accountNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoadRate">
+            <EntityTypeMapping TypeName="BankModel.LoadRate">
+              <MappingFragment StoreEntitySet="LoadRate">
+                <ScalarProperty Name="rationValue" ColumnName="rationValue" />
+                <ScalarProperty Name="rationType" ColumnName="rationType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

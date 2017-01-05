@@ -12,6 +12,7 @@
         <EntityTypeShape EntityType="BankModel.RateInfo" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BankModel.Salary" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BankModel.Lost" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BankModel.LoadRate" Width="1.5" PointX="0.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

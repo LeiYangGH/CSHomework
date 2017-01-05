@@ -103,6 +103,9 @@
     <Compile Include="EmployeeInfo.cs">
       <DependentUpon>BankModel1.tt</DependentUpon>
     </Compile>
+    <Compile Include="LoadRate.cs">
+      <DependentUpon>BankModel1.tt</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.xaml.cs">
       <DependentUpon>LoginForm.xaml</DependentUpon>
     </Compile>

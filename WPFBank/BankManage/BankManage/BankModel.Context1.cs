@@ -13,10 +13,10 @@ namespace BankManage
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BankEntities1 : DbContext
+    public partial class BankEntities : DbContext
     {
-        public BankEntities1()
-            : base("name=BankEntities1")
+        public BankEntities()
+            : base("name=BankEntities")
         {
         }
     
@@ -30,8 +30,8 @@ namespace BankManage
         public DbSet<LoginInfo> LoginInfo { get; set; }
         public DbSet<MoneyInfo> MoneyInfo { get; set; }
         public DbSet<RateInfo> RateInfo { get; set; }
-        public DbSet<Salary> Salary { get; set; }
+        public DbSet<LoanRate> LoanRate { get; set; }
         public DbSet<Lost> Lost { get; set; }
-        public DbSet<LoadRate> LoadRate { get; set; }
+        public DbSet<Salary> Salary { get; set; }
     }
 }
