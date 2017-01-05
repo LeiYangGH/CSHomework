@@ -5,8 +5,8 @@
     <DockPanel>
         <DockPanel.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FFF6F7F5" Offset="0"/>
-                <GradientStop Color="#FFD6F1D0" Offset="0.793"/>
+                <GradientStop Color="#003399" Offset="0"/>
+                <GradientStop Color="#3399FF" Offset="0.793"/>
             </LinearGradientBrush>
         </DockPanel.Background>
         <StackPanel DockPanel.Dock="Top" Height="60" OpacityMask="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
