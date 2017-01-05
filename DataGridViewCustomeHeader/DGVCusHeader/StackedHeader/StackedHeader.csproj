@@ -56,7 +56,6 @@
       <DependentUpon>Test.cs</DependentUpon>
     </Compile>
     <Compile Include="Header.cs" />
-    <Compile Include="Generator.cs" />
     <Compile Include="Decorator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
