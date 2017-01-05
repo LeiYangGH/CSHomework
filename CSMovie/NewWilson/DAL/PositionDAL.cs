@@ -12,9 +12,9 @@ namespace DAL
         public Position FromSqlDataReader(SqlDataReader reader)
         {
             Position p = new Position();
-            if (reader["positionid"] is DBNull == false)
+            if (reader["Id"] is DBNull == false)
             {
-                p.Id = Convert.ToInt32(reader["positionid"]);
+                p.Id = Convert.ToInt32(reader["Id"]);
             }
             if (reader["rowNum"] is DBNull == false)
             {

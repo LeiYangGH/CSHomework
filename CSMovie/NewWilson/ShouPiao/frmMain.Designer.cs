@@ -72,32 +72,32 @@
             // tabControl2
             // 
             this.tabControl2.Controls.Add(this.tpToday);
-            this.tabControl2.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tabControl2.Location = new System.Drawing.Point(15, 17);
-            this.tabControl2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabControl2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tabControl2.Location = new System.Drawing.Point(13, 13);
+            this.tabControl2.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(370, 1133);
+            this.tabControl2.Size = new System.Drawing.Size(329, 850);
             this.tabControl2.TabIndex = 24;
             // 
             // tpToday
             // 
             this.tpToday.Controls.Add(this.tvMovies);
-            this.tpToday.Location = new System.Drawing.Point(4, 31);
-            this.tpToday.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tpToday.Location = new System.Drawing.Point(4, 27);
+            this.tpToday.Margin = new System.Windows.Forms.Padding(4);
             this.tpToday.Name = "tpToday";
-            this.tpToday.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tpToday.Size = new System.Drawing.Size(362, 1098);
+            this.tpToday.Padding = new System.Windows.Forms.Padding(4);
+            this.tpToday.Size = new System.Drawing.Size(321, 819);
             this.tpToday.TabIndex = 0;
             this.tpToday.Text = "放映列表";
             this.tpToday.UseVisualStyleBackColor = true;
             // 
             // tvMovies
             // 
-            this.tvMovies.Location = new System.Drawing.Point(17, 15);
-            this.tvMovies.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tvMovies.Location = new System.Drawing.Point(15, 11);
+            this.tvMovies.Margin = new System.Windows.Forms.Padding(4);
             this.tvMovies.Name = "tvMovies";
-            this.tvMovies.Size = new System.Drawing.Size(313, 1065);
+            this.tvMovies.Size = new System.Drawing.Size(279, 800);
             this.tvMovies.TabIndex = 1;
             this.tvMovies.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvMovies_AfterSelect);
             // 
@@ -109,31 +109,29 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.comboBox1);
-            this.groupBox2.Location = new System.Drawing.Point(1158, 196);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox2.Location = new System.Drawing.Point(1029, 147);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(384, 201);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Size = new System.Drawing.Size(341, 151);
             this.groupBox2.TabIndex = 26;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "顾客类型：";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(244, 152);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button2.Location = new System.Drawing.Point(217, 114);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(89, 31);
+            this.button2.Size = new System.Drawing.Size(79, 23);
             this.button2.TabIndex = 5;
             this.button2.Text = "取消";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(73, 152);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button1.Location = new System.Drawing.Point(65, 114);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(89, 31);
+            this.button1.Size = new System.Drawing.Size(79, 23);
             this.button1.TabIndex = 4;
             this.button1.Text = "确认";
             this.button1.UseVisualStyleBackColor = true;
@@ -146,58 +144,56 @@
             "VIP会员",
             "学生",
             "老年人"});
-            this.comboBox2.Location = new System.Drawing.Point(136, 103);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBox2.Location = new System.Drawing.Point(121, 77);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(196, 28);
+            this.comboBox2.Size = new System.Drawing.Size(175, 23);
             this.comboBox2.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(70, 108);
+            this.label3.Location = new System.Drawing.Point(62, 81);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 20);
+            this.label3.Size = new System.Drawing.Size(52, 15);
             this.label3.TabIndex = 2;
             this.label3.Text = "折扣：";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 57);
+            this.label2.Location = new System.Drawing.Point(32, 43);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 20);
+            this.label2.Size = new System.Drawing.Size(82, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "类型选择：";
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(136, 47);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBox1.Location = new System.Drawing.Point(121, 35);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(196, 28);
+            this.comboBox1.Size = new System.Drawing.Size(175, 23);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // tbSeat
             // 
             this.tbSeat.Controls.Add(this.tpCinema);
-            this.tbSeat.Location = new System.Drawing.Point(421, 425);
-            this.tbSeat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbSeat.Location = new System.Drawing.Point(374, 319);
+            this.tbSeat.Margin = new System.Windows.Forms.Padding(4);
             this.tbSeat.Name = "tbSeat";
             this.tbSeat.SelectedIndex = 0;
-            this.tbSeat.Size = new System.Drawing.Size(1126, 731);
+            this.tbSeat.Size = new System.Drawing.Size(1260, 443);
             this.tbSeat.TabIndex = 27;
             // 
             // tpCinema
             // 
             this.tpCinema.Controls.Add(this.dgvPosition);
-            this.tpCinema.Location = new System.Drawing.Point(4, 29);
-            this.tpCinema.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tpCinema.Location = new System.Drawing.Point(4, 25);
+            this.tpCinema.Margin = new System.Windows.Forms.Padding(4);
             this.tpCinema.Name = "tpCinema";
-            this.tpCinema.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tpCinema.Size = new System.Drawing.Size(1118, 698);
+            this.tpCinema.Padding = new System.Windows.Forms.Padding(4);
+            this.tpCinema.Size = new System.Drawing.Size(1252, 414);
             this.tpCinema.TabIndex = 0;
             this.tpCinema.Text = "放映厅";
             this.tpCinema.UseVisualStyleBackColor = true;
@@ -206,11 +202,10 @@
             // dgvPosition
             // 
             this.dgvPosition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPosition.Location = new System.Drawing.Point(8, 12);
-            this.dgvPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvPosition.Location = new System.Drawing.Point(-1, 7);
             this.dgvPosition.Name = "dgvPosition";
             this.dgvPosition.RowTemplate.Height = 27;
-            this.dgvPosition.Size = new System.Drawing.Size(1101, 667);
+            this.dgvPosition.Size = new System.Drawing.Size(1246, 370);
             this.dgvPosition.TabIndex = 0;
             this.dgvPosition.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPosition_CellClick);
             this.dgvPosition.SelectionChanged += new System.EventHandler(this.dgvPosition_SelectionChanged);
@@ -232,11 +227,11 @@
             this.groupBox1.Controls.Add(this.picMovie);
             this.groupBox1.Controls.Add(this.lblMovieName);
             this.groupBox1.Controls.Add(this.片名);
-            this.groupBox1.Location = new System.Drawing.Point(421, 35);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Location = new System.Drawing.Point(374, 26);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(728, 363);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(647, 272);
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "详情";
@@ -244,138 +239,138 @@
             // lblCalcPrice
             // 
             this.lblCalcPrice.AutoSize = true;
-            this.lblCalcPrice.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblCalcPrice.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblCalcPrice.ForeColor = System.Drawing.Color.Red;
-            this.lblCalcPrice.Location = new System.Drawing.Point(478, 313);
+            this.lblCalcPrice.Location = new System.Drawing.Point(425, 235);
             this.lblCalcPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCalcPrice.Name = "lblCalcPrice";
-            this.lblCalcPrice.Size = new System.Drawing.Size(0, 21);
+            this.lblCalcPrice.Size = new System.Drawing.Size(0, 18);
             this.lblCalcPrice.TabIndex = 14;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label14.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(332, 307);
+            this.label14.Location = new System.Drawing.Point(295, 230);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(94, 21);
+            this.label14.Size = new System.Drawing.Size(80, 18);
             this.label14.TabIndex = 13;
             this.label14.Text = "优惠价：";
             // 
             // lblPrice
             // 
             this.lblPrice.AutoSize = true;
-            this.lblPrice.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblPrice.Location = new System.Drawing.Point(478, 259);
+            this.lblPrice.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblPrice.Location = new System.Drawing.Point(425, 194);
             this.lblPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(0, 21);
+            this.lblPrice.Size = new System.Drawing.Size(0, 18);
             this.lblPrice.TabIndex = 12;
             // 
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblTime.Location = new System.Drawing.Point(478, 207);
+            this.lblTime.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblTime.Location = new System.Drawing.Point(425, 155);
             this.lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(0, 21);
+            this.lblTime.Size = new System.Drawing.Size(0, 18);
             this.lblTime.TabIndex = 11;
             // 
             // lblType
             // 
             this.lblType.AutoSize = true;
-            this.lblType.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblType.Location = new System.Drawing.Point(478, 153);
+            this.lblType.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblType.Location = new System.Drawing.Point(425, 115);
             this.lblType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(0, 21);
+            this.lblType.Size = new System.Drawing.Size(0, 18);
             this.lblType.TabIndex = 10;
             // 
             // lblActor
             // 
             this.lblActor.AutoSize = true;
-            this.lblActor.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblActor.Location = new System.Drawing.Point(478, 95);
+            this.lblActor.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblActor.Location = new System.Drawing.Point(425, 71);
             this.lblActor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblActor.Name = "lblActor";
-            this.lblActor.Size = new System.Drawing.Size(0, 21);
+            this.lblActor.Size = new System.Drawing.Size(0, 18);
             this.lblActor.TabIndex = 9;
             // 
             // lblDirector
             // 
             this.lblDirector.AutoSize = true;
-            this.lblDirector.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblDirector.Location = new System.Drawing.Point(478, 43);
+            this.lblDirector.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblDirector.Location = new System.Drawing.Point(425, 32);
             this.lblDirector.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDirector.Name = "lblDirector";
-            this.lblDirector.Size = new System.Drawing.Size(0, 21);
+            this.lblDirector.Size = new System.Drawing.Size(0, 18);
             this.lblDirector.TabIndex = 8;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(352, 151);
+            this.label10.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label10.Location = new System.Drawing.Point(313, 113);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(73, 21);
+            this.label10.Size = new System.Drawing.Size(62, 18);
             this.label10.TabIndex = 7;
             this.label10.Text = "类型：";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(352, 89);
+            this.label9.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label9.Location = new System.Drawing.Point(313, 67);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(73, 21);
+            this.label9.Size = new System.Drawing.Size(62, 18);
             this.label9.TabIndex = 6;
             this.label9.Text = "主演：";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(352, 35);
+            this.label8.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label8.Location = new System.Drawing.Point(313, 26);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 21);
+            this.label8.Size = new System.Drawing.Size(62, 18);
             this.label8.TabIndex = 5;
             this.label8.Text = "导演：";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(332, 252);
+            this.label7.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label7.Location = new System.Drawing.Point(295, 189);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(94, 21);
+            this.label7.Size = new System.Drawing.Size(80, 18);
             this.label7.TabIndex = 4;
             this.label7.Text = "原票价：";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(310, 201);
+            this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(276, 151);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 21);
+            this.label1.Size = new System.Drawing.Size(98, 18);
             this.label1.TabIndex = 3;
-            this.label1.Text = "放映时间：";
+            this.label1.Text = "电影时长：";
             // 
             // picMovie
             // 
             this.picMovie.BackColor = System.Drawing.SystemColors.Control;
-            this.picMovie.Location = new System.Drawing.Point(33, 69);
-            this.picMovie.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.picMovie.Location = new System.Drawing.Point(29, 52);
+            this.picMovie.Margin = new System.Windows.Forms.Padding(4);
             this.picMovie.Name = "picMovie";
-            this.picMovie.Size = new System.Drawing.Size(192, 287);
+            this.picMovie.Size = new System.Drawing.Size(171, 215);
             this.picMovie.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picMovie.TabIndex = 2;
             this.picMovie.TabStop = false;
@@ -383,45 +378,44 @@
             // lblMovieName
             // 
             this.lblMovieName.AutoSize = true;
-            this.lblMovieName.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblMovieName.Location = new System.Drawing.Point(152, 35);
+            this.lblMovieName.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblMovieName.Location = new System.Drawing.Point(135, 26);
             this.lblMovieName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMovieName.Name = "lblMovieName";
-            this.lblMovieName.Size = new System.Drawing.Size(0, 21);
+            this.lblMovieName.Size = new System.Drawing.Size(0, 18);
             this.lblMovieName.TabIndex = 1;
             // 
             // 片名
             // 
             this.片名.AutoSize = true;
-            this.片名.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.片名.Location = new System.Drawing.Point(30, 35);
+            this.片名.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.片名.Location = new System.Drawing.Point(27, 26);
             this.片名.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.片名.Name = "片名";
-            this.片名.Size = new System.Drawing.Size(73, 21);
+            this.片名.Size = new System.Drawing.Size(62, 18);
             this.片名.TabIndex = 0;
             this.片名.Text = "片名：";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(1159, 35);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox1.Location = new System.Drawing.Point(1030, 26);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(384, 151);
+            this.pictureBox1.Size = new System.Drawing.Size(341, 113);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 28;
             this.pictureBox1.TabStop = false;
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1716, 1036);
+            this.ClientSize = new System.Drawing.Size(1647, 862);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.tbSeat);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmMain";
             this.Text = "售票系统";
             this.Load += new System.EventHandler(this.FrmCinema_Load);

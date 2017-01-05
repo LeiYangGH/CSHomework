@@ -26,16 +26,16 @@ namespace StackedHeader
             ColumnId = -1;
         }
 
-        public void Measure(DataGridView objGrid, int iY, int iHeight)
+        public void Measure(DataGridView dgv, int y, int h)
         {
             Width = 0;
             if (Children.Count > 0)
             {
-                int tempY = string.IsNullOrEmpty(Name.Trim()) ? iY : iY + iHeight;
+                int tempY = string.IsNullOrEmpty(Name.Trim()) ? y : y + h;
                 bool columnWidthSet = false;
                 foreach (Header child in Children)
                 {
-                    child.Measure(objGrid, tempY, iHeight);
+                    child.Measure(dgv, tempY, h);
                     Width += child.Width;
                     if (!columnWidthSet && Width > 0)
                     {
@@ -44,18 +44,18 @@ namespace StackedHeader
                     }
                 }
             }
-            else if (-1 != ColumnId && objGrid.Columns[ColumnId].Visible)
+            else if (-1 != ColumnId && dgv.Columns[ColumnId].Visible)
             {
-                Width = objGrid.Columns[ColumnId].Width;
+                Width = dgv.Columns[ColumnId].Width;
             }
-            Y = iY;
+            Y = y;
             if (Children.Count == 0)
             {
-                Height = objGrid.ColumnHeadersHeight - iY;
+                Height = dgv.ColumnHeadersHeight - y;
             }
             else
             {
-                Height = iHeight;
+                Height = h;
             }
         }
 

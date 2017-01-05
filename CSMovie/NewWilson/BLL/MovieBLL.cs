@@ -48,5 +48,9 @@ namespace BLL
         {
             return dal.Search(movieTypeId);
         }
+        public Movie GetMovie(string movieId)
+        {
+            return dal.GetMovie(movieId);
+        }
     }
 }

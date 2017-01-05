@@ -165,7 +165,23 @@ namespace DAL
         }
         public Movie GetMovie(string movieId)
         {
-            throw new NotImplementedException();
+            Movie mv = null;
+            using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+
+                cmd.CommandText =
+                    "select * from vw_movie where id = @id";
+                SqlParameter par = new SqlParameter("@id", System.Data.SqlDbType.NVarChar, 36);
+                par.Value = movieId;
+                cmd.Parameters.Add(par);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                    mv = FromSqlDataReader(reader);
+            }
+            return mv;
         }
         public void Update(string movieId, byte[] img)
         {

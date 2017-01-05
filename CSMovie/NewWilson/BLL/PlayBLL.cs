@@ -22,6 +22,10 @@ namespace BLL
         {
             return dal.Search(date, movieId);
         }
+        public List<Play> Search(DateTime date)
+        {
+            return dal.Search(date);
+        }
         /// <summary>
         /// 获取某一场次的详细信息
         /// </summary>

@@ -25,7 +25,8 @@ namespace DAL
             }
             if (reader["beginTime"] is DBNull == false)
             {
-                obj.BeginTime = Convert.ToDateTime(reader["beginTime"]);
+                string str = Convert.ToString(reader["beginTime"]);
+                obj.BeginTime = Convert.ToDateTime(str);
             }
             if (reader["movieScheduleId"] is DBNull == false)
             {
@@ -107,19 +108,40 @@ namespace DAL
         public List<Play>Search(DateTime date, string movieId)
         {
             List<Play> play = new List<Play>();
+            string id = string.Format("{0}%", movieId);
             SqlParameter[] parms = new SqlParameter[]
             {
-                new SqlParameter("@date",SqlDbType.DateTime) { Value=date}
-                ,new SqlParameter("@movieId",SqlDbType.NVarChar,50) {Value=movieId }
+                new SqlParameter("@date",SqlDbType.Date) { Value=date.ToShortDateString()}
+                ,new SqlParameter("@movieId",SqlDbType.VarChar,32) {Value=id }
             };
             SqlDataReader reader = SqlHelper.ExecuteReader(
                 SqlHelper.ConnString
                 , CommandType.Text
-                , "SELECT * FROM vw_play WHERE date movieId = @movieId AND LIKE N'%@date%'"
+                , "SELECT * FROM vw_play WHERE date = @date AND movieId LIKE @movieId"
                 , parms);
             while (reader.Read())
             {
                 play.Add(FromSqlDataReader(reader));
+            }
+            return play;
+        }
+        public List<Play> Search(DateTime date)
+        {
+            List<Play> play = new List<Play>();
+
+            SqlParameter[] parms = new SqlParameter[]
+            {
+                new SqlParameter("@date",SqlDbType.Date) { Value=date.ToShortDateString()}
+            };
+            SqlDataReader reader = SqlHelper.ExecuteReader(
+                SqlHelper.ConnString
+                , CommandType.Text
+                , "SELECT * FROM vw_play WHERE date = @date"
+                , parms);
+            while (reader.Read())
+            {
+                Play p = FromSqlDataReader(reader);
+                play.Add(p);
             }
             return play;
         }

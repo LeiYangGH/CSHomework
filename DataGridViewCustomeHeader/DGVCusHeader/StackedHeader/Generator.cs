@@ -6,10 +6,6 @@ namespace StackedHeader
 {
     public class Generator
     {
-        public Generator()
-        {
-        }
-
         public Header GenerateStackedHeader(DataGridView dgv)
         {
             Header paHeader = new Header();
