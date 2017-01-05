@@ -56,8 +56,8 @@
       <DependentUpon>Test.cs</DependentUpon>
     </Compile>
     <Compile Include="Header.cs" />
-    <Compile Include="StackedHeaderGenerator.cs" />
-    <Compile Include="StackedHeaderDecorator.cs" />
+    <Compile Include="Generator.cs" />
+    <Compile Include="Decorator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Test.resx">

@@ -4,21 +4,9 @@ using System.Windows.Forms;
 
 namespace StackedHeader
 {
-    public class StackedHeaderGenerator
+    public class Generator
     {
-        private static readonly StackedHeaderGenerator objInstance;
-
-        static StackedHeaderGenerator()
-        {
-            objInstance = new StackedHeaderGenerator();
-        }
-
-        public static StackedHeaderGenerator Instance
-        {
-            get { return objInstance; }
-        }
-
-        private StackedHeaderGenerator()
+        public Generator()
         {
         }
 

@@ -5,16 +5,16 @@ using System.Windows.Forms;
 
 namespace StackedHeader
 {
-    public class StackedHeaderDecorator
+    public class Decorator
     {
-        private readonly StackedHeaderGenerator objStackedHeaderGenerator = StackedHeaderGenerator.Instance;
+        private readonly Generator objStackedHeaderGenerator = new Generator();
         private Graphics objGraphics;
         private readonly DataGridView objDataGrid;
         private Header objHeaderTree;
         private int iNoOfLevels;
         private readonly StringFormat objFormat;
 
-        public StackedHeaderDecorator(DataGridView objDataGrid)
+        public Decorator(DataGridView objDataGrid)
         {
             this.objDataGrid = objDataGrid;
             objFormat = new StringFormat();
@@ -34,7 +34,7 @@ namespace StackedHeader
             objHeaderTree = objStackedHeaderGenerator.GenerateStackedHeader(objDataGrid);
         }
 
-        public StackedHeaderDecorator(StackedHeaderGenerator objStackedHeaderGenerator, DataGridView objDataGrid)
+        public Decorator(Generator objStackedHeaderGenerator, DataGridView objDataGrid)
             : this(objDataGrid)
         {
             this.objStackedHeaderGenerator = objStackedHeaderGenerator;
@@ -93,7 +93,7 @@ namespace StackedHeader
 
             foreach (Header objChild in objHeaderTree.Children)
             {
-                objChild.Measure(objDataGrid, 0, objDataGrid.ColumnHeadersHeight/iNoOfLevels);
+                objChild.Measure(objDataGrid, 0, objDataGrid.ColumnHeadersHeight / iNoOfLevels);
                 objChild.AcceptRenderer(this);
             }
         }
@@ -146,7 +146,7 @@ namespace StackedHeader
                 Rectangle r1 = objDataGrid.GetCellDisplayRectangle(objHeader.ColumnId, -1, true);
                 r1.Y = objHeader.Y;
                 r1.Height = objHeader.Height;
-                r1.Width = objHeader.Width  + 1;
+                r1.Width = objHeader.Width + 1;
                 if (r1.X < objDataGrid.RowHeadersWidth)
                 {
                     r1.X = objDataGrid.RowHeadersWidth;

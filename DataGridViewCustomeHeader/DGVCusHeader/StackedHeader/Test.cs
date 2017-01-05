@@ -9,7 +9,7 @@ namespace StackedHeader
         {
             InitializeComponent();
 
-            StackedHeaderDecorator objREnderer = new StackedHeaderDecorator(dataGridView1);
+            Decorator objREnderer = new Decorator(dataGridView1);
             //dataGridView1.Columns[0].Visible = false;
             //dataGridView1.Columns[2].Visible = false;
         }

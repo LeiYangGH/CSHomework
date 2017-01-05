@@ -59,7 +59,7 @@ namespace StackedHeader
             }
         }
 
-        public void AcceptRenderer(StackedHeaderDecorator objRenderer)
+        public void AcceptRenderer(Decorator objRenderer)
         {
             foreach (Header objChild in Children)
             {
