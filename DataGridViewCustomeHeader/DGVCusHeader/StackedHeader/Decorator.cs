@@ -8,7 +8,6 @@ namespace StackedHeader
 {
     public class Decorator
     {
-        private readonly Generator gen = new Generator();
         private Graphics g;
         private readonly DataGridView dgv;
         private Header hTree;
