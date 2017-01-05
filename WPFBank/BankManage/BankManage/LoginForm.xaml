@@ -37,9 +37,9 @@
             </TextBlock.OpacityMask>
         </TextBlock>
         <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Right"  TextWrapping="Wrap" Text="账号"  Height="23" Margin="-10,17,10,0"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="combox" HorizontalAlignment="Left" Margin="20,10,0,10"  Width="190" />
-        <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" TextWrapping="Wrap" Text="密码"  Height="23" Width="36" Margin="0,7,0,10"/>
-        <PasswordBox x:Name="pass" HorizontalAlignment="Left"  Width="190" Height="23" Grid.Column="1" Grid.Row="2" Margin="20,10,0,7"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="combox" HorizontalAlignment="Left" Margin="20,10,0,10"  Width="190" Text="00001"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" TextWrapping="Wrap" Text="密码"  Height="23" Width="36" Margin="0,7,0,10" />
+        <PasswordBox x:Name="pass" HorizontalAlignment="Left"  Width="190" Height="23" Grid.Column="1" Grid.Row="2" Margin="20,10,0,7" Password="123456"/>
         <Button  Grid.Row="3" Content="登录" Margin="12,18,218,0" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="62" Click="Button_Click_1" Grid.Column="1"/>
         <Button Grid.Row="3"  Content="取消" Margin="118,18,110,0" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="64" Click="Button_Click_2" Grid.Column="1"/>
 
