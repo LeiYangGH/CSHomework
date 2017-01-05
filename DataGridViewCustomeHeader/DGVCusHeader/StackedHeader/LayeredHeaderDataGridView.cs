@@ -17,12 +17,7 @@ namespace StackedHeader
             fmt = new StringFormat();
             fmt.Alignment = StringAlignment.Center;
             fmt.LineAlignment = StringAlignment.Center;
-
-            Type dgvType = this.GetType();
-            PropertyInfo pi = dgvType.GetProperty("DoubleBuffered",
-                BindingFlags.Instance | BindingFlags.NonPublic);
-            pi.SetValue(this, true, null);
-
+            this.DoubleBuffered = true;
             this.Scroll += dgv_Scroll;
             this.Paint += dgv_Paint;
             this.ColumnRemoved += dgv_ColumnRemoved;
@@ -91,19 +86,22 @@ namespace StackedHeader
 
         void dgv_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
-            Refresh1();
+            this.Invalidate(this.DisplayRectangle);
+
         }
 
         void dgv_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
             RegenerateHeaders();
-            Refresh1();
+            this.Invalidate(this.DisplayRectangle);
+
         }
 
         void dgv_ColumnRemoved(object sender, DataGridViewColumnEventArgs e)
         {
             RegenerateHeaders();
-            Refresh1();
+            this.Invalidate(this.DisplayRectangle);
+
         }
 
         void dgv_Paint(object sender, PaintEventArgs e)
@@ -120,15 +118,17 @@ namespace StackedHeader
 
         void dgv_Scroll(object sender, ScrollEventArgs e)
         {
-            Refresh1();
+            //Refresh1();
+            this.Invalidate(this.DisplayRectangle);
+
         }
 
-        private void Refresh1()
-        {
+        //private void Refresh1()
+        //{
 
-            Rectangle rtHeader = this.DisplayRectangle;
-            this.Invalidate(rtHeader);
-        }
+        //    Rectangle rtHeader = this.DisplayRectangle;
+        //    this.Invalidate(rtHeader);
+        //}
 
         private void RegenerateHeaders()
         {
