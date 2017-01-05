@@ -28,21 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.layeredHeaderDataGridView1 = new StackedHeader.LayeredHeaderDataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layeredHeaderDataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 18);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(676, 245);
-            this.dataGridView1.TabIndex = 0;
             // 
             // button1
             // 
@@ -58,10 +47,10 @@
             // 
             this.layeredHeaderDataGridView1.ColumnHeadersHeight = 20;
             this.layeredHeaderDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.layeredHeaderDataGridView1.Location = new System.Drawing.Point(18, 282);
+            this.layeredHeaderDataGridView1.Location = new System.Drawing.Point(21, 37);
             this.layeredHeaderDataGridView1.Name = "layeredHeaderDataGridView1";
             this.layeredHeaderDataGridView1.RowTemplate.Height = 28;
-            this.layeredHeaderDataGridView1.Size = new System.Drawing.Size(676, 241);
+            this.layeredHeaderDataGridView1.Size = new System.Drawing.Size(683, 434);
             this.layeredHeaderDataGridView1.TabIndex = 2;
             // 
             // Test
@@ -71,20 +60,16 @@
             this.ClientSize = new System.Drawing.Size(869, 560);
             this.Controls.Add(this.layeredHeaderDataGridView1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Test";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Test_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layeredHeaderDataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn e;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;

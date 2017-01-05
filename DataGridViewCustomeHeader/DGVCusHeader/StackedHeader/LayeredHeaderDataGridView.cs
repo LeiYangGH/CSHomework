@@ -25,11 +25,11 @@ namespace StackedHeader
                 BindingFlags.Instance | BindingFlags.NonPublic);
             pi.SetValue(dgv, true, null);
 
-            dgv.Scroll += (objDataGrid_Scroll);
-            dgv.Paint += objDataGrid_Paint;
-            dgv.ColumnRemoved += objDataGrid_ColumnRemoved;
-            dgv.ColumnAdded += objDataGrid_ColumnAdded;
-            dgv.ColumnWidthChanged += objDataGrid_ColumnWidthChanged;
+            dgv.Scroll += dgv_Scroll;
+            dgv.Paint += dgv_Paint;
+            dgv.ColumnRemoved += dgv_ColumnRemoved;
+            dgv.ColumnAdded += dgv_ColumnAdded;
+            dgv.ColumnWidthChanged += dgv_ColumnWidthChanged;
             hTree = this.GenerateStackedHeader();
         }
 
@@ -91,24 +91,24 @@ namespace StackedHeader
             return paHeader;
         }
 
-        void objDataGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        void dgv_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
             Refresh1();
         }
 
-        void objDataGrid_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
-        {
-            RegenerateHeaders();
-            Refresh1();
-        }
-
-        void objDataGrid_ColumnRemoved(object sender, DataGridViewColumnEventArgs e)
+        void dgv_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
             RegenerateHeaders();
             Refresh1();
         }
 
-        void objDataGrid_Paint(object sender, PaintEventArgs e)
+        void dgv_ColumnRemoved(object sender, DataGridViewColumnEventArgs e)
+        {
+            RegenerateHeaders();
+            Refresh1();
+        }
+
+        void dgv_Paint(object sender, PaintEventArgs e)
         {
             level = NoOfLevels(hTree);
             g = e.Graphics;
@@ -120,7 +120,7 @@ namespace StackedHeader
             }
         }
 
-        void objDataGrid_Scroll(object sender, ScrollEventArgs e)
+        void dgv_Scroll(object sender, ScrollEventArgs e)
         {
             Refresh1();
         }
@@ -145,7 +145,7 @@ namespace StackedHeader
             foreach (Header objChild in hTree.Children)
             {
                 objChild.Measure(dgv, 0, dgv.ColumnHeadersHeight / level);
-                objChild.AcceptRendererDgv(this);//////
+                objChild.AcceptRendererDgv(this);
             }
         }
 
