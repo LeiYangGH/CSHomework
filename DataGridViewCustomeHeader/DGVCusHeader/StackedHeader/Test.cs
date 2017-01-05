@@ -9,27 +9,41 @@ namespace StackedHeader
         {
             InitializeComponent();
 
-            Decorator objREnderer = new Decorator(dataGridView1);
-            //dataGridView1.Columns[0].Visible = false;
-            //dataGridView1.Columns[2].Visible = false;
+            Decorator render = new Decorator(dataGridView1);
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void Test_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < 3; ++i)
-            {
-                int columnCount = dataGridView1.Columns.Count;
-                dataGridView1.Columns.Add("Column" + dataGridView1.Columns.Count,
-                                          "Parent[" + columnCount + "].Child 1.Child 2.Input Name");
-                dataGridView1.Columns.Add("Column" + dataGridView1.Columns.Count ,
-                                          "Parent[" + columnCount + "].Child 1.Child 2.Input Name 2");
-                dataGridView1.Columns.Add("Column" + dataGridView1.Columns.Count,
-                                          "Parent[" + columnCount + "].Child 1.Child 3.Input Name 3");
-                dataGridView1.Columns.Add("Column" + dataGridView1.Columns.Count ,
-                                          "Parent[" + columnCount + "].Child 1.Input Name 4");
-                dataGridView1.Columns.Add("Column" + dataGridView1.Columns.Count ,
-                                          "Parent[" + columnCount + "].Input Name 5");
-            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.e = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ee = new System.Windows.Forms.DataGridViewTextBoxColumn();
+
+            this.Column1.HeaderText = "Parent.Child 1.Input 1";
+            this.Column1.Name = "Column1";
+
+            this.e.HeaderText = "Parent.Child 1.Input 2";
+            this.e.Name = "e";
+
+            this.Column2.HeaderText = "Parent.Input 3";
+            this.Column2.Name = "Column2";
+
+            this.ee.HeaderText = "Parent.Input 4";
+            this.ee.Name = "ee";
+
+            this.dataGridView1.Columns.AddRange(
+                new System.Windows.Forms.DataGridViewColumn[]
+                {
+                    this.Column1,
+                    this.e,
+                    this.Column2,
+                    this.ee
+                });
         }
     }
 }
