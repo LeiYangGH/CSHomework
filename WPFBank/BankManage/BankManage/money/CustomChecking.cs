@@ -19,7 +19,7 @@ namespace BankManage
         /// </summary>
         public override void Diposit(string genType, double money)
         {
-            base.Diposit("存款", money);
+            base.Diposit(genType, money);
             //结算利息
             base.Diposit("结息", DataOperation.GetRate(RateType.活期) * money);
         }

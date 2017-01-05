@@ -51,6 +51,17 @@
                         </Button>
                     </StackPanel>
                 </Expander>
+
+                <Expander Header="贷款">
+                    <StackPanel>
+                        <Button Height="50" Width="60" Tag="money/Loan.xaml"  Click="Button_Click">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="images/btn1.png" Width="30" />
+                                <TextBlock Text="贷款" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Expander>
                 <Expander Header="汇总查询">
                     <StackPanel>
                         <Button Height="50" Width="60" Tag="query/DayQuery.xaml" Click="Button_Click">

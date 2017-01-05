@@ -121,6 +121,9 @@
     <Compile Include="MoneyInfo.cs">
       <DependentUpon>BankModel1.tt</DependentUpon>
     </Compile>
+    <Compile Include="money\Loan.xaml.cs">
+      <DependentUpon>Loan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="money\ReportLost.xaml.cs">
       <DependentUpon>ReportLost.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,10 @@
     <Page Include="money\Deposit.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="money\Loan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="money\NewAccount.xaml">
       <Generator>MSBuild:Compile</Generator>
