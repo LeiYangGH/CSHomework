@@ -17,13 +17,20 @@ namespace BankManage.money
         //存款
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            string str;int a = 0;
+            string str; int a = 0;
             Custom custom = DataOperation.GetCustom(this.txtAccount.Text);
             if (custom == null)
             {
                 MessageBox.Show("帐号不存在！");
                 return;
             }
+
+            if (custom.CheckLost())
+            {
+                MessageBox.Show("账户已挂失不能使用！");
+                return;
+            }
+
             str = this.txtmount.Text;
             a = 0;
             for (int i = 0; i < str.Length; i++)
@@ -32,14 +39,14 @@ namespace BankManage.money
                     a++;
             }
             if (a == str.Length && a != 0)
-                 custom.MoneyInfo.accountNo = txtAccount.Text;
+                custom.MoneyInfo.accountNo = txtAccount.Text;
             else
             {
                 MessageBox.Show("操作失败，请输入存款为数字");
                 this.txtmount.Text = null; return;
-                
+
             }
-            
+
             custom.Diposit("存款", double.Parse(this.txtmount.Text));
             OperateRecord page = new OperateRecord();
             NavigationService ns = NavigationService.GetNavigationService(this);

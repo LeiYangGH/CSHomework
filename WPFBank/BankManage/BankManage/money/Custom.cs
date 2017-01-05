@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 
 namespace BankManage
@@ -8,6 +9,14 @@ namespace BankManage
     /// </summary>
     public class Custom
     {
+        BankEntities1 context = new BankEntities1();
+        public Custom()
+        {
+            AccountInfo = new AccountInfo();
+            MoneyInfo = new MoneyInfo();
+        }
+
+
         /// <summary>
         /// 存款客户的帐户基本信息
         /// </summary>
@@ -20,13 +29,30 @@ namespace BankManage
         /// 帐户余额
         /// </summary>
         public double AccountBalance { get; set; }
-        public Custom()
+
+
+
+        public bool CheckLost()
         {
-            AccountInfo = new AccountInfo();
-            MoneyInfo = new MoneyInfo();
+            return context.Lost.Any(x => x.accountNo == this.AccountInfo.accountNo);
         }
 
-        BankEntities1 context = new BankEntities1();
+        public void ReportLost()
+        {
+            try
+            {
+                Lost lost = new Lost();
+                lost.accountNo = this.AccountInfo.accountNo;
+                context.Lost.Add(lost);
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                //添加dialog，money需大于零
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         /// 开户
         /// </summary>
         /// <param name="accountNumber">帐号</param>
@@ -35,15 +61,15 @@ namespace BankManage
         {
             this.AccountBalance = money;
             //插入到数据库
-             try
-             {
-                  context.AccountInfo.Add(AccountInfo);
-                  context.SaveChanges();
-             }
-             catch
-             {
-                    MessageBox.Show("开户失败！");
-             }
+            try
+            {
+                context.AccountInfo.Add(AccountInfo);
+                context.SaveChanges();
+            }
+            catch
+            {
+                MessageBox.Show("开户失败！");
+            }
             this.MoneyInfo.accountNo = accountNumber;
             InsertData("开户", money);
         }
@@ -60,17 +86,25 @@ namespace BankManage
                 try
                 {
                     throw new Exception("存款金额不能为零或负值");
-                }catch
+                }
+                catch
                 {
                     //添加dialog，money需大于零
                     MessageBox.Show("存款金额需大于0！");
-                }            
+                }
             }
             else
             {
                 //修改余额
-                AccountBalance += money;
-                InsertData(genType, money);
+                if (this.CheckLost())
+                {
+                    MessageBox.Show("账户已挂失不能使用！");
+                }
+                else
+                {
+                    AccountBalance += money;
+                    InsertData(genType, money);
+                }
             }
         }
 
@@ -125,7 +159,7 @@ namespace BankManage
             {
                 MessageBox.Show("添加失败：" + ex.Message);
             }
-           
+
         }
     }
 }

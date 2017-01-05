@@ -109,6 +109,9 @@
     <Compile Include="LoginInfo.cs">
       <DependentUpon>BankModel1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Lost.cs">
+      <DependentUpon>BankModel1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
@@ -290,7 +293,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Bank.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="BankModel1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -303,7 +306,7 @@
       <LastGenOutput>BankModel1.cs</LastGenOutput>
     </Content>
     <Content Include="Bank_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>Bank.mdf</DependentUpon>
     </Content>
   </ItemGroup>
