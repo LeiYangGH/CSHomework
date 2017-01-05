@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Drawing;
 using System.Reflection;
-using System.Windows.Forms;
-
 namespace StackedHeader
 {
-    public class Decorator
+    public class LayeredHeaderDataGridView : DataGridView
     {
         private readonly Generator gen = new Generator();
         private Graphics g;
@@ -14,10 +12,9 @@ namespace StackedHeader
         private Header hTree;
         private int level;
         private readonly StringFormat fmt;
-
-        public Decorator(DataGridView dgv)
+        public LayeredHeaderDataGridView()
         {
-            this.dgv = dgv;
+            this.dgv = this;
             fmt = new StringFormat();
             fmt.Alignment = StringAlignment.Center;
             fmt.LineAlignment = StringAlignment.Center;
@@ -32,82 +29,24 @@ namespace StackedHeader
             dgv.ColumnRemoved += objDataGrid_ColumnRemoved;
             dgv.ColumnAdded += objDataGrid_ColumnAdded;
             dgv.ColumnWidthChanged += objDataGrid_ColumnWidthChanged;
-            hTree = this.GenerateStackedHeader();
-        }
-
-        private Header GenerateStackedHeader()
-        {
-            Header paHeader = new Header();
-            Dictionary<string, Header> hTree = new Dictionary<string, Header>();
-            int iX = 0;
-            foreach (DataGridViewColumn col in dgv.Columns)
-            {
-                string[] seg = col.HeaderText.Split('.');
-                if (seg.Length > 0)
-                {
-                    string segment = seg[0];
-                    Header tmpH, lastTmpHeader = null;
-                    if (hTree.ContainsKey(segment))
-                    {
-                        tmpH = hTree[segment];
-                    }
-                    else
-                    {
-                        tmpH = new Header { Name = segment, X = iX };
-                        paHeader.Children.Add(tmpH);
-                        hTree[segment] = tmpH;
-                        tmpH.ColumnId = col.Index;
-                    }
-                    for (int i = 1; i < seg.Length; ++i)
-                    {
-                        segment = seg[i];
-                        bool found = false;
-                        foreach (Header child in tmpH.Children)
-                        {
-                            if (0 == string.Compare(child.Name, segment, StringComparison.InvariantCultureIgnoreCase))
-                            {
-                                found = true;
-                                lastTmpHeader = tmpH;
-                                tmpH = child;
-                                break;
-                            }
-                        }
-                        if (!found || i == seg.Length - 1)
-                        {
-                            Header temp = new Header { Name = segment, X = iX };
-                            temp.ColumnId = col.Index;
-                            if (found && i == seg.Length - 1 && null != lastTmpHeader)
-                            {
-                                lastTmpHeader.Children.Add(temp);
-                            }
-                            else
-                            {
-                                tmpH.Children.Add(temp);
-                            }
-                            tmpH = temp;
-                        }
-                    }
-                }
-                iX += col.Width;
-            }
-            return paHeader;
+            //hTree = this.GenerateStackedHeader();//
         }
 
         void objDataGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
-            Refresh();
+            Refresh1();
         }
 
         void objDataGrid_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
             RegenerateHeaders();
-            Refresh();
+            Refresh1();
         }
 
         void objDataGrid_ColumnRemoved(object sender, DataGridViewColumnEventArgs e)
         {
             RegenerateHeaders();
-            Refresh();
+            Refresh1();
         }
 
         void objDataGrid_Paint(object sender, PaintEventArgs e)
@@ -124,10 +63,10 @@ namespace StackedHeader
 
         void objDataGrid_Scroll(object sender, ScrollEventArgs e)
         {
-            Refresh();
+            Refresh1();
         }
 
-        private void Refresh()
+        private void Refresh1()
         {
             Rectangle rtHeader = dgv.DisplayRectangle;
             dgv.Invalidate(rtHeader);
@@ -135,7 +74,7 @@ namespace StackedHeader
 
         private void RegenerateHeaders()
         {
-            hTree = this.GenerateStackedHeader();
+            //hTree = gen.GenerateStackedHeader(dgv);//
         }
 
         private void RenderColumnHeaders()
@@ -147,7 +86,7 @@ namespace StackedHeader
             foreach (Header objChild in hTree.Children)
             {
                 objChild.Measure(dgv, 0, dgv.ColumnHeadersHeight / level);
-                objChild.AcceptRenderer(this);
+                //objChild.AcceptRenderer(this);//////
             }
         }
 
