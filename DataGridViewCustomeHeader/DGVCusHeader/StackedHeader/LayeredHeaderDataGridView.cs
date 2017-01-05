@@ -2,11 +2,12 @@
 using System.Windows.Forms;
 using System.Drawing;
 using System.Reflection;
+using System.Collections.Generic;
+
 namespace StackedHeader
 {
     public class LayeredHeaderDataGridView : DataGridView
     {
-        private readonly Generator gen = new Generator();
         private Graphics g;
         private readonly DataGridView dgv;
         private Header hTree;
@@ -29,7 +30,65 @@ namespace StackedHeader
             dgv.ColumnRemoved += objDataGrid_ColumnRemoved;
             dgv.ColumnAdded += objDataGrid_ColumnAdded;
             dgv.ColumnWidthChanged += objDataGrid_ColumnWidthChanged;
-            //hTree = this.GenerateStackedHeader();//
+            hTree = this.GenerateStackedHeader();
+        }
+
+        private Header GenerateStackedHeader()
+        {
+            Header paHeader = new Header();
+            Dictionary<string, Header> hTree = new Dictionary<string, Header>();
+            int iX = 0;
+            foreach (DataGridViewColumn col in dgv.Columns)
+            {
+                string[] seg = col.HeaderText.Split('.');
+                if (seg.Length > 0)
+                {
+                    string segment = seg[0];
+                    Header tmpH, lastTmpHeader = null;
+                    if (hTree.ContainsKey(segment))
+                    {
+                        tmpH = hTree[segment];
+                    }
+                    else
+                    {
+                        tmpH = new Header { Name = segment, X = iX };
+                        paHeader.Children.Add(tmpH);
+                        hTree[segment] = tmpH;
+                        tmpH.ColumnId = col.Index;
+                    }
+                    for (int i = 1; i < seg.Length; ++i)
+                    {
+                        segment = seg[i];
+                        bool found = false;
+                        foreach (Header child in tmpH.Children)
+                        {
+                            if (0 == string.Compare(child.Name, segment, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                found = true;
+                                lastTmpHeader = tmpH;
+                                tmpH = child;
+                                break;
+                            }
+                        }
+                        if (!found || i == seg.Length - 1)
+                        {
+                            Header temp = new Header { Name = segment, X = iX };
+                            temp.ColumnId = col.Index;
+                            if (found && i == seg.Length - 1 && null != lastTmpHeader)
+                            {
+                                lastTmpHeader.Children.Add(temp);
+                            }
+                            else
+                            {
+                                tmpH.Children.Add(temp);
+                            }
+                            tmpH = temp;
+                        }
+                    }
+                }
+                iX += col.Width;
+            }
+            return paHeader;
         }
 
         void objDataGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
@@ -74,7 +133,7 @@ namespace StackedHeader
 
         private void RegenerateHeaders()
         {
-            //hTree = gen.GenerateStackedHeader(dgv);//
+            hTree = this.GenerateStackedHeader();
         }
 
         private void RenderColumnHeaders()
@@ -86,7 +145,7 @@ namespace StackedHeader
             foreach (Header objChild in hTree.Children)
             {
                 objChild.Measure(dgv, 0, dgv.ColumnHeadersHeight / level);
-                //objChild.AcceptRenderer(this);//////
+                objChild.AcceptRendererDgv(this);//////
             }
         }
 

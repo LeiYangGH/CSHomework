@@ -59,15 +59,15 @@ namespace StackedHeader
             }
         }
 
-        public void AcceptRenderer(Decorator objRenderer)
+        public void AcceptRendererDgv(LayeredHeaderDataGridView dgv)
         {
             foreach (Header objChild in Children)
             {
-                objChild.AcceptRenderer(objRenderer);
+                objChild.AcceptRendererDgv(dgv);
             }
             if (-1 != ColumnId && !string.IsNullOrEmpty(Name.Trim()))
             {
-                objRenderer.Render(this);
+                dgv.Render(this);
             }
 
         }
