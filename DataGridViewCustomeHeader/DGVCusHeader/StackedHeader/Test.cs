@@ -8,8 +8,6 @@ namespace StackedHeader
         public Test()
         {
             InitializeComponent();
-
-            //Decorator render = new Decorator(dataGridView1);
         }
 
         private void Test_Load(object sender, EventArgs e)

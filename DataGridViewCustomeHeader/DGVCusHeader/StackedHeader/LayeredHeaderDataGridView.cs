@@ -26,7 +26,25 @@ namespace StackedHeader
             hTree = this.GenerateStackedHeader();
         }
 
+
         private Header GenerateStackedHeader()
+        {
+            Header paHeader = new Header();
+            var h11 = new Header { Name = "11" };
+            h11.ColumnId = 0;
+            var h12 = new Header { Name = "12" };
+            h12.ColumnId = 3;
+            var h111 = new Header { Name = "111" };
+            h111.ColumnId = 1;
+            var h112 = new Header { Name = "112" };
+            h112.ColumnId = 2;
+            paHeader.Children.Add(h11);
+            h11.Children.Add(h111);
+            h11.Children.Add(h112);
+            paHeader.Children.Add(h12);
+            return paHeader;
+        }
+        private Header GenerateStackedHeader0()
         {
             Header paHeader = new Header();
             Dictionary<string, Header> hTree = new Dictionary<string, Header>();
