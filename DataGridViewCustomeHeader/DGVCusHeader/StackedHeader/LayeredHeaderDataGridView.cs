@@ -9,27 +9,25 @@ namespace StackedHeader
     public class LayeredHeaderDataGridView : DataGridView
     {
         private Graphics g;
-        private readonly DataGridView dgv;
         private Header hTree;
         private int level;
         private readonly StringFormat fmt;
         public LayeredHeaderDataGridView()
         {
-            this.dgv = this;
             fmt = new StringFormat();
             fmt.Alignment = StringAlignment.Center;
             fmt.LineAlignment = StringAlignment.Center;
 
-            Type dgvType = dgv.GetType();
+            Type dgvType = this.GetType();
             PropertyInfo pi = dgvType.GetProperty("DoubleBuffered",
                 BindingFlags.Instance | BindingFlags.NonPublic);
-            pi.SetValue(dgv, true, null);
+            pi.SetValue(this, true, null);
 
-            dgv.Scroll += dgv_Scroll;
-            dgv.Paint += dgv_Paint;
-            dgv.ColumnRemoved += dgv_ColumnRemoved;
-            dgv.ColumnAdded += dgv_ColumnAdded;
-            dgv.ColumnWidthChanged += dgv_ColumnWidthChanged;
+            this.Scroll += dgv_Scroll;
+            this.Paint += dgv_Paint;
+            this.ColumnRemoved += dgv_ColumnRemoved;
+            this.ColumnAdded += dgv_ColumnAdded;
+            this.ColumnWidthChanged += dgv_ColumnWidthChanged;
             hTree = this.GenerateStackedHeader();
         }
 
@@ -38,7 +36,7 @@ namespace StackedHeader
             Header paHeader = new Header();
             Dictionary<string, Header> hTree = new Dictionary<string, Header>();
             int iX = 0;
-            foreach (DataGridViewColumn col in dgv.Columns)
+            foreach (DataGridViewColumn col in this.Columns)
             {
                 string[] seg = col.HeaderText.Split('.');
                 if (seg.Length > 0)
@@ -112,8 +110,8 @@ namespace StackedHeader
         {
             level = NoOfLevels(hTree);
             g = e.Graphics;
-            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgv.ColumnHeadersHeight = level * 20;
+            this.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.ColumnHeadersHeight = level * 20;
             if (null != hTree)
             {
                 RenderColumnHeaders();
@@ -127,8 +125,9 @@ namespace StackedHeader
 
         private void Refresh1()
         {
-            Rectangle rtHeader = dgv.DisplayRectangle;
-            dgv.Invalidate(rtHeader);
+
+            Rectangle rtHeader = this.DisplayRectangle;
+            this.Invalidate(rtHeader);
         }
 
         private void RegenerateHeaders()
@@ -138,76 +137,76 @@ namespace StackedHeader
 
         private void RenderColumnHeaders()
         {
-            g.FillRectangle(new SolidBrush(dgv.ColumnHeadersDefaultCellStyle.BackColor),
-                                      new Rectangle(dgv.DisplayRectangle.X, dgv.DisplayRectangle.Y,
-                                                    dgv.DisplayRectangle.Width, dgv.ColumnHeadersHeight));
+            g.FillRectangle(new SolidBrush(this.ColumnHeadersDefaultCellStyle.BackColor),
+                                      new Rectangle(this.DisplayRectangle.X, this.DisplayRectangle.Y,
+                                                    this.DisplayRectangle.Width, this.ColumnHeadersHeight));
 
-            foreach (Header objChild in hTree.Children)
+            foreach (Header child in hTree.Children)
             {
-                objChild.Measure(dgv, 0, dgv.ColumnHeadersHeight / level);
-                objChild.AcceptRendererDgv(this);
+                child.Measure(this, 0, this.ColumnHeadersHeight / level);
+                child.AcceptRendererDgv(this);
             }
         }
 
-        public void Render(Header objHeader)
+        public void Render(Header header)
         {
-            if (objHeader.Children.Count == 0)
+            if (header.Children.Count == 0)
             {
-                Rectangle r1 = dgv.GetColumnDisplayRectangle(objHeader.ColumnId, true);
+                Rectangle r1 = this.GetColumnDisplayRectangle(header.ColumnId, true);
                 if (r1.Width == 0)
                 {
                     return;
                 }
-                r1.Y = objHeader.Y;
+                r1.Y = header.Y;
                 r1.Width += 1;
                 r1.X -= 1;
-                r1.Height = objHeader.Height;
+                r1.Height = header.Height;
                 g.SetClip(r1);
 
-                if (r1.X + dgv.Columns[objHeader.ColumnId].Width < dgv.DisplayRectangle.Width)
+                if (r1.X + this.Columns[header.ColumnId].Width < this.DisplayRectangle.Width)
                 {
-                    r1.X -= (dgv.Columns[objHeader.ColumnId].Width - r1.Width);
+                    r1.X -= (this.Columns[header.ColumnId].Width - r1.Width);
                 }
                 r1.X -= 1;
-                r1.Width = dgv.Columns[objHeader.ColumnId].Width;
+                r1.Width = this.Columns[header.ColumnId].Width;
                 g.DrawRectangle(Pens.Gray, r1);
-                g.DrawString(objHeader.Name,
-                                       dgv.ColumnHeadersDefaultCellStyle.Font,
-                                       new SolidBrush(dgv.ColumnHeadersDefaultCellStyle.ForeColor),
+                g.DrawString(header.Name,
+                                       this.ColumnHeadersDefaultCellStyle.Font,
+                                       new SolidBrush(this.ColumnHeadersDefaultCellStyle.ForeColor),
                                        r1,
                                        fmt);
                 g.ResetClip();
             }
             else
             {
-                int x = dgv.RowHeadersWidth;
-                for (int i = 0; i < objHeader.Children[0].ColumnId; ++i)
+                int x = this.RowHeadersWidth;
+                for (int i = 0; i < header.Children[0].ColumnId; ++i)
                 {
-                    if (dgv.Columns[i].Visible)
+                    if (this.Columns[i].Visible)
                     {
-                        x += dgv.Columns[i].Width;
+                        x += this.Columns[i].Width;
                     }
                 }
-                if (x > (dgv.HorizontalScrollingOffset + dgv.DisplayRectangle.Width - 5))
+                if (x > (this.HorizontalScrollingOffset + this.DisplayRectangle.Width - 5))
                 {
                     return;
                 }
-                Rectangle r1 = dgv.GetCellDisplayRectangle(objHeader.ColumnId, -1, true);
-                r1.Y = objHeader.Y;
-                r1.Height = objHeader.Height;
-                r1.Width = objHeader.Width + 1;
-                if (r1.X < dgv.RowHeadersWidth)
+                Rectangle r1 = this.GetCellDisplayRectangle(header.ColumnId, -1, true);
+                r1.Y = header.Y;
+                r1.Height = header.Height;
+                r1.Width = header.Width + 1;
+                if (r1.X < this.RowHeadersWidth)
                 {
-                    r1.X = dgv.RowHeadersWidth;
+                    r1.X = this.RowHeadersWidth;
                 }
                 r1.X -= 1;
                 g.SetClip(r1);
-                r1.X = x - dgv.HorizontalScrollingOffset;
+                r1.X = x - this.HorizontalScrollingOffset;
                 r1.Width -= 1;
                 g.DrawRectangle(Pens.Gray, r1);
                 r1.X -= 1;
-                g.DrawString(objHeader.Name, dgv.ColumnHeadersDefaultCellStyle.Font,
-                                       new SolidBrush(dgv.ColumnHeadersDefaultCellStyle.ForeColor),
+                g.DrawString(header.Name, this.ColumnHeadersDefaultCellStyle.Font,
+                                       new SolidBrush(this.ColumnHeadersDefaultCellStyle.ForeColor),
                                        r1, fmt);
                 g.ResetClip();
             }
