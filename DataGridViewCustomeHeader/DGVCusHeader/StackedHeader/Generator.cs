@@ -6,10 +6,29 @@ namespace StackedHeader
 {
     public class Generator
     {
+        public Header GenerateStackedHeader1(DataGridView dgv)
+        {
+            Header paHeader = new Header();
+            paHeader.Name = "1";
+            paHeader.ColumnId = 0;
+            Header h11 = new Header();
+            h11.Name = "11";
+            h11.X = 20;
+            h11.ColumnId = 1;
+
+            Header h12 = new Header();
+            h12.Name = "12";
+            h12.X =30;
+            h11.ColumnId = 2;
+
+            paHeader.Children.Add(h11);
+            paHeader.Children.Add(h12);
+            return paHeader;
+        }
         public Header GenerateStackedHeader(DataGridView dgv)
         {
             Header paHeader = new Header();
-            Dictionary<string, Header> headerTree = new Dictionary<string, Header>();
+            Dictionary<string, Header> hTree = new Dictionary<string, Header>();
             int iX = 0;
             foreach (DataGridViewColumn col in dgv.Columns)
             {
@@ -17,29 +36,29 @@ namespace StackedHeader
                 if (seg.Length > 0)
                 {
                     string segment = seg[0];
-                    Header tmpHeader, lastTmpHeader = null;
-                    if (headerTree.ContainsKey(segment))
+                    Header tmpH, lastTmpHeader = null;
+                    if (hTree.ContainsKey(segment))
                     {
-                        tmpHeader = headerTree[segment];
+                        tmpH = hTree[segment];
                     }
                     else
                     {
-                        tmpHeader = new Header { Name = segment, X = iX };
-                        paHeader.Children.Add(tmpHeader);
-                        headerTree[segment] = tmpHeader;
-                        tmpHeader.ColumnId = col.Index;
+                        tmpH = new Header { Name = segment, X = iX };
+                        paHeader.Children.Add(tmpH);
+                        hTree[segment] = tmpH;
+                        tmpH.ColumnId = col.Index;
                     }
                     for (int i = 1; i < seg.Length; ++i)
                     {
                         segment = seg[i];
                         bool found = false;
-                        foreach (Header child in tmpHeader.Children)
+                        foreach (Header child in tmpH.Children)
                         {
                             if (0 == string.Compare(child.Name, segment, StringComparison.InvariantCultureIgnoreCase))
                             {
                                 found = true;
-                                lastTmpHeader = tmpHeader;
-                                tmpHeader = child;
+                                lastTmpHeader = tmpH;
+                                tmpH = child;
                                 break;
                             }
                         }
@@ -53,9 +72,9 @@ namespace StackedHeader
                             }
                             else
                             {
-                                tmpHeader.Children.Add(temp);
+                                tmpH.Children.Add(temp);
                             }
-                            tmpHeader = temp;
+                            tmpH = temp;
                         }
                     }
                 }
