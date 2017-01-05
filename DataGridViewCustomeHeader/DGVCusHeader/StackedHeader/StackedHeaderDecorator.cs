@@ -7,7 +7,7 @@ namespace StackedHeader
 {
     public class StackedHeaderDecorator
     {
-        private readonly IStackedHeaderGenerator objStackedHeaderGenerator = StackedHeaderGenerator.Instance;
+        private readonly StackedHeaderGenerator objStackedHeaderGenerator = StackedHeaderGenerator.Instance;
         private Graphics objGraphics;
         private readonly DataGridView objDataGrid;
         private Header objHeaderTree;
@@ -34,7 +34,7 @@ namespace StackedHeader
             objHeaderTree = objStackedHeaderGenerator.GenerateStackedHeader(objDataGrid);
         }
 
-        public StackedHeaderDecorator(IStackedHeaderGenerator objStackedHeaderGenerator, DataGridView objDataGrid)
+        public StackedHeaderDecorator(StackedHeaderGenerator objStackedHeaderGenerator, DataGridView objDataGrid)
             : this(objDataGrid)
         {
             this.objStackedHeaderGenerator = objStackedHeaderGenerator;

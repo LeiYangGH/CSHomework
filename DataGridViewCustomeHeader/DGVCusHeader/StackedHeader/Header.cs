@@ -59,19 +59,6 @@ namespace StackedHeader
             }
         }
 
-        //public void AcceptRenderer(StackedHeaderDecorator objRenderer, DataGridView objGrid, int iY)
-        //{
-        //    foreach (Header children in Children)
-        //    {
-        //        children.AcceptRenderer(objRenderer, objGrid, iY);
-        //    }
-        //    if (-1 != ColumnId && !string.IsNullOrEmpty(Name.Trim()))
-        //    {
-        //        objRenderer.Render(this);
-        //    }
-            
-        //}
-
         public void AcceptRenderer(StackedHeaderDecorator objRenderer)
         {
             foreach (Header objChild in Children)

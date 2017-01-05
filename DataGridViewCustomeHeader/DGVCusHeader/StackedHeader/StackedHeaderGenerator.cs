@@ -4,25 +4,25 @@ using System.Windows.Forms;
 
 namespace StackedHeader
 {
-   public class StackedHeaderGenerator : IStackedHeaderGenerator
-   {
-       private static readonly StackedHeaderGenerator objInstance;
+    public class StackedHeaderGenerator
+    {
+        private static readonly StackedHeaderGenerator objInstance;
 
-       static StackedHeaderGenerator()
-       {
-           objInstance = new StackedHeaderGenerator();
-       }
+        static StackedHeaderGenerator()
+        {
+            objInstance = new StackedHeaderGenerator();
+        }
 
-       public static StackedHeaderGenerator Instance
-       {
-           get { return objInstance; }
-       }
+        public static StackedHeaderGenerator Instance
+        {
+            get { return objInstance; }
+        }
 
-       private StackedHeaderGenerator()
-       {
-       }
+        private StackedHeaderGenerator()
+        {
+        }
 
-       public Header GenerateStackedHeader(DataGridView objGridView)
+        public Header GenerateStackedHeader(DataGridView objGridView)
         {
             Header objParentHeader = new Header();
             Dictionary<string, Header> objHeaderTree = new Dictionary<string, Header>();
@@ -51,7 +51,7 @@ namespace StackedHeader
                         bool found = false;
                         foreach (Header child in tempHeader.Children)
                         {
-                            if (0 == string.Compare(child.Name, segment,  StringComparison.InvariantCultureIgnoreCase))
+                            if (0 == string.Compare(child.Name, segment, StringComparison.InvariantCultureIgnoreCase))
                             {
                                 found = true;
                                 lastTempHeader = tempHeader;
