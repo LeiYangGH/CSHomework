@@ -46,7 +46,7 @@
             // 
             // layeredHeaderDataGridView1
             // 
-            this.layeredHeaderDataGridView1.ColumnHeadersHeight = 60;
+            this.layeredHeaderDataGridView1.ColumnHeadersHeight = 20;
             this.layeredHeaderDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.layeredHeaderDataGridView1.Location = new System.Drawing.Point(12, 6);
             this.layeredHeaderDataGridView1.Name = "layeredHeaderDataGridView1";
@@ -61,6 +61,8 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(811, 213);
             this.textBox1.TabIndex = 3;
+            this.textBox1.Text = "{\"C\":[{\"C\":[],\"T\":\"1\"},{\"C\":[{\"C\":[],\"T\":\"21\"},{\"C\":[],\"T\":\"22\"}],\"T\":\"2\"}],\"T\":\"" +
+    "0\"}";
             // 
             // Test
             // 

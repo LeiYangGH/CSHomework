@@ -4,11 +4,93 @@ using System.Drawing;
 using System.Reflection;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace StackedHeader
 {
     public class LayeredHeaderDataGridView : DataGridView
     {
+        public class JsonHeader
+        {
+            public JsonHeader(string text)
+            {
+                this.T = text;
+                this.C = new List<JsonHeader>();
+            }
+            public string T { get; set; }//显示的列名
+            public List<JsonHeader> C;//子列头，Children缩写
+        }
+
+        public class Header
+        {
+            public List<Header> Children { get; set; }
+
+            public string Name { get; set; }
+
+            public int X { get; set; }
+
+            public int Y { get; set; }
+
+            public int Width { get; set; }
+
+            public int Height { get; set; }
+
+            public int ColumnId { get; set; }
+
+            public Header()
+            {
+                Name = string.Empty;
+                Children = new List<Header>();
+                ColumnId = -1;
+            }
+
+            public void Measure(DataGridView dgv, int y, int h)
+            {
+                Width = 0;
+                if (Children.Count > 0)
+                {
+                    int tempY = string.IsNullOrEmpty(Name.Trim()) ? y : y + h;
+                    bool columnWidthSet = false;
+                    foreach (Header child in Children)
+                    {
+                        child.Measure(dgv, tempY, h);
+                        Width += child.Width;
+                        if (!columnWidthSet && Width > 0)
+                        {
+                            ColumnId = child.ColumnId;
+                            columnWidthSet = true;
+                        }
+                    }
+                }
+                else if (-1 != ColumnId && dgv.Columns[ColumnId].Visible)
+                {
+                    Width = dgv.Columns[ColumnId].Width;
+                }
+                Y = y;
+                if (Children.Count == 0)
+                {
+                    Height = dgv.ColumnHeadersHeight - y;
+                }
+                else
+                {
+                    Height = h;
+                }
+            }
+
+            public void AcceptRendererDgv(LayeredHeaderDataGridView dgv)
+            {
+                foreach (Header objChild in Children)
+                {
+                    objChild.AcceptRendererDgv(dgv);
+                }
+                if (-1 != ColumnId && !string.IsNullOrEmpty(Name.Trim()))
+                {
+                    dgv.Render(this);
+                }
+
+            }
+        }
+
         private Graphics g;
         private Header hTree;
         private int level;
@@ -30,12 +112,24 @@ namespace StackedHeader
             hTree = this.GenerateStackedHeader();
         }
 
-        public void GenerateColumns(JsonHeader jh)
+        public void SetColumnsHeaderJson(string json)
         {
+            JsonHeader jh = JsonConvert.DeserializeObject<JsonHeader>(json);
+            if (jh == null)
+            {
+                MessageBox.Show("json不符合规定格式！");
+            }
+            else
+            {
+                int cnt = json.Count(x => x == 'T');
+                for (int i = 0; i < cnt; i++)
+                {
+                    this.Columns.Add(new DataGridViewTextBoxColumn());
+                }
+            }
             this.jh = jh;
             hTree = this.GenerateStackedHeader();
         }
-
 
         private Header GenerateStackedHeader()
         {
@@ -60,19 +154,6 @@ namespace StackedHeader
                 paHeader.Children.Add(h1);
 
             }
-            //Header paHeader = new Header();
-            //var h11 = new Header { Name = "11" };
-            //h11.ColumnId = 0;
-            //var h12 = new Header { Name = "12" };
-            //h12.ColumnId = 3;
-            //var h111 = new Header { Name = "111" };
-            //h111.ColumnId = 2;
-            //var h112 = new Header { Name = "112" };
-            //h112.ColumnId = 1;
-            //paHeader.Children.Add(h11);
-            //h11.Children.Add(h112);
-            //h11.Children.Add(h111);
-            //paHeader.Children.Add(h12);
             return paHeader;
         }
         private Header GenerateStackedHeader0()
