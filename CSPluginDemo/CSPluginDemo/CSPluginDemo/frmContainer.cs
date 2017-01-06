@@ -34,7 +34,7 @@ namespace CSPluginDemo
                 {
                     Assembly assembly = Assembly.LoadFrom(fileName);
                     var t = assembly.GetTypes().FirstOrDefault(x => typeof(IMenuPlugin).IsAssignableFrom(x));
-                    if (t != null)
+                    if (t != null && !lst.Contains(t))
                         lst.Add(t);
                 }
                 catch (Exception)
@@ -48,6 +48,7 @@ namespace CSPluginDemo
         private void 刷新插件ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.lstTypes = this.GetExeTypes();
+            this.menuStrip1.Items.Clear();
             foreach (var t in this.lstTypes)
             {
                 IMenuPlugin instance = (IMenuPlugin)Activator.CreateInstance(t);

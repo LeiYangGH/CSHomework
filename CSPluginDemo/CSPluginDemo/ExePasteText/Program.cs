@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ExeCutText
+namespace ExePasteText
 {
     static class Program
     {
@@ -16,8 +16,7 @@ namespace ExeCutText
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CutText());
-            //Application.Run(new PasteText());
+            Application.Run(new PasteText());
         }
     }
 }
