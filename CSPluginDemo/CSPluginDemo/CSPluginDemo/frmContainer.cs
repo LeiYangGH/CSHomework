@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace CSPluginDemo
 {
-    public partial class Form1 : Form
+    public partial class frmContainer : Form
     {
-        public Form1()
+        public frmContainer()
         {
             InitializeComponent();
+        }
+
+        private void 容器菜单ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("容器自带菜单而已");
         }
     }
 }

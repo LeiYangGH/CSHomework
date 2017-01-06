@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSPluginDemo", "CSPluginDemo\CSPluginDemo.csproj", "{5CFBD8C8-9D43-4B51-8BD0-158BA9C94908}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPlugin", "IPlugin\IPlugin.csproj", "{48E91E40-7F05-44A5-85AE-717B6CC817B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExeCutText", "ExeCutText\ExeCutText.csproj", "{F2D12BAE-5AC7-4580-B52D-E65F856666F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{5CFBD8C8-9D43-4B51-8BD0-158BA9C94908}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CFBD8C8-9D43-4B51-8BD0-158BA9C94908}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CFBD8C8-9D43-4B51-8BD0-158BA9C94908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48E91E40-7F05-44A5-85AE-717B6CC817B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48E91E40-7F05-44A5-85AE-717B6CC817B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48E91E40-7F05-44A5-85AE-717B6CC817B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48E91E40-7F05-44A5-85AE-717B6CC817B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2D12BAE-5AC7-4580-B52D-E65F856666F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2D12BAE-5AC7-4580-B52D-E65F856666F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2D12BAE-5AC7-4580-B52D-E65F856666F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2D12BAE-5AC7-4580-B52D-E65F856666F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
