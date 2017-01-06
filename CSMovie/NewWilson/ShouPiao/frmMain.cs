@@ -27,12 +27,16 @@ namespace ShouPiao
         private void AddCustomerTypes()
         {
             CustomerTypeBLL cbll = new CustomerTypeBLL();
-            comboBox1.DataSource = cbll;
+            this.comboBox1.Items.Clear();
+            foreach (CustomerType cu in cbll.GetAllCustomerType())
+            {
+                this.comboBox1.Items.Add(cu.Name);
+            }
         }
 
         private void FrmCinema_Load(object sender, EventArgs e)
         {
-            GetAndBindAllMovies(new DateTime(2017,1,5));
+            GetAndBindAllMovies(new DateTime(2017, 1, 5));
             dgvPosition.RowCount = 10;
             dgvPosition.ColumnCount = 10;
             this.AddCustomerTypes();
@@ -143,7 +147,7 @@ namespace ShouPiao
                 }
 
             }
-            
+
         }
         TreeNode GetTreeNodeByMovieId(string movieId)
         {
@@ -192,7 +196,7 @@ namespace ShouPiao
         TicketBLL bllT = new TicketBLL();
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             foreach (DataGridViewCell cell in dgvPosition.SelectedCells)
             {
                 Position p = cell.Value as Position;
@@ -208,7 +212,7 @@ namespace ShouPiao
                 tk.SellPrice = sellPrice;
                 bllT.Insert(tk);
             }
-            
+
 
             //if (this.selMovie == null
             //    || string.IsNullOrWhiteSpace(this.selCusTypeName)
