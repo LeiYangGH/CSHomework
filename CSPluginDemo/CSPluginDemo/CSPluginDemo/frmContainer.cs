@@ -48,13 +48,20 @@ namespace CSPluginDemo
         private void 刷新插件ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.lstTypes = this.GetExeTypes();
-            this.menuStrip1.Items.Clear();
+            var pitems = this.menuStrip1.Items.OfType<ToolStripMenuItem>()
+                .Where(x => x.Tag as string == "p").ToList();
+
+            foreach (ToolStripMenuItem item in pitems)
+                {
+                    this.menuStrip1.Items.Remove(item);
+                }
             foreach (var t in this.lstTypes)
             {
                 IMenuPlugin instance = (IMenuPlugin)Activator.CreateInstance(t);
                 foreach (var kv in instance.GetMenus())
                 {
                     ToolStripMenuItem item = new ToolStripMenuItem(kv.Key);
+                    item.Tag = "p";
                     item.Click += (s, ee) =>
                       {
                           kv.Value.Invoke(this.textBox1);
