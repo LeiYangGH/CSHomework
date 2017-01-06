@@ -1,4 +1,4 @@
-﻿namespace ParentForm
+﻿namespace PicForm
 {
     partial class Form1
     {
@@ -29,56 +29,51 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.form1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.f11ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.loadPicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.form1ToolStripMenuItem});
+            this.loadPicToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(447, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(551, 33);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // form1ToolStripMenuItem
+            // loadPicToolStripMenuItem
             // 
-            this.form1ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.f11ToolStripMenuItem});
-            this.form1ToolStripMenuItem.Name = "form1ToolStripMenuItem";
-            this.form1ToolStripMenuItem.Size = new System.Drawing.Size(76, 29);
-            this.form1ToolStripMenuItem.Text = "Form1";
+            this.loadPicToolStripMenuItem.Name = "loadPicToolStripMenuItem";
+            this.loadPicToolStripMenuItem.Size = new System.Drawing.Size(85, 29);
+            this.loadPicToolStripMenuItem.Text = "LoadPic";
+            this.loadPicToolStripMenuItem.Click += new System.EventHandler(this.loadPicToolStripMenuItem_Click);
             // 
-            // f11ToolStripMenuItem
+            // pictureBox1
             // 
-            this.f11ToolStripMenuItem.Name = "f11ToolStripMenuItem";
-            this.f11ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
-            this.f11ToolStripMenuItem.Text = "F11";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(125, 161);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 26);
-            this.textBox1.TabIndex = 1;
+            this.pictureBox1.Location = new System.Drawing.Point(36, 73);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(474, 400);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 488);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(551, 510);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -87,8 +82,8 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem form1ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem f11ToolStripMenuItem;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ToolStripMenuItem loadPicToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
+
