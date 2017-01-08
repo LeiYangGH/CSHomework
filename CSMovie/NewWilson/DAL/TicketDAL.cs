@@ -92,7 +92,23 @@ namespace DAL
         /// <param name="ticket"></param>
         public void Insert(Ticket ticket)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
+            {
+                SqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = @" INSERT INTO [yp].[dbo].[ticket]( [positionId],[customerTypeId],[sellPrice],[sellDateTime],[playId])  VALUES(@positionId,@customerTypeId,@sellPrice,@sellDateTime,@playId);";
+                cmd.Parameters.AddWithValue("positionId", ticket.PositionId);
+                cmd.Parameters.AddWithValue("customerTypeId", ticket.CustomerTypeId);
+                cmd.Parameters.AddWithValue("sellPrice", ticket.SellPrice);
+                cmd.Parameters.AddWithValue("sellDateTime", ticket.SellDateTime);
+                cmd.Parameters.AddWithValue("playId", ticket.PlayId);
+                //cmd.Parameters["positionId"].Value = ticket.PositionId;
+                //cmd.Parameters["customerTypeId"].Value = ticket.CustomerTypeId;
+                //cmd.Parameters["sellPrice"].Value = ticket.SellPrice;
+                //cmd.Parameters["sellDateTime"].Value = ticket.SellDateTime;
+                //cmd.Parameters["playId"].Value = ticket.PlayId;
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
         /// <summary>
         /// 此功能目前可不实现

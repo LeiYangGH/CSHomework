@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using DAL;
+using Model;
 using System;
 using System.Collections.Generic;
 
@@ -6,6 +7,7 @@ namespace BLL
 {
     public class TicketBLL
     {
+        TicketDAL tDAL = new TicketDAL();
         public List<Ticket> GetAllTicket()
         {
             throw new NotImplementedException();
@@ -16,7 +18,7 @@ namespace BLL
         /// <param name="ticket"></param>
         public void Insert(Ticket ticket)
         {
-       
+            tDAL.Insert(ticket);
         }
         /// <summary>
         /// 此功能目前可不实现

@@ -194,6 +194,8 @@ namespace TicketManager
         {
             return date.Date.AddHours(time.Hour).AddMinutes(time.Minute);
         }
+
+
         private bool MsgBuyAndConfirm()
         {
 
@@ -219,41 +221,32 @@ namespace TicketManager
 
         }
 
+        private void SaveTicket(Ticket ticket)
+        {
+            TicketBLL tbll = new TicketBLL();
+            tbll.Insert(ticket);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            if (this.IsPlaySelected())
+            if (this.IsPlaySelected() && this.MsgBuyAndConfirm())
             {
-                this.MsgBuyAndConfirm();
-
-                TicketBLL bllT = new TicketBLL();
-
-                foreach (DataGridViewCell cell in dgvPosition.SelectedCells)
+                Play play = tvMovies.SelectedNode.Tag as Play;
+                CustomerType ct = comboBox1.SelectedItem as CustomerType;
+                DateTime sellTime = DateTime.Now;
+                decimal sellPrice = 60;
+                foreach (Position p in this.selPositions)
                 {
-                    Position p = cell.Value as Position;
-                    Play play = tvMovies.SelectedNode.Tag as Play;
-                    CustomerType ct = comboBox1.SelectedItem as CustomerType;
-                    DateTime sellTime = DateTime.Now;
-                    decimal sellPrice = 50;
-
-                    Ticket tk = new Ticket();
-                    tk.PlayId = play.Id;
-                    tk.CustomerTypeId = ct.Id;
-                    tk.PositionId = p.Id;
-                    tk.SellPrice = sellPrice;
-                    bllT.Insert(tk);
+                    Ticket ticket = new Ticket();
+                    ticket.PlayId = play.Id;
+                    ticket.CustomerTypeId = ct.Id;
+                    ticket.SellDateTime = sellTime;
+                    ticket.PositionId = p.Id;
+                    ticket.SellPrice = sellPrice;
+                    this.SaveTicket(ticket);
                 }
+                MessageBox.Show("售票成功，已存储售票信息。");
             }
-
-            //if (this.selMovie == null
-            //    || string.IsNullOrWhiteSpace(this.selCusTypeName)
-            //    || this.selPositions.Count == 0)
-            //{
-            //    MessageBox.Show("请先选择电影、客户类型、座位");
-            //    return;
-            //}
-
-
-
         }
 
         private void tpCinema_Click(object sender, EventArgs e)
