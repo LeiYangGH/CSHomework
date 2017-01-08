@@ -12,7 +12,8 @@ namespace TicketManager
     public partial class frmMain : Form
     {
         //选中的项目，作为全局变量，以减少函数之间传递参数
-        private Movie selMovie;
+        //private Movie selMovie;
+        private Play selPlay;
         private string selCusTypeName;
         private List<Position> selPositions;
 
@@ -66,19 +67,20 @@ namespace TicketManager
 
         private void tvMovies_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            TreeNode node = this.tvMovies.SelectedNode;
-            if (node.Tag is Play == false)
-                return;
-            Play play = node.Tag as Play;
-            MovieBLL bll = new MovieBLL();
-            Movie mv = bll.GetMovie(play.MovieId);
-
-            if (play != null)
+            this.selPlay = this.tvMovies.SelectedNode?.Tag as Play;
+            if (this.selPlay == null)
             {
-                this.lblMovieName.Text = mv.Name;
-                this.lblType.Text = mv.MovieTypeName;
-                this.lblTime.Text = (mv.Duration).ToString();
-                this.picMovie.Image = mv.Poster;
+                return;
+            }
+            MovieBLL mbll = new MovieBLL();
+            Movie movie = mbll.GetMovie(this.selPlay.MovieId);
+
+            if (this.selPlay != null)
+            {
+                this.lblMovieName.Text = movie.Name;
+                this.lblType.Text = movie.MovieTypeName;
+                this.lblTime.Text = (movie.Duration).ToString();
+                this.picMovie.Image = movie.Poster;
                 this.lblPrice.Text = "60";
                 //换选电影时候先清空，再绑定，再把已售加上
                 this.ClearAllPositions();
@@ -318,8 +320,18 @@ namespace TicketManager
                 .Select(c => c.Value as Position).ToList();
         }
 
+        private bool IsPlaySelected()
+        {
+            return this.selPlay != null;
+        }
+
         private void dgvPosition_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (!this.IsPlaySelected())
+            {
+                MessageBox.Show("请先选择电影和放映时间！");
+                return;
+            }
             DataGridViewCell cell = this.dgvPosition.Rows[e.RowIndex].Cells[e.ColumnIndex];
             if (!this.CanCellSelect(cell))
             {
@@ -337,6 +349,12 @@ namespace TicketManager
 
         private void label3_Click(object sender, EventArgs e)
         {
+        }
+        //选择5号
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.dateTimePicker1.Value = new DateTime(2017, 1, 5);
+            GetAndBindAllMovies(tvMovies, dateTimePicker1.Value);
         }
     }
 }
