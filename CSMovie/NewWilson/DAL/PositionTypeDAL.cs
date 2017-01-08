@@ -95,12 +95,13 @@ namespace DAL
             List<PositionType> ptypes = new List<PositionType>();
             SqlParameter[] parms = new SqlParameter[]
             {
-                new SqlParameter("@name", SqlDbType.NVarChar,50) {Value=unclearName }
+                new SqlParameter("@name", SqlDbType.NVarChar,50)
+                { Value=string.Format("%{0}%",unclearName) }
             };
             SqlDataReader reader = SqlHelper.ExecuteReader(
                 SqlHelper.ConnString
                 ,CommandType.Text 
-                ,"SELECT * FROM positionType WHERE name LIKE N'%@name'"
+                ,"SELECT * FROM positionType WHERE name LIKE @name"
                 ,parms
                 );
             while (reader.Read())

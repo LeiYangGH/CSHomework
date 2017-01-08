@@ -39,6 +39,7 @@ namespace MovieManage
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox2
@@ -80,10 +81,11 @@ namespace MovieManage
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(162, 204);
+            this.textBox1.MaxLength = 3;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(160, 28);
             this.textBox1.TabIndex = 17;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // comboBox1
             // 
@@ -100,7 +102,7 @@ namespace MovieManage
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 18);
             this.label2.TabIndex = 15;
-            this.label2.Text = "电影时间：";
+            this.label2.Text = "电影时长：";
             // 
             // label1
             // 
@@ -111,11 +113,21 @@ namespace MovieManage
             this.label1.TabIndex = 14;
             this.label1.Text = "选择类型：";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(328, 207);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 18);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "(分钟)";
+            // 
             // ADDmovieForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(418, 362);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button2);
@@ -125,7 +137,8 @@ namespace MovieManage
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "ADDmovieForms";
-            this.Text = "ADDmovieForms";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "添加电影";
             this.Load += new System.EventHandler(this.ADDmovieForms_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -148,5 +161,7 @@ namespace MovieManage
         {
             this.me = me;
         }
+
+        private System.Windows.Forms.Label label4;
     }
 }

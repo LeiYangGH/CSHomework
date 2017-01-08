@@ -1,5 +1,7 @@
 ﻿namespace Model
 {
+
+    //
     public class PriceTemplet
     {
         public int Id { get; set; } 

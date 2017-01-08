@@ -1,6 +1,7 @@
 ﻿using DAL;
 using Model;
 using System.Collections.Generic;
+using System;
 
 namespace BLL
 {
@@ -42,6 +43,11 @@ namespace BLL
         public List<Hall> Search(int layoutId, string theme)
         {
             return dal.Search(layoutId, theme);
+        }
+
+        public Hall GetHall(short id)
+        {
+            return dal.Get(id);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace BLL
 
         public List<Movie> GetAllMovie()
         {
-            throw new NotImplementedException();
+            return dal.GetAllFromSqlSever();
         }
         public void Insert(Movie movie)
         {
@@ -40,14 +40,12 @@ namespace BLL
         {
              dal.Update(movieId,img);
         }
-        public List<Movie> GetAllFromSqlSever(byte movieTypeId)
-        {
-            return dal.GetAllFromSqlSever(movieTypeId);
-        }
+
         public List<Movie> SearchA(byte movieTypeId)
         {
             return dal.Search(movieTypeId);
         }
+
         public Movie GetMovie(string movieId)
         {
             return dal.GetMovie(movieId);

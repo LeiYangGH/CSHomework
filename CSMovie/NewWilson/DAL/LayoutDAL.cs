@@ -92,11 +92,12 @@ namespace DAL
         public List<Layout> Search(string unclearName)
         {
             List<Layout> layouts = new List<Layout>();
-            SqlParameter sp = new SqlParameter("@name", SqlDbType.NVarChar, 50) { Value = unclearName };
+            SqlParameter sp = new SqlParameter("@name", SqlDbType.NVarChar, 50)
+            { Value = string.Format("%{0}%",unclearName) };
             SqlDataReader reader = SqlHelper.ExecuteReader(
                 SqlHelper.ConnString
                 ,CommandType.Text
-                ,"SELECT * FROM vw_layout WHERE name LIKE N'%@name%'"
+                ,"SELECT * FROM vw_layout WHERE name LIKE @name"
                 ,sp
                 );
             while (reader.Read())

@@ -47,6 +47,24 @@ namespace DAL
             }
             return halls;
         }
+
+        public Hall Get(short id)
+        {
+            Hall hall = null;
+            SqlParameter sp = new SqlParameter("@id", SqlDbType.SmallInt) { Value = id };
+            SqlDataReader reader = SqlHelper.ExecuteReader(
+                                        SqlHelper.ConnString
+                                        , CommandType.Text
+                                        , "SELECT * FROM vw_hall WHERE id = @id"
+                                        , sp
+                                        );
+            if (reader.Read())
+            {
+                hall = FromSqlDataReader(reader);
+            }
+            return hall;
+        }
+
         public short Insert(Hall hall)
         {
             SqlParameter[] parms = new SqlParameter[]
@@ -120,11 +138,12 @@ namespace DAL
         public List<Hall> Search(string unclearThemeName)
         {
             List<Hall> halls = new List<Hall>();
-            SqlParameter sp = new SqlParameter("@theme", SqlDbType.NVarChar, 50) { Value = unclearThemeName };
+            string name = string.Format("%{0}%", unclearThemeName);
+            SqlParameter sp = new SqlParameter("@theme", SqlDbType.NVarChar, 50) { Value = name };
             SqlDataReader reader = SqlHelper.ExecuteReader(
                                         SqlHelper.ConnString
                                         , CommandType.Text
-                                        , "SELECT * FROM vw_hall WHERE theme LIKE N'%@theme%'"
+                                        , "SELECT * FROM vw_hall WHERE theme LIKE @theme"
                                         ,sp
                                         );
             while (reader.Read())
@@ -140,7 +159,7 @@ namespace DAL
             SqlDataReader reader = SqlHelper.ExecuteReader(
                                         SqlHelper.ConnString
                                         , CommandType.Text
-                                        , "SELECT * FROM vw_hall WHERE theme layoutId = @layoutId"
+                                        , "SELECT * FROM vw_hall WHERE layoutId = @layoutId"
                                         ,sp
                                         );
             while (reader.Read())
@@ -154,16 +173,16 @@ namespace DAL
             List<Hall> halls = new List<Hall>();
             SqlParameter[] parms = new SqlParameter[]
             {
-                 new SqlParameter("@theme", SqlDbType.NVarChar, 50) { Value = theme }
+                 new SqlParameter("@theme", SqlDbType.NVarChar, 50) { Value = string.Format("%{0}%",theme) }
                 ,new SqlParameter("@layoutId", SqlDbType.Int) { Value = layoutId }
 
             };
             SqlDataReader reader = SqlHelper.ExecuteReader(
-                                        SqlHelper.ConnString
-                                        , CommandType.Text
-                                        , "SELECT * FROM vw_hall WHERE theme layoutId = @layoutId AND LIKE N'%@theme%'"
-                                        ,parms
-                                        );
+                        SqlHelper.ConnString
+                        , CommandType.Text
+                        , "SELECT * FROM vw_hall WHERE theme layoutId = @layoutId AND theme LIKE @theme"
+                        ,parms
+                        );
             while (reader.Read())
             {
                 halls.Add(FromSqlDataReader(reader));

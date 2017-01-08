@@ -4,12 +4,10 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using System.Collections;
 using Model;
 using BLL;
-using DAL;
 
-namespace ShouPiao
+namespace TicketManager
 {
     public partial class frmMain : Form
     {
@@ -27,16 +25,13 @@ namespace ShouPiao
         private void AddCustomerTypes()
         {
             CustomerTypeBLL cbll = new CustomerTypeBLL();
-            this.comboBox1.Items.Clear();
-            foreach (CustomerType cu in cbll.GetAllCustomerType())
-            {
-                this.comboBox1.Items.Add(cu.Name);
-            }
+            comboBox1.DisplayMember = "Name";
+            comboBox1.DataSource = cbll.GetAllCustomerType();
         }
 
         private void FrmCinema_Load(object sender, EventArgs e)
         {
-            GetAndBindAllMovies(new DateTime(2017, 1, 5));
+            GetAndBindAllMovies(tvMovies, DateTime.Now);
             dgvPosition.RowCount = 10;
             dgvPosition.ColumnCount = 10;
             this.AddCustomerTypes();
@@ -113,7 +108,7 @@ namespace ShouPiao
         /// <summary>
         /// 显示所有类型电影列表
         /// </summary>
-        private void GetAndBindAllMovies(DateTime dt)
+        private void GetAndBindAllMovies(TreeView tv, DateTime dt)
         {
             this.tvMovies.Nodes.Clear();
 
@@ -123,7 +118,7 @@ namespace ShouPiao
             foreach (Play p in plays)
             {
                 //首先在树图中查找该电影的场次节点
-                TreeNode node = GetTreeNodeByMovieId(p.Id);
+                TreeNode node = GetTreeNodeByMovieId(tv, p.MovieId);
                 if (node == null)
                 {
                     // 数图中没有该电影的场次信息的时候就创建一个
@@ -135,7 +130,7 @@ namespace ShouPiao
                     time.Tag = p;
                     time.Text = p.BeginTime.ToShortTimeString();
                     node.Nodes.Add(time);
-                    tvMovies.Nodes.Add(node);
+                    tv.Nodes.Add(node);
                 }
                 else
                 {
@@ -143,13 +138,13 @@ namespace ShouPiao
                     time.Tag = p;
                     time.Text = p.BeginTime.ToShortTimeString();
                     node.Nodes.Add(time);
-                    tvMovies.Nodes.Add(node);
+
                 }
 
             }
 
         }
-        TreeNode GetTreeNodeByMovieId(string movieId)
+        TreeNode GetTreeNodeByMovieId(TreeView tv, string movieId)
         {
             TreeNode node = null;
             foreach (TreeNode n in tvMovies.Nodes)
@@ -267,7 +262,7 @@ namespace ShouPiao
             return CanCellSelect(p);
         }
 
-        //原有代码我基本没改
+        //组长DGV代码
         private void FillPositions(List<Position> posList)
         {
             int rowMin = int.MaxValue, colMin = int.MaxValue;
@@ -333,6 +328,15 @@ namespace ShouPiao
                 this.dgvPosition.ClearSelection();
                 this.dgvPosition.CurrentCell = null;
             }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            GetAndBindAllMovies(tvMovies, dateTimePicker1.Value);
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
         }
     }
 }

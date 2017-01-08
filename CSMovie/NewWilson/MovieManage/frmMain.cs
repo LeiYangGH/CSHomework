@@ -3,16 +3,10 @@ using DAL;
 using Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MovieManage
@@ -20,8 +14,7 @@ namespace MovieManage
     public partial class frmMain : Form
     {
         MovieBLL mb = new MovieBLL();
-        MovieDAL ml=new MovieDAL();
-        MovieTypeDAL mte = new MovieTypeDAL();
+        MovieTypeBLL bllmt = new MovieTypeBLL();
         List<Movie> mes;
         public frmMain()
         {
@@ -30,13 +23,21 @@ namespace MovieManage
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             ShowLeiXi();
-           
+            ShowDetailed();
+        }
+
+        private void ShowDetailed()
+        {
+            textname.DataBindings.Add("Text", this.movieBindingSource, "Name");
+            textBox1.DataBindings.Add("Text", this.movieBindingSource, "MovieTypeName");
+            textshi.DataBindings.Add("Text", this.movieBindingSource, "Duration");
         }
 
         private void ShowLeiXi()
         {
-            List<MovieType> mts =mte.GetLeixi();
+            List<MovieType> mts = bllmt.GetLeixi();
             MovieType mt = new MovieType()
             {
                 Name = "全部",
@@ -55,11 +56,12 @@ namespace MovieManage
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string text = string.Format("{0}-{1}", this.comboBox1.Text, this.comboBox1.SelectedValue);
-            this.Text = text;
-
-            byte depID = Convert.ToByte(this.comboBox1.SelectedValue);
-             mes = ml.GetAllFromSqlSever(depID);
+            MovieType mt = comboBox1.SelectedItem as MovieType;
+            this.Text = mt.Name;
+            if (mt.Id == 0)
+                mes = mb.GetAllMovie();
+            else
+                mes = mb.Search(mt.Id);
             movieBindingSource.DataSource = mes;
             this.dataGridView1.Refresh();
         }
@@ -94,7 +96,7 @@ namespace MovieManage
                 string movieId = me.Id;
             try
             {
-                ml.Update(movieId,img);
+                mb.Update(movieId,img);
                 MessageBox.Show("照片修改成功！"); 
                 me.Poster = this.pictureBox1.BackgroundImage;
             }
@@ -115,6 +117,7 @@ namespace MovieManage
                
             this.pictureBox1.BackgroundImage = mo.Poster;
             this.pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            textBox1.Text = mo.MovieTypeName;
         }
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -136,14 +139,14 @@ namespace MovieManage
         private void 删除电影ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Movie mo = movieBindingSource.Current as Movie;
-            string name = string.Format("确定删除【{0}】吗？", mo.Name);
+            string name = string.Format("确定删除【{0}】影片吗？", mo.Name);
             DialogResult result = MessageBox.Show(name, "警告", MessageBoxButtons.YesNo);
             if(result ==DialogResult.No)
                 return;
            
             try
             {
-                ml.Delete(mo.Id);
+                mb.Delete(mo.Id);
                 movieBindingSource.RemoveCurrent();
             }
             catch (Exception)
@@ -156,12 +159,13 @@ namespace MovieManage
 
         private void 添加电影ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<MovieType> mes = this.comboBox1.DataSource as List<MovieType>;
-            ADDmovieForms df = new ADDmovieForms(mes);
+           
+            List<MovieType> mvvs = bllmt.GetLeixi() as List<MovieType>;
+            ADDmovieForms df = new ADDmovieForms(mvvs);
             DialogResult result = df.ShowDialog();
             if (result != DialogResult.OK)
                 return;
-            ml.Insert(df.movie);
+            mb.Insert(df.movie);
             this.movieBindingSource.Add(df.movie);
             this.dataGridView1.Refresh();
 
@@ -169,15 +173,14 @@ namespace MovieManage
 
         private void 修改电影ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<MovieType> mvs = this.comboBox1.DataSource as List<MovieType>;
+           
             Movie mv = this.movieBindingSource.Current as Movie;
-            UPDATEmovieForms updates = new UPDATEmovieForms(mvs, mv);
+            List<MovieType> mvvs = bllmt.GetLeixi() as List<MovieType>;
+            UPDATEmovieForms updates = new UPDATEmovieForms( mv, mvvs);
        
             DialogResult result = updates.ShowDialog();
             if (result != DialogResult.OK)
                 return;
-            
-
             this.dataGridView1.Refresh();
         }
 
@@ -188,14 +191,17 @@ namespace MovieManage
          
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            byte movieTypeId = Convert.ToByte(this.textBox1.Text);
-         
-
-            List<Movie> mos = ml.Search(movieTypeId);
-            movieBindingSource.DataSource = mos;
-        }
+        //private void button3_Click(object sender, EventArgs e)
+        //{
+        //    byte movieTypeId = Convert.ToByte(this.textBox1.Text);
+          
+        //    List<Movie> mos = mb.Search(movieTypeId);
+        //    if(mos==null)
+        //    {
+        //        return;
+        //    }
+        //    movieBindingSource.DataSource = mos;
+        //}
 
    
 
@@ -213,9 +219,18 @@ namespace MovieManage
         private void button4_Click(object sender, EventArgs e)
         {
             string unclearName =Convert.ToString(this.textBox2.Text);
-            List<Movie> mos = ml.Search(unclearName);
+            List<Movie> mos = mb.Search(unclearName);
             movieBindingSource.DataSource = mos;
         }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+       
+
+      
     }
     }
 

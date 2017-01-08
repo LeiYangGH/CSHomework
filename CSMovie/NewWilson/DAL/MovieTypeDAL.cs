@@ -2,13 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL
 {
-   public class MovieTypeDAL
+    public class MovieTypeDAL
     {
         public  MovieType ReaderMovieType(SqlDataReader reader)
         {
@@ -42,5 +39,6 @@ namespace DAL
             }
             return mts;
         }
-    }
+     
+}
 }

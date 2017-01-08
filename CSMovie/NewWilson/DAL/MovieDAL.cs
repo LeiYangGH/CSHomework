@@ -31,7 +31,7 @@ namespace DAL
             if (reader[4] is DBNull == false)
             {
                 SqlBytes bytes = reader.GetSqlBytes(4);
-                obj.Poster = Image.FromStream(bytes.Stream);
+                obj.Poster = Image.FromStream(bytes.Stream); 
             }
             if (reader["movieTypeName"] is DBNull == false)
             {
@@ -39,29 +39,91 @@ namespace DAL
             }
             return obj;
         }
-
-        public List<Movie> GetAllFromSqlSever(byte movieTypeId)
+        public Movie GetMovie(string movieId)
         {
-            List<Movie> mes = new List<Movie>();
+            Movie mv = null;
             using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "proc_movie";
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                SqlParameter par = new SqlParameter("@typeID", System.Data.SqlDbType.TinyInt);
-                par.Value = movieTypeId;
+
+                cmd.CommandText =
+                    "select * from vw_movie where id = @id";
+                SqlParameter par = new SqlParameter("@id", System.Data.SqlDbType.NVarChar, 36);
+                par.Value = movieId;
                 cmd.Parameters.Add(par);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                    mv = FromSqlDataReader(reader);
+            }
+            return mv;
+        }
+        public List<Movie> GetAllFromSqlSever()
+        {
+            List<Movie> mos = new List<Movie>();
+            using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "select * from vw_movie";
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Movie mo = FromSqlDataReader(reader);
-                    mes.Add(mo);
+                    Movie mv = FromSqlDataReader(reader);
+                    mos.Add(mv);
                 }
+
             }
-            return mes;
+            return mos;
+
         }
+        public List<Movie> GetAllFromSqlSever(byte movieTypeId)
+        {
+            List<Movie> mos = new List<Movie>();
+            using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "select * from vw_movie";
+
+
+                SqlParameter par = new SqlParameter("@movieTypeId", System.Data.SqlDbType.TinyInt);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Movie mv = FromSqlDataReader(reader);
+                    mos.Add(mv);
+                }
+
+            }
+            return mos;
+
+        }
+
+        public List<Movie> GetMovie()
+        {
+            List<Movie> mov = new List<Movie>();
+            using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "SELECT * FROM vw_movie";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Movie m = FromSqlDataReader(reader);
+                        mov.Add(m);
+                    }
+                }
+                return mov;
+            }
+        }
+
         public void Insert(Movie movie)
         {
             using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
@@ -92,6 +154,8 @@ namespace DAL
 
             }
         }
+
+
         public void Delete(string movieId)
         {
             using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
@@ -163,26 +227,6 @@ namespace DAL
             }
             return mos;
         }
-        public Movie GetMovie(string movieId)
-        {
-            Movie mv = null;
-            using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = conn;
-
-                cmd.CommandText =
-                    "select * from vw_movie where id = @id";
-                SqlParameter par = new SqlParameter("@id", System.Data.SqlDbType.NVarChar, 36);
-                par.Value = movieId;
-                cmd.Parameters.Add(par);
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
-                    mv = FromSqlDataReader(reader);
-            }
-            return mv;
-        }
         public void Update(string movieId, byte[] img)
         {
             using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
@@ -236,7 +280,7 @@ namespace DAL
 
                 cmd.Parameters.AddRange(pars);
 
-                int ds= cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
               
             }
         }

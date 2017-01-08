@@ -16,7 +16,7 @@ namespace BLL
         /// <param name="ticket"></param>
         public void Insert(Ticket ticket)
         {
-            throw new NotImplementedException();
+       
         }
         /// <summary>
         /// 此功能目前可不实现

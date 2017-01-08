@@ -82,6 +82,29 @@ namespace DAL
             }
             return obj;
         }
+
+        public List<Play> Search(DateTime date)
+        {
+            List<Play> play = new List<Play>();
+
+            string st = SqlHelper.ConnString;
+            SqlParameter[] parms = new SqlParameter[]
+            {
+                new SqlParameter("@date",SqlDbType.Date) { Value=date.ToShortDateString()}
+            };
+            SqlDataReader reader = SqlHelper.ExecuteReader(
+                SqlHelper.ConnString
+                , CommandType.Text
+                , "SELECT * FROM vw_play WHERE date = @date"
+                , parms);
+            while (reader.Read())
+            {
+                Play p = FromSqlDataReader(reader);
+                play.Add(p);
+            }
+            return play;
+        }
+
         /// <summary>
         /// 获取所有场次信息
         /// </summary>
@@ -108,40 +131,19 @@ namespace DAL
         public List<Play>Search(DateTime date, string movieId)
         {
             List<Play> play = new List<Play>();
-            string id = string.Format("{0}%", movieId);
             SqlParameter[] parms = new SqlParameter[]
             {
-                new SqlParameter("@date",SqlDbType.Date) { Value=date.ToShortDateString()}
-                ,new SqlParameter("@movieId",SqlDbType.VarChar,32) {Value=id }
+                new SqlParameter("@date",SqlDbType.DateTime) { Value=date}
+                ,new SqlParameter("@movieId",SqlDbType.NVarChar,50) {Value=movieId }
             };
             SqlDataReader reader = SqlHelper.ExecuteReader(
                 SqlHelper.ConnString
                 , CommandType.Text
-                , "SELECT * FROM vw_play WHERE date = @date AND movieId LIKE @movieId"
+                , "SELECT * FROM vw_play WHERE date movieId = @movieId AND LIKE N'%@date%'"
                 , parms);
             while (reader.Read())
             {
                 play.Add(FromSqlDataReader(reader));
-            }
-            return play;
-        }
-        public List<Play> Search(DateTime date)
-        {
-            List<Play> play = new List<Play>();
-
-            SqlParameter[] parms = new SqlParameter[]
-            {
-                new SqlParameter("@date",SqlDbType.Date) { Value=date.ToShortDateString()}
-            };
-            SqlDataReader reader = SqlHelper.ExecuteReader(
-                SqlHelper.ConnString
-                , CommandType.Text
-                , "SELECT * FROM vw_play WHERE date = @date"
-                , parms);
-            while (reader.Read())
-            {
-                Play p = FromSqlDataReader(reader);
-                play.Add(p);
             }
             return play;
         }

@@ -1,4 +1,4 @@
-﻿namespace ShouPiao
+﻿namespace TicketManager
 {
     partial class frmMain
     {
@@ -32,10 +32,7 @@
             this.tpToday = new System.Windows.Forms.TabPage();
             this.tvMovies = new System.Windows.Forms.TreeView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tbSeat = new System.Windows.Forms.TabControl();
@@ -43,21 +40,19 @@
             this.dgvPosition = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblCalcPrice = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
             this.lblType = new System.Windows.Forms.Label();
             this.lblActor = new System.Windows.Forms.Label();
             this.lblDirector = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.picMovie = new System.Windows.Forms.PictureBox();
             this.lblMovieName = new System.Windows.Forms.Label();
             this.片名 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tabControl2.SuspendLayout();
             this.tpToday.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -73,11 +68,11 @@
             // 
             this.tabControl2.Controls.Add(this.tpToday);
             this.tabControl2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tabControl2.Location = new System.Drawing.Point(13, 13);
+            this.tabControl2.Location = new System.Drawing.Point(13, 78);
             this.tabControl2.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(329, 850);
+            this.tabControl2.Size = new System.Drawing.Size(329, 785);
             this.tabControl2.TabIndex = 24;
             // 
             // tpToday
@@ -87,26 +82,23 @@
             this.tpToday.Margin = new System.Windows.Forms.Padding(4);
             this.tpToday.Name = "tpToday";
             this.tpToday.Padding = new System.Windows.Forms.Padding(4);
-            this.tpToday.Size = new System.Drawing.Size(321, 819);
+            this.tpToday.Size = new System.Drawing.Size(321, 754);
             this.tpToday.TabIndex = 0;
             this.tpToday.Text = "放映列表";
             this.tpToday.UseVisualStyleBackColor = true;
             // 
             // tvMovies
             // 
-            this.tvMovies.Location = new System.Drawing.Point(15, 11);
+            this.tvMovies.Location = new System.Drawing.Point(19, 8);
             this.tvMovies.Margin = new System.Windows.Forms.Padding(4);
             this.tvMovies.Name = "tvMovies";
-            this.tvMovies.Size = new System.Drawing.Size(279, 800);
+            this.tvMovies.Size = new System.Drawing.Size(279, 731);
             this.tvMovies.TabIndex = 1;
             this.tvMovies.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvMovies_AfterSelect);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.comboBox2);
-            this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.comboBox1);
             this.groupBox2.Location = new System.Drawing.Point(1029, 147);
@@ -118,52 +110,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "顾客类型：";
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(217, 114);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(79, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "取消";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(65, 114);
+            this.button1.Location = new System.Drawing.Point(145, 97);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(79, 23);
+            this.button1.Size = new System.Drawing.Size(132, 47);
             this.button1.TabIndex = 4;
             this.button1.Text = "确认";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "VIP会员",
-            "学生",
-            "老年人"});
-            this.comboBox2.Location = new System.Drawing.Point(121, 77);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(175, 23);
-            this.comboBox2.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(62, 81);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 15);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "折扣：";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(32, 43);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 15);
+            this.label2.Size = new System.Drawing.Size(87, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "类型选择：";
             // 
@@ -205,7 +168,7 @@
             this.dgvPosition.Location = new System.Drawing.Point(-1, 7);
             this.dgvPosition.Name = "dgvPosition";
             this.dgvPosition.RowTemplate.Height = 27;
-            this.dgvPosition.Size = new System.Drawing.Size(1246, 370);
+            this.dgvPosition.Size = new System.Drawing.Size(1246, 384);
             this.dgvPosition.TabIndex = 0;
             this.dgvPosition.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPosition_CellClick);
             this.dgvPosition.SelectionChanged += new System.EventHandler(this.dgvPosition_SelectionChanged);
@@ -213,15 +176,12 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lblCalcPrice);
-            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.lblPrice);
             this.groupBox1.Controls.Add(this.lblTime);
             this.groupBox1.Controls.Add(this.lblType);
             this.groupBox1.Controls.Add(this.lblActor);
             this.groupBox1.Controls.Add(this.lblDirector);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.picMovie);
@@ -246,18 +206,6 @@
             this.lblCalcPrice.Name = "lblCalcPrice";
             this.lblCalcPrice.Size = new System.Drawing.Size(0, 18);
             this.lblCalcPrice.TabIndex = 14;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(295, 230);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(80, 18);
-            this.label14.TabIndex = 13;
-            this.label14.Text = "优惠价：";
             // 
             // lblPrice
             // 
@@ -313,51 +261,29 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(313, 113);
+            this.label10.Location = new System.Drawing.Point(282, 111);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(62, 18);
+            this.label10.Size = new System.Drawing.Size(98, 18);
             this.label10.TabIndex = 7;
-            this.label10.Text = "类型：";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(313, 67);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(62, 18);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "主演：";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(313, 26);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(62, 18);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "导演：";
+            this.label10.Text = "电影类型：";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(295, 189);
+            this.label7.Location = new System.Drawing.Point(280, 194);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(80, 18);
+            this.label7.Size = new System.Drawing.Size(98, 18);
             this.label7.TabIndex = 4;
-            this.label7.Text = "原票价：";
+            this.label7.Text = "电影票价：";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(276, 151);
+            this.label1.Location = new System.Drawing.Point(281, 156);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 18);
@@ -398,19 +324,28 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(1030, 26);
+            this.pictureBox1.Location = new System.Drawing.Point(1029, 26);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(341, 113);
+            this.pictureBox1.Size = new System.Drawing.Size(601, 113);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 28;
             this.pictureBox1.TabStop = false;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(17, 26);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(325, 25);
+            this.dateTimePicker1.TabIndex = 29;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1647, 862);
+            this.ClientSize = new System.Drawing.Size(1647, 870);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.groupBox2);
@@ -444,15 +379,12 @@
         private System.Windows.Forms.TabPage tpCinema;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblCalcPrice;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Label lblType;
         private System.Windows.Forms.Label lblActor;
         private System.Windows.Forms.Label lblDirector;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox picMovie;
@@ -461,11 +393,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dgvPosition;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
 

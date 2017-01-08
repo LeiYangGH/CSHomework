@@ -1,13 +1,13 @@
-﻿using Model;
+﻿using BLL;
+using DAL;
+using Model;
 using System;
-using System.Configuration;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,72 +15,67 @@ namespace PlayManager
 {
     public partial class frmMain : Form
     {
-
-        string connStr = ConfigurationManager.ConnectionStrings["yp_conn"].ConnectionString;
+        MovieBLL mb = new MovieBLL();
+        MovieDAL ml = new MovieDAL();
+        MovieTypeDAL mte = new MovieTypeDAL();
+        List<Movie> mes;
         public frmMain()
-        {            
+        {
             InitializeComponent();
         }
-
-        private void 修改ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void frmschedule_Load(object sender, EventArgs e)
         {
-            Form1 fo = new Form1();
-
+            FilldataGridView();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void FilldataGridView()
         {
-            this.comboBox1.Text = "";
-            this.comboBox3.Text = "";
-            MessageBox.Show("清除成功");
-        }
-
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-            Fillmovies();
-        }
-
-        private void Fillmovies()
-        {
-            List<Movie> mo = GetAllMovies();
-        }
-
-        private List<Movie> GetAllMovies()
-        {
-            using (SqlConnection conn = new SqlConnection(connStr))
+            List<MovieType> mov = mte.GetLeixi();
+            MovieType mo = new MovieType()
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = conn;
-                cmd.CommandText = "select [id],[name],[beginDate],[duration]  from [schedule]";
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Movie mo = new Movie();
-                }
-                return null;
-            }
+                Name = "全部",
+                Id = Convert.ToByte(0)
+            };
+            mov.Insert(0, mo);
+            this.cmbClass.DisplayMember = "name";
+            this.cmbClass.ValueMember = "id";
+            this.cmbClass.DataSource = mov;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.comboBox1.SelectedIndex == 0 || this.comboBox3.SelectedIndex == 0)
-            {
-                MessageBox.Show("请完善影片信息", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            Schedule sh = new Schedule();
-            Movie Mo = new Movie();
-            Mo.Name = this.comboBox1.Text;
-             
+            string text = string.Format("{0}-{1}", this.cmbClass.Text, this.cmbClass.SelectedValue);
+            this.Text = text;
+
+            byte depID = Convert.ToByte(this.cmbClass.SelectedValue);
+            mes = ml.GetAllFromSqlSever(depID);
+            movieBindingSource.DataSource = mes;
+            this.dgvMovie.Refresh();
         }
 
-        private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (MessageBox.Show("您确定要删除吗？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
-            {
-                return; 
-            }
+            string text = string.Format("{0}-{1}",
+                cmbClass.Text, cmbClass.SelectedValue);
+            this.Text = text;
+
+            Convert.ToInt32(cmbClass.SelectedValue);
+            List<Movie> emps = ml.GetMovie();
+
+            this.movieBindingSource.DataSource = emps;
+        }
+
+        private void movieBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            byte movieTypeId = Convert.ToByte(this.textBox1.Text);
+            List<Movie> mos = ml.Search(movieTypeId);
+            movieBindingSource.DataSource = mos;
         }
     }
 }

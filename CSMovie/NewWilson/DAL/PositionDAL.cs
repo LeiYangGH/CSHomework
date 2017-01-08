@@ -12,9 +12,9 @@ namespace DAL
         public Position FromSqlDataReader(SqlDataReader reader)
         {
             Position p = new Position();
-            if (reader["Id"] is DBNull == false)
+            if (reader["id"] is DBNull == false)
             {
-                p.Id = Convert.ToInt32(reader["Id"]);
+                p.Id = Convert.ToInt32(reader["id"]);
             }
             if (reader["rowNum"] is DBNull == false)
             {
@@ -102,9 +102,9 @@ namespace DAL
             SqlParameter parms = new SqlParameter("@id", SqlDbType.Int) { Value = id };
             SqlHelper.ExecuteNonQuery(
                 SqlHelper.ConnString
-                , CommandType.Text
-                , "DELETE FROM position WHERE id = @id"
-                , parms
+                ,CommandType.Text
+                ,"DELETE FROM position WHERE id = @id"
+                ,parms
                 );
         }
         public void Update(int id, byte typeId)
@@ -139,7 +139,7 @@ namespace DAL
                 SqlHelper.ConnString
                 , CommandType.Text
                 , "SELECT * FROM vw_position WHERE positionTypeId = @typeId"
-                , sp
+                ,sp
                 );
             while (reader.Read())
             {

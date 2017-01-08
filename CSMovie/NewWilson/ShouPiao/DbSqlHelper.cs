@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Reflection;//加入反射命名空间
 
-namespace ShouPiao
+namespace TicketManager
 {
     public class DbSqlHelper
     {

@@ -1,7 +1,10 @@
-﻿using System;
+﻿using DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,7 +22,28 @@ namespace yp
         private Dictionary<string, Form> FormCache { get; set; } = new Dictionary<string, Form>();
         private void frmMain_Load(object sender, EventArgs e)
         {
-
+            ConnectionTest();
+        }
+        private void ConnectionTest()
+        {
+            SqlConnection conn;
+            try
+            {
+                conn = new SqlConnection(SqlHelper.ConnString);
+                conn.Open();
+            }
+            catch (Exception ex)
+            {
+                string errmsg = null;
+                if (ex is InvalidOperationException)
+                    errmsg = "配置文件失效" + ex.Message;
+                else if (ex is SqlException)
+                    errmsg = "连接错误" + ex.Message;
+                else
+                    errmsg = "配置文件不正确" + ex.Message;
+                MessageBox.Show(errmsg);
+                this.Close();
+            }
         }
         private void Frm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -116,7 +140,7 @@ namespace yp
             Form frm;
             if (FormCache.TryGetValue(tsb.Text, out frm) == false)
             {
-                frm = new ShouPiao.frmMain();
+                frm = new TicketManager.frmMain();
                 frm.MdiParent = this;
                 frm.WindowState = FormWindowState.Maximized;
                 frm.Text = tsb.Text;
