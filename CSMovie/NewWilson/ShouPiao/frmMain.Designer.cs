@@ -171,6 +171,7 @@
             this.dgvPosition.Location = new System.Drawing.Point(-1, 9);
             this.dgvPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvPosition.Name = "dgvPosition";
+            this.dgvPosition.ReadOnly = true;
             this.dgvPosition.RowTemplate.Height = 27;
             this.dgvPosition.Size = new System.Drawing.Size(1402, 512);
             this.dgvPosition.TabIndex = 0;

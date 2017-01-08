@@ -190,26 +190,59 @@ namespace TicketManager
         //    }
         //}
 
-        TicketBLL bllT = new TicketBLL();
-        private void button1_Click(object sender, EventArgs e)
+        private DateTime GetPlayTime(DateTime date, DateTime time)
+        {
+            return date.Date.AddHours(time.Hour).AddMinutes(time.Minute);
+        }
+        private bool MsgBuyAndConfirm()
         {
 
-            foreach (DataGridViewCell cell in dgvPosition.SelectedCells)
+            string msg = this.selPlay.MovieName;
+            //日期有问题，所以用当前选择的控件日期，而不是Play里数据库的日期
+            DateTime dt = this.GetPlayTime(this.dateTimePicker1.Value, this.selPlay.BeginTime);
+            msg += "\r\n" + dt.ToString();
+            msg += "\r\n" + this.selCusTypeName;
+            msg += "\r\n" + string.Join("\r\n", this.selPositions.Select(x =>
+           (x.RowNum + 1).ToString() + "排 " + (x.ColNum + 1).ToString() + "座"));//+ "\r\n"
+            msg += "\r\n总价：" + this.CalcTotal().ToString();
+            //弹出框应该是和其他接口的地方
+            if (MessageBox.Show(msg, "确认", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                Position p = cell.Value as Position;
-                Play play = tvMovies.SelectedNode.Tag as Play;
-                CustomerType ct = comboBox1.SelectedItem as CustomerType;
-                DateTime sellTime = DateTime.Now;
-                decimal sellPrice = 50;
-
-                Ticket tk = new Ticket();
-                tk.PlayId = play.Id;
-                tk.CustomerTypeId = ct.Id;
-                tk.PositionId = p.Id;
-                tk.SellPrice = sellPrice;
-                bllT.Insert(tk);
+                //确认购买
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("您取消了购买。");
+                return false;
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (this.IsPlaySelected())
+            {
+                this.MsgBuyAndConfirm();
+
+                TicketBLL bllT = new TicketBLL();
+
+                foreach (DataGridViewCell cell in dgvPosition.SelectedCells)
+                {
+                    Position p = cell.Value as Position;
+                    Play play = tvMovies.SelectedNode.Tag as Play;
+                    CustomerType ct = comboBox1.SelectedItem as CustomerType;
+                    DateTime sellTime = DateTime.Now;
+                    decimal sellPrice = 50;
+
+                    Ticket tk = new Ticket();
+                    tk.PlayId = play.Id;
+                    tk.CustomerTypeId = ct.Id;
+                    tk.PositionId = p.Id;
+                    tk.SellPrice = sellPrice;
+                    bllT.Insert(tk);
+                }
+            }
 
             //if (this.selMovie == null
             //    || string.IsNullOrWhiteSpace(this.selCusTypeName)
@@ -218,17 +251,7 @@ namespace TicketManager
             //    MessageBox.Show("请先选择电影、客户类型、座位");
             //    return;
             //}
-            //string msg = this.selMovie.Name + "\r\n" + this.selCusTypeName + "\r\n";
-            //msg += string.Join("\r\n", this.selPositions.Select(x => x.GetMessagePoint()));
-            //msg += "\r\n总价：" + this.CalcTotal().ToString();
-            ////弹出框应该是和其他接口的地方
-            //if (MessageBox.Show(msg, "确认", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            //{
-            //    //确认购买
-            //    this.SaveSale();
-            //}
-            //else
-            //    MessageBox.Show("您取消了购买。");
+
 
 
         }
@@ -322,23 +345,27 @@ namespace TicketManager
 
         private bool IsPlaySelected()
         {
-            return this.selPlay != null;
+            if (this.selPlay == null)
+            {
+                MessageBox.Show("请先选择电影和放映时间！");
+                return false;
+            }
+            else
+                return true;
         }
 
         private void dgvPosition_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (!this.IsPlaySelected())
+            if (this.IsPlaySelected())
             {
-                MessageBox.Show("请先选择电影和放映时间！");
-                return;
-            }
-            DataGridViewCell cell = this.dgvPosition.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            if (!this.CanCellSelect(cell))
-            {
-                MessageBox.Show("请选择其他座位！");
-                //一旦选择不可用的就把所有选中取消，因为目前如果要实现只取消选中不可用的那个代码量会多不少
-                this.dgvPosition.ClearSelection();
-                this.dgvPosition.CurrentCell = null;
+                DataGridViewCell cell = this.dgvPosition.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (!this.CanCellSelect(cell))
+                {
+                    MessageBox.Show("请选择其他座位！");
+                    //一旦选择不可用的就把所有选中取消，因为目前如果要实现只取消选中不可用的那个代码量会多不少
+                    this.dgvPosition.ClearSelection();
+                    this.dgvPosition.CurrentCell = null;
+                }
             }
         }
 
