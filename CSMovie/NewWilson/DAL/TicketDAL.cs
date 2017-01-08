@@ -1,7 +1,9 @@
 ﻿using Model;
 using Model.critical;
 using System;
+using System.Linq;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace DAL
@@ -101,11 +103,6 @@ namespace DAL
                 cmd.Parameters.AddWithValue("sellPrice", ticket.SellPrice);
                 cmd.Parameters.AddWithValue("sellDateTime", ticket.SellDateTime);
                 cmd.Parameters.AddWithValue("playId", ticket.PlayId);
-                //cmd.Parameters["positionId"].Value = ticket.PositionId;
-                //cmd.Parameters["customerTypeId"].Value = ticket.CustomerTypeId;
-                //cmd.Parameters["sellPrice"].Value = ticket.SellPrice;
-                //cmd.Parameters["sellDateTime"].Value = ticket.SellDateTime;
-                //cmd.Parameters["playId"].Value = ticket.PlayId;
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -133,6 +130,25 @@ namespace DAL
         public List<Ticket> Search(TicketCritical ticketCritical)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Position> GetSoldPositionsByPlayId(string playId)
+        {
+            using (SqlConnection conn = new SqlConnection(SqlHelper.ConnString))
+            {
+                string sql = string.Format("select[positionId],[rowNum],[colNum] from[yp].[dbo].[vw_ticket] where playId = '{0}'", playId);
+                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt.Rows.OfType<DataRow>()
+                    .Select(x => new Position()
+                    {
+                        Id = (int)x["positionId"],
+                        RowNum = (int)x["rowNum"],
+                        ColNum = (int)x["colNum"],
+                        PositionTypeName = "已售"//既然是从ticket里读出，必然是已售
+                    }).ToList();
+            }
         }
     }
 }

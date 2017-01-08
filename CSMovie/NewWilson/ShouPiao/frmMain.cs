@@ -58,11 +58,11 @@ namespace TicketManager
         }
 
         //显示某部电影的已售
-        private void ShowSoldPositonsByMovieName(string movieName)
+        private void ShowSoldPositonsByPlayId()
         {
-            //SaleBLL sbll = new SaleBLL();
-            //var lstPositions = sbll.GetSoldPositionsByMovieName(movieName);
-            //ShowSoldPositonsByListPositions(lstPositions);
+            TicketBLL tbll = new TicketBLL();
+            var lstPositions = tbll.GetSoldPositionsByPlayId(this.selPlay.Id);
+            ShowSoldPositonsByListPositions(lstPositions);
         }
 
         private void tvMovies_AfterSelect(object sender, TreeViewEventArgs e)
@@ -85,7 +85,7 @@ namespace TicketManager
                 //换选电影时候先清空，再绑定，再把已售加上
                 this.ClearAllPositions();
                 this.GetAndBindPositions();
-                //this.ShowSoldPositonsByMovieName(mv.Name);
+                this.ShowSoldPositonsByPlayId( );
             }
             else
             {
@@ -166,30 +166,6 @@ namespace TicketManager
             return 60 * this.selPositions.Count;
         }
 
-        //private bool SaveSale()
-        //{
-        //    TicketBLL bllTick = new TicketBLL();
-        //    foreach (Position p in selPositions)
-        //    {
-        //        Ticket ticket = new Ticket();
-        //        ticket.CustomerTypeId = (comboBox1.SelectedItem as CustomerType).Id;
-        //        ticket.PositionId = p.Id;
-
-        //    }
-        //    if (true)
-        //    {
-        //        //如果保存成功则把当前选中的改成已售
-        //        ShowSoldPositonsByListPositions(this.selPositions);
-        //        MessageBox.Show("购票成功！");
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("购票失败！");
-        //        return false;
-        //    }
-        //}
-
         private DateTime GetPlayTime(DateTime date, DateTime time)
         {
             return date.Date.AddHours(time.Hour).AddMinutes(time.Minute);
@@ -244,6 +220,9 @@ namespace TicketManager
                     ticket.PositionId = p.Id;
                     ticket.SellPrice = sellPrice;
                     this.SaveTicket(ticket);
+                    //在当前绑定架构下，如果直接对Cell.Value赋值为"已售"会引起不一致
+                    //所以对PositionTypeName赋值
+                    p.PositionTypeName = "已售";
                 }
                 MessageBox.Show("售票成功，已存储售票信息。");
             }

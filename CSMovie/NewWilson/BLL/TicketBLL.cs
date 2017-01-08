@@ -44,5 +44,10 @@ namespace BLL
         {
             throw new NotImplementedException();
         }
+
+        public List<Position> GetSoldPositionsByPlayId(string playId)
+        {
+            return tDAL.GetSoldPositionsByPlayId(playId);
+        }
     }
 }
