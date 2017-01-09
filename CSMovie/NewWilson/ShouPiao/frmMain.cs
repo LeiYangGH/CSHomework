@@ -201,6 +201,7 @@ namespace TicketManager
         {
             TicketBLL tbll = new TicketBLL();
             tbll.Insert(ticket);
+            //后面主要是TicketDAL.Insert(Ticket ticket)
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -219,6 +220,7 @@ namespace TicketManager
                     ticket.SellDateTime = sellTime;
                     ticket.PositionId = p.Id;
                     ticket.SellPrice = sellPrice;
+                    //保存售票到数据库
                     this.SaveTicket(ticket);
                     //在当前绑定架构下，如果直接对Cell.Value赋值为"已售"会引起不一致
                     //所以对PositionTypeName赋值
