@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace CSCalculator
 {
-    public partial class Form1 : Form
+    public partial class frmCalc : Form
     {
-        public Form1()
+        public frmCalc()
         {
             InitializeComponent();
         }
@@ -70,29 +70,6 @@ namespace CSCalculator
             }
         }
 
-        private void CClick(object sender, EventArgs e)
-        {
-            txtResult.Text = "0";
-            lastOp = "";
-            temvirgula = false;
-            eresultado = false;
-        }
-
-        private void Back_Click(object sender, EventArgs e)
-        {
-            if (eresultado == false && lastOp == "")
-            {
-                if (txtResult.Text.Length > 0 && txtResult.Text != "0")
-                {
-                    txtResult.Text = txtResult.Text.Remove(txtResult.Text.Length - 1);
-                }
-                if (txtResult.Text == "")
-                {
-                    txtResult.Text = "0";
-                }
-            }
-        }
-
         private void Operacao_Click(object sender, EventArgs e)
         {
             Button xXx_operacao_xXx = sender as Button;
@@ -106,7 +83,7 @@ namespace CSCalculator
             lastOp = "";
         }
 
-        private void OperacaoUnica(object sender, EventArgs e)
+        private void FuncClick(object sender, EventArgs e)
         {
             Button xXx_operacao_xXx = sender as Button;
             operacao = xXx_operacao_xXx.Text;
@@ -162,7 +139,72 @@ namespace CSCalculator
             }
         }
 
-        private void Igual_Click(object sender, EventArgs e)
+
+        private void btnback_Click(object sender, EventArgs e)
+        {
+            if (eresultado == false && lastOp == "")
+            {
+                if (txtResult.Text.Length > 0 && txtResult.Text != "0")
+                {
+                    txtResult.Text = txtResult.Text.Remove(txtResult.Text.Length - 1);
+                }
+                if (txtResult.Text == "")
+                {
+                    txtResult.Text = "0";
+                }
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtResult.Text = "0";
+            lastOp = "";
+            temvirgula = false;
+            eresultado = false;
+        }
+
+        private void btnNegative_Click(object sender, EventArgs e)
+        {
+            this.Operacao_Click(sender, e);
+        }
+
+        private void btnSqrt_Click(object sender, EventArgs e)
+        {
+            this.FuncClick(sender, e);
+        }
+
+        private void btnDiv_Click(object sender, EventArgs e)
+        {
+            this.Operacao_Click(sender, e);
+
+
+        }
+
+        private void btnSqr_Click(object sender, EventArgs e)
+        {
+            this.Operacao_Click(sender, e);
+
+        }
+
+        private void btnMul_Click(object sender, EventArgs e)
+        {
+            this.Operacao_Click(sender, e);
+
+        }
+
+        private void btnMin_Click(object sender, EventArgs e)
+        {
+            this.Operacao_Click(sender, e);
+
+        }
+
+        private void btnSum_Click(object sender, EventArgs e)
+        {
+            this.Operacao_Click(sender, e);
+
+        }
+
+        private void btnCalc_Click(object sender, EventArgs e)
         {
             switch (operacao)
             {
@@ -239,6 +281,66 @@ namespace CSCalculator
                 default:
                     break;
             }
+
+        }
+
+        private void btn0_Click(object sender, EventArgs e)
+        {
+            this.NumClick(sender, e);
+        }
+
+        private void btn1_Click(object sender, EventArgs e)
+        {
+            this.NumClick(sender, e);
+
+        }
+
+        private void btn2_Click(object sender, EventArgs e)
+        {
+            this.NumClick(sender, e);
+
+        }
+
+        private void btn3_Click(object sender, EventArgs e)
+        {
+            this.NumClick(sender, e);
+
+        }
+
+        private void btn4_Click(object sender, EventArgs e)
+        {
+            this.NumClick(sender, e);
+
+        }
+
+        private void btn5_Click(object sender, EventArgs e)
+        {
+            this.NumClick(sender, e);
+
+        }
+
+        private void btn6_Click(object sender, EventArgs e)
+        {
+            this.NumClick(sender, e);
+
+        }
+
+        private void btn7_Click(object sender, EventArgs e)
+        {
+            this.NumClick(sender, e);
+
+        }
+
+        private void btn8_Click(object sender, EventArgs e)
+        {
+            this.NumClick(sender, e);
+
+        }
+
+        private void btn9_Click(object sender, EventArgs e)
+        {
+            this.NumClick(sender, e);
+
         }
     }
 }
