@@ -23,7 +23,6 @@ namespace CSCalculator
         public string op;
         public string lastOp;
         public double result;
-        public bool temvirgula;
         public bool op1 = false;
         public bool op2 = false;
 
@@ -40,25 +39,14 @@ namespace CSCalculator
                 op1 = false;
                 if (txtResult.Text != "0")
                 {
-                    if (b.Text == ",")
+                    if (op2 == false)
                     {
-                        if (temvirgula == false)
-                        {
-                            txtResult.Text = txtResult.Text + b.Text;
-                            temvirgula = true;
-                        }
+                        txtResult.Text = txtResult.Text + b.Text;
                     }
                     else
                     {
-                        if (op2 == false)
-                        {
-                            txtResult.Text = txtResult.Text + b.Text;
-                        }
-                        else
-                        {
-                            txtResult.Text = b.Text;
-                            op2 = false;
-                        }
+                        txtResult.Text = b.Text;
+                        op2 = false;
                     }
                 }
                 else
@@ -73,7 +61,7 @@ namespace CSCalculator
             Button b = sender as Button;
             op = b.Text;
             re = double.Parse(txtResult.Text);
-            temvirgula = false;
+            //temvirgula = false;
             op1 = true;
             op2 = false;
             lastOp = "";
@@ -84,7 +72,7 @@ namespace CSCalculator
             Button b = sender as Button;
             op = b.Text;
             re = double.Parse(txtResult.Text);
-            temvirgula = false;
+            //temvirgula = false;
             op1 = true;
             switch (op)
             {
@@ -125,7 +113,7 @@ namespace CSCalculator
         {
             txtResult.Text = "0";
             lastOp = "";
-            temvirgula = false;
+            //temvirgula = false;
             op2 = false;
         }
 
