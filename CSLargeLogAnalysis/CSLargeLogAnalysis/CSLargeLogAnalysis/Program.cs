@@ -52,7 +52,7 @@ namespace CSLargeLogAnalysis
                 var firstlogins = dic[dates[i]].Except(ids);
                 Console.WriteLine("firstlogins" + dates[i]);
                 Console.WriteLine(firstlogins.Count());
-                File.WriteAllLines(dates[i], firstlogins);
+                File.WriteAllLines(dates[i] + ".txt", firstlogins);
             }
             sw.Stop();
             Console.WriteLine("完成！");
