@@ -215,6 +215,7 @@
             this.btnRem.TabIndex = 23;
             this.btnRem.Text = "MR";
             this.btnRem.UseVisualStyleBackColor = true;
+            this.btnRem.Click += new System.EventHandler(this.btnRem_Click);
             // 
             // btnMul
             // 
@@ -278,7 +279,7 @@
             this.btnNegative.UseVisualStyleBackColor = true;
             this.btnNegative.Click += new System.EventHandler(this.btnNegative_Click);
             // 
-            // Form1
+            // frmCalc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -310,7 +311,7 @@
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "frmCalc";
             this.Text = "简易计算器";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CSCalculator
 {
     public partial class frmCalc : Form
     {
+        private List<string> history = new List<string>();
         public frmCalc()
         {
             InitializeComponent();
@@ -23,9 +18,9 @@ namespace CSCalculator
 
         }
 
-        public double primeironm;
+        public double re;
         public double segundonm;
-        public string operacao;
+        public string op;
         public string lastOp;
         public double result;
         public bool temvirgula;
@@ -38,7 +33,10 @@ namespace CSCalculator
             lastOp = "";
             if (txtResult.Text.Length <= 28)
             {
-                if (segundo == true) { txtResult.Text = ""; }
+                if (segundo == true)
+                {
+                    txtResult.Text = "";
+                }
                 segundo = false;
                 if (txtResult.Text != "0")
                 {
@@ -70,13 +68,11 @@ namespace CSCalculator
             }
         }
 
-        private void Operacao_Click(object sender, EventArgs e)
+        private void OperatorClick(object sender, EventArgs e)
         {
-            Button xXx_operacao_xXx = sender as Button;
-            operacao = xXx_operacao_xXx.Text;
-            Debug.Print(txtResult.Text + " | " + operacao);
-            primeironm = double.Parse(txtResult.Text);
-            Debug.Print(primeironm + " | " + operacao);
+            Button b = sender as Button;
+            op = b.Text;
+            re = double.Parse(txtResult.Text);
             temvirgula = false;
             segundo = true;
             eresultado = false;
@@ -85,55 +81,25 @@ namespace CSCalculator
 
         private void FuncClick(object sender, EventArgs e)
         {
-            Button xXx_operacao_xXx = sender as Button;
-            operacao = xXx_operacao_xXx.Text;
-            Debug.Print(txtResult.Text + " | " + operacao);
-            primeironm = double.Parse(txtResult.Text);
-            Debug.Print(primeironm + " | " + operacao);
+            Button b = sender as Button;
+            op = b.Text;
+            re = double.Parse(txtResult.Text);
             temvirgula = false;
             segundo = true;
-            switch (operacao)
+            switch (op)
             {
                 case "√":
                     eresultado = true;
-                    lastOp = operacao;
-                    result = Math.Sqrt(primeironm);
+                    lastOp = op;
+                    result = Math.Sqrt(re);
                     txtResult.Text = Convert.ToString(result);
-                    Debug.Print(primeironm + " | " + operacao + " | " + segundonm + " | " + result);
                     break;
-
-                case "sen":
-                    eresultado = true;
-                    lastOp = operacao;
-                    result = Math.Sin(primeironm * (Math.PI / 180.0));
-                    txtResult.Text = Convert.ToString(result);
-                    Debug.Print(primeironm + " | " + operacao + " | " + segundonm + " | " + result);
-                    break;
-
-                case "cos":
-                    eresultado = true;
-                    lastOp = operacao;
-                    result = Math.Cos(primeironm * (Math.PI / 180.0));
-                    txtResult.Text = Convert.ToString(result);
-                    Debug.Print(primeironm + " | " + operacao + " | " + segundonm + " | " + result);
-                    break;
-
-                case "tg":
-                    eresultado = true;
-                    lastOp = operacao;
-                    result = Math.Tan(primeironm * (Math.PI / 180.0));
-                    txtResult.Text = Convert.ToString(result);
-                    Debug.Print(primeironm + " | " + operacao + " | " + segundonm + " | " + result);
-                    break;
-
                 case "+ -":
                     eresultado = true;
-                    lastOp = operacao;
-                    result = primeironm * (-1);
+                    lastOp = op;
+                    result = re * (-1);
                     txtResult.Text = Convert.ToString(result);
-                    Debug.Print(primeironm + " | " + operacao + " | " + segundonm + " | " + result);
                     break;
-
                 default:
                     break;
             }
@@ -165,7 +131,7 @@ namespace CSCalculator
 
         private void btnNegative_Click(object sender, EventArgs e)
         {
-            this.Operacao_Click(sender, e);
+            this.FuncClick(sender, e);
         }
 
         private void btnSqrt_Click(object sender, EventArgs e)
@@ -175,113 +141,113 @@ namespace CSCalculator
 
         private void btnDiv_Click(object sender, EventArgs e)
         {
-            this.Operacao_Click(sender, e);
+            this.OperatorClick(sender, e);
 
 
         }
 
         private void btnSqr_Click(object sender, EventArgs e)
         {
-            this.Operacao_Click(sender, e);
+            this.OperatorClick(sender, e);
 
         }
 
         private void btnMul_Click(object sender, EventArgs e)
         {
-            this.Operacao_Click(sender, e);
+            this.OperatorClick(sender, e);
 
         }
 
         private void btnMin_Click(object sender, EventArgs e)
         {
-            this.Operacao_Click(sender, e);
+            this.OperatorClick(sender, e);
 
         }
 
         private void btnSum_Click(object sender, EventArgs e)
         {
-            this.Operacao_Click(sender, e);
+            this.OperatorClick(sender, e);
 
         }
 
         private void btnCalc_Click(object sender, EventArgs e)
         {
-            switch (operacao)
+            switch (op)
             {
                 case "+":
                     eresultado = true;
                     if (lastOp == "") { segundonm = Convert.ToDouble(txtResult.Text); }
-                    else { primeironm = Convert.ToDouble(txtResult.Text); }
-                    lastOp = operacao;
-                    result = primeironm + segundonm;
+                    else { re = Convert.ToDouble(txtResult.Text); }
+                    lastOp = op;
+                    result = re + segundonm;
                     txtResult.Text = Convert.ToString(result);
-                    Debug.Print(primeironm + " | " + operacao + " | " + segundonm + " | " + result);
+
                     break;
 
                 case "-":
                     eresultado = true;
                     if (lastOp == "") { segundonm = Convert.ToDouble(txtResult.Text); }
-                    else { primeironm = Convert.ToDouble(txtResult.Text); }
-                    lastOp = operacao;
-                    result = primeironm - segundonm;
+                    else { re = Convert.ToDouble(txtResult.Text); }
+                    lastOp = op;
+                    result = re - segundonm;
                     txtResult.Text = Convert.ToString(result);
-                    Debug.Print(primeironm + " | " + operacao + " | " + segundonm + " | " + result);
+
                     break;
 
                 case "*":
                     eresultado = true;
                     if (lastOp == "") { segundonm = Convert.ToDouble(txtResult.Text); }
-                    else { primeironm = Convert.ToDouble(txtResult.Text); }
-                    lastOp = operacao;
-                    result = primeironm * segundonm;
+                    else { re = Convert.ToDouble(txtResult.Text); }
+                    lastOp = op;
+                    result = re * segundonm;
                     txtResult.Text = Convert.ToString(result);
-                    Debug.Print(primeironm + " | " + operacao + " | " + segundonm + " | " + result);
+
                     break;
 
                 case "/":
                     eresultado = true;
                     if (lastOp == "") { segundonm = Convert.ToDouble(txtResult.Text); }
-                    else { primeironm = Convert.ToDouble(txtResult.Text); }
-                    lastOp = operacao;
-                    result = primeironm / segundonm;
+                    else { re = Convert.ToDouble(txtResult.Text); }
+                    lastOp = op;
+                    result = re / segundonm;
                     txtResult.Text = Convert.ToString(result);
-                    Debug.Print(primeironm + " | " + operacao + " | " + segundonm + " | " + result);
+
                     break;
 
                 case "Resto":
                     eresultado = true;
                     if (lastOp == "") { segundonm = Convert.ToDouble(txtResult.Text); }
-                    else { primeironm = Convert.ToDouble(txtResult.Text); }
-                    lastOp = operacao;
-                    result = primeironm % segundonm;
+                    else { re = Convert.ToDouble(txtResult.Text); }
+                    lastOp = op;
+                    result = re % segundonm;
                     txtResult.Text = Convert.ToString(result);
-                    Debug.Print(primeironm + " | " + operacao + " | " + segundonm + " | " + result);
+
                     break;
 
                 case "%":
                     eresultado = true;
                     if (lastOp == "") { segundonm = Convert.ToDouble(txtResult.Text); }
-                    else { primeironm = Convert.ToDouble(txtResult.Text); }
-                    lastOp = operacao;
-                    result = (primeironm / 100) * segundonm;
+                    else { re = Convert.ToDouble(txtResult.Text); }
+                    lastOp = op;
+                    result = (re / 100) * segundonm;
                     txtResult.Text = Convert.ToString(result);
-                    Debug.Print(primeironm + " | " + operacao + " | " + segundonm + " | " + result);
+
                     break;
 
                 case "x²":
                     eresultado = true;
                     if (lastOp == "") { segundonm = Convert.ToDouble(txtResult.Text); }
-                    else { primeironm = Convert.ToDouble(txtResult.Text); }
-                    lastOp = operacao;
-                    result = Math.Pow(primeironm, segundonm);
+                    else { re = Convert.ToDouble(txtResult.Text); }
+                    lastOp = op;
+                    result = Math.Pow(re, segundonm);
                     txtResult.Text = Convert.ToString(result);
-                    Debug.Print(primeironm + " | " + operacao + " | " + segundonm + " | " + result);
+
                     break;
 
                 default:
                     break;
             }
-
+            this.history.Add(txtResult.Text);
         }
 
         private void btn0_Click(object sender, EventArgs e)
@@ -341,6 +307,13 @@ namespace CSCalculator
         {
             this.NumClick(sender, e);
 
+        }
+
+        private void btnRem_Click(object sender, EventArgs e)
+        {
+            frmHistory frmH = new frmHistory();
+            frmH.Show();
+            frmH.ShowHistory(this.history);
         }
     }
 }
