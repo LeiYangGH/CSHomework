@@ -49,7 +49,7 @@ namespace CSLargeLogAnalysis
                 ids = ids.Except(dic[dates[i - 6]]).ToArray();
                 Console.WriteLine("Union" + dates[i - 1]);
                 ids = ids.Union(dic[dates[i - 1]]).ToArray();
-                var firstlogins = dic[dates[i]].Except(ids);
+                var firstlogins = dic[dates[i]].Except(ids).Distinct();
                 Console.WriteLine("firstlogins" + dates[i]);
                 Console.WriteLine(firstlogins.Count());
                 File.WriteAllLines(dates[i] + ".txt", firstlogins);
