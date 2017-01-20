@@ -24,8 +24,8 @@ namespace CSCalculator
         public string lastOp;
         public double result;
         public bool temvirgula;
-        public bool segundo = false;
-        public bool eresultado = false;
+        public bool op1 = false;
+        public bool op2 = false;
 
         private void NumClick(object sender, EventArgs e)
         {
@@ -33,11 +33,11 @@ namespace CSCalculator
             lastOp = "";
             if (txtResult.Text.Length <= 28)
             {
-                if (segundo == true)
+                if (op1 == true)
                 {
                     txtResult.Text = "";
                 }
-                segundo = false;
+                op1 = false;
                 if (txtResult.Text != "0")
                 {
                     if (b.Text == ",")
@@ -50,14 +50,14 @@ namespace CSCalculator
                     }
                     else
                     {
-                        if (eresultado == false)
+                        if (op2 == false)
                         {
                             txtResult.Text = txtResult.Text + b.Text;
                         }
                         else
                         {
                             txtResult.Text = b.Text;
-                            eresultado = false;
+                            op2 = false;
                         }
                     }
                 }
@@ -74,8 +74,8 @@ namespace CSCalculator
             op = b.Text;
             re = double.Parse(txtResult.Text);
             temvirgula = false;
-            segundo = true;
-            eresultado = false;
+            op1 = true;
+            op2 = false;
             lastOp = "";
         }
 
@@ -85,17 +85,17 @@ namespace CSCalculator
             op = b.Text;
             re = double.Parse(txtResult.Text);
             temvirgula = false;
-            segundo = true;
+            op1 = true;
             switch (op)
             {
                 case "√":
-                    eresultado = true;
+                    op2 = true;
                     lastOp = op;
                     result = Math.Sqrt(re);
                     txtResult.Text = Convert.ToString(result);
                     break;
                 case "+ -":
-                    eresultado = true;
+                    op2 = true;
                     lastOp = op;
                     result = re * (-1);
                     txtResult.Text = Convert.ToString(result);
@@ -108,7 +108,7 @@ namespace CSCalculator
 
         private void btnback_Click(object sender, EventArgs e)
         {
-            if (eresultado == false && lastOp == "")
+            if (op2 == false && lastOp == "")
             {
                 if (txtResult.Text.Length > 0 && txtResult.Text != "0")
                 {
@@ -126,7 +126,7 @@ namespace CSCalculator
             txtResult.Text = "0";
             lastOp = "";
             temvirgula = false;
-            eresultado = false;
+            op2 = false;
         }
 
         private void btnNegative_Click(object sender, EventArgs e)
@@ -175,9 +175,15 @@ namespace CSCalculator
             switch (op)
             {
                 case "+":
-                    eresultado = true;
-                    if (lastOp == "") { segundonm = Convert.ToDouble(txtResult.Text); }
-                    else { re = Convert.ToDouble(txtResult.Text); }
+                    op2 = true;
+                    if (lastOp == "")
+                    {
+                        segundonm = Convert.ToDouble(txtResult.Text);
+                    }
+                    else
+                    {
+                        re = Convert.ToDouble(txtResult.Text);
+                    }
                     lastOp = op;
                     result = re + segundonm;
                     txtResult.Text = Convert.ToString(result);
@@ -185,9 +191,15 @@ namespace CSCalculator
                     break;
 
                 case "-":
-                    eresultado = true;
-                    if (lastOp == "") { segundonm = Convert.ToDouble(txtResult.Text); }
-                    else { re = Convert.ToDouble(txtResult.Text); }
+                    op2 = true;
+                    if (lastOp == "")
+                    {
+                        segundonm = Convert.ToDouble(txtResult.Text);
+                    }
+                    else
+                    {
+                        re = Convert.ToDouble(txtResult.Text);
+                    }
                     lastOp = op;
                     result = re - segundonm;
                     txtResult.Text = Convert.ToString(result);
@@ -195,9 +207,15 @@ namespace CSCalculator
                     break;
 
                 case "*":
-                    eresultado = true;
-                    if (lastOp == "") { segundonm = Convert.ToDouble(txtResult.Text); }
-                    else { re = Convert.ToDouble(txtResult.Text); }
+                    op2 = true;
+                    if (lastOp == "")
+                    {
+                        segundonm = Convert.ToDouble(txtResult.Text);
+                    }
+                    else
+                    {
+                        re = Convert.ToDouble(txtResult.Text);
+                    }
                     lastOp = op;
                     result = re * segundonm;
                     txtResult.Text = Convert.ToString(result);
@@ -205,8 +223,11 @@ namespace CSCalculator
                     break;
 
                 case "/":
-                    eresultado = true;
-                    if (lastOp == "") { segundonm = Convert.ToDouble(txtResult.Text); }
+                    op2 = true;
+                    if (lastOp == "")
+                    {
+                        segundonm = Convert.ToDouble(txtResult.Text);
+                    }
                     else { re = Convert.ToDouble(txtResult.Text); }
                     lastOp = op;
                     result = re / segundonm;
@@ -215,7 +236,7 @@ namespace CSCalculator
                     break;
 
                 case "Resto":
-                    eresultado = true;
+                    op2 = true;
                     if (lastOp == "") { segundonm = Convert.ToDouble(txtResult.Text); }
                     else { re = Convert.ToDouble(txtResult.Text); }
                     lastOp = op;
@@ -225,9 +246,15 @@ namespace CSCalculator
                     break;
 
                 case "%":
-                    eresultado = true;
-                    if (lastOp == "") { segundonm = Convert.ToDouble(txtResult.Text); }
-                    else { re = Convert.ToDouble(txtResult.Text); }
+                    op2 = true;
+                    if (lastOp == "")
+                    {
+                        segundonm = Convert.ToDouble(txtResult.Text);
+                    }
+                    else
+                    {
+                        re = Convert.ToDouble(txtResult.Text);
+                    }
                     lastOp = op;
                     result = (re / 100) * segundonm;
                     txtResult.Text = Convert.ToString(result);
@@ -235,9 +262,15 @@ namespace CSCalculator
                     break;
 
                 case "x²":
-                    eresultado = true;
-                    if (lastOp == "") { segundonm = Convert.ToDouble(txtResult.Text); }
-                    else { re = Convert.ToDouble(txtResult.Text); }
+                    op2 = true;
+                    if (lastOp == "")
+                    {
+                        segundonm = Convert.ToDouble(txtResult.Text);
+                    }
+                    else
+                    {
+                        re = Convert.ToDouble(txtResult.Text);
+                    }
                     lastOp = op;
                     result = Math.Pow(re, segundonm);
                     txtResult.Text = Convert.ToString(result);
