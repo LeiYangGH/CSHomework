@@ -8,6 +8,13 @@ namespace CSCalculator
     public partial class frmCalc : Form
     {
         private List<string> history = new List<string>();
+        private double re;
+        private double num;
+        private string op;
+        private string lastOp;
+        private double result;
+        private bool op1 = false;
+        private bool op2 = false;
         public frmCalc()
         {
             InitializeComponent();
@@ -17,14 +24,6 @@ namespace CSCalculator
         {
 
         }
-
-        public double re;
-        public double segundonm;
-        public string op;
-        public string lastOp;
-        public double result;
-        public bool op1 = false;
-        public bool op2 = false;
 
         private void NumClick(object sender, EventArgs e)
         {
@@ -55,7 +54,6 @@ namespace CSCalculator
             Button b = sender as Button;
             op = b.Text;
             re = double.Parse(txtResult.Text);
-            //temvirgula = false;
             op1 = true;
             op2 = false;
             lastOp = "";
@@ -66,7 +64,6 @@ namespace CSCalculator
             Button b = sender as Button;
             op = b.Text;
             re = double.Parse(txtResult.Text);
-            //temvirgula = false;
             op1 = true;
             switch (op)
             {
@@ -148,72 +145,52 @@ namespace CSCalculator
                 case "+":
                     op2 = true;
                     if (lastOp == "")
-                        segundonm = Convert.ToDouble(txtResult.Text);
+                        num = Convert.ToDouble(txtResult.Text);
                     else
                         re = Convert.ToDouble(txtResult.Text);
                     lastOp = op;
-                    result = re + segundonm;
+                    result = re + num;
                     txtResult.Text = Convert.ToString(result);
                     break;
 
                 case "-":
                     op2 = true;
                     if (lastOp == "")
-                        segundonm = Convert.ToDouble(txtResult.Text);
+                        num = Convert.ToDouble(txtResult.Text);
                     else
                         re = Convert.ToDouble(txtResult.Text);
                     lastOp = op;
-                    result = re - segundonm;
+                    result = re - num;
                     txtResult.Text = Convert.ToString(result);
                     break;
                 case "*":
                     op2 = true;
                     if (lastOp == "")
-                        segundonm = Convert.ToDouble(txtResult.Text);
+                        num = Convert.ToDouble(txtResult.Text);
                     else
                         re = Convert.ToDouble(txtResult.Text);
                     lastOp = op;
-                    result = re * segundonm;
+                    result = re * num;
                     txtResult.Text = Convert.ToString(result);
                     break;
                 case "/":
                     op2 = true;
                     if (lastOp == "")
-                        segundonm = Convert.ToDouble(txtResult.Text);
+                        num = Convert.ToDouble(txtResult.Text);
                     else
                         re = Convert.ToDouble(txtResult.Text);
                     lastOp = op;
-                    result = re / segundonm;
-                    txtResult.Text = Convert.ToString(result);
-                    break;
-                case "Resto":
-                    op2 = true;
-                    if (lastOp == "")
-                        segundonm = Convert.ToDouble(txtResult.Text);
-                    else
-                        re = Convert.ToDouble(txtResult.Text);
-                    lastOp = op;
-                    result = re % segundonm;
-                    txtResult.Text = Convert.ToString(result);
-                    break;
-                case "%":
-                    op2 = true;
-                    if (lastOp == "")
-                        segundonm = Convert.ToDouble(txtResult.Text);
-                    else
-                        re = Convert.ToDouble(txtResult.Text);
-                    lastOp = op;
-                    result = (re / 100) * segundonm;
+                    result = re / num;
                     txtResult.Text = Convert.ToString(result);
                     break;
                 case "x²":
                     op2 = true;
                     if (lastOp == "")
-                        segundonm = Convert.ToDouble(txtResult.Text);
+                        num = Convert.ToDouble(txtResult.Text);
                     else
                         re = Convert.ToDouble(txtResult.Text);
                     lastOp = op;
-                    result = Math.Pow(re, segundonm);
+                    result = Math.Pow(re, num);
                     txtResult.Text = Convert.ToString(result);
                     break;
                 default:
