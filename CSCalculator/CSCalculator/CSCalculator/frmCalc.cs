@@ -15,6 +15,15 @@ namespace CSCalculator
         private double result;
         private bool op1 = false;
         private bool op2 = false;
+        Dictionary<string, Func<double, double, double>> dicOp =
+    new Dictionary<string, Func<double, double, double>>()
+        {
+            { "+",(a,b)=> a + b  },
+            { "-",(a,b)=> a - b  },
+            { "*",(a,b)=> a * b  },
+            { "/",(a,b)=> a / b  },
+            { "x²",(a,b)=> Math.Pow(a, b)},
+        };
         public frmCalc()
         {
             InitializeComponent();
@@ -141,33 +150,14 @@ namespace CSCalculator
         private void btnCalc_Click(object sender, EventArgs e)
         {
             op2 = true;
+            double doubleresult = Convert.ToDouble(txtResult.Text);
             if (lastOp == "")
-                num = Convert.ToDouble(txtResult.Text);
+                num = doubleresult;
             else
-                re = Convert.ToDouble(txtResult.Text);
+                re = doubleresult;
             lastOp = op;
-            switch (op)
-            {
-                case "+":
-                    result = re + num;
-                    break;
-                case "-":
-                    result = re - num;
-                    break;
-                case "*":
-                    result = re * num;
-                    break;
-                case "/":
-                    result = re / num;
-                    break;
-                case "x²":
-                    result = Math.Pow(re, num);
-                    break;
-                default:
-                    break;
-            }
+            result = dicOp[op](re, num);
             txtResult.Text = Convert.ToString(result);
-
             this.history.Add(txtResult.Text);
         }
 
