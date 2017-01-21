@@ -15,8 +15,14 @@ namespace CSCalculator
         private double result;
         private bool op1 = false;
         private bool op2 = false;
-        Dictionary<string, Func<double, double, double>> dicOp =
-    new Dictionary<string, Func<double, double, double>>()
+        Dictionary<string, Func<double, double>> dic1 =
+        new Dictionary<string, Func<double, double>>()
+        {
+            { "√",(a)=> Math.Sqrt(a)},
+            { "+ -",(a)=> a * (-1) }
+        };
+        Dictionary<string, Func<double, double, double>> dic2 =
+        new Dictionary<string, Func<double, double, double>>()
         {
             { "+",(a,b)=> a + b  },
             { "-",(a,b)=> a - b  },
@@ -24,6 +30,7 @@ namespace CSCalculator
             { "/",(a,b)=> a / b  },
             { "x²",(a,b)=> Math.Pow(a, b)},
         };
+
         public frmCalc()
         {
             InitializeComponent();
@@ -38,23 +45,23 @@ namespace CSCalculator
         {
             Button b = sender as Button;
             lastOp = "";
-            if (txtResult.Text.Length <= 28)
+            if (txtR.Text.Length <= 28)
             {
                 if (op1 == true)
-                    txtResult.Text = "";
+                    txtR.Text = "";
                 op1 = false;
-                if (txtResult.Text != "0")
+                if (txtR.Text != "0")
                 {
                     if (op2 == false)
-                        txtResult.Text = txtResult.Text + b.Text;
+                        txtR.Text += b.Text;
                     else
                     {
-                        txtResult.Text = b.Text;
+                        txtR.Text = b.Text;
                         op2 = false;
                     }
                 }
                 else
-                    txtResult.Text = b.Text;
+                    txtR.Text = b.Text;
             }
         }
 
@@ -62,7 +69,7 @@ namespace CSCalculator
         {
             Button b = sender as Button;
             op = b.Text;
-            re = Convert.ToDouble(txtResult.Text);
+            re = Convert.ToDouble(txtR.Text);
             op1 = true;
             op2 = false;
             lastOp = "";
@@ -72,25 +79,10 @@ namespace CSCalculator
         {
             Button b = sender as Button;
             op = b.Text;
-            re = Convert.ToDouble(txtResult.Text);
+            re = Convert.ToDouble(txtR.Text);
             op1 = true;
-            switch (op)
-            {
-                case "√":
-                    op2 = true;
-                    lastOp = op;
-                    result = Math.Sqrt(re);
-                    txtResult.Text = Convert.ToString(result);
-                    break;
-                case "+ -":
-                    op2 = true;
-                    lastOp = op;
-                    result = re * (-1);
-                    txtResult.Text = Convert.ToString(result);
-                    break;
-                default:
-                    break;
-            }
+            result = dic1[op](re);
+            txtR.Text = result.ToString();
         }
 
 
@@ -98,16 +90,16 @@ namespace CSCalculator
         {
             if (op2 == false && lastOp == "")
             {
-                if (txtResult.Text.Length > 0 && txtResult.Text != "0")
-                    txtResult.Text = txtResult.Text.Remove(txtResult.Text.Length - 1);
-                if (txtResult.Text == "")
-                    txtResult.Text = "0";
+                if (txtR.Text.Length > 0 && txtR.Text != "0")
+                    txtR.Text = txtR.Text.Remove(txtR.Text.Length - 1);
+                if (txtR.Text == "")
+                    txtR.Text = "0";
             }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            txtResult.Text = "0";
+            txtR.Text = "0";
             lastOp = "";
             op2 = false;
         }
@@ -150,15 +142,15 @@ namespace CSCalculator
         private void btnCalc_Click(object sender, EventArgs e)
         {
             op2 = true;
-            double doubleresult = Convert.ToDouble(txtResult.Text);
+            double doubleresult = Convert.ToDouble(txtR.Text);
             if (lastOp == "")
                 num = doubleresult;
             else
                 re = doubleresult;
             lastOp = op;
-            result = dicOp[op](re, num);
-            txtResult.Text = Convert.ToString(result);
-            this.history.Add(txtResult.Text);
+            result = dic2[op](re, num);
+            txtR.Text = Convert.ToString(result);
+            this.history.Add(txtR.Text);
         }
 
         private void btn0_Click(object sender, EventArgs e)

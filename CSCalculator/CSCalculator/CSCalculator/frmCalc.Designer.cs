@@ -28,7 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
-            this.txtResult = new System.Windows.Forms.TextBox();
+            this.txtR = new System.Windows.Forms.TextBox();
             this.btnback = new System.Windows.Forms.Button();
             this.btn7 = new System.Windows.Forms.Button();
             this.btn8 = new System.Windows.Forms.Button();
@@ -52,20 +52,20 @@
             this.btnNegative = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // txtResult
+            // txtR
             // 
-            this.txtResult.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtResult.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtResult.Location = new System.Drawing.Point(12, 12);
-            this.txtResult.MaxLength = 1;
-            this.txtResult.Multiline = true;
-            this.txtResult.Name = "txtResult";
-            this.txtResult.ReadOnly = true;
-            this.txtResult.Size = new System.Drawing.Size(282, 47);
-            this.txtResult.TabIndex = 0;
-            this.txtResult.Text = "0";
-            this.txtResult.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtR.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtR.Cursor = System.Windows.Forms.Cursors.Default;
+            this.txtR.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtR.Location = new System.Drawing.Point(12, 12);
+            this.txtR.MaxLength = 1;
+            this.txtR.Multiline = true;
+            this.txtR.Name = "txtR";
+            this.txtR.ReadOnly = true;
+            this.txtR.Size = new System.Drawing.Size(282, 47);
+            this.txtR.TabIndex = 0;
+            this.txtR.Text = "0";
+            this.txtR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnback
             // 
@@ -306,7 +306,7 @@
             this.Controls.Add(this.btn8);
             this.Controls.Add(this.btn7);
             this.Controls.Add(this.btnback);
-            this.Controls.Add(this.txtResult);
+            this.Controls.Add(this.txtR);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -320,7 +320,7 @@
 
     #endregion
 
-    private System.Windows.Forms.TextBox txtResult;
+    private System.Windows.Forms.TextBox txtR;
     private System.Windows.Forms.Button btnback;
     private System.Windows.Forms.Button btn7;
     private System.Windows.Forms.Button btn8;
