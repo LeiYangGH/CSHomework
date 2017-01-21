@@ -53,7 +53,7 @@ namespace CSCalculator
         {
             Button b = sender as Button;
             op = b.Text;
-            re = double.Parse(txtResult.Text);
+            re = Convert.ToDouble(txtResult.Text);
             op1 = true;
             op2 = false;
             lastOp = "";
@@ -63,7 +63,7 @@ namespace CSCalculator
         {
             Button b = sender as Button;
             op = b.Text;
-            re = double.Parse(txtResult.Text);
+            re = Convert.ToDouble(txtResult.Text);
             op1 = true;
             switch (op)
             {
