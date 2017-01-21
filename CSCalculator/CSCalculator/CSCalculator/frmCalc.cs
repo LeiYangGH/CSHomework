@@ -140,62 +140,34 @@ namespace CSCalculator
 
         private void btnCalc_Click(object sender, EventArgs e)
         {
+            op2 = true;
+            if (lastOp == "")
+                num = Convert.ToDouble(txtResult.Text);
+            else
+                re = Convert.ToDouble(txtResult.Text);
+            lastOp = op;
             switch (op)
             {
                 case "+":
-                    op2 = true;
-                    if (lastOp == "")
-                        num = Convert.ToDouble(txtResult.Text);
-                    else
-                        re = Convert.ToDouble(txtResult.Text);
-                    lastOp = op;
                     result = re + num;
-                    txtResult.Text = Convert.ToString(result);
                     break;
-
                 case "-":
-                    op2 = true;
-                    if (lastOp == "")
-                        num = Convert.ToDouble(txtResult.Text);
-                    else
-                        re = Convert.ToDouble(txtResult.Text);
-                    lastOp = op;
                     result = re - num;
-                    txtResult.Text = Convert.ToString(result);
                     break;
                 case "*":
-                    op2 = true;
-                    if (lastOp == "")
-                        num = Convert.ToDouble(txtResult.Text);
-                    else
-                        re = Convert.ToDouble(txtResult.Text);
-                    lastOp = op;
                     result = re * num;
-                    txtResult.Text = Convert.ToString(result);
                     break;
                 case "/":
-                    op2 = true;
-                    if (lastOp == "")
-                        num = Convert.ToDouble(txtResult.Text);
-                    else
-                        re = Convert.ToDouble(txtResult.Text);
-                    lastOp = op;
                     result = re / num;
-                    txtResult.Text = Convert.ToString(result);
                     break;
                 case "x²":
-                    op2 = true;
-                    if (lastOp == "")
-                        num = Convert.ToDouble(txtResult.Text);
-                    else
-                        re = Convert.ToDouble(txtResult.Text);
-                    lastOp = op;
                     result = Math.Pow(re, num);
-                    txtResult.Text = Convert.ToString(result);
                     break;
                 default:
                     break;
             }
+            txtResult.Text = Convert.ToString(result);
+
             this.history.Add(txtResult.Text);
         }
 
