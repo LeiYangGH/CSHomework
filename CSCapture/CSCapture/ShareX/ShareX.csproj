@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C5AE4585-E9EC-4FA3-B75A-E1210635ACB6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShareX</RootNamespace>
+    <AssemblyName>ShareX</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>ShareX_Icon.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;RELEASE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Steam|AnyCPU'">
+    <OutputPath>bin\Steam\</OutputPath>
+    <DefineConstants>TRACE;STEAM</DefineConstants>
+    <Optimize>true</Optimize>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QrCode.Net.0.4.0.0\lib\net40\Gma.QrCodeNet.Encoding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SevenZipSharp, Version=0.64.3890.29348, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL">
+      <HintPath>..\packages\SevenZipSharp.0.64\lib\SevenZipSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CaptureTaskHelpers.cs" />
+    <Compile Include="ExportImportManager.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="ImageCombinerOptions.cs" />
+    <Compile Include="IntegrationHelpers.cs" />
+    <Compile Include="ScreenRecordManager.cs" />
+    <Compile Include="ImageData.cs" />
+    <Compile Include="ImageTag.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageHelper.cs" />
+    <Compile Include="TaskHelpers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskSettings.cs" />
+    <Compile Include="WatchFolder.cs" />
+    <Compile Include="WatchFolderManager.cs" />
+    <Compile Include="WatchFolderSettings.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="ApplicationConfig.cs" />
+    <Compile Include="TaskInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShareX.ScreenCaptureLib\ShareX.ScreenCaptureLib.csproj">
+      <Project>{DBDB0DAA-B3AE-4CC4-A8C2-20550B7F32E3}</Project>
+      <Name>ShareX.ScreenCaptureLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareX.HelpersLib\ShareX.HelpersLib.csproj">
+      <Project>{327750E1-9FB7-4CC3-8AEA-9BC42180CAD3}</Project>
+      <Name>ShareX.HelpersLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Resources\Rectangle.png" />
+    <None Include="Resources\camera.png" />
+    <None Include="Resources\navigation-090-button.png" />
+    <None Include="Resources\cross-button.png" />
+    <None Include="Resources\tick-button.png" />
+    <None Include="Resources\navigation-000-button.png" />
+    <None Include="Resources\application-block.png" />
+    <None Include="Resources\edit-scale.png" />
+    <None Include="Resources\drive-globe.png" />
+    <None Include="Resources\notebook.png" />
+    <None Include="Resources\image.png" />
+    <None Include="Resources\application-browser.png" />
+    <None Include="Resources\gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-task.png" />
+    <None Include="Resources\steam.ico" />
+    <None Include="Resources\camcorder-image.png" />
+    <None Include="Resources\toolbox.png" />
+    <None Include="Resources\application-icon-large.png" />
+    <None Include="Resources\upload-cloud.png" />
+    <None Include="Resources\image-export.png" />
+    <None Include="Resources\folder-open-image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\layer-shape-curve.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\layer-shape-polygon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\layer-shape.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\monitor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\layer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control-record.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checkbox_uncheck.png" />
+    <None Include="Resources\checkbox_check.png" />
+    <None Include="Resources\network-ip.png" />
+    <None Include="Resources\ruler-triangle.png" />
+    <None Include="Resources\application-network.png" />
+    <None Include="..\Lib\7z-x64.dll">
+      <Link>7z-x64.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Lib\7z.dll">
+      <Link>7z.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\barcode-2d.png" />
+    <None Include="Resources\GitHub.png" />
+    <None Include="Resources\Twitter.ico" />
+    <None Include="Resources\folder.png" />
+    <None Include="Resources\clipboard.png" />
+    <None Include="Resources\drive.png" />
+    <None Include="Resources\inbox.png" />
+    <None Include="Resources\arrow-090.png" />
+    <None Include="Resources\traffic-cone.png" />
+    <None Include="Resources\categories.png" />
+    <None Include="Resources\application-blog.png" />
+    <None Include="Resources\keyboard.png" />
+    <None Include="Resources\wrench-screwdriver.png" />
+    <None Include="Resources\clock.png" />
+    <None Include="Resources\heart.png" />
+    <None Include="Resources\crown.png" />
+    <None Include="Resources\globe-share.png" />
+    <None Include="Resources\document-copy.png" />
+    <None Include="Resources\image--pencil.png" />
+    <None Include="Resources\exclamation-button.png" />
+    <None Include="Resources\folder-open-document.png" />
+    <None Include="Resources\eraser.png" />
+    <None Include="Resources\layout-select-sidebar.png" />
+    <None Include="Resources\layout-select-content.png" />
+    <None Include="Resources\bin.png" />
+    <None Include="Resources\film.png" />
+    <None Include="Resources\TaskCompletedSound.wav" />
+    <None Include="Resources\ErrorSound.wav" />
+    <None Include="Resources\CaptureSound.wav" />
+    <None Include="Resources\tr.png" />
+    <None Include="Resources\au.png" />
+    <None Include="Resources\cn.png" />
+    <None Include="Resources\fr.png" />
+    <None Include="Resources\de.png" />
+    <None Include="Resources\hu.png" />
+    <None Include="Resources\globe.png" />
+    <None Include="Resources\us.png" />
+    <None Include="Resources\clipboard-list.png" />
+    <None Include="Resources\layer-transparent.png" />
+    <None Include="Resources\kr.png" />
+    <None Include="Resources\es.png" />
+    <None Include="Resources\nl.png" />
+    <None Include="Resources\document-globe.png" />
+    <None Include="Resources\keyboard--minus.png" />
+    <None Include="Resources\keyboard--plus.png" />
+    <None Include="Resources\images-stack.png" />
+    <None Include="Resources\br.png" />
+    <None Include="Resources\balloon-white.png" />
+    <None Include="Resources\cross.png" />
+    <None Include="Resources\arrow-270.png" />
+    <None Include="Resources\ru.png" />
+    <None Include="Resources\ui-scroll-pane-image.png" />
+    <None Include="Resources\document-break.png" />
+    <None Include="Resources\vn.png" />
+    <None Include="Resources\layout-select.png" />
+    <None Include="Resources\disk-black.png" />
+    <None Include="Resources\control.png" />
+    <None Include="Resources\information.png" />
+    <None Include="Resources\layer_fullscreen.png" />
+    <None Include="Resources\layers.png" />
+    <None Include="Resources\edit-drop-cap.png" />
+    <None Include="Resources\ui-menu-blue.png" />
+    <None Include="Resources\application-text-image.png" />
+    <None Include="Resources\clipboard-paste-image.png" />
+    <None Include="Resources\printer.png" />
+    <None Include="Resources\disk.png" />
+    <None Include="Resources\disk-rename.png" />
+    <None Include="Resources\disk-small.png" />
+    <None Include="Resources\application-terminal.png" />
+    <None Include="Resources\clipboard-block.png" />
+    <None Include="Resources\folder-stand.png" />
+    <None Include="Resources\application--arrow.png" />
+    <None Include="Resources\clipboard-paste-document-text.png" />
+    <None Include="Resources\globe--arrow.png" />
+    <None Include="Resources\Patreon_Button_01.png" />
+    <None Include="Resources\Patreon_Button_02.png" />
+    <None Include="Resources\drive-download.png" />
+    <None Include="Resources\drive-upload.png" />
+    <None Include="Resources\ui-splitter.png" />
+    <None Include="Resources\ui-toolbar--arrow.png" />
+    <None Include="Resources\layer--arrow.png" />
+    <None Include="Resources\clock--arrow.png" />
+    <None Include="Resources\camcorder--arrow.png" />
+    <None Include="Resources\film--arrow.png" />
+    <None Include="Resources\camcorder--exclamation.png" />
+    <None Include="Resources\application-home.png" />
+    <None Include="Resources\clipboard-task.png" />
+    <None Include="Resources\script--minus.png" />
+    <Content Include="ShareX_Icon.ico" />
+    <None Include="Resources\globe--pencil.png" />
+    <None Include="Resources\camcorder--pencil.png" />
+    <None Include="Resources\control-record-yellow.png" />
+    <None Include="Resources\application-monitor.png" />
+    <None Include="Resources\pencil.png" />
+    <None Include="Resources\folder-tree.png" />
+    <None Include="Resources\color.png" />
+    <None Include="Resources\image-saturation.png" />
+    <None Include="Resources\pipette.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
