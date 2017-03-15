@@ -1,0 +1,26 @@
+-------------------------------------------------------------------------------
+Performing Time: 3/3/2017 23:56:55 --> SYN Scan: About To Scan 8388608 IP For 4 Ports Using 1 Thread
+36.96.8.74       81    Open             
+36.96.8.241      8888  Open             
+36.96.11.96      81    Open             
+36.96.11.246     81    Open             
+36.96.12.52      81    Open             
+36.96.14.227     81    Open             
+
+-------------------------------------------------------------------------------
+Performing Time: 3/5/2017 4:14:26 --> SYN Scan: About To Scan 256 IP For 4 Ports Using 1 Thread
+203.174.4.178    80    Open             
+203.174.4.178    8888  Open             
+203.174.4.186    80    Open             
+Scan 256 IPs Complete In 0 Hours 0 Minutes 1 Seconds. Found 3 Hosts
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+Performing Time: 3/5/2017 4:14:27 --> SYN Scan: About To Scan 256 IP For 4 Ports Using 1 Thread
+Scan 256 IPs Complete In 0 Hours 0 Minutes 1 Seconds. Found 0 Hosts
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+Performing Time: 3/5/2017 4:14:27 --> SYN Scan: About To Scan 256 IP For 4 Ports Using 1 Thread
+Scan 256 IPs Complete In 0 Hours 0 Minutes 1 Seconds. Found 0 Hosts
+-------------------------------------------------------------------------------
