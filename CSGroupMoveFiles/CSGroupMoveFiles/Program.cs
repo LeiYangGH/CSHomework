@@ -12,11 +12,13 @@ namespace CSGroupMoveFiles
     {
         const string groupDirsFileName = "groupnames.txt";
         static List<string> lstGroupDirs = new List<string>();
-        static string curDir = @"C:\G\CSHomework\CSGroupMoveFiles\CSGroupMoveFiles\bin\Debug";// Environment.CurrentDirectory;
+        //static string curDir = @"C:\G\CSHomework\CSGroupMoveFiles\CSGroupMoveFiles\bin\Debug"; 
+        static string curDir = Environment.CurrentDirectory;
 
-        static void LoadDirsList()
+        static bool IsValidPdf(string fullName)
         {
-
+            Regex reg = new Regex(@"H[0-9H_]+");
+            return reg.IsMatch(Path.GetFileNameWithoutExtension(fullName));
         }
 
         static PDFFile ConvertToPdf(string fullName)
@@ -43,9 +45,8 @@ namespace CSGroupMoveFiles
 
         static List<PDFFile> GetAllPDFFiles()
         {
-            Regex reg = new Regex(@"H[0-9H_]+");
             var files = Directory.GetFiles(curDir, "*.pdf")
-                 .Where(x => reg.IsMatch(x))
+                 .Where(x => IsValidPdf(x))
                  .Select(x => ConvertToPdf(x));
             return files.ToList();
         }
@@ -77,7 +78,12 @@ namespace CSGroupMoveFiles
         {
             string fileName = e.FullPath;
             Console.WriteLine(fileName);
-            MoveOnePDF(ConvertToPdf(fileName));
+
+            if (IsValidPdf(fileName))
+            {
+                MoveOnePDF(ConvertToPdf(fileName));
+            }
+
         }
     }
 
