@@ -172,54 +172,39 @@ namespace CSGetWindowText
         public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
         static void TestNotepad()
         {
-            List<WinText> windows = new List<WinText>();
-            string title = "notepad";
             //string title = "Task Manager";
             //find the "first" window
-            //IntPtr hWnd = FindWindow(title, null);
-            IntPtr hWnd =(IntPtr) GetForegroundWindow();
-            while (hWnd != IntPtr.Zero)
-            {
-                //find the control window that has the text
-                IntPtr hEdit = FindWindowEx(hWnd, IntPtr.Zero, "Edit", null);
+            IntPtr hWnd = FindWindow("Notepad", null);
+            //IntPtr hWnd = (IntPtr)GetForegroundWindow();
+            Console.WriteLine("hWnd={0}", hWnd);
+            IntPtr hEdit = FindWindowEx(hWnd, IntPtr.Zero, "Edit", null);
+            Console.WriteLine("hEdit={0}", hEdit);
 
-                //initialize the buffer.  using a StringBuilder here
-                System.Text.StringBuilder sb = new System.Text.StringBuilder(255);  // or length from call with GETTEXTLENGTH
+            System.Text.StringBuilder sb = new System.Text.StringBuilder(255);  // or length from call with GETTEXTLENGTH
 
-                //get the text from the child control
-               SendMessage(hEdit, WM_GETTEXT, sb.Capacity, sb);
+            //get the text from the child control
+            SendMessage(hEdit, WM_GETTEXT, sb.Capacity, sb);
 
-                windows.Add(new WinText() { hWnd = hWnd, Text = sb.ToString() });
+            string text = sb.ToString();
+            Console.WriteLine(text);
 
-                //find the next window
-                hWnd = FindWindowEx(IntPtr.Zero, hWnd, title, null);
-            }
-
-            //do something clever
-            windows.OrderBy(x => x.Text).ToList().ForEach(y => Console.Write("{0} = {1}\n", y.hWnd, y.Text));
-
-            Console.Write("\n\nFound {0} window(s).", windows.Count);
-            Console.ReadKey();
         }
 
-        private struct WinText
-        {
-            public IntPtr hWnd;
-            public string Text;
-        }
-
+        
         static void Main(string[] args)
         {
+            Console.WriteLine("3秒...");
             Thread.Sleep(3000);
             Console.WriteLine("开始...");
-            while (true)
-            {
-                //TestA();
-                //TestB();
-                TestNotepad();
-                //GetVIM();
-                Thread.Sleep(500);
-            }
+            TestNotepad();
+
+            //while (true)
+            //{
+            //    //TestA();
+            //    //TestB();
+            //    //GetVIM();
+            //    Thread.Sleep(500);
+            //}
             Console.WriteLine("结束");
             Console.ReadLine();
         }
