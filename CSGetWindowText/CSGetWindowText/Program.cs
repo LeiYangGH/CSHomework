@@ -172,32 +172,71 @@ namespace CSGetWindowText
         public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
         static void TestNotepad()
         {
-            //string title = "Task Manager";
-            //find the "first" window
             IntPtr hWnd = FindWindow("Notepad", null);
-            //IntPtr hWnd = (IntPtr)GetForegroundWindow();
             Console.WriteLine("hWnd={0}", hWnd);
             IntPtr hEdit = FindWindowEx(hWnd, IntPtr.Zero, "Edit", null);
             Console.WriteLine("hEdit={0}", hEdit);
-
-            System.Text.StringBuilder sb = new System.Text.StringBuilder(255);  // or length from call with GETTEXTLENGTH
-
-            //get the text from the child control
+            System.Text.StringBuilder sb = new System.Text.StringBuilder(255);  // or length from call
             SendMessage(hEdit, WM_GETTEXT, sb.Capacity, sb);
-
             string text = sb.ToString();
             Console.WriteLine(text);
-
         }
 
-        
+        static void EnumAllChild(IntPtr h, Action<IntPtr> act)
+        {
+            foreach (IntPtr ch in GetChildWindows(h))
+            {
+                act(ch);
+                EnumAllChild(ch, act);
+            }
+        }
+
+
+        static void TestTaskManager()
+        {
+            IntPtr hWnd = FindWindow("TaskManagerWindow", null);
+            Console.WriteLine("hWnd={0}", hWnd);
+            IntPtr hNativeHWNDHost = FindWindowEx(hWnd, IntPtr.Zero, "NativeHWNDHost", null);
+            Console.WriteLine("hNativeHWNDHost={0}", hNativeHWNDHost.ToString("X"));
+            //IntPtr hTmWindow = FindWindowEx(hNativeHWNDHost, IntPtr.Zero, "TmWindow", null);
+
+            //Console.WriteLine("hTmWindow={0}", hTmWindow.ToString("X"));
+            EnumAllChild(hWnd, new Action<IntPtr>((h) =>
+             {
+                 //System.Text.StringBuilder sb = new System.Text.StringBuilder(255);
+                 //SendMessage(h, WM_GETTEXT, sb.Capacity, sb);
+                 //string text = sb.ToString();
+                 //Console.Write(text);
+
+
+                 StringBuilder b = new StringBuilder();
+                 GetWindowText((int)h, b, 256);
+                 string s = b.ToString();
+                 Console.Write(s);
+
+                 //Console.WriteLine(h.ToString("X"));
+             }));
+
+            //List<IntPtr> lst = GetChildWindows((IntPtr)hNativeHWNDHost);
+            //foreach (IntPtr p in lst)
+            //{
+            //    Console.WriteLine(p.ToString("X"));
+            //}
+
+            //Console.WriteLine();
+            //System.Text.StringBuilder sb = new System.Text.StringBuilder(255);
+            //SendMessage(hEdit, WM_GETTEXT, sb.Capacity, sb);
+            //string text = sb.ToString();
+            //Console.WriteLine(text);
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("3秒...");
             Thread.Sleep(3000);
             Console.WriteLine("开始...");
-            TestNotepad();
-
+            //TestNotepad();
+            TestTaskManager();
             //while (true)
             //{
             //    //TestA();

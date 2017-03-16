@@ -12,7 +12,7 @@ namespace CSGroupMoveFiles
     {
         const string groupDirsFileName = "groupnames.txt";
         static List<string> lstGroupDirs = new List<string>();
-        //static string curDir = @"C:\G\CSHomework\CSGroupMoveFiles\CSGroupMoveFiles\bin\Debug"; 
+        //static string curDir = @"C:\G\CSHomework\CSGroupMoveFiles\CSGroupMoveFiles\bin\Debug";
         static string curDir = Environment.CurrentDirectory;
 
         static bool IsValidPdf(string fullName)
@@ -24,10 +24,13 @@ namespace CSGroupMoveFiles
         static PDFFile ConvertToPdf(string fullName)
         {
             string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fullName);
+            Regex reg = new Regex(@"(H[0-9]+)[0-9]");
+            string groupName = reg.Match(fileNameWithoutExtension).Groups[1].Value;
+            //Console.WriteLine("groupName={0}", groupName);
             return new PDFFile(
                 fullName,
                 Path.GetFileName(fullName),
-               fileNameWithoutExtension.Substring(0, fileNameWithoutExtension.Length - 1));
+                groupName);
         }
 
         static void MoveOnePDF(PDFFile pdf)
@@ -60,16 +63,15 @@ namespace CSGroupMoveFiles
 
         static void Main(string[] args)
         {
-
-            Console.WriteLine("用法：把exe放在放pdf的文件夹里，运行，会在此文件夹内创建分组目录并移动所属文件。目前只支持文件名1～倒数第2位为分组标准。\n然后启动监控，有pdf文件创建则进行处理。任意键开始处理...");
+            Console.WriteLine("用法：把exe放在放pdf的文件夹里，运行，会在此文件夹内创建分组目录并移动所属文件。目前只支持文件名1～_符号前（也可以没有）倒数第2位为分组标准。\n然后启动监控，有pdf文件创建则进行处理。任意键开始处理...");
             Console.ReadKey();
 
             GroupAllFilesAtStart();
 
-
             Console.WriteLine("现有文件处理结束!下面开始监控新建pdf...");
             FileSystemWatcher fw = new FileSystemWatcher(curDir, "*.pdf");
             fw.Created += Fw_Created;
+            //下面这句就是开启监控，改成false则不监控
             fw.EnableRaisingEvents = true;
             Console.ReadLine();
         }
@@ -77,13 +79,10 @@ namespace CSGroupMoveFiles
         private static void Fw_Created(object sender, FileSystemEventArgs e)
         {
             string fileName = e.FullPath;
-            Console.WriteLine(fileName);
-
             if (IsValidPdf(fileName))
             {
                 MoveOnePDF(ConvertToPdf(fileName));
             }
-
         }
     }
 
