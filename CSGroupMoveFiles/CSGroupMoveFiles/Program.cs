@@ -10,19 +10,23 @@ namespace CSGroupMoveFiles
 {
     class Program
     {
-        const string groupDirsFileName = "groupnames.txt";
         static List<string> lstGroupDirs = new List<string>();
-        //static string curDir = @"C:\Users\yanglei2\Downloads\效果示例\H_SCANDATA（根目录）_效果前 - Copy\新PDF存放文件夹";
+#if DEBUG
+        static string curDir = @"C:\Users\yanglei2\Downloads\效果示例\H_SCANDATA（根目录）_效果前 - Copy\新PDF存放文件夹";
+#else
         static string curDir = Environment.CurrentDirectory;
+#endif
+
         static string rangeGroupParentDir;
 
         static bool IsValidPdf(string fullName)
         {
             Regex reg = new Regex(@"H[0-9]{7}(?![0-9])");
-            Console.WriteLine(fullName);
-            bool b = reg.IsMatch(Path.GetFileNameWithoutExtension(fullName));
-            Console.WriteLine(b);
-            return b;
+            return reg.IsMatch(Path.GetFileNameWithoutExtension(fullName));
+            //Console.WriteLine(fullName);
+            //bool b = reg.IsMatch(Path.GetFileNameWithoutExtension(fullName));
+            //Console.WriteLine(b);
+            //return b;
         }
 
         static List<PDFFile> GetAllPDFFiles()
@@ -47,23 +51,20 @@ namespace CSGroupMoveFiles
 
         static void Main(string[] args)
         {
-            //int num = 256;
-            //int d = num / 250;
-            //int d1 = d * 250 + 1;
-            //int d2 = d1 + 250;
-            //Console.WriteLine(d1);
-            //Console.WriteLine(d2 - 1);
-            //Console.ReadLine();
 
-            //return;
+
             Console.WriteLine("当前路径：{0}", curDir);
             rangeGroupParentDir = GetRangeGroupParentDir();
             PDFFile.curDir = curDir;
             PDFFile.rangeGroupParentDir = rangeGroupParentDir;
 
+#if DEBUG
 
-            Console.WriteLine("用法：把exe放在放新建pdf的文件夹里，运行，会在此文件夹内寻找符合格式的pdf，在上一层创建类似H3-00001_H3-00250/H300001的目录，动所属文件，并备份到pdf当前路径类似20170316的目录\n合法文件名判断依据：H开头，后面7位数字，如果后面还有则必须不能为数字\n，如果与已经分组的现有文件重名，则不移动\n如果与已备份文件重名，则先根据当前时间重命名再备份。\n任意键开始处理...");
-            Console.ReadKey();
+#else
+                   Console.WriteLine("用法：把exe放在放新建pdf的文件夹里，运行，会在此文件夹内寻找符合格式的pdf，在上一层创建类似H3-00001_H3-00250/H300001的目录，并移动所属文件，并备份到pdf当前路径类似20170316的目录\n合法文件名判断依据：H开头，后面7位数字，如果后面还有则必须不能为数字\n，如果与已经分组的现有文件重名(前8位相同)，且不以_rm结尾则不移动\n如果目标范围文件夹不存在则不移动\n如果与已备份文件完全重名，则不移动\n任意键开始处理...");
+                  Console.ReadKey();
+#endif
+
 
             GroupMoveAllFiles();
 
@@ -104,12 +105,12 @@ namespace CSGroupMoveFiles
             int num = Convert.ToInt32(groupName.Substring(2));
             int d = num / GroupRangeLength;
             int d1 = d * GroupRangeLength + 1;
-            int d2 = d1 + GroupRangeLength;
+            int d2 = d1 + GroupRangeLength - 1;
             string groupRangeName = string.Format("H{0}-{1}_H{0}-{2}",
                 groupName.Substring(1, 1),
                 d1.ToString().PadLeft(5, '0'),
                 d2.ToString().PadLeft(5, '0'));
-            Console.WriteLine(groupRangeName);
+            //Console.WriteLine(groupRangeName);
             return groupRangeName;
         }
 
@@ -125,32 +126,41 @@ namespace CSGroupMoveFiles
             Console.WriteLine("备份文件{0}", this.ShortName);
             if (File.Exists(des))
             {
-                Console.WriteLine("文件{0}已经存在，重命名...", this.ShortName);
-                des = Path.Combine(backDir, this.ShortNameWithoutExt + "重命名" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".pdf");
+                Console.WriteLine("文件{0}已经存在，备份失败（理论上不应该有这种情况）", this.ShortName);
             }
-            File.Copy(this.FullName, des, false);
+            else
+                File.Copy(this.FullName, des, false);
+        }
+
+        private bool ExistGrouped8FileName(string dir)
+        {
+            string group8Name = this.ShortNameWithoutExt.Substring(0, 8);
+            return (Directory.GetFiles(dir, "*.pdf").Select(x => Path.GetFileNameWithoutExtension(x))
+                .Any(x => x.StartsWith(group8Name)));
         }
 
         public void Move()
         {
-            string dir = Path.Combine(PDFFile.rangeGroupParentDir, this.GroupRangeName, this.GroupName);
-            if (!Directory.Exists(dir))
+            string desDir = Path.Combine(PDFFile.rangeGroupParentDir, this.GroupRangeName, this.GroupName);
+            if (!Directory.Exists(desDir))
             {
-                Directory.CreateDirectory(dir);
-                Console.WriteLine("创建文件夹---{0}---", this.GroupName);
+                Console.WriteLine("文件无法移动，因为文件夹不存在:\n{0}\n{1}\n", this.ShortNameWithoutExt, this.GroupRangeName);
+                return;
             }
-            string des = Path.Combine(dir, this.ShortName);
-            Console.WriteLine("移动文件{0}", this.ShortName);
+            string desFullName = Path.Combine(desDir, this.ShortName);
+
+
+
+            if (!this.ShortNameWithoutExt.EndsWith("_rm") && ExistGrouped8FileName(desDir))
+            {
+                Console.WriteLine("目标文件夹内已存在相同前8位文件名的文件，未移动，但已重命名:\n{0}\n{1}\n", this.ShortName, this.GroupName);
+                File.Move(this.FullName, Path.Combine(curDir, this.ShortNameWithoutExt + "_重命名.pdf"));
+                return;
+            }
+
+            Console.WriteLine("备份并移动文件{0}", this.ShortName);
             this.Backup();
-            if (File.Exists(des))
-            {
-                Console.WriteLine("文件{0}已经存在！", this.ShortName);
-                File.Delete(this.FullName);
-            }
-            else
-            {
-                File.Move(this.FullName, des);
-            }
+            File.Move(this.FullName, desFullName);
         }
 
     }
