@@ -98,6 +98,7 @@
             // 
             // ygbh
             // 
+            this.ygbh.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.ygbh.Location = new System.Drawing.Point(368, 75);
             this.ygbh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ygbh.Name = "ygbh";
@@ -141,6 +142,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmLogin";
             this.Text = "欢迎登录zcc工资管理系统";
+            this.Load += new System.EventHandler(this.frmLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

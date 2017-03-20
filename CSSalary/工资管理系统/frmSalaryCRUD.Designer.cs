@@ -102,14 +102,16 @@
             // 
             this.gongzibiaoALLDataGridView.AllowUserToAddRows = false;
             this.gongzibiaoALLDataGridView.AllowUserToDeleteRows = false;
+            this.gongzibiaoALLDataGridView.AllowUserToResizeRows = false;
             this.gongzibiaoALLDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gongzibiaoALLDataGridView.Location = new System.Drawing.Point(-3, 382);
             this.gongzibiaoALLDataGridView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gongzibiaoALLDataGridView.Name = "gongzibiaoALLDataGridView";
             this.gongzibiaoALLDataGridView.RowTemplate.Height = 23;
             this.gongzibiaoALLDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gongzibiaoALLDataGridView.Size = new System.Drawing.Size(1317, 310);
+            this.gongzibiaoALLDataGridView.Size = new System.Drawing.Size(1524, 310);
             this.gongzibiaoALLDataGridView.TabIndex = 9;
+            this.gongzibiaoALLDataGridView.SelectionChanged += new System.EventHandler(this.gongzibiaoALLDataGridView_SelectionChanged);
             // 
             // btnSearch
             // 
@@ -120,7 +122,7 @@
             this.btnSearch.TabIndex = 10;
             this.btnSearch.Text = "查询";
             this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.button1_Click);
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // grpCRUD
             // 
@@ -138,7 +140,7 @@
             this.grpCRUD.Controls.Add(this.label4);
             this.grpCRUD.Location = new System.Drawing.Point(12, 93);
             this.grpCRUD.Name = "grpCRUD";
-            this.grpCRUD.Size = new System.Drawing.Size(1302, 261);
+            this.grpCRUD.Size = new System.Drawing.Size(1509, 261);
             this.grpCRUD.TabIndex = 12;
             this.grpCRUD.TabStop = false;
             this.grpCRUD.Text = "增删改查";
@@ -161,6 +163,7 @@
             this.btnDel.TabIndex = 2;
             this.btnDel.Text = "删除";
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btnUpdate
             // 
@@ -250,7 +253,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1332, 805);
+            this.ClientSize = new System.Drawing.Size(1549, 805);
             this.Controls.Add(this.grpCRUD);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.gongzibiaoALLDataGridView);

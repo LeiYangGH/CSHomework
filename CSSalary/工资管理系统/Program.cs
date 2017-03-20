@@ -16,8 +16,13 @@ namespace 工资管理系统
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 #if TEST
-            frmLogin.userID = "20120619001";
-            frmLogin.userName = "张总";
+
+            frmLogin.GetAllUsers();
+            //frmLogin.userID = "20120619001";
+            //frmLogin.userName = "张总";
+            var firstRow = frmLogin.AllUsersDt.First();
+            frmLogin.userID = firstRow.员工编号;
+            frmLogin.userName = firstRow.姓名;
             frmLogin.isAdmin = true;
             Application.Run(new frmSalaryCRUD());//加不加效果一样？！
 #else

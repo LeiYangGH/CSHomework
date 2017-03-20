@@ -5,7 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using 工资管理系统.biyeshejiDataSetTableAdapters;
 
 namespace 工资管理系统
 {
@@ -14,7 +16,7 @@ namespace 工资管理系统
         public static bool isAdmin;
         public static string userID;
         public static string userName;
-
+        public static biyeshejiDataSet.yuangongbiaoDataTable AllUsersDt = new biyeshejiDataSet.yuangongbiaoDataTable();
         public frmLogin()
         {
             InitializeComponent();
@@ -28,6 +30,12 @@ namespace 工资管理系统
         private void gly_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public static void GetAllUsers()
+        {
+            yuangongbiaoTableAdapter yuangongbiaoTableAdapter = new yuangongbiaoTableAdapter();
+            yuangongbiaoTableAdapter.Fill(frmLogin.AllUsersDt);
         }
 
         private void dlan_Click(object sender, EventArgs e)
@@ -58,6 +66,13 @@ namespace 工资管理系统
             Close();
         }
 
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+#if TEST
 
+#else
+            GetAllUsers();
+#endif
+        }
     }
 }
