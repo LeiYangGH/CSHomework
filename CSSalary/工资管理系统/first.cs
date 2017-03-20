@@ -16,7 +16,7 @@ namespace 工资管理系统
             InitializeComponent();
         }
 
-      
+
 
         private void 退出系统ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -25,37 +25,34 @@ namespace 工资管理系统
 
         private void 版权ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            banquan  frm = new banquan();
+            banquan frm = new banquan();
             frm.Show();
         }
 
         private void 帮助ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            help  frm = new help();
+            help frm = new help();
             frm.Show();
         }
 
-       
+        private void SetAdminVisible(bool isAdmin)
+        {
+            添加新记录ToolStripMenuItem.Enabled = isAdmin;
+            工资管理ToolStripMenuItem.Enabled = isAdmin;
+            if (isAdmin)
+            {
+                ztlHM.Text = "您好，" + frmLogin.userName + "管理员，欢迎使用本系统！";
+            }
+            else
+            {
+                ztlHM.Text = "欢迎使用本系统！";
+            }
+        }
 
         private void gongziguanli_Load(object sender, EventArgs e)
         {
-           
-            if (CPublic.guanliyuan)//权限有问题，两者设反了。
-            {
-                ztlHM.Text = "您好，" + CPublic.LoginInfo["姓名"] + "管理员，欢迎使用本系统！";
-               
-            }
-                else 
-                {
-                    ztlHM.Text = "您好，" + CPublic.LoginInfo["姓名"] + "管理员，欢迎使用本系统！";
-                    添加新记录ToolStripMenuItem.Enabled = false;
-                    工资管理ToolStripMenuItem.Enabled = false;
-                
-
-                }
-                    
-
-            }
+            this.SetAdminVisible(frmLogin.isAdmin);
+        }
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -98,7 +95,7 @@ namespace 工资管理系统
 
         private void gongzibiaoBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            
+
 
         }
 
@@ -112,6 +109,11 @@ namespace 工资管理系统
             zhuce frm = new zhuce();
             frm.Show();
         }
+
+        private void first_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
+}
 

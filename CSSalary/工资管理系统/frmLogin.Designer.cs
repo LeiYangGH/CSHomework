@@ -1,6 +1,6 @@
 ﻿namespace 工资管理系统
 {
-    partial class dl
+    partial class frmLogin
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -41,9 +41,10 @@
             // 
             // dlan
             // 
-            this.dlan.Location = new System.Drawing.Point(112, 157);
+            this.dlan.Location = new System.Drawing.Point(168, 262);
+            this.dlan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dlan.Name = "dlan";
-            this.dlan.Size = new System.Drawing.Size(75, 23);
+            this.dlan.Size = new System.Drawing.Size(112, 38);
             this.dlan.TabIndex = 0;
             this.dlan.Text = "登录";
             this.dlan.UseVisualStyleBackColor = true;
@@ -51,9 +52,10 @@
             // 
             // tcan
             // 
-            this.tcan.Location = new System.Drawing.Point(270, 157);
+            this.tcan.Location = new System.Drawing.Point(405, 262);
+            this.tcan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tcan.Name = "tcan";
-            this.tcan.Size = new System.Drawing.Size(75, 23);
+            this.tcan.Size = new System.Drawing.Size(112, 38);
             this.tcan.TabIndex = 1;
             this.tcan.Text = "退出";
             this.tcan.UseVisualStyleBackColor = true;
@@ -62,9 +64,12 @@
             // gly
             // 
             this.gly.AutoSize = true;
-            this.gly.Location = new System.Drawing.Point(209, 119);
+            this.gly.Checked = true;
+            this.gly.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.gly.Location = new System.Drawing.Point(314, 198);
+            this.gly.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gly.Name = "gly";
-            this.gly.Size = new System.Drawing.Size(60, 16);
+            this.gly.Size = new System.Drawing.Size(83, 24);
             this.gly.TabIndex = 2;
             this.gly.Text = "管理员";
             this.gly.UseVisualStyleBackColor = true;
@@ -73,9 +78,10 @@
             // srygbh
             // 
             this.srygbh.AutoSize = true;
-            this.srygbh.Location = new System.Drawing.Point(162, 48);
+            this.srygbh.Location = new System.Drawing.Point(243, 80);
+            this.srygbh.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.srygbh.Name = "srygbh";
-            this.srygbh.Size = new System.Drawing.Size(77, 12);
+            this.srygbh.Size = new System.Drawing.Size(105, 20);
             this.srygbh.TabIndex = 3;
             this.srygbh.Text = "输入员工编号";
             this.srygbh.Click += new System.EventHandler(this.label1_Click);
@@ -83,43 +89,47 @@
             // srmm
             // 
             this.srmm.AutoSize = true;
-            this.srmm.Location = new System.Drawing.Point(172, 75);
+            this.srmm.Location = new System.Drawing.Point(258, 125);
+            this.srmm.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.srmm.Name = "srmm";
-            this.srmm.Size = new System.Drawing.Size(53, 12);
+            this.srmm.Size = new System.Drawing.Size(73, 20);
             this.srmm.TabIndex = 4;
             this.srmm.Text = "输入密码";
             // 
             // ygbh
             // 
-            this.ygbh.Location = new System.Drawing.Point(245, 45);
+            this.ygbh.Location = new System.Drawing.Point(368, 75);
+            this.ygbh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ygbh.Name = "ygbh";
-            this.ygbh.Size = new System.Drawing.Size(100, 21);
+            this.ygbh.Size = new System.Drawing.Size(148, 26);
             this.ygbh.TabIndex = 5;
-            this.ygbh.Text = "20170619001";
+            this.ygbh.Text = "20120619001";
             this.ygbh.UseWaitCursor = true;
             // 
             // mm
             // 
-            this.mm.Location = new System.Drawing.Point(245, 72);
+            this.mm.Location = new System.Drawing.Point(368, 120);
+            this.mm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.mm.Name = "mm";
-            this.mm.Size = new System.Drawing.Size(100, 21);
+            this.mm.Size = new System.Drawing.Size(148, 26);
             this.mm.TabIndex = 6;
-            this.mm.Text = "777001";
+            this.mm.Text = "gly001";
             this.mm.UseSystemPasswordChar = true;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(27, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(40, 20);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 110);
+            this.pictureBox1.Size = new System.Drawing.Size(150, 183);
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
-            // dl
+            // frmLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(460, 233);
+            this.ClientSize = new System.Drawing.Size(690, 388);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.mm);
             this.Controls.Add(this.ygbh);
@@ -128,7 +138,8 @@
             this.Controls.Add(this.gly);
             this.Controls.Add(this.tcan);
             this.Controls.Add(this.dlan);
-            this.Name = "dl";
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Name = "frmLogin";
             this.Text = "欢迎登录zcc工资管理系统";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

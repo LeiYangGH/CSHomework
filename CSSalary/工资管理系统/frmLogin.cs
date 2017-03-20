@@ -9,9 +9,12 @@ using System.Windows.Forms;
 
 namespace 工资管理系统
 {
-    public partial class dl : Form
+    public partial class frmLogin : Form
     {
-        public dl()
+        public static bool isAdmin;
+        public static string userName;
+
+        public frmLogin()
         {
             InitializeComponent();
         }
@@ -23,23 +26,29 @@ namespace 工资管理系统
 
         private void gly_CheckedChanged(object sender, EventArgs e)
         {
-     
+
         }
 
         private void dlan_Click(object sender, EventArgs e)
         {
-            if(gly.Checked)
-            CPublic.Checkguanliyuan(ygbh.Text, mm.Text);
+            bool loginSuccess;
+            if (this.gly.Checked)
+                loginSuccess = DataAccess.Checkguanliyuan(ygbh.Text, mm.Text, out frmLogin.userName);
             else
-            CPublic.Checkusers(ygbh.Text, mm.Text);
+                loginSuccess = DataAccess.Checkusers(ygbh.Text, mm.Text);
 
-            if (CPublic.LoginInfo == null) MessageBox.Show("请输入正确的员工编号或密码", "登录失败",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            if (loginSuccess)
+            {
+                this.Hide();
+                frmLogin.isAdmin = this.gly.Checked;
+                first frm = new first();
+                frm.ShowDialog();
+            }
             else
             {
-                first frm = new first();
-                frm.Show();
+                MessageBox.Show("请输入正确的员工编号或密码", "登录失败", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-          
+
         }
 
         private void tcan_Click(object sender, EventArgs e)
@@ -47,6 +56,6 @@ namespace 工资管理系统
             Close();
         }
 
-       
+
     }
 }

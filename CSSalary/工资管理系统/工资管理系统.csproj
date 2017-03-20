@@ -64,12 +64,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>biyeshejiDataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="CPublic.cs" />
-    <Compile Include="denglu.cs">
+    <Compile Include="DataAccess.cs" />
+    <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="denglu.Designer.cs">
-      <DependentUpon>denglu.cs</DependentUpon>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="gongziguanli.cs">
       <SubType>Form</SubType>
@@ -103,8 +103,8 @@
     <EmbeddedResource Include="help.resx">
       <DependentUpon>help.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="denglu.resx">
-      <DependentUpon>denglu.cs</DependentUpon>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="first.resx">
       <DependentUpon>first.cs</DependentUpon>

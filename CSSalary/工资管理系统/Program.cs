@@ -15,8 +15,8 @@ namespace 工资管理系统
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run (new dl());
-            Application.Run(new first());//加不加效果一样？！
+            Application.Run (new frmLogin());
+            //Application.Run(new first());//加不加效果一样？！
 
           
         }
