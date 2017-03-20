@@ -1281,10 +1281,10 @@ namespace 工资管理系统 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public gongzibiaoALLRow AddgongzibiaoALLRow(double ID, System.DateTime 年月, string 姓名, string 员工编号, string 工龄工资, string 基本工资, string 奖金, double 合计, double 扣除, string 备注) {
+            public gongzibiaoALLRow AddgongzibiaoALLRow(System.DateTime 年月, string 姓名, string 员工编号, string 工龄工资, string 基本工资, string 奖金, double 合计, double 扣除, string 备注) {
                 gongzibiaoALLRow rowgongzibiaoALLRow = ((gongzibiaoALLRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        ID,
+                        null,
                         年月,
                         姓名,
                         员工编号,
@@ -1301,7 +1301,7 @@ namespace 工资管理系统 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public gongzibiaoALLRow FindByID(double ID) {
+            public gongzibiaoALLRow FindByID(int ID) {
                 return ((gongzibiaoALLRow)(this.Rows.Find(new object[] {
                             ID})));
             }
@@ -1338,7 +1338,7 @@ namespace 工资管理系统 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(double), null, global::System.Data.MappingType.Element);
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
                 this.column年月 = new global::System.Data.DataColumn("年月", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column年月);
@@ -1360,6 +1360,8 @@ namespace 工资管理系统 {
                 base.Columns.Add(this.column备注);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
+                this.columnID.AutoIncrement = true;
+                this.columnID.AutoIncrementSeed = 1;
                 this.columnID.AllowDBNull = false;
                 this.columnID.Unique = true;
                 this.column姓名.MaxLength = 255;
@@ -2807,9 +2809,9 @@ namespace 工资管理系统 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public double ID {
+            public int ID {
                 get {
-                    return ((double)(this[this.tablegongzibiaoALL.IDColumn]));
+                    return ((int)(this[this.tablegongzibiaoALL.IDColumn]));
                 }
                 set {
                     this[this.tablegongzibiaoALL.IDColumn] = value;
