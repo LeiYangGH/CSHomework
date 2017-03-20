@@ -46,10 +46,8 @@ namespace 工资管理系统
 
         }
 
-
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void SetFieldValues(biyeshejiDataSet.gongzibiaoALLRow row)
         {
-            biyeshejiDataSet.gongzibiaoALLRow row = this.dt.NewgongzibiaoALLRow();
             row.员工编号 = this.txtID.Text.Trim();
             row.姓名 = this.txtName.Text.Trim();
             row.基本工资 = Convert.ToDouble(this.txtBasicSalary.Text.Trim());
@@ -58,7 +56,18 @@ namespace 工资管理系统
             row.扣除 = Convert.ToDouble(this.txtDeduct.Text.Trim());
             row.合计 = row.基本工资 + row.工龄工资 + row.奖金 - row.扣除;
             row.年月 = DateTime.Now.Date;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            biyeshejiDataSet.gongzibiaoALLRow row = this.dt.NewgongzibiaoALLRow();
+            this.SetFieldValues(row);
             this.dt.Rows.Add(row);
+        }
+
+        biyeshejiDataSet.gongzibiaoALLRow GetSelectedRowByID()
+        {
+            return this.dt.FirstOrDefault(x => x.员工编号 == this.txtID.Text.Trim());
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -72,6 +81,19 @@ namespace 工资管理系统
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            var selRow = this.GetSelectedRowByID();
+            if (selRow == null)
+            {
+                MessageBox.Show("没有ID对应的数据，无法更新！");
+                return;
+            }
+            this.SetFieldValues(selRow);
         }
     }
 }
