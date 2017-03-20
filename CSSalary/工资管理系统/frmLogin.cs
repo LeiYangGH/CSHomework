@@ -41,7 +41,7 @@ namespace 工资管理系统
             {
                 this.Hide();
                 frmLogin.isAdmin = this.gly.Checked;
-                first frm = new first();
+                frmMain frm = new frmMain();
                 frm.ShowDialog();
             }
             else

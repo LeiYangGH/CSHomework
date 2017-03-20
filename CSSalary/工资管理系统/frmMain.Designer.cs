@@ -1,6 +1,6 @@
 ﻿namespace 工资管理系统
 {
-    partial class first
+    partial class frmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -183,7 +183,6 @@
             this.tableAdapterManager.UpdateOrder = 工资管理系统.biyeshejiDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.usersTableAdapter = null;
             this.tableAdapterManager.yuangongbiaoTableAdapter = null;
-            this.tableAdapterManager.粘贴错误TableAdapter = null;
             // 
             // first
             // 

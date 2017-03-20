@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace 工资管理系统
 {
-    public partial class first : Form
+    public partial class frmMain : Form
     {
-        public first()
+        public frmMain()
         {
             InitializeComponent();
         }
@@ -66,7 +66,7 @@ namespace 工资管理系统
 
         private void 工资修改ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            gongziguanli frm = new gongziguanli();
+            frmSalaryCRUD frm = new frmSalaryCRUD();
             frm.Show();
         }
 
