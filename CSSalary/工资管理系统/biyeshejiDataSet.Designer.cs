@@ -1281,7 +1281,7 @@ namespace 工资管理系统 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public gongzibiaoALLRow AddgongzibiaoALLRow(System.DateTime 年月, string 姓名, string 员工编号, string 工龄工资, string 基本工资, string 奖金, double 合计, double 扣除, string 备注) {
+            public gongzibiaoALLRow AddgongzibiaoALLRow(System.DateTime 年月, string 姓名, string 员工编号, double 工龄工资, double 基本工资, double 奖金, double 合计, double 扣除, string 备注) {
                 gongzibiaoALLRow rowgongzibiaoALLRow = ((gongzibiaoALLRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1346,11 +1346,11 @@ namespace 工资管理系统 {
                 base.Columns.Add(this.column姓名);
                 this.column员工编号 = new global::System.Data.DataColumn("员工编号", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column员工编号);
-                this.column工龄工资 = new global::System.Data.DataColumn("工龄工资", typeof(string), null, global::System.Data.MappingType.Element);
+                this.column工龄工资 = new global::System.Data.DataColumn("工龄工资", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column工龄工资);
-                this.column基本工资 = new global::System.Data.DataColumn("基本工资", typeof(string), null, global::System.Data.MappingType.Element);
+                this.column基本工资 = new global::System.Data.DataColumn("基本工资", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column基本工资);
-                this.column奖金 = new global::System.Data.DataColumn("奖金", typeof(string), null, global::System.Data.MappingType.Element);
+                this.column奖金 = new global::System.Data.DataColumn("奖金", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column奖金);
                 this.column合计 = new global::System.Data.DataColumn("合计", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column合计);
@@ -1366,9 +1366,6 @@ namespace 工资管理系统 {
                 this.columnID.Unique = true;
                 this.column姓名.MaxLength = 255;
                 this.column员工编号.MaxLength = 255;
-                this.column工龄工资.MaxLength = 255;
-                this.column基本工资.MaxLength = 255;
-                this.column奖金.MaxLength = 255;
                 this.column备注.MaxLength = 255;
             }
             
@@ -2868,10 +2865,10 @@ namespace 工资管理系统 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string 工龄工资 {
+            public double 工龄工资 {
                 get {
                     try {
-                        return ((string)(this[this.tablegongzibiaoALL.工龄工资Column]));
+                        return ((double)(this[this.tablegongzibiaoALL.工龄工资Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'工龄工资\' in table \'gongzibiaoALL\' is DBNull.", e);
@@ -2884,10 +2881,10 @@ namespace 工资管理系统 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string 基本工资 {
+            public double 基本工资 {
                 get {
                     try {
-                        return ((string)(this[this.tablegongzibiaoALL.基本工资Column]));
+                        return ((double)(this[this.tablegongzibiaoALL.基本工资Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'基本工资\' in table \'gongzibiaoALL\' is DBNull.", e);
@@ -2900,10 +2897,10 @@ namespace 工资管理系统 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string 奖金 {
+            public double 奖金 {
                 get {
                     try {
-                        return ((string)(this[this.tablegongzibiaoALL.奖金Column]));
+                        return ((double)(this[this.tablegongzibiaoALL.奖金Column]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'奖金\' in table \'gongzibiaoALL\' is DBNull.", e);

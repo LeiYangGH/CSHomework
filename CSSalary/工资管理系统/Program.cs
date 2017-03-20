@@ -15,11 +15,15 @@ namespace 工资管理系统
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run (new frmLogin());
+#if TEST
+            frmLogin.userID = "20120619001";
             frmLogin.userName = "张总";
             frmLogin.isAdmin = true;
-            //Application.Run(new frmMain());//加不加效果一样？！
             Application.Run(new frmSalaryCRUD());//加不加效果一样？！
+#else
+            Application.Run(new frmLogin());
+#endif
+
         }
     }
 }

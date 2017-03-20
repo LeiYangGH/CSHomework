@@ -12,6 +12,7 @@ namespace 工资管理系统
     public partial class frmLogin : Form
     {
         public static bool isAdmin;
+        public static string userID;
         public static string userName;
 
         public frmLogin()
@@ -41,6 +42,7 @@ namespace 工资管理系统
             {
                 this.Hide();
                 frmLogin.isAdmin = this.gly.Checked;
+                frmLogin.userID = this.ygbh.Text;
                 frmMain frm = new frmMain();
                 frm.ShowDialog();
             }
