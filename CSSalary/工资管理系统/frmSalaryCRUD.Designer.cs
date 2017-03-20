@@ -32,23 +32,22 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.gongzibiaoALLTableAdapter = new 工资管理系统.biyeshejiDataSetTableAdapters.gongzibiaoALLTableAdapter();
             this.label3 = new System.Windows.Forms.Label();
             this.gongzibiaoALLDataGridView = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.grpCRUD = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtYearSalary = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtBasicSalary = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnDel = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.txtDeduct = new System.Windows.Forms.TextBox();
             this.txtBonus = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtDeduct = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnDel = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtBasicSalary = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtYearSalary = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gongzibiaoALLDataGridView)).BeginInit();
             this.grpCRUD.SuspendLayout();
             this.SuspendLayout();
@@ -89,10 +88,6 @@
             this.label2.Size = new System.Drawing.Size(41, 20);
             this.label2.TabIndex = 4;
             this.label2.Text = "姓名";
-            // 
-            // gongzibiaoALLTableAdapter
-            // 
-            this.gongzibiaoALLTableAdapter.ClearBeforeFill = true;
             // 
             // label3
             // 
@@ -148,46 +143,50 @@
             this.grpCRUD.TabStop = false;
             this.grpCRUD.Text = "增删改查";
             // 
-            // label4
+            // btnSave
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 30);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 20);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "工龄工资";
+            this.btnSave.Location = new System.Drawing.Point(542, 88);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(123, 39);
+            this.btnSave.TabIndex = 2;
+            this.btnSave.Text = "保存到数据库";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // txtYearSalary
+            // btnDel
             // 
-            this.txtYearSalary.Location = new System.Drawing.Point(114, 30);
-            this.txtYearSalary.Name = "txtYearSalary";
-            this.txtYearSalary.Size = new System.Drawing.Size(148, 26);
-            this.txtYearSalary.TabIndex = 1;
+            this.btnDel.Location = new System.Drawing.Point(394, 142);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(86, 39);
+            this.btnDel.TabIndex = 2;
+            this.btnDel.Text = "删除";
+            this.btnDel.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // btnUpdate
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 71);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 20);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "基本工资";
+            this.btnUpdate.Location = new System.Drawing.Point(394, 88);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(86, 39);
+            this.btnUpdate.TabIndex = 2;
+            this.btnUpdate.Text = "更新";
+            this.btnUpdate.UseVisualStyleBackColor = true;
             // 
-            // txtBasicSalary
+            // btnAdd
             // 
-            this.txtBasicSalary.Location = new System.Drawing.Point(114, 71);
-            this.txtBasicSalary.Name = "txtBasicSalary";
-            this.txtBasicSalary.Size = new System.Drawing.Size(148, 26);
-            this.txtBasicSalary.TabIndex = 1;
+            this.btnAdd.Location = new System.Drawing.Point(394, 32);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(86, 39);
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.Text = "增加";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // label6
+            // txtDeduct
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(20, 122);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 20);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "奖金";
+            this.txtDeduct.Location = new System.Drawing.Point(114, 170);
+            this.txtDeduct.Name = "txtDeduct";
+            this.txtDeduct.Size = new System.Drawing.Size(148, 26);
+            this.txtDeduct.TabIndex = 1;
             // 
             // txtBonus
             // 
@@ -205,49 +204,46 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "扣款";
             // 
-            // txtDeduct
+            // label6
             // 
-            this.txtDeduct.Location = new System.Drawing.Point(114, 170);
-            this.txtDeduct.Name = "txtDeduct";
-            this.txtDeduct.Size = new System.Drawing.Size(148, 26);
-            this.txtDeduct.TabIndex = 1;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(20, 122);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 20);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "奖金";
             // 
-            // btnAdd
+            // txtBasicSalary
             // 
-            this.btnAdd.Location = new System.Drawing.Point(394, 32);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(86, 39);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.Text = "增加";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.txtBasicSalary.Location = new System.Drawing.Point(114, 71);
+            this.txtBasicSalary.Name = "txtBasicSalary";
+            this.txtBasicSalary.Size = new System.Drawing.Size(148, 26);
+            this.txtBasicSalary.TabIndex = 1;
             // 
-            // btnUpdate
+            // label5
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(394, 88);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(86, 39);
-            this.btnUpdate.TabIndex = 2;
-            this.btnUpdate.Text = "更新";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(20, 71);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 20);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "基本工资";
             // 
-            // btnDel
+            // txtYearSalary
             // 
-            this.btnDel.Location = new System.Drawing.Point(394, 142);
-            this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(86, 39);
-            this.btnDel.TabIndex = 2;
-            this.btnDel.Text = "删除";
-            this.btnDel.UseVisualStyleBackColor = true;
+            this.txtYearSalary.Location = new System.Drawing.Point(114, 30);
+            this.txtYearSalary.Name = "txtYearSalary";
+            this.txtYearSalary.Size = new System.Drawing.Size(148, 26);
+            this.txtYearSalary.TabIndex = 1;
             // 
-            // btnSave
+            // label4
             // 
-            this.btnSave.Location = new System.Drawing.Point(542, 88);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(123, 39);
-            this.btnSave.TabIndex = 2;
-            this.btnSave.Text = "保存到数据库";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(20, 30);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(73, 20);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "工龄工资";
             // 
             // frmSalaryCRUD
             // 
@@ -280,7 +276,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private biyeshejiDataSetTableAdapters.gongzibiaoALLTableAdapter gongzibiaoALLTableAdapter;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView gongzibiaoALLDataGridView;
         private System.Windows.Forms.Button button1;

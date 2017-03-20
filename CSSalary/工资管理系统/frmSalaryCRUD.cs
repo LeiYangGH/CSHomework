@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.OleDb;
-
+using 工资管理系统.biyeshejiDataSetTableAdapters;
 
 namespace 工资管理系统
 {
     public partial class frmSalaryCRUD : Form
     {
+        private gongzibiaoALLTableAdapter gongzibiaoALLTableAdapter = new gongzibiaoALLTableAdapter();
         private biyeshejiDataSet.gongzibiaoALLDataTable dt = new biyeshejiDataSet.gongzibiaoALLDataTable();
         public frmSalaryCRUD()
         {
@@ -42,6 +43,18 @@ namespace 工资管理系统
             row.基本工资 = "10000";
             row.工龄工资 = "1000";
             this.dt.Rows.Add(row);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.gongzibiaoALLTableAdapter.Update(this.dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
