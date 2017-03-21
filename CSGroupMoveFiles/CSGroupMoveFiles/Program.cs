@@ -56,28 +56,16 @@ namespace CSGroupMoveFiles
             return Directory.GetParent(curDir).FullName;
         }
 
-        //private static List<CheckAndAction> lstCheckAndActions = new List<CheckAndAction>()
-        //{
-
-        //};
-
-
-
         static void Main(string[] args)
         {
-
-
             Console.WriteLine("当前路径：{0}", curDir);
             Program.rangeGroupParentDir = GetRangeGroupParentDir();
-
-
 #if DEBUG
 
 #else
             Console.WriteLine("用法：把exe放在放新建pdf的文件夹里，运行，会在此文件夹内寻找符合格式的pdf，在上一层创建类似H3-00001_H3-00250/H300001的目录，并移动所属文件，并备份到pdf当前路径类似20170316的目录\n合法文件名判断依据：H开头，后面7位数字，如果后面还有则必须不能为数字\n，如果与已经分组的现有文件重名(前8位相同)，且不以_rm结尾则不移动\n如果目标范围文件夹不存在则不移动\n如果与已备份文件完全重名，则不移动\n任意键开始处理...");
             Console.ReadKey();
 #endif
-
 
             GroupMoveAllFiles();
 
@@ -86,31 +74,6 @@ namespace CSGroupMoveFiles
             Console.ReadLine();
         }
     }
-
-    //public class CheckAndAction
-    //{
-    //    public CheckAndAction(Func<PDFFile, bool> check, Action<PDFFile> act)
-    //    {
-    //        this.Check = check;
-    //        this.Act = act;
-    //    }
-
-    //    public Func<PDFFile, bool> Check;
-    //    public Action<PDFFile> Act;
-
-    //    public void CheckAndAct(PDFFile pdf)
-    //    {
-    //        if (this.Check(pdf))
-    //            try
-    //            {
-    //                this.Act(pdf);
-    //            }
-    //            catch (Exception ex)
-    //            {
-    //                Console.WriteLine(ex.Message);
-    //            }
-    //    }
-    //}
 
     public class PDFFile
     {
