@@ -27,10 +27,21 @@ namespace CSGroupMoveFiles
 
         static List<PDFFile> GetAllPDFFiles()
         {
-            var files = Directory.GetFiles(curDir, "*.pdf")
-                 .Where(x => IsValidPdf(x))
-                 .Select(x => new PDFFile(x));
-            return files.ToList();
+            var allfiles = Directory.GetFiles(curDir, "*.pdf");
+
+            var pdfFileNames = allfiles.Where(x => IsValidPdf(x));
+            var badFileNames = allfiles.Except(pdfFileNames);
+            if (badFileNames.Any())
+            {
+                Console.WriteLine("下列文件名不合法：");
+                Console.WriteLine("--------------------");
+                foreach (string badFile in badFileNames)
+                {
+                    Console.WriteLine(Path.GetFileName(badFile));
+                }
+                Console.WriteLine("--------------------");
+            }
+            return pdfFileNames.Select(x => new PDFFile(x)).ToList();
         }
 
         static void GroupMoveAllFiles()
@@ -78,10 +89,8 @@ namespace CSGroupMoveFiles
         public string ShortNameWithoutExt;
         public string GroupName;
         public string GroupRangeName;
-        //public static int DupCount = 0;
         public static string curDir;
         public static string rangeGroupParentDir;
-        //private static Random r = new Random();
         public PDFFile(string fullName)
         {
             this.FullName = fullName;
@@ -137,11 +146,18 @@ namespace CSGroupMoveFiles
 
         public void Move()
         {
-            string desDir = Path.Combine(PDFFile.rangeGroupParentDir, this.GroupRangeName, this.GroupName);
+            string rangeDir = Path.Combine(PDFFile.rangeGroupParentDir, this.GroupRangeName);
+            if (!Directory.Exists(rangeDir))
+            {
+                Console.WriteLine("文件无法移动，因为二级范围文件夹不存在:\n{0}\n{1}\n", this.ShortNameWithoutExt, this.GroupRangeName);
+                return;
+            }
+
+            string desDir = Path.Combine(rangeDir, this.GroupName);
             if (!Directory.Exists(desDir))
             {
-                Console.WriteLine("文件无法移动，因为文件夹不存在:\n{0}\n{1}\n", this.ShortNameWithoutExt, this.GroupRangeName);
-                return;
+                Console.WriteLine("创建三级分组文件夹---{0}---", this.GroupName);
+                Directory.CreateDirectory(desDir);
             }
             string desFullName = Path.Combine(desDir, this.ShortName);
 
