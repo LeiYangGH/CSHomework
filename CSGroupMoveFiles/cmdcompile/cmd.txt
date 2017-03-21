@@ -1,0 +1,1 @@
+"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe"  -out:"C:\G\CSHomework\CSGroupMoveFiles\cmdcompile\CSGroupMoveFiles.exe" "C:\G\CSHomework\CSGroupMoveFiles\cmdcompile\Program.cs"

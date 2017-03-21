@@ -12,7 +12,7 @@ namespace CSGroupMoveFiles
     {
         static List<string> lstGroupDirs = new List<string>();
 #if DEBUG
-        static string curDir = @"C:\Users\yanglei2\Downloads\效果示例\H_SCANDATA（根目录）_效果前 - Copy\新PDF存放文件夹";
+        static string curDir = @"C:\G\CSHomework\CSGroupMoveFiles\CSGroupMoveFiles\bin\Debug\效果示例\H_SCANDATA（根目录）_效果前 - Copy\新PDF存放文件夹";
 #else
         static string curDir = Environment.CurrentDirectory;
 #endif
@@ -23,10 +23,6 @@ namespace CSGroupMoveFiles
         {
             Regex reg = new Regex(@"H[0-9]{7}(?![0-9])");
             return reg.IsMatch(Path.GetFileNameWithoutExtension(fullName));
-            //Console.WriteLine(fullName);
-            //bool b = reg.IsMatch(Path.GetFileNameWithoutExtension(fullName));
-            //Console.WriteLine(b);
-            //return b;
         }
 
         static List<PDFFile> GetAllPDFFiles()
@@ -61,8 +57,8 @@ namespace CSGroupMoveFiles
 #if DEBUG
 
 #else
-                   Console.WriteLine("用法：把exe放在放新建pdf的文件夹里，运行，会在此文件夹内寻找符合格式的pdf，在上一层创建类似H3-00001_H3-00250/H300001的目录，并移动所属文件，并备份到pdf当前路径类似20170316的目录\n合法文件名判断依据：H开头，后面7位数字，如果后面还有则必须不能为数字\n，如果与已经分组的现有文件重名(前8位相同)，且不以_rm结尾则不移动\n如果目标范围文件夹不存在则不移动\n如果与已备份文件完全重名，则不移动\n任意键开始处理...");
-                  Console.ReadKey();
+            Console.WriteLine("用法：把exe放在放新建pdf的文件夹里，运行，会在此文件夹内寻找符合格式的pdf，在上一层创建类似H3-00001_H3-00250/H300001的目录，并移动所属文件，并备份到pdf当前路径类似20170316的目录\n合法文件名判断依据：H开头，后面7位数字，如果后面还有则必须不能为数字\n，如果与已经分组的现有文件重名(前8位相同)，且不以_rm结尾则不移动\n如果目标范围文件夹不存在则不移动\n如果与已备份文件完全重名，则不移动\n任意键开始处理...");
+            Console.ReadKey();
 #endif
 
 
@@ -126,7 +122,7 @@ namespace CSGroupMoveFiles
             Console.WriteLine("备份文件{0}", this.ShortName);
             if (File.Exists(des))
             {
-                Console.WriteLine("文件{0}已经存在，备份失败（理论上不应该有这种情况）", this.ShortName);
+                Console.WriteLine("文件{0}已经存在，备份失败", this.ShortName);
             }
             else
                 File.Copy(this.FullName, des, false);
@@ -153,12 +149,19 @@ namespace CSGroupMoveFiles
 
             if (!this.ShortNameWithoutExt.EndsWith("_rm") && ExistGrouped8FileName(desDir))
             {
-                Console.WriteLine("目标文件夹内已存在相同前8位文件名的文件，未移动，但已重命名:\n{0}\n{1}\n", this.ShortName, this.GroupName);
-                File.Move(this.FullName, Path.Combine(curDir, this.ShortNameWithoutExt + "_重命名.pdf"));
+                Console.WriteLine("目标文件夹内已存在相同前8位文件名的文件，未移动，重命名:\n{0}\n{1}\n", this.ShortName, this.GroupName);
+                string renameFullName = Path.Combine(curDir, this.ShortNameWithoutExt + "_重命名.pdf");
+                if (File.Exists(renameFullName))
+                {
+                    Console.WriteLine("文件已存在{0}，所以重命名取消", renameFullName);
+                }
+                else
+                {
+                    File.Move(this.FullName, renameFullName);
+                }
                 return;
             }
-
-            Console.WriteLine("备份并移动文件{0}", this.ShortName);
+            Console.WriteLine("备份并移动文件{0}...", this.ShortName);
             this.Backup();
             File.Move(this.FullName, desFullName);
         }
