@@ -16,13 +16,13 @@ namespace CSGroupMoveFiles
 #else
         public static string curDir = Environment.CurrentDirectory;
 #endif
+        private static Regex regValidFile = new Regex(@"H[0-9]{7}(?![0-9])", RegexOptions.Compiled);
 
         public static string rangeGroupParentDir;
 
         static bool IsValidPdf(string fullName)
         {
-            Regex reg = new Regex(@"H[0-9]{7}(?![0-9])");
-            return reg.IsMatch(Path.GetFileNameWithoutExtension(fullName));
+            return regValidFile.IsMatch(Path.GetFileNameWithoutExtension(fullName));
         }
 
         static List<PDFFile> GetAllPDFFiles()
@@ -44,22 +44,10 @@ namespace CSGroupMoveFiles
             return pdfFileNames.Select(x => new PDFFile(x)).ToList();
         }
 
-        static void GroupMoveAllFiles()
-        {
-            var files = GetAllPDFFiles();
-            foreach (var pdf in files)
-                pdf.Process();
-        }
-
-        static string GetRangeGroupParentDir()
-        {
-            return Directory.GetParent(curDir).FullName;
-        }
-
         static void Main(string[] args)
         {
             Console.WriteLine("当前路径：{0}", curDir);
-            Program.rangeGroupParentDir = GetRangeGroupParentDir();
+            Program.rangeGroupParentDir = Directory.GetParent(curDir).FullName;
 #if DEBUG
 
 #else
@@ -67,7 +55,11 @@ namespace CSGroupMoveFiles
             Console.ReadKey();
 #endif
 
-            GroupMoveAllFiles();
+            var files = GetAllPDFFiles();
+            foreach (var pdf in files
+                .OrderBy(x => x.GroupRangeName)
+                .ThenBy(x => x.GroupName))
+                pdf.Process();
 
             Console.WriteLine("完成");
 
@@ -83,14 +75,14 @@ namespace CSGroupMoveFiles
         public string ShortNameWithoutExt;
         public string GroupName;
         public string GroupRangeName;
-
+        private static Regex regGroupName = new Regex(@"(H[0-9]{6})[0-9]", RegexOptions.Compiled);
         public PDFFile(string fullName)
         {
             this.FullName = fullName;
 
             string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fullName);
-            Regex reg = new Regex(@"(H[0-9]{6})[0-9]");
-            string groupName = reg.Match(fileNameWithoutExtension).Groups[1].Value;
+
+            string groupName = regGroupName.Match(fileNameWithoutExtension).Groups[1].Value;
             //Console.WriteLine("groupName={0}", groupName);
             this.ShortName = Path.GetFileName(fullName);
             this.ShortNameWithoutExt = Path.GetFileNameWithoutExtension(fullName);
