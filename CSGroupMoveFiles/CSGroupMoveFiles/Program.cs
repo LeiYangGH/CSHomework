@@ -10,14 +10,14 @@ namespace CSGroupMoveFiles
 {
     class Program
     {
-        static List<string> lstGroupDirs = new List<string>();
+        public const string RM = "_rm";
 #if DEBUG
-        static string curDir = @"C:\G\CSHomework\CSGroupMoveFiles\CSGroupMoveFiles\bin\Debug\效果示例\H_SCANDATA（根目录）_效果前 - Copy\新PDF存放文件夹";
+        public static string curDir = @"C:\G\CSHomework\CSGroupMoveFiles\CSGroupMoveFiles\bin\Debug\效果示例\H_SCANDATA（根目录）_效果前 - Copy\新PDF存放文件夹";
 #else
-        static string curDir = Environment.CurrentDirectory;
+        public static string curDir = Environment.CurrentDirectory;
 #endif
 
-        static string rangeGroupParentDir;
+        public static string rangeGroupParentDir;
 
         static bool IsValidPdf(string fullName)
         {
@@ -48,7 +48,7 @@ namespace CSGroupMoveFiles
         {
             var files = GetAllPDFFiles();
             foreach (var pdf in files)
-                pdf.Move();
+                pdf.Process();
         }
 
         static string GetRangeGroupParentDir()
@@ -56,14 +56,20 @@ namespace CSGroupMoveFiles
             return Directory.GetParent(curDir).FullName;
         }
 
+        //private static List<CheckAndAction> lstCheckAndActions = new List<CheckAndAction>()
+        //{
+
+        //};
+
+
+
         static void Main(string[] args)
         {
 
 
             Console.WriteLine("当前路径：{0}", curDir);
-            rangeGroupParentDir = GetRangeGroupParentDir();
-            PDFFile.curDir = curDir;
-            PDFFile.rangeGroupParentDir = rangeGroupParentDir;
+            Program.rangeGroupParentDir = GetRangeGroupParentDir();
+
 
 #if DEBUG
 
@@ -81,6 +87,31 @@ namespace CSGroupMoveFiles
         }
     }
 
+    //public class CheckAndAction
+    //{
+    //    public CheckAndAction(Func<PDFFile, bool> check, Action<PDFFile> act)
+    //    {
+    //        this.Check = check;
+    //        this.Act = act;
+    //    }
+
+    //    public Func<PDFFile, bool> Check;
+    //    public Action<PDFFile> Act;
+
+    //    public void CheckAndAct(PDFFile pdf)
+    //    {
+    //        if (this.Check(pdf))
+    //            try
+    //            {
+    //                this.Act(pdf);
+    //            }
+    //            catch (Exception ex)
+    //            {
+    //                Console.WriteLine(ex.Message);
+    //            }
+    //    }
+    //}
+
     public class PDFFile
     {
         const int GroupRangeLength = 250;
@@ -89,8 +120,7 @@ namespace CSGroupMoveFiles
         public string ShortNameWithoutExt;
         public string GroupName;
         public string GroupRangeName;
-        public static string curDir;
-        public static string rangeGroupParentDir;
+
         public PDFFile(string fullName)
         {
             this.FullName = fullName;
@@ -121,7 +151,7 @@ namespace CSGroupMoveFiles
 
         private void Backup()
         {
-            string backDir = Path.Combine(PDFFile.curDir, DateTime.Now.ToString("yyyyMMdd"));
+            string backDir = Path.Combine(Program.curDir, DateTime.Now.ToString("yyyyMMdd"));
             if (!Directory.Exists(backDir))
             {
                 Directory.CreateDirectory(backDir);
@@ -134,19 +164,28 @@ namespace CSGroupMoveFiles
                 Console.WriteLine("文件{0}已经存在，备份失败", this.ShortName);
             }
             else
-                File.Copy(this.FullName, des, false);
+            {
+                try
+                {
+                    File.Copy(this.FullName, des, false);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
         }
 
         private bool ExistGrouped8FileName(string dir)
         {
             string group8Name = this.ShortNameWithoutExt.Substring(0, 8);
             return (Directory.GetFiles(dir, "*.pdf").Select(x => Path.GetFileNameWithoutExtension(x))
-                .Any(x => x.StartsWith(group8Name)));
+                .Any(x => x.StartsWith(group8Name) && !x.EndsWith(Program.RM)));
         }
 
-        public void Move()
+        public void Process()
         {
-            string rangeDir = Path.Combine(PDFFile.rangeGroupParentDir, this.GroupRangeName);
+            string rangeDir = Path.Combine(Program.rangeGroupParentDir, this.GroupRangeName);
             if (!Directory.Exists(rangeDir))
             {
                 Console.WriteLine("文件无法移动，因为二级范围文件夹不存在:\n{0}\n{1}\n", this.ShortNameWithoutExt, this.GroupRangeName);
@@ -163,23 +202,37 @@ namespace CSGroupMoveFiles
 
 
 
-            if (!this.ShortNameWithoutExt.EndsWith("_rm") && ExistGrouped8FileName(desDir))
+            if (!this.ShortNameWithoutExt.EndsWith(Program.RM) && ExistGrouped8FileName(desDir))
             {
                 Console.WriteLine("目标文件夹内已存在相同前8位文件名的文件，未移动，重命名:\n{0}\n{1}\n", this.ShortName, this.GroupName);
-                string renameFullName = Path.Combine(curDir, this.ShortNameWithoutExt + "_重命名.pdf");
+                string renameFullName = Path.Combine(Program.curDir, this.ShortNameWithoutExt + "_重命名" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".pdf");
                 if (File.Exists(renameFullName))
                 {
                     Console.WriteLine("文件已存在{0}，所以重命名取消", renameFullName);
                 }
                 else
                 {
-                    File.Move(this.FullName, renameFullName);
+                    try
+                    {
+                        File.Move(this.FullName, renameFullName);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                 }
                 return;
             }
             Console.WriteLine("备份并移动文件{0}...", this.ShortName);
             this.Backup();
-            File.Move(this.FullName, desFullName);
+            try
+            {
+                File.Move(this.FullName, desFullName);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
     }
