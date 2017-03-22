@@ -20,12 +20,13 @@ namespace 工资管理系统
             frmLogin.GetAllUsers();
             //frmLogin.userID = "20120619001";
             //frmLogin.userName = "张总";
-            var firstRow = frmLogin.AllUsersDt.First();
+            var firstRow = frmLogin.AllUsersDt[2];
             frmLogin.userID = firstRow.员工编号;
             frmLogin.userName = firstRow.姓名;
             frmLogin.isAdmin = true;
             //Application.Run(new frmSalaryCRUD());
-            Application.Run(new frmAddUser());
+            //Application.Run(new frmAddUser());
+            Application.Run(new frmQuery());
 
 #else
             Application.Run(new frmLogin());

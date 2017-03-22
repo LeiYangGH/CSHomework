@@ -85,7 +85,8 @@ namespace 工资管理系统
 
         private void 查询ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmQuery frm = new frmQuery();
+            frm.ShowDialog();
         }
 
         private void gongzibiaoALLBindingNavigator_RefreshItems(object sender, EventArgs e)

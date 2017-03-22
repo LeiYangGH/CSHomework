@@ -44,7 +44,12 @@ namespace 工资管理系统
             if (this.gly.Checked)
                 loginSuccess = DataAccess.Checkguanliyuan(ygbh.Text, mm.Text, out frmLogin.userName);
             else
+            {
                 loginSuccess = DataAccess.Checkusers(ygbh.Text, mm.Text);
+                var row = frmLogin.AllUsersDt.FirstOrDefault(x => x.员工编号 == ygbh.Text);
+                if (row != null)
+                    frmLogin.userName = row.姓名;
+            }
 
             if (loginSuccess)
             {
