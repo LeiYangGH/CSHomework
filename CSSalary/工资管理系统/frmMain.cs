@@ -85,8 +85,7 @@ namespace 工资管理系统
 
         private void 查询ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmQuery frm = new frmQuery();
-            frm.ShowDialog();
+
         }
 
         private void gongzibiaoALLBindingNavigator_RefreshItems(object sender, EventArgs e)
@@ -114,6 +113,18 @@ namespace 工资管理系统
         private void first_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void 我的工资ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmQuery frm = new frmQuery();
+            frm.ShowDialog();
+        }
+
+        private void 个人资料ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmEditProfile frm = new frmEditProfile();
+            frm.ShowDialog();
         }
     }
 }

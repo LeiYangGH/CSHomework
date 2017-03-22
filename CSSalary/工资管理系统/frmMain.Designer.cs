@@ -46,6 +46,8 @@
             this.gongzibiaoALLBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gongzibiaoALLTableAdapter = new 工资管理系统.biyeshejiDataSetTableAdapters.gongzibiaoALLTableAdapter();
             this.tableAdapterManager = new 工资管理系统.biyeshejiDataSetTableAdapters.TableAdapterManager();
+            this.我的工资ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.个人资料ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.biyeshejiDataSet)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -69,6 +71,9 @@
             // 
             // 查询ToolStripMenuItem
             // 
+            this.查询ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.我的工资ToolStripMenuItem,
+            this.个人资料ToolStripMenuItem});
             this.查询ToolStripMenuItem.Name = "查询ToolStripMenuItem";
             this.查询ToolStripMenuItem.Size = new System.Drawing.Size(62, 29);
             this.查询ToolStripMenuItem.Text = "查询";
@@ -184,7 +189,21 @@
             this.tableAdapterManager.usersTableAdapter = null;
             this.tableAdapterManager.yuangongbiaoTableAdapter = null;
             // 
-            // first
+            // 我的工资ToolStripMenuItem
+            // 
+            this.我的工资ToolStripMenuItem.Name = "我的工资ToolStripMenuItem";
+            this.我的工资ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+            this.我的工资ToolStripMenuItem.Text = "我的工资";
+            this.我的工资ToolStripMenuItem.Click += new System.EventHandler(this.我的工资ToolStripMenuItem_Click);
+            // 
+            // 个人资料ToolStripMenuItem
+            // 
+            this.个人资料ToolStripMenuItem.Name = "个人资料ToolStripMenuItem";
+            this.个人资料ToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+            this.个人资料ToolStripMenuItem.Text = "个人资料";
+            this.个人资料ToolStripMenuItem.Click += new System.EventHandler(this.个人资料ToolStripMenuItem_Click);
+            // 
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -193,7 +212,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "first";
+            this.Name = "frmMain";
             this.Text = "工资管理";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.first_FormClosing);
             this.Load += new System.EventHandler(this.gongziguanli_Load);
@@ -228,5 +247,7 @@
         private System.Windows.Forms.BindingSource gongzibiaoALLBindingSource;
         private biyeshejiDataSetTableAdapters.gongzibiaoALLTableAdapter gongzibiaoALLTableAdapter;
         private biyeshejiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.ToolStripMenuItem 我的工资ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 个人资料ToolStripMenuItem;
     }
 }

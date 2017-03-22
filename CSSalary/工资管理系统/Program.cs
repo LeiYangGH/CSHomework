@@ -26,7 +26,8 @@ namespace 工资管理系统
             frmLogin.isAdmin = true;
             //Application.Run(new frmSalaryCRUD());
             //Application.Run(new frmAddUser());
-            Application.Run(new frmQuery());
+            //Application.Run(new frmQuery());
+            Application.Run(new frmEditProfile());
 
 #else
             Application.Run(new frmLogin());

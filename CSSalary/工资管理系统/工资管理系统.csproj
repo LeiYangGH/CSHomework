@@ -59,6 +59,12 @@
       <DependentUpon>biyeshejiDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DataAccess.cs" />
+    <Compile Include="frmEditProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditProfile.Designer.cs">
+      <DependentUpon>frmEditProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="banquan.resx">
       <DependentUpon>banquan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditProfile.resx">
+      <DependentUpon>frmEditProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmQuery.resx">
       <DependentUpon>frmQuery.cs</DependentUpon>
