@@ -24,7 +24,9 @@ namespace 工资管理系统
             frmLogin.userID = firstRow.员工编号;
             frmLogin.userName = firstRow.姓名;
             frmLogin.isAdmin = true;
-            Application.Run(new frmSalaryCRUD());//加不加效果一样？！
+            //Application.Run(new frmSalaryCRUD());
+            Application.Run(new frmAddUser());
+
 #else
             Application.Run(new frmLogin());
 #endif

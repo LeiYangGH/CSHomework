@@ -106,7 +106,7 @@ namespace 工资管理系统
 
         private void 添加新记录ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            zhuce frm = new zhuce();
+            frmAddUser frm = new frmAddUser();
             frm.Show();
         }
 

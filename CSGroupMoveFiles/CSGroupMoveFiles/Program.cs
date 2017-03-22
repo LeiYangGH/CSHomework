@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CSGroupMoveFiles
@@ -54,14 +55,19 @@ namespace CSGroupMoveFiles
             Console.WriteLine("用法：把exe放在放新建pdf的文件夹里，运行，会在此文件夹内寻找符合格式的pdf，在上一层创建类似H3-00001_H3-00250/H300001的目录，并移动所属文件，并备份到pdf当前路径类似20170316的目录\n合法文件名判断依据：H开头，后面7位数字，如果后面还有则必须不能为数字\n，如果与已经分组的现有文件重名(前8位相同)，且不以_rm结尾则不移动\n如果目标范围文件夹不存在则不移动\n如果与已备份文件完全重名，则不移动\n任意键开始处理...");
             Console.ReadKey();
 #endif
+            Task.Run(() =>
+            {
+                var files = GetAllPDFFiles();
+                foreach (var pdf in files
+                    .OrderBy(x => x.GroupRangeName)
+                    .ThenBy(x => x.GroupName))
+                {
+                    pdf.Process();
+                    Thread.Sleep(1000);
+                }
 
-            var files = GetAllPDFFiles();
-            foreach (var pdf in files
-                .OrderBy(x => x.GroupRangeName)
-                .ThenBy(x => x.GroupName))
-                pdf.Process();
-
-            Console.WriteLine("完成");
+                Console.WriteLine("完成");
+            });
 
             Console.ReadLine();
         }

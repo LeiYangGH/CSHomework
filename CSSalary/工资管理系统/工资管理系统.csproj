@@ -71,11 +71,11 @@
     <Compile Include="frmSalaryCRUD.Designer.cs">
       <DependentUpon>frmSalaryCRUD.cs</DependentUpon>
     </Compile>
-    <Compile Include="zhuce.cs">
+    <Compile Include="frmAddUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="zhuce.Designer.cs">
-      <DependentUpon>zhuce.cs</DependentUpon>
+    <Compile Include="frmAddUser.Designer.cs">
+      <DependentUpon>frmAddUser.cs</DependentUpon>
     </Compile>
     <Compile Include="help.cs">
       <SubType>Form</SubType>
@@ -112,8 +112,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="zhuce.resx">
-      <DependentUpon>zhuce.cs</DependentUpon>
+    <EmbeddedResource Include="frmAddUser.resx">
+      <DependentUpon>frmAddUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSalaryCRUD.resx">
       <DependentUpon>frmSalaryCRUD.cs</DependentUpon>
@@ -142,7 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="biyesheji.mdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
