@@ -68,7 +68,10 @@ namespace CSKnowledge
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (this.CheckLimits())
+            {
                 DBHelper.Add(this.cboCategory.Text.Trim(), this.textBox1.Text.Trim(), this.pictureBox1.ImageLocation);
+                this.Close();
+            }
         }
     }
 }

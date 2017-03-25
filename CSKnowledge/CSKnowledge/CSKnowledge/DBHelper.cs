@@ -71,5 +71,22 @@ namespace CSKnowledge
             }
 
         }
+
+        public static List<string> GetTxtUnderCategory(string category)
+        {
+            try
+            {
+                using (KnowledgeEntities en = new KnowledgeEntities())
+                {
+                    return en.KBs.Where(x => x.Category == category).Select(x => x.Txt).Distinct().ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return new List<string>();
+            }
+
+        }
     }
 }

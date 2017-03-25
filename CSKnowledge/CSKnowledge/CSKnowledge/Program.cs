@@ -17,7 +17,8 @@ namespace CSKnowledge
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 #if DEBUG
-            Application.Run(new frmAdd());
+            //Application.Run(new frmAdd());
+            Application.Run(new frmView());
 #else
             Application.Run(new frmMain());
 #endif
