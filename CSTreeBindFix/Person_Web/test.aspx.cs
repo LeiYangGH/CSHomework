@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -21,7 +22,7 @@ public partial class test : System.Web.UI.Page
             }
         }
 
-
+    int cnt = 0;
     private void AddTree(int Pid, TreeNode PNode)
     {
         DataSet ds=conn.DsSql("select code,name,pcode,group_code from department");
@@ -31,6 +32,7 @@ public partial class test : System.Web.UI.Page
                 DataView dv = new DataView(dt);
                 //过滤ParentID,得到当前的所有子节点 ParentID为父节点ID
                 dv.RowFilter = "[pcode] = " + Pid;
+            Debug.WriteLine(cnt++.ToString());
                 //循环递归
                 foreach (DataRowView Row in dv)
                 {
