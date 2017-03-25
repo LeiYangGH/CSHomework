@@ -20,7 +20,8 @@ namespace CSKnowledge
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            DBHelper.Add("c", "t", @"C:\test\test.png");
+            frmAdd frm = new frmAdd();
+            frm.ShowDialog();
         }
 
         private void btnFind_Click(object sender, EventArgs e)

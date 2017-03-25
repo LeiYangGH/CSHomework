@@ -16,7 +16,12 @@ namespace CSKnowledge
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+#if DEBUG
+            Application.Run(new frmAdd());
+#else
             Application.Run(new frmMain());
+#endif
+
         }
     }
 }
