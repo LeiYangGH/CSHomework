@@ -28,14 +28,6 @@ namespace CSKnowledge
         {
             frmView frm = new frmView();
             frm.ShowDialog();
-            //KB kb = DBHelper.GetKnowledge(1);
-            //Image img;
-            //using (var ms = new MemoryStream(kb.Pic))
-            //{
-            //    img = Image.FromStream(ms);
-            //}
-
-            //this.pictureBox1.Image = img;
         }
     }
 }

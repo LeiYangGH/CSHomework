@@ -37,6 +37,30 @@ namespace CSKnowledge
 
         }
 
+        public static bool Update(int id, string category, string txt, string imageFileName)
+        {
+            try
+            {
+                using (KnowledgeEntities en = new KnowledgeEntities())
+                {
+                    KB kb = en.KBs.First(x => x.ID == id);
+                    kb.Category = category;
+                    kb.Txt = txt;
+                    if (!string.IsNullOrWhiteSpace(imageFileName))
+                        kb.Pic = File.ReadAllBytes(imageFileName);
+                    en.SaveChanges();
+                }
+                MessageBox.Show("修改成功！");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+
+        }
+
         public static KB GetKnowledge(int id)
         {
             try
@@ -85,6 +109,44 @@ namespace CSKnowledge
             {
                 MessageBox.Show(ex.Message);
                 return new List<string>();
+            }
+
+        }
+
+        public static KB GetKBByTxt(string txt)
+        {
+            try
+            {
+                using (KnowledgeEntities en = new KnowledgeEntities())
+                {
+                    return en.KBs.First(x => x.Txt == txt);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+
+        }
+
+        public static bool DeleteKBById(int id)
+        {
+            try
+            {
+                using (KnowledgeEntities en = new KnowledgeEntities())
+                {
+                    KB kb = en.KBs.First(x => x.ID == id);
+                    en.KBs.Remove(kb);
+                    en.SaveChanges();
+                }
+                MessageBox.Show("删除成功");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
             }
 
         }

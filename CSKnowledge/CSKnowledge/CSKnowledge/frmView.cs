@@ -17,6 +17,15 @@ namespace CSKnowledge
             InitializeComponent();
         }
 
+        private void RefreshKBInCategory()
+        {
+            this.listBox1.Items.Clear();
+            foreach (string txt in DBHelper.GetTxtUnderCategory(this.cboCategory.Text.Trim()))
+            {
+                this.listBox1.Items.Add(txt);
+            }
+        }
+
         private void frmView_Load(object sender, EventArgs e)
         {
             this.cboCategory.Items.Clear();
@@ -28,10 +37,35 @@ namespace CSKnowledge
 
         private void cboCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.listBox1.Items.Clear();
-            foreach (string txt in DBHelper.GetTxtUnderCategory(this.cboCategory.Text.Trim()))
+            this.RefreshKBInCategory();
+        }
+
+        private KB GetSelectedKB()
+        {
+            if (this.listBox1.SelectedItem == null)
+                return null;
+            string txt = this.listBox1.SelectedItem.ToString();
+            return DBHelper.GetKBByTxt(txt);
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            KB kb = this.GetSelectedKB();
+            if (kb != null)
             {
-                this.listBox1.Items.Add(txt);
+                frmAdd frm = new frmAdd(kb);
+                if (frm.ShowDialog() == DialogResult.OK)
+                    this.RefreshKBInCategory();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            KB kb = this.GetSelectedKB();
+            if (kb != null)
+            {
+                if (DBHelper.DeleteKBById(kb.ID))
+                    this.RefreshKBInCategory();
             }
         }
     }

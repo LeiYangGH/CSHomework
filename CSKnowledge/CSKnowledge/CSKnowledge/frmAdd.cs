@@ -13,10 +13,19 @@ namespace CSKnowledge
 {
     public partial class frmAdd : Form
     {
+        private KB kb;
+        public string NewTxt;
         public frmAdd()
         {
             InitializeComponent();
         }
+
+        public frmAdd(KB kb) : this()
+        {
+            this.kb = kb;
+        }
+
+
 
         private bool CheckLimits()
         {
@@ -32,12 +41,34 @@ namespace CSKnowledge
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(this.pictureBox1.ImageLocation))
+            if (this.kb == null && string.IsNullOrWhiteSpace(this.pictureBox1.ImageLocation))
             {
                 MessageBox.Show("请选择图片！");
                 return false;
             }
             return true;
+        }
+
+        private Image GetImageFromBytes(byte[] bytes)
+        {
+            Image img;
+            using (var ms = new MemoryStream(bytes))
+            {
+                img = Image.FromStream(ms);
+            }
+            return img;
+        }
+
+        private void ShowKB()
+        {
+            if (this.kb != null)
+            {
+                this.btnSave.Text = "修改";
+                this.cboCategory.Text = kb.Category;
+                this.cboCategory.Enabled = false;
+                this.textBox1.Text = kb.Txt;
+                this.pictureBox1.Image = this.GetImageFromBytes(kb.Pic);
+            }
         }
 
         private void frmAdd_Load(object sender, EventArgs e)
@@ -47,6 +78,7 @@ namespace CSKnowledge
             {
                 this.cboCategory.Items.Add(category);
             }
+            this.ShowKB();
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -69,7 +101,16 @@ namespace CSKnowledge
         {
             if (this.CheckLimits())
             {
-                DBHelper.Add(this.cboCategory.Text.Trim(), this.textBox1.Text.Trim(), this.pictureBox1.ImageLocation);
+                if (this.kb == null)
+                {
+                    DBHelper.Add(this.cboCategory.Text.Trim(), this.textBox1.Text.Trim(), this.pictureBox1.ImageLocation);
+                }
+                else
+                {
+                    int id = kb.ID;
+                    if (DBHelper.Update(id, this.cboCategory.Text.Trim(), this.textBox1.Text.Trim(), this.pictureBox1.ImageLocation))
+                        this.DialogResult = DialogResult.OK;
+                }
                 this.Close();
             }
         }
