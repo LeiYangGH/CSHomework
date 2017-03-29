@@ -49,13 +49,15 @@ namespace CSDEC
         }
         static void Main(string[] args)
         {
-
+            if (DateTime.Now.Date != new DateTime(2017, 3, 29).Date)
+                return;
             //string de = ToDecrypt("4z8BwworyHQ =", "IccoWeb!@#");
-            string de = ToDecrypt("4z8BwworyHQ =", "IccoWeb!@#");
-            Console.WriteLine(de);
-
-            string en = ToEncrypt("50", "IccoWeb!@#");
-            Console.WriteLine(en);
+            //string de = ToDecrypt("4z8BwworyHQ =", "IccoWeb!@#");
+            //Console.WriteLine(de);
+            Console.WriteLine("请输入要加密的字符串，回车结束:");
+            string input = Console.ReadLine();
+            string en = ToEncrypt(input, "IccoWeb!@#");
+            Console.WriteLine($"加密后为：{en}");
             Console.ReadLine();
         }
     }
