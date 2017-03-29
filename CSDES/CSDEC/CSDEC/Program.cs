@@ -10,6 +10,25 @@ namespace CSDEC
 {
     class Program
     {
+        //http://blog.csdn.net/avon520/article/details/3013860
+        public static string ToEncrypt(string strText, string sDecrKey)
+        {
+            byte[] rgbKey = null;
+            byte[] rgbIV = new byte[] { 18, 52, 86, 120, 144, 171, 205, 239 };
+            DESCryptoServiceProvider des = new DESCryptoServiceProvider();
+            byte[] inputByteArray = Encoding.UTF8.GetBytes(strText);
+            rgbKey = Encoding.UTF8.GetBytes(sDecrKey.Substring(0, 8));
+
+            //des.Key = new byte[] { 18, 52, 86, 120, 144, 171, 205, 239 };
+            //des.IV = null;
+            MemoryStream ms = new MemoryStream();
+            CryptoStream cs = new CryptoStream(ms, des.CreateEncryptor(rgbKey, rgbIV), CryptoStreamMode.Write);
+            cs.Write(inputByteArray, 0, inputByteArray.Length);
+            cs.FlushFinalBlock();
+            StringBuilder ret = new StringBuilder();
+            return Encoding.UTF8.GetString(ms.ToArray());
+        }
+
         //ToDecrypt(“4z8BwworyHQ=”, "IccoWeb!@#")  输出是50
         private static string ToDecrypt(string strText, string sDecrKey)
         {
@@ -24,7 +43,7 @@ namespace CSDEC
                 MemoryStream stream = new MemoryStream();
                 CryptoStream stream2 = new CryptoStream(stream, provider.CreateDecryptor(rgbKey, rgbIV), CryptoStreamMode.Write);
                 stream2.Write(buffer, 0, buffer.Length);
-                stream2.FlushFinalBlock();
+                stream2.FlushFinalBlock();//?
                 Encoding encoding = new UTF8Encoding();
                 return encoding.GetString(stream.ToArray());
             }
@@ -35,8 +54,13 @@ namespace CSDEC
         }
         static void Main(string[] args)
         {
+
+            //string de = ToDecrypt("4z8BwworyHQ =", "IccoWeb!@#");
             string de = ToDecrypt("4z8BwworyHQ =", "IccoWeb!@#");
-            Console.WriteLine(de);
+            Console.WriteLine($"*{de}*");
+
+            string en = ToEncrypt("50", "IccoWeb!@#");
+            Console.WriteLine(en);
             Console.ReadLine();
         }
     }
