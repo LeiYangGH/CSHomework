@@ -10,7 +10,7 @@ namespace CSDEC
 {
     class Program
     {
-        public static string ToEncrypt(string strText, string sDecrKey)
+        private static string ToEncrypt(string strText, string sDecrKey)
         {
             byte[] rgbKey = null;
             byte[] rgbIV = new byte[] { 18, 52, 86, 120, 144, 171, 205, 239 };
