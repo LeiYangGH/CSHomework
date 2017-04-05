@@ -158,30 +158,30 @@ namespace WindowsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            comboBox_DevIndex.SelectedIndex = 0;
-            comboBox_CANIndex.SelectedIndex = 0;
-            textBox_AccCode.Text = "00000000";
-            textBox_AccMask.Text = "FFFFFFFF";
-            textBox_Time0.Text = "03";
-            textBox_Time1.Text = "1C";
-            comboBox_Filter.SelectedIndex = 0;              //接收所有类型
-            comboBox_Mode.SelectedIndex = 2;                //还回测试模式
-            comboBox_FrameFormat.SelectedIndex = 0;
-            comboBox_FrameType.SelectedIndex = 0;
-            textBox_ID.Text = "000002b0";
-            textBox_Data.Text = "00 00 00 00 00 08 00 00 ";
+            cbo_DevIndex.SelectedIndex = 0;
+            cbo_CANIndex.SelectedIndex = 0;
+            txt_AccCode.Text = "00000000";
+            txt_AccMask.Text = "FFFFFFFF";
+            txt_Time0.Text = "03";
+            txt_Time1.Text = "1C";
+            cbo_Filter.SelectedIndex = 0;              //接收所有类型
+            cbo_Mode.SelectedIndex = 2;                //还回测试模式
+            cbo_FrameFormat.SelectedIndex = 0;
+            cbo_FrameType.SelectedIndex = 0;
+            txt_ID.Text = "000002b0";
+            txt_Data.Text = "00 00 00 00 00 08 00 00 ";
 
             Int32 curindex = 0;
-            comboBox_devtype.Items.Clear();
+            cbo_devtype.Items.Clear();
 
-            curindex = comboBox_devtype.Items.Add("DEV_USBCAN");
+            curindex = cbo_devtype.Items.Add("DEV_USBCAN");
             m_arrdevtype[curindex] = DEV_USBCAN;
 
-            curindex = comboBox_devtype.Items.Add("DEV_USBCAN2");
+            curindex = cbo_devtype.Items.Add("DEV_USBCAN2");
             m_arrdevtype[curindex] = DEV_USBCAN2;
 
-            comboBox_devtype.SelectedIndex = 1;
-            comboBox_devtype.MaxDropDownItems = comboBox_devtype.Items.Count;
+            cbo_devtype.SelectedIndex = 1;
+            cbo_devtype.MaxDropDownItems = cbo_devtype.Items.Count;
 
         }
 
@@ -202,10 +202,10 @@ namespace WindowsApplication1
             }
             else
             {
-                m_devtype = m_arrdevtype[comboBox_devtype.SelectedIndex];
+                m_devtype = m_arrdevtype[cbo_devtype.SelectedIndex];
 
-                m_devind = (UInt32)comboBox_DevIndex.SelectedIndex;
-                m_canind = (UInt32)comboBox_CANIndex.SelectedIndex;
+                m_devind = (UInt32)cbo_DevIndex.SelectedIndex;
+                m_canind = (UInt32)cbo_CANIndex.SelectedIndex;
                 if (VCI_OpenDevice(m_devtype, m_devind, 0) == 0)
                 {
                     MessageBox.Show("打开设备失败,请检查设备类型和设备索引号是否正确", "错误",
@@ -215,15 +215,15 @@ namespace WindowsApplication1
 
                 m_bOpen = 1;
                 VCI_INIT_CONFIG config = new VCI_INIT_CONFIG();
-                config.AccCode = System.Convert.ToUInt32("0x" + textBox_AccCode.Text, 16);
-                config.AccMask = System.Convert.ToUInt32("0x" + textBox_AccMask.Text, 16);
-                config.Timing0 = System.Convert.ToByte("0x" + textBox_Time0.Text, 16);
-                config.Timing1 = System.Convert.ToByte("0x" + textBox_Time1.Text, 16);
-                config.Filter = (Byte)(comboBox_Filter.SelectedIndex + 1);
-                config.Mode = (Byte)comboBox_Mode.SelectedIndex;
+                config.AccCode = System.Convert.ToUInt32("0x" + txt_AccCode.Text, 16);
+                config.AccMask = System.Convert.ToUInt32("0x" + txt_AccMask.Text, 16);
+                config.Timing0 = System.Convert.ToByte("0x" + txt_Time0.Text, 16);
+                config.Timing1 = System.Convert.ToByte("0x" + txt_Time1.Text, 16);
+                config.Filter = (Byte)(cbo_Filter.SelectedIndex + 1);
+                config.Mode = (Byte)cbo_Mode.SelectedIndex;
                 VCI_InitCAN(m_devtype, m_devind, m_canind, ref config);
             }
-            buttonConnect.Text = m_bOpen == 1 ? "断开" : "连接";
+            btnConnect.Text = m_bOpen == 1 ? "断开" : "连接";
             timer_rec.Enabled = m_bOpen == 1 ? true : false;
         }
 
@@ -278,8 +278,8 @@ namespace WindowsApplication1
                     }
                 }
 
-                listBox_Info.Items.Add(str);
-                listBox_Info.SelectedIndex = listBox_Info.Items.Count - 1;
+                lb_Info.Items.Add(str);
+                lb_Info.SelectedIndex = lb_Info.Items.Count - 1;
             }
 
         }
@@ -304,12 +304,12 @@ namespace WindowsApplication1
                 return;
 
             VCI_CAN_OBJ sendobj = new VCI_CAN_OBJ();
-            sendobj.RemoteFlag = (byte)comboBox_FrameFormat.SelectedIndex;
-            sendobj.ExternFlag = (byte)comboBox_FrameType.SelectedIndex;
-            sendobj.ID = System.Convert.ToUInt32("0x" + textBox_ID.Text, 16);
-            int len = (textBox_Data.Text.Length + 1) / 3;
+            sendobj.RemoteFlag = (byte)cbo_FrameFormat.SelectedIndex;
+            sendobj.ExternFlag = (byte)cbo_FrameType.SelectedIndex;
+            sendobj.ID = System.Convert.ToUInt32("0x" + txt_ID.Text, 16);
+            int len = (txt_Data.Text.Length + 1) / 3;
             sendobj.DataLen = System.Convert.ToByte(len);
-            String strdata = textBox_Data.Text;
+            String strdata = txt_Data.Text;
             int i = -1;
             if (i++ < len - 1)
                 sendobj.Data[0] = System.Convert.ToByte("0x" + strdata.Substring(i * 3, 2), 16);
@@ -337,7 +337,7 @@ namespace WindowsApplication1
 
         private void button_Clear_Click(object sender, EventArgs e)
         {
-            listBox_Info.Items.Clear();
+            lb_Info.Items.Clear();
         }
 
     }
