@@ -143,7 +143,7 @@ namespace WindowsApplication1
 
         static UInt32 m_devtype = 4;//USBCAN2
 
-        UInt32 m_bOpen = 0;
+        bool isOpen = false;
         UInt32 m_devind = 0;
         UInt32 m_canind = 0;
 
@@ -187,7 +187,7 @@ namespace WindowsApplication1
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (m_bOpen == 1)
+            if (isOpen)
             {
                 VCI_CloseDevice(m_devtype, m_devind);
             }
@@ -195,10 +195,10 @@ namespace WindowsApplication1
 
         private void buttonConnect_Click(object sender, EventArgs e)
         {
-            if (m_bOpen == 1)
+            if (isOpen)
             {
                 VCI_CloseDevice(m_devtype, m_devind);
-                m_bOpen = 0;
+                isOpen = false;
             }
             else
             {
@@ -213,7 +213,7 @@ namespace WindowsApplication1
                     return;
                 }
 
-                m_bOpen = 1;
+                isOpen = true;
                 VCI_INIT_CONFIG config = new VCI_INIT_CONFIG();
                 config.AccCode = System.Convert.ToUInt32("0x" + txt_AccCode.Text, 16);
                 config.AccMask = System.Convert.ToUInt32("0x" + txt_AccMask.Text, 16);
@@ -223,8 +223,8 @@ namespace WindowsApplication1
                 config.Mode = (Byte)cbo_Mode.SelectedIndex;
                 VCI_InitCAN(m_devtype, m_devind, m_canind, ref config);
             }
-            btnConnect.Text = m_bOpen == 1 ? "断开" : "连接";
-            timer_rec.Enabled = m_bOpen == 1 ? true : false;
+            btnConnect.Text = isOpen ? "断开" : "连接";
+            timer_rec.Enabled = isOpen ? true : false;
         }
 
         unsafe private void timer_rec_Tick(object sender, EventArgs e)
@@ -286,21 +286,21 @@ namespace WindowsApplication1
 
         private void button_StartCAN_Click(object sender, EventArgs e)
         {
-            if (m_bOpen == 0)
+            if (!isOpen)
                 return;
             VCI_StartCAN(m_devtype, m_devind, m_canind);
         }
 
         private void button_StopCAN_Click(object sender, EventArgs e)
         {
-            if (m_bOpen == 0)
+            if (!isOpen)
                 return;
             VCI_ResetCAN(m_devtype, m_devind, m_canind);
         }
 
         unsafe private void button_Send_Click(object sender, EventArgs e)
         {
-            if (m_bOpen == 0)
+            if (!isOpen)
                 return;
 
             VCI_CAN_OBJ sendobj = new VCI_CAN_OBJ();
