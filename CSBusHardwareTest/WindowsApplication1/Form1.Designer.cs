@@ -64,7 +64,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lb_Info = new System.Windows.Forms.ListBox();
-            this.timer_rec = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnClear = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -473,9 +473,9 @@
             this.lb_Info.Size = new System.Drawing.Size(763, 284);
             this.lb_Info.TabIndex = 0;
             // 
-            // timer_rec
+            // timer1
             // 
-            this.timer_rec.Tick += new System.EventHandler(this.timer_rec_Tick);
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // btnClear
             // 
@@ -551,7 +551,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ListBox lb_Info;
-        private System.Windows.Forms.Timer timer_rec;
+        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ComboBox cbo_devtype;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btnClear;

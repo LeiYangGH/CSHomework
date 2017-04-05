@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
 /*------------兼容ZLG的数据类型---------------------------------*/
 
 //1.ZLGCAN系列接口卡信息的数据类型。
-public struct VCI_BOARD_INFO
+public struct BOARD
 {
     public UInt16 hw_Version;
     public UInt16 fw_Version;
@@ -28,22 +23,22 @@ public struct VCI_BOARD_INFO
 
 /////////////////////////////////////////////////////
 //2.定义CAN信息帧的数据类型。
-unsafe public struct VCI_CAN_OBJ  //使用不安全代码
+unsafe public struct CAN  //使用不安全代码
 {
     public uint ID;
     public uint TimeStamp;        //时间标识
-    public byte TimeFlag;         //是否使用时间标识
+    public byte IsTime;         //是否使用时间标识
     public byte SendType;         //发送标志。保留，未用
-    public byte RemoteFlag;       //是否是远程帧
-    public byte ExternFlag;       //是否是扩展帧
-    public byte DataLen;          //数据长度
+    public byte IsRemote;       //是否是远程帧
+    public byte IsExtern;       //是否是扩展帧
+    public byte DataLength;          //数据长度
     public fixed byte Data[8];    //数据
     public fixed byte Reserved[3];//保留位
 
 }
 
 //3.定义初始化CAN的数据类型
-public struct VCI_INIT_CONFIG
+public struct INIT
 {
     public UInt32 AccCode;
     public UInt32 AccMask;
@@ -55,8 +50,8 @@ public struct VCI_INIT_CONFIG
 }
 
 /*------------其他数据结构描述---------------------------------*/
-//4.USB-CAN总线适配器板卡信息的数据类型1，该类型为VCI_FindUsbDevice函数的返回参数。
-public struct VCI_BOARD_INFO1
+//4.USB-CAN总线适配器板卡信息的数据类型1，该类型为FindUsbDevice函数的返回参数。
+public struct BOARD1
 {
     public UInt16 hw_Version;
     public UInt16 fw_Version;
@@ -75,22 +70,6 @@ public struct VCI_BOARD_INFO1
 
 /*------------数据结构描述完成---------------------------------*/
 
-public struct CHGDESIPANDPORT
-{
-    [MarshalAs(UnmanagedType.ByValArray, SizeConst = 10)]
-    public byte[] szpwd;
-    [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
-    public byte[] szdesip;
-    public Int32 desport;
-
-    public void Init()
-    {
-        szpwd = new byte[10];
-        szdesip = new byte[20];
-    }
-}
-
-
 namespace WindowsApplication1
 {
     public partial class Form1 : Form
@@ -100,56 +79,56 @@ namespace WindowsApplication1
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="DeviceType"></param>
-        /// <param name="DeviceInd"></param>
+        /// <param name="deviceType"></param>
+        /// <param name="deviceID"></param>
         /// <param name="Reserved"></param>
         /// <returns></returns>
         /*------------兼容ZLG的函数描述---------------------------------*/
         [DllImport("controlcan.dll")]
-        static extern UInt32 VCI_OpenDevice(UInt32 DeviceType, UInt32 DeviceInd, UInt32 Reserved);
+        static extern UInt32 OpenDevice(UInt32 deviceType, UInt32 deviceID, UInt32 Reserved);
         [DllImport("controlcan.dll")]
-        static extern UInt32 VCI_CloseDevice(UInt32 DeviceType, UInt32 DeviceInd);
+        static extern UInt32 CloseDevice(UInt32 deviceType, UInt32 deviceID);
         [DllImport("controlcan.dll")]
-        static extern UInt32 VCI_InitCAN(UInt32 DeviceType, UInt32 DeviceInd, UInt32 CANInd, ref VCI_INIT_CONFIG pInitConfig);
+        static extern UInt32 InitCAN(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd, ref INIT pInitConfig);
 
         [DllImport("controlcan.dll")]
-        static extern UInt32 VCI_ReadBoardInfo(UInt32 DeviceType, UInt32 DeviceInd, ref VCI_BOARD_INFO pInfo);
+        static extern UInt32 ReadBoardInfo(UInt32 deviceType, UInt32 deviceID, ref BOARD pInfo);
 
         [DllImport("controlcan.dll")]
-        static extern UInt32 VCI_GetReceiveNum(UInt32 DeviceType, UInt32 DeviceInd, UInt32 CANInd);
+        static extern UInt32 GetReceiveNum(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd);
         [DllImport("controlcan.dll")]
-        static extern UInt32 VCI_ClearBuffer(UInt32 DeviceType, UInt32 DeviceInd, UInt32 CANInd);
+        static extern UInt32 ClearBuffer(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd);
 
         [DllImport("controlcan.dll")]
-        static extern UInt32 VCI_StartCAN(UInt32 DeviceType, UInt32 DeviceInd, UInt32 CANInd);
+        static extern UInt32 StartCAN(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd);
         [DllImport("controlcan.dll")]
-        static extern UInt32 VCI_ResetCAN(UInt32 DeviceType, UInt32 DeviceInd, UInt32 CANInd);
+        static extern UInt32 ResetCAN(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd);
 
         [DllImport("controlcan.dll")]
-        static extern UInt32 VCI_Transmit(UInt32 DeviceType, UInt32 DeviceInd, UInt32 CANInd, ref VCI_CAN_OBJ pSend, UInt32 Len);
+        static extern UInt32 Transmit(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd, ref CAN pSend, UInt32 Len);
 
         [DllImport("controlcan.dll")]
-        static extern UInt32 VCI_Receive(UInt32 DeviceType, UInt32 DeviceInd, UInt32 CANInd, ref VCI_CAN_OBJ pReceive, UInt32 Len, Int32 WaitTime);
+        static extern UInt32 Receive(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd, ref CAN pReceive, UInt32 Len, Int32 WaitTime);
 
         /*------------其他函数描述---------------------------------*/
 
         [DllImport("controlcan.dll")]
-        static extern UInt32 VCI_ConnectDevice(UInt32 DevType, UInt32 DevIndex);
+        static extern UInt32 ConnectDevice(UInt32 DevType, UInt32 DevIndex);
         [DllImport("controlcan.dll")]
-        static extern UInt32 VCI_UsbDeviceReset(UInt32 DevType, UInt32 DevIndex, UInt32 Reserved);
+        static extern UInt32 UsbDeviceReset(UInt32 DevType, UInt32 DevIndex, UInt32 Reserved);
         [DllImport("controlcan.dll")]
-        static extern UInt32 VCI_FindUsbDevice(ref VCI_BOARD_INFO1 pInfo);
+        static extern UInt32 FindUsbDevice(ref BOARD1 pInfo);
         /*------------函数描述结束---------------------------------*/
 
-        static UInt32 m_devtype = 4;//USBCAN2
+        static UInt32 deviceType = 4;//USBCAN2
 
         bool isOpen = false;
-        UInt32 m_devind = 0;
-        UInt32 m_canind = 0;
+        UInt32 deviceId = 0;
+        UInt32 canId = 0;
 
-        VCI_CAN_OBJ[] m_recobj = new VCI_CAN_OBJ[1000];
+        CAN[] arrCANs = new CAN[1000];
 
-        UInt32[] m_arrdevtype = new UInt32[20];
+        UInt32[] arrDeviceTypes = new UInt32[20];
 
         public Form1()
         {
@@ -175,10 +154,10 @@ namespace WindowsApplication1
             cbo_devtype.Items.Clear();
 
             curindex = cbo_devtype.Items.Add("DEV_USBCAN");
-            m_arrdevtype[curindex] = DEV_USBCAN;
+            arrDeviceTypes[curindex] = DEV_USBCAN;
 
             curindex = cbo_devtype.Items.Add("DEV_USBCAN2");
-            m_arrdevtype[curindex] = DEV_USBCAN2;
+            arrDeviceTypes[curindex] = DEV_USBCAN2;
 
             cbo_devtype.SelectedIndex = 1;
             cbo_devtype.MaxDropDownItems = cbo_devtype.Items.Count;
@@ -189,7 +168,7 @@ namespace WindowsApplication1
         {
             if (isOpen)
             {
-                VCI_CloseDevice(m_devtype, m_devind);
+                CloseDevice(deviceType, deviceId);
             }
         }
 
@@ -197,16 +176,16 @@ namespace WindowsApplication1
         {
             if (isOpen)
             {
-                VCI_CloseDevice(m_devtype, m_devind);
+                CloseDevice(deviceType, deviceId);
                 isOpen = false;
             }
             else
             {
-                m_devtype = m_arrdevtype[cbo_devtype.SelectedIndex];
+                deviceType = arrDeviceTypes[cbo_devtype.SelectedIndex];
 
-                m_devind = (UInt32)cbo_DevIndex.SelectedIndex;
-                m_canind = (UInt32)cbo_CANIndex.SelectedIndex;
-                if (VCI_OpenDevice(m_devtype, m_devind, 0) == 0)
+                deviceId = (UInt32)cbo_DevIndex.SelectedIndex;
+                canId = (UInt32)cbo_CANIndex.SelectedIndex;
+                if (OpenDevice(deviceType, deviceId, 0) == 0)
                 {
                     MessageBox.Show("打开设备失败,请检查设备类型和设备索引号是否正确", "错误",
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -214,24 +193,26 @@ namespace WindowsApplication1
                 }
 
                 isOpen = true;
-                VCI_INIT_CONFIG config = new VCI_INIT_CONFIG();
-                config.AccCode = System.Convert.ToUInt32("0x" + txt_AccCode.Text, 16);
-                config.AccMask = System.Convert.ToUInt32("0x" + txt_AccMask.Text, 16);
-                config.Timing0 = System.Convert.ToByte("0x" + txt_Time0.Text, 16);
-                config.Timing1 = System.Convert.ToByte("0x" + txt_Time1.Text, 16);
+                INIT config = new INIT();
+                config.AccCode = Convert.ToUInt32("0x" + txt_AccCode.Text, 16);
+                config.AccMask = Convert.ToUInt32("0x" + txt_AccMask.Text, 16);
+                config.Timing0 = Convert.ToByte("0x" + txt_Time0.Text, 16);
+                config.Timing1 = Convert.ToByte("0x" + txt_Time1.Text, 16);
                 config.Filter = (Byte)(cbo_Filter.SelectedIndex + 1);
                 config.Mode = (Byte)cbo_Mode.SelectedIndex;
-                VCI_InitCAN(m_devtype, m_devind, m_canind, ref config);
+                InitCAN(deviceType, deviceId, canId, ref config);
             }
             btnConnect.Text = isOpen ? "断开" : "连接";
-            timer_rec.Enabled = isOpen ? true : false;
+            timer1.Enabled = isOpen ? true : false;
         }
 
-        unsafe private void timer_rec_Tick(object sender, EventArgs e)
+
+
+        unsafe private void timer1_Tick(object sender, EventArgs e)
         {
             UInt32 res = new UInt32();
 
-            res = VCI_Receive(m_devtype, m_devind, m_canind, ref m_recobj[0], 1000, 100);
+            res = Receive(deviceType, deviceId, canId, ref arrCANs[0], 1000, 100);
 
 
             String str = "";
@@ -240,41 +221,41 @@ namespace WindowsApplication1
 
 
                 str = "接收到数据: ";
-                str += "  帧ID:0x" + System.Convert.ToString(m_recobj[i].ID, 16);
+                str += "  帧ID:0x" + Convert.ToString(arrCANs[i].ID, 16);
                 str += "  帧格式:";
-                if (m_recobj[i].RemoteFlag == 0)
+                if (arrCANs[i].IsRemote == 0)
                     str += "数据帧 ";
                 else
                     str += "远程帧 ";
-                if (m_recobj[i].ExternFlag == 0)
+                if (arrCANs[i].IsExtern == 0)
                     str += "标准帧 ";
                 else
                     str += "扩展帧 ";
 
                 //////////////////////////////////////////
-                if (m_recobj[i].RemoteFlag == 0)
+                if (arrCANs[i].IsRemote == 0)
                 {
                     str += "数据: ";
-                    byte len = (byte)(m_recobj[i].DataLen % 9);
+                    byte len = (byte)(arrCANs[i].DataLength % 9);
                     byte j = 0;
-                    fixed (VCI_CAN_OBJ* m_recobj1 = &m_recobj[i])
+                    fixed (CAN* can = &arrCANs[i])
                     {
                         if (j++ < len)
-                            str += " " + System.Convert.ToString(m_recobj1->Data[0], 16);
+                            str += " " + Convert.ToString(can->Data[0], 16);
                         if (j++ < len)
-                            str += " " + System.Convert.ToString(m_recobj1->Data[1], 16);
+                            str += " " + Convert.ToString(can->Data[1], 16);
                         if (j++ < len)
-                            str += " " + System.Convert.ToString(m_recobj1->Data[2], 16);
+                            str += " " + Convert.ToString(can->Data[2], 16);
                         if (j++ < len)
-                            str += " " + System.Convert.ToString(m_recobj1->Data[3], 16);
+                            str += " " + Convert.ToString(can->Data[3], 16);
                         if (j++ < len)
-                            str += " " + System.Convert.ToString(m_recobj1->Data[4], 16);
+                            str += " " + Convert.ToString(can->Data[4], 16);
                         if (j++ < len)
-                            str += " " + System.Convert.ToString(m_recobj1->Data[5], 16);
+                            str += " " + Convert.ToString(can->Data[5], 16);
                         if (j++ < len)
-                            str += " " + System.Convert.ToString(m_recobj1->Data[6], 16);
+                            str += " " + Convert.ToString(can->Data[6], 16);
                         if (j++ < len)
-                            str += " " + System.Convert.ToString(m_recobj1->Data[7], 16);
+                            str += " " + Convert.ToString(can->Data[7], 16);
                     }
                 }
 
@@ -288,14 +269,19 @@ namespace WindowsApplication1
         {
             if (!isOpen)
                 return;
-            VCI_StartCAN(m_devtype, m_devind, m_canind);
+            StartCAN(deviceType, deviceId, canId);
         }
 
         private void button_StopCAN_Click(object sender, EventArgs e)
         {
             if (!isOpen)
                 return;
-            VCI_ResetCAN(m_devtype, m_devind, m_canind);
+            ResetCAN(deviceType, deviceId, canId);
+        }
+
+        private byte ConvertHexStringToByte(string s, int i)
+        {
+            return Convert.ToByte("0x" + s.Substring(i * 3, 2), 16);
         }
 
         unsafe private void button_Send_Click(object sender, EventArgs e)
@@ -303,32 +289,32 @@ namespace WindowsApplication1
             if (!isOpen)
                 return;
 
-            VCI_CAN_OBJ sendobj = new VCI_CAN_OBJ();
-            sendobj.RemoteFlag = (byte)cbo_FrameFormat.SelectedIndex;
-            sendobj.ExternFlag = (byte)cbo_FrameType.SelectedIndex;
-            sendobj.ID = System.Convert.ToUInt32("0x" + txt_ID.Text, 16);
+            CAN cAN = new CAN();
+            cAN.IsRemote = (byte)cbo_FrameFormat.SelectedIndex;
+            cAN.IsExtern = (byte)cbo_FrameType.SelectedIndex;
+            cAN.ID = Convert.ToUInt32("0x" + txt_ID.Text, 16);
             int len = (txt_Data.Text.Length + 1) / 3;
-            sendobj.DataLen = System.Convert.ToByte(len);
+            cAN.DataLength = Convert.ToByte(len);
             String strdata = txt_Data.Text;
             int i = -1;
             if (i++ < len - 1)
-                sendobj.Data[0] = System.Convert.ToByte("0x" + strdata.Substring(i * 3, 2), 16);
+                cAN.Data[0] = this.ConvertHexStringToByte(strdata, i);
             if (i++ < len - 1)
-                sendobj.Data[1] = System.Convert.ToByte("0x" + strdata.Substring(i * 3, 2), 16);
+                cAN.Data[1] = this.ConvertHexStringToByte(strdata, i);
             if (i++ < len - 1)
-                sendobj.Data[2] = System.Convert.ToByte("0x" + strdata.Substring(i * 3, 2), 16);
+                cAN.Data[2] = this.ConvertHexStringToByte(strdata, i);
             if (i++ < len - 1)
-                sendobj.Data[3] = System.Convert.ToByte("0x" + strdata.Substring(i * 3, 2), 16);
+                cAN.Data[3] = this.ConvertHexStringToByte(strdata, i);
             if (i++ < len - 1)
-                sendobj.Data[4] = System.Convert.ToByte("0x" + strdata.Substring(i * 3, 2), 16);
+                cAN.Data[4] = this.ConvertHexStringToByte(strdata, i);
             if (i++ < len - 1)
-                sendobj.Data[5] = System.Convert.ToByte("0x" + strdata.Substring(i * 3, 2), 16);
+                cAN.Data[5] = this.ConvertHexStringToByte(strdata, i);
             if (i++ < len - 1)
-                sendobj.Data[6] = System.Convert.ToByte("0x" + strdata.Substring(i * 3, 2), 16);
+                cAN.Data[6] = this.ConvertHexStringToByte(strdata, i);
             if (i++ < len - 1)
-                sendobj.Data[7] = System.Convert.ToByte("0x" + strdata.Substring(i * 3, 2), 16);
+                cAN.Data[7] = this.ConvertHexStringToByte(strdata, i);
 
-            if (VCI_Transmit(m_devtype, m_devind, m_canind, ref sendobj, 1) == 0)
+            if (Transmit(deviceType, deviceId, canId, ref cAN, 1) == 0)
             {
                 MessageBox.Show("发送失败", "错误",
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
