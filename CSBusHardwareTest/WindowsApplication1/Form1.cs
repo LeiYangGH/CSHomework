@@ -171,19 +171,14 @@ namespace WindowsApplication1
             textBox_ID.Text = "000002b0";
             textBox_Data.Text = "00 00 00 00 00 08 00 00 ";
 
-            //
             Int32 curindex = 0;
             comboBox_devtype.Items.Clear();
 
             curindex = comboBox_devtype.Items.Add("DEV_USBCAN");
             m_arrdevtype[curindex] = DEV_USBCAN;
-            //comboBox_devtype.Items[2] = "VCI_USBCAN1";
-            //m_arrdevtype[2]=  VCI_USBCAN1 ;
 
             curindex = comboBox_devtype.Items.Add("DEV_USBCAN2");
             m_arrdevtype[curindex] = DEV_USBCAN2;
-            //comboBox_devtype.Items[3] = "VCI_USBCAN2";
-            //m_arrdevtype[3]=  VCI_USBCAN2 ;
 
             comboBox_devtype.SelectedIndex = 1;
             comboBox_devtype.MaxDropDownItems = comboBox_devtype.Items.Count;
