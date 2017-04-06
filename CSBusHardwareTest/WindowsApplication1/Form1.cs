@@ -206,7 +206,10 @@ namespace WindowsApplication1
             timer1.Enabled = isOpen ? true : false;
         }
 
-
+        unsafe private void ConvertCANBitToString(ref string str, CAN* can, int i)
+        {
+            str += " " + Convert.ToString(can->Data[i], 16);
+        }
 
         unsafe private void timer1_Tick(object sender, EventArgs e)
         {
@@ -241,21 +244,21 @@ namespace WindowsApplication1
                     fixed (CAN* can = &arrCANs[i])
                     {
                         if (j++ < len)
-                            str += " " + Convert.ToString(can->Data[0], 16);
+                            ConvertCANBitToString(ref str, can, 0);
                         if (j++ < len)
-                            str += " " + Convert.ToString(can->Data[1], 16);
+                            ConvertCANBitToString(ref str, can, 1);
                         if (j++ < len)
-                            str += " " + Convert.ToString(can->Data[2], 16);
+                            ConvertCANBitToString(ref str, can, 2);
                         if (j++ < len)
-                            str += " " + Convert.ToString(can->Data[3], 16);
+                            ConvertCANBitToString(ref str, can, 3);
                         if (j++ < len)
-                            str += " " + Convert.ToString(can->Data[4], 16);
+                            ConvertCANBitToString(ref str, can, 4);
                         if (j++ < len)
-                            str += " " + Convert.ToString(can->Data[5], 16);
+                            ConvertCANBitToString(ref str, can, 5);
                         if (j++ < len)
-                            str += " " + Convert.ToString(can->Data[6], 16);
+                            ConvertCANBitToString(ref str, can, 6);
                         if (j++ < len)
-                            str += " " + Convert.ToString(can->Data[7], 16);
+                            ConvertCANBitToString(ref str, can, 7);
                     }
                 }
 
