@@ -85,39 +85,39 @@ namespace WindowsApplication1
         /// <returns></returns>
         /*------------兼容ZLG的函数描述---------------------------------*/
         [DllImport("controlcan.dll")]
-        static extern UInt32 OpenDevice(UInt32 deviceType, UInt32 deviceID, UInt32 Reserved);
+        static extern UInt32 VCI_OpenDevice(UInt32 deviceType, UInt32 deviceID, UInt32 Reserved);
         [DllImport("controlcan.dll")]
-        static extern UInt32 CloseDevice(UInt32 deviceType, UInt32 deviceID);
+        static extern UInt32 VCI_CloseDevice(UInt32 deviceType, UInt32 deviceID);
         [DllImport("controlcan.dll")]
-        static extern UInt32 InitCAN(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd, ref INIT pInitConfig);
+        static extern UInt32 VCI_InitCAN(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd, ref INIT pInitConfig);
 
         [DllImport("controlcan.dll")]
-        static extern UInt32 ReadBoardInfo(UInt32 deviceType, UInt32 deviceID, ref BOARD pInfo);
+        static extern UInt32 VCI_ReadBoardInfo(UInt32 deviceType, UInt32 deviceID, ref BOARD pInfo);
 
         [DllImport("controlcan.dll")]
-        static extern UInt32 GetReceiveNum(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd);
+        static extern UInt32 VCI_GetReceiveNum(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd);
         [DllImport("controlcan.dll")]
-        static extern UInt32 ClearBuffer(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd);
+        static extern UInt32 VCI_ClearBuffer(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd);
 
         [DllImport("controlcan.dll")]
-        static extern UInt32 StartCAN(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd);
+        static extern UInt32 VCI_StartCAN(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd);
         [DllImport("controlcan.dll")]
-        static extern UInt32 ResetCAN(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd);
+        static extern UInt32 VCI_ResetCAN(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd);
 
         [DllImport("controlcan.dll")]
-        static extern UInt32 Transmit(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd, ref CAN pSend, UInt32 Len);
+        static extern UInt32 VCI_Transmit(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd, ref CAN pSend, UInt32 Len);
 
         [DllImport("controlcan.dll")]
-        static extern UInt32 Receive(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd, ref CAN pReceive, UInt32 Len, Int32 WaitTime);
+        static extern UInt32 VCI_Receive(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd, ref CAN pReceive, UInt32 Len, Int32 WaitTime);
 
         /*------------其他函数描述---------------------------------*/
 
         [DllImport("controlcan.dll")]
-        static extern UInt32 ConnectDevice(UInt32 DevType, UInt32 DevIndex);
+        static extern UInt32 VCI_ConnectDevice(UInt32 DevType, UInt32 DevIndex);
         [DllImport("controlcan.dll")]
-        static extern UInt32 UsbDeviceReset(UInt32 DevType, UInt32 DevIndex, UInt32 Reserved);
+        static extern UInt32 VCI_UsbDeviceReset(UInt32 DevType, UInt32 DevIndex, UInt32 Reserved);
         [DllImport("controlcan.dll")]
-        static extern UInt32 FindUsbDevice(ref BOARD1 pInfo);
+        static extern UInt32 VCI_FindUsbDevice(ref BOARD1 pInfo);
         /*------------函数描述结束---------------------------------*/
 
         static UInt32 deviceType = 4;//USBCAN2
@@ -168,7 +168,7 @@ namespace WindowsApplication1
         {
             if (isOpen)
             {
-                CloseDevice(deviceType, deviceId);
+                VCI_CloseDevice(deviceType, deviceId);
             }
         }
 
@@ -176,7 +176,7 @@ namespace WindowsApplication1
         {
             if (isOpen)
             {
-                CloseDevice(deviceType, deviceId);
+                VCI_CloseDevice(deviceType, deviceId);
                 isOpen = false;
             }
             else
@@ -185,7 +185,7 @@ namespace WindowsApplication1
 
                 deviceId = (UInt32)cbo_DevIndex.SelectedIndex;
                 canId = (UInt32)cbo_CANIndex.SelectedIndex;
-                if (OpenDevice(deviceType, deviceId, 0) == 0)
+                if (VCI_OpenDevice(deviceType, deviceId, 0) == 0)
                 {
                     MessageBox.Show("打开设备失败,请检查设备类型和设备索引号是否正确", "错误",
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -200,7 +200,7 @@ namespace WindowsApplication1
                 config.Timing1 = Convert.ToByte("0x" + txt_Time1.Text, 16);
                 config.Filter = (Byte)(cbo_Filter.SelectedIndex + 1);
                 config.Mode = (Byte)cbo_Mode.SelectedIndex;
-                InitCAN(deviceType, deviceId, canId, ref config);
+                VCI_InitCAN(deviceType, deviceId, canId, ref config);
             }
             btnConnect.Text = isOpen ? "断开" : "连接";
             timer1.Enabled = isOpen ? true : false;
@@ -212,7 +212,7 @@ namespace WindowsApplication1
         {
             UInt32 res = new UInt32();
 
-            res = Receive(deviceType, deviceId, canId, ref arrCANs[0], 1000, 100);
+            res = VCI_Receive(deviceType, deviceId, canId, ref arrCANs[0], 1000, 100);
 
 
             String str = "";
@@ -269,14 +269,14 @@ namespace WindowsApplication1
         {
             if (!isOpen)
                 return;
-            StartCAN(deviceType, deviceId, canId);
+            VCI_StartCAN(deviceType, deviceId, canId);
         }
 
         private void button_StopCAN_Click(object sender, EventArgs e)
         {
             if (!isOpen)
                 return;
-            ResetCAN(deviceType, deviceId, canId);
+            VCI_ResetCAN(deviceType, deviceId, canId);
         }
 
         private byte ConvertHexStringToByte(string s, int i)
@@ -314,7 +314,7 @@ namespace WindowsApplication1
             if (i++ < len - 1)
                 cAN.Data[7] = this.ConvertHexStringToByte(strdata, i);
 
-            if (Transmit(deviceType, deviceId, canId, ref cAN, 1) == 0)
+            if (VCI_Transmit(deviceType, deviceId, canId, ref cAN, 1) == 0)
             {
                 MessageBox.Show("发送失败", "错误",
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
