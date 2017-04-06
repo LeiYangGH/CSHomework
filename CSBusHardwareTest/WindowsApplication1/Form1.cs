@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 /*------------兼容ZLG的数据类型---------------------------------*/
 
@@ -76,14 +77,7 @@ namespace WindowsApplication1
     {
         const int DEV_USBCAN = 3;
         const int DEV_USBCAN2 = 4;
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="deviceType"></param>
-        /// <param name="deviceID"></param>
-        /// <param name="Reserved"></param>
-        /// <returns></returns>
-        /*------------兼容ZLG的函数描述---------------------------------*/
+
         [DllImport("controlcan.dll")]
         static extern UInt32 VCI_OpenDevice(UInt32 deviceType, UInt32 deviceID, UInt32 Reserved);
         [DllImport("controlcan.dll")]
@@ -110,7 +104,6 @@ namespace WindowsApplication1
         [DllImport("controlcan.dll")]
         static extern UInt32 VCI_Receive(UInt32 deviceType, UInt32 deviceID, UInt32 CANInd, ref CAN pReceive, UInt32 Len, Int32 WaitTime);
 
-        /*------------其他函数描述---------------------------------*/
 
         [DllImport("controlcan.dll")]
         static extern UInt32 VCI_ConnectDevice(UInt32 DevType, UInt32 DevIndex);
@@ -118,7 +111,6 @@ namespace WindowsApplication1
         static extern UInt32 VCI_UsbDeviceReset(UInt32 DevType, UInt32 DevIndex, UInt32 Reserved);
         [DllImport("controlcan.dll")]
         static extern UInt32 VCI_FindUsbDevice(ref BOARD1 pInfo);
-        /*------------函数描述结束---------------------------------*/
 
         static UInt32 deviceType = 4;//USBCAN2
 
@@ -287,7 +279,11 @@ namespace WindowsApplication1
             return Convert.ToByte("0x" + s.Substring(i * 3, 2), 16);
         }
 
-        unsafe private void button_Send_Click(object sender, EventArgs e)
+        private void button_Send_Click(object sender, EventArgs e)
+        {
+            this.SendData();
+        }
+        unsafe private void SendData()
         {
             if (!isOpen)
                 return;
@@ -302,6 +298,7 @@ namespace WindowsApplication1
             int i = -1;
             if (i++ < len - 1)
                 cAN.Data[0] = this.ConvertHexStringToByte(strdata, i);
+            Debug.WriteLine($"i={i}");
             if (i++ < len - 1)
                 cAN.Data[1] = this.ConvertHexStringToByte(strdata, i);
             if (i++ < len - 1)
@@ -329,5 +326,10 @@ namespace WindowsApplication1
             lb_Info.Items.Clear();
         }
 
+        private void btnLTDoorOn_Click(object sender, EventArgs e)
+        {
+            this.txt_Data.Text = "00 00 80 00 00 00 00 00";
+            this.SendData();
+        }
     }
 }

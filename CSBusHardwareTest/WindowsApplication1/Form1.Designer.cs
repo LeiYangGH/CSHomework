@@ -66,6 +66,7 @@
             this.lb_Info = new System.Windows.Forms.ListBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnLTDoorOn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -440,6 +441,7 @@
             this.txt_ID.Name = "txt_ID";
             this.txt_ID.Size = new System.Drawing.Size(103, 26);
             this.txt_ID.TabIndex = 1;
+            this.txt_ID.Text = "288";
             // 
             // label12
             // 
@@ -454,11 +456,11 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.lb_Info);
-            this.groupBox4.Location = new System.Drawing.Point(18, 405);
+            this.groupBox4.Location = new System.Drawing.Point(18, 464);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox4.Size = new System.Drawing.Size(795, 343);
+            this.groupBox4.Size = new System.Drawing.Size(795, 284);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "信息";
@@ -488,11 +490,22 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.button_Clear_Click);
             // 
+            // btnLTDoorOn
+            // 
+            this.btnLTDoorOn.Location = new System.Drawing.Point(94, 404);
+            this.btnLTDoorOn.Name = "btnLTDoorOn";
+            this.btnLTDoorOn.Size = new System.Drawing.Size(94, 37);
+            this.btnLTDoorOn.TabIndex = 9;
+            this.btnLTDoorOn.Text = "左前门开";
+            this.btnLTDoorOn.UseVisualStyleBackColor = true;
+            this.btnLTDoorOn.Click += new System.EventHandler(this.btnLTDoorOn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(834, 768);
+            this.Controls.Add(this.btnLTDoorOn);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnConnect);
@@ -555,6 +568,7 @@
         private System.Windows.Forms.ComboBox cbo_devtype;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnLTDoorOn;
     }
 }
 
