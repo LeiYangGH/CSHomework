@@ -37,7 +37,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblScore = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -116,29 +116,28 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(407, 141);
+            this.button1.Location = new System.Drawing.Point(373, 146);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 35);
+            this.button1.Size = new System.Drawing.Size(122, 35);
             this.button1.TabIndex = 4;
             this.button1.Text = "开始考试";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label5
+            // lblScore
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(53, 324);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 20);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "lblScore";
-            this.label5.Visible = false;
+            this.lblScore.AutoSize = true;
+            this.lblScore.Location = new System.Drawing.Point(53, 324);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(0, 20);
+            this.lblScore.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(518, 392);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblScore);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.listBox1);
@@ -150,6 +149,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,7 +166,7 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblScore;
     }
 }
 

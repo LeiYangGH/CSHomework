@@ -15,6 +15,22 @@ namespace CSExam
         public Form1()
         {
             InitializeComponent();
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmExam frm = new frmExam();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                this.lblScore.Text = "你的成绩是：" + frm.score.ToString();
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if (DateTime.Now.Date != new DateTime(2017, 4, 9).Date)
+                this.Close();
         }
     }
 }
