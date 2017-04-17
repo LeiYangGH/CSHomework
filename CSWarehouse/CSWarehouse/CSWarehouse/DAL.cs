@@ -66,6 +66,27 @@ namespace CSWarehouse
 
         }
 
+        public static InOut GetInOutByVOut(VOut vOut)
+        {
+            try
+            {
+                using (WareHouseEntities en = new WareHouseEntities())
+                {
+                    return en.InOuts.Include(p => p.Material).First(x =>
+                    !x.IsIn
+                    && x.Material.Name == vOut.Name
+                    && x.Quantity == vOut.Quantity
+                    && x.Date == vOut.Date);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+
+        }
+
         public static bool EditInOut(int oldInOutID, InOut newInOut)
         {
             try

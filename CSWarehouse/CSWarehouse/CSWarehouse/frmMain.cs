@@ -69,11 +69,27 @@ namespace CSWarehouse
             else
             {
                 return selectedRows[0].DataBoundItem as VIn;
-                //int id = (int)selectedRows[0].Cells[0].Value;
-                //return this.lstVIns.First(x => x.Id == id);
             }
         }
 
+        private VOut GetFirstSelectedVOut()
+        {
+            var selectedRows = this.dgvOut.SelectedRows;
+            if (selectedRows == null)
+                return null;
+            else
+            {
+                return selectedRows[0].DataBoundItem as VOut;
+            }
+        }
+
+
+
+
+        private void Delete(DataGridView dgv)
+        {
+
+        }
         private void btnEditIn_Click(object sender, EventArgs e)
         {
             VIn vIn = this.GetFirstSelectedVIn();
@@ -98,6 +114,50 @@ namespace CSWarehouse
             InOut inOut = DAL.GetInOutByVIn(vIn);
 
             if (vIn != null)
+            {
+                if (DAL.DeleteInOut(inOut))
+                {
+                    this.ViewAll();
+                }
+            }
+        }
+
+        private void btnAddOut_Click(object sender, EventArgs e)
+        {
+            frmInOut editor = new frmInOut(false);
+            if (editor.ShowDialog() == DialogResult.OK)
+            {
+                if (DAL.AddInOut(editor.InOut))
+                {
+                    this.ViewAll();
+                }
+            }
+        }
+
+        private void btnEditOut_Click(object sender, EventArgs e)
+        {
+            VOut vOut = this.GetFirstSelectedVOut();
+            if (vOut != null)
+            {
+                InOut inOut = DAL.GetInOutByVOut(vOut);
+                int oldId = inOut.ID;
+                frmInOut editor = new frmInOut(inOut);
+                if (editor.ShowDialog() == DialogResult.OK)
+                {
+                    if (DAL.EditInOut(oldId, inOut))
+                    {
+                        this.ViewAll();
+                    }
+                }
+            }
+        }
+
+        private void btnDeleteOut_Click(object sender, EventArgs e)
+        {
+            VOut vOut = this.GetFirstSelectedVOut();
+            InOut inOut = DAL.GetInOutByVOut(vOut);
+
+            if (vOut != null)
             {
                 if (DAL.DeleteInOut(inOut))
                 {
