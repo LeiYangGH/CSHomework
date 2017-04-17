@@ -37,7 +37,7 @@ namespace CSWarehouse
             this.BindMaterials();
 
             this.InOut = inOut;
-            this.Text = this.InOut.IsIn ? "添加入库" : "添加出库";
+            this.Text = this.InOut.IsIn ? "编辑入库" : "编辑出库";
             this.SyncToControl();
             //this.isAdding = true;
         }

@@ -106,6 +106,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cboMaterial);
             this.Name = "frmInOut";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "编辑";
             this.Load += new System.EventHandler(this.frmInOut_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numQuatity)).EndInit();

@@ -142,7 +142,7 @@
             this.Controls.Add(this.dgvIn);
             this.Controls.Add(this.dgvOut);
             this.Name = "frmMain";
-            this.Text = "Form1";
+            this.Text = "汽车配件出入库";
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOut)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIn)).EndInit();
