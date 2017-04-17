@@ -8,6 +8,8 @@
         <EntityTypeShape EntityType="WareHouseModel.InOut" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="WareHouseModel.Material" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="WareHouseModel.FK_InOut_Material" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WareHouseModel.VIn" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="WareHouseModel.VOut" Width="1.5" PointX="2.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

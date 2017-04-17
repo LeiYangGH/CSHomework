@@ -12,14 +12,11 @@ namespace CSWarehouse
     using System;
     using System.Collections.Generic;
     
-    public partial class InOut
+    public partial class VOut
     {
-        public int MID { get; set; }
-        public bool IsIn { get; set; }
+        public string Name { get; set; }
+        public Nullable<decimal> Price { get; set; }
         public int Quantity { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public int ID { get; set; }
-    
-        public virtual Material Material { get; set; }
     }
 }
