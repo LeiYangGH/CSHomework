@@ -36,8 +36,11 @@
             this.btnDelIn = new System.Windows.Forms.Button();
             this.btnEditOut = new System.Windows.Forms.Button();
             this.btnDeleteOut = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIn)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvOut
@@ -128,6 +131,24 @@
             this.btnDeleteOut.UseVisualStyleBackColor = true;
             this.btnDeleteOut.Click += new System.EventHandler(this.btnDeleteOut_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.查询ToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1096, 32);
+            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // 查询ToolStripMenuItem
+            // 
+            this.查询ToolStripMenuItem.Name = "查询ToolStripMenuItem";
+            this.查询ToolStripMenuItem.Size = new System.Drawing.Size(58, 28);
+            this.查询ToolStripMenuItem.Text = "查询";
+            this.查询ToolStripMenuItem.Click += new System.EventHandler(this.查询ToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -141,12 +162,17 @@
             this.Controls.Add(this.btnAddIn);
             this.Controls.Add(this.dgvIn);
             this.Controls.Add(this.dgvOut);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMain";
             this.Text = "汽车配件出入库";
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOut)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIn)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -159,6 +185,8 @@
         private System.Windows.Forms.Button btnDelIn;
         private System.Windows.Forms.Button btnEditOut;
         private System.Windows.Forms.Button btnDeleteOut;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 查询ToolStripMenuItem;
     }
 }
 

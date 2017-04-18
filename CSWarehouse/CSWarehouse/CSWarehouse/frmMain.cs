@@ -173,5 +173,11 @@ namespace CSWarehouse
                 }
             }
         }
+
+        private void 查询ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmQuery frm = new frmQuery();
+            frm.ShowDialog();
+        }
     }
 }
