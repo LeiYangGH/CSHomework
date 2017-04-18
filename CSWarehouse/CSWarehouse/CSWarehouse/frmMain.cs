@@ -42,6 +42,14 @@ namespace CSWarehouse
                 this.lstVOuts = new BindingList<VOut>(en.VOuts.ToList());
                 this.dgvOut.DataSource = this.lstVOuts;
             }
+            this.dgvIn.Columns[0].HeaderText = "配件名称";
+            this.dgvIn.Columns[1].HeaderText = "价格";
+            this.dgvIn.Columns[2].HeaderText = "数量";
+            this.dgvIn.Columns[3].HeaderText = "时间";
+            this.dgvOut.Columns[0].HeaderText = "配件名称";
+            this.dgvOut.Columns[1].HeaderText = "价格";
+            this.dgvOut.Columns[2].HeaderText = "数量";
+            this.dgvOut.Columns[3].HeaderText = "时间";
         }
 
         private void frmMain_Load(object sender, EventArgs e)
