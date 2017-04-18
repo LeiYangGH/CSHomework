@@ -19,6 +19,8 @@ namespace CSWarehouse
         public frmMain()
         {
             InitializeComponent();
+            frmMaterial frm = new frmMaterial();
+            frm.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
