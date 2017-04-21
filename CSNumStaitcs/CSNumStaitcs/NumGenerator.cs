@@ -40,14 +40,19 @@ namespace CSNumStaitcs
             return $"{description}  {a}{b}{c}-{a}{b}-{b}{c}-{c}{a}={rab[0]}{rab[1]}-{rbc[0]}{rbc[1]}-{rca[0]}{rca[1]}\r\n";
         }
 
+        public string GetNum6String()
+        {
+            return $"{nums[0]}{nums[1]}{nums[2]}{nums[3]}{nums[4]}{nums[5]}";
+        }
+
         public string GetTxt4Lines()
         {
             int[,] S34 = this.Get34Seeds();
             StringBuilder sb = new StringBuilder();
-            sb.Append(GetTxt1Line("奇奇=偶", S34[0,0], S34[0, 1], S34[0, 2]));
-            sb.Append(GetTxt1Line("偶偶=偶", S34[1,0], S34[1, 1], S34[1, 2]));
-            sb.Append(GetTxt1Line("奇偶=奇", S34[2,0], S34[2, 1], S34[2, 2]));
-            sb.Append(GetTxt1Line("偶奇=奇", S34[3,0], S34[3, 1], S34[3, 2]));
+            sb.Append(GetTxt1Line("奇奇=偶", S34[0, 0], S34[0, 1], S34[0, 2]));
+            sb.Append(GetTxt1Line("偶偶=偶", S34[1, 0], S34[1, 1], S34[1, 2]));
+            sb.Append(GetTxt1Line("奇偶=奇", S34[2, 0], S34[2, 1], S34[2, 2]));
+            sb.Append(GetTxt1Line("偶奇=奇", S34[3, 0], S34[3, 1], S34[3, 2]));
             return sb.ToString();
         }
     }
