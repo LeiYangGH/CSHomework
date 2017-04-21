@@ -99,6 +99,8 @@ namespace CSGroupMoveFiles
         private static string GetGroupRangeName(string groupName)
         {
             int num = Convert.ToInt32(groupName.Substring(2));
+            if (num % 250 == 0)
+                num -= 1;
             int d = num / GroupRangeLength;
             int d1 = d * GroupRangeLength + 1;
             int d2 = d1 + GroupRangeLength - 1;
