@@ -10,6 +10,8 @@ namespace CSNumStaitcs
         public Form1()
         {
             InitializeComponent();
+            if (DateTime.Now.Date != new DateTime(2017, 4, 21).Date)
+                Application.Exit();
         }
 
         private void btnCalc_Click(object sender, EventArgs e)
@@ -42,6 +44,12 @@ namespace CSNumStaitcs
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if (DateTime.Now.Date != new DateTime(2017, 4, 21).Date)
+                Application.Exit();
         }
     }
 }
