@@ -27,5 +27,27 @@ namespace CSBike
         {
             Close();
         }
+
+        private void btnUser_Click(object sender, EventArgs e)
+        {
+            frmUsers frm = new frmUsers(false);
+            frm.ShowDialog();
+        }
+
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            frmSuperPassword frmSuper = new frmSuperPassword();
+            var result = frmSuper.ShowDialog();
+            if(result==DialogResult.OK)
+            {
+                frmUsers frm = new frmUsers(true);
+                frm.ShowDialog();
+            }
+            else if (result == DialogResult.Cancel)
+            {
+                this.btnAdmin.Enabled = false;
+            }
+
+        }
     }
 }

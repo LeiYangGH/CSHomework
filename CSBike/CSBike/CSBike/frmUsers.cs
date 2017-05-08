@@ -54,6 +54,7 @@ namespace CSBike
 
         private void frmUsers_Load(object sender, EventArgs e)
         {
+            this.repository.ReadUsers();
             this.ViewAll();
             this.Text = this.isAdministrator ? "管理员管理" : "用户管理";
         }
@@ -89,7 +90,7 @@ namespace CSBike
 
         private void button1_Click(object sender, EventArgs e)
         {
-            frmEditUser editor = new frmEditUser(false);
+            frmEditUser editor = new frmEditUser(this.isAdministrator);
             if (editor.ShowDialog() == DialogResult.OK)
             {
                 this.repository.AddUser(editor.user);
@@ -97,6 +98,11 @@ namespace CSBike
                     this.ViewAll();
                 }
             }
+        }
+
+        private void frmUsers_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.repository.SaveUsers();
         }
     }
 }

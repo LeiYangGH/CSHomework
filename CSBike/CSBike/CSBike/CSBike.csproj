@@ -17,7 +17,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;TEST</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;TEST1</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -70,6 +70,12 @@
     <Compile Include="frmStart.designer.cs">
       <DependentUpon>frmStart.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSuperPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSuperPassword.Designer.cs">
+      <DependentUpon>frmSuperPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUsers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmStart.resx">
       <DependentUpon>frmStart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSuperPassword.resx">
+      <DependentUpon>frmSuperPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>

@@ -121,7 +121,11 @@
             // 
             // cboGender
             // 
+            this.cboGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboGender.FormattingEnabled = true;
+            this.cboGender.Items.AddRange(new object[] {
+            "男",
+            "女"});
             this.cboGender.Location = new System.Drawing.Point(246, 188);
             this.cboGender.Name = "cboGender";
             this.cboGender.Size = new System.Drawing.Size(321, 28);
@@ -196,6 +200,7 @@
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label1);
             this.Name = "frmEditUser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmEditUser";
             this.Load += new System.EventHandler(this.frmEditUser_Load);
             this.ResumeLayout(false);

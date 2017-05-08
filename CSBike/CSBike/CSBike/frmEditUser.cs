@@ -54,6 +54,7 @@ namespace CSBike
             this.user.Gender = this.cboGender.Text.Trim();
             this.user.CardNumber = this.txtCardNumber.Text.Trim();
             this.user.Telephone = this.txtTelephone.Text.Trim();
+            this.user.Password = this.txtpwd1.Text;
         }
 
         private void SyncToControl()
@@ -63,11 +64,31 @@ namespace CSBike
             this.cboGender.Text = this.user.Gender;
             this.txtCardNumber.Text = this.user.CardNumber;
             this.txtTelephone.Text = this.user.Telephone;
+            this.txtpwd1.Text = this.user.Password;
+            this.txtpwd2.Text = this.user.Password;
         }
 
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (this.isAdministrator)
+            {
+                if (string.IsNullOrWhiteSpace(this.txtpwd1.Text))
+                {
+                    MessageBox.Show("密码1不能为空！");
+                    return;
+                }
+                else if (string.IsNullOrWhiteSpace(this.txtpwd2.Text))
+                {
+                    MessageBox.Show("密码2不能为空！");
+                    return;
+                }
+                else if (this.txtpwd1.Text != this.txtpwd2.Text)
+                {
+                    MessageBox.Show("两次输入的密码不一致！");
+                    return;
+                }
+            }
             this.SyncFromControl();
             this.DialogResult = DialogResult.OK;
         }
@@ -75,7 +96,6 @@ namespace CSBike
         private void frmEditUser_Load(object sender, EventArgs e)
         {
             this.SetAdminControlsVisibility();
-
         }
     }
 }

@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CSBike
 {
     public class Repository
     {
         private List<User> lstUsers = new List<User>();
-
+        private const string usersFileName = "users.dat";
         public Repository()
         {
 #if TEST
@@ -44,6 +47,45 @@ namespace CSBike
         public void DeleteUser(User user)
         {
             this.lstUsers.Remove(user);
+        }
+
+
+        public void SaveUsers()
+        {
+            FileStream fs = new FileStream(usersFileName, FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+            try
+            {
+                formatter.Serialize(fs, this.lstUsers);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                fs.Close();
+            }
+        }
+
+        public void ReadUsers()
+        {
+            if (!File.Exists(usersFileName))
+                return;
+            FileStream fs = new FileStream(usersFileName, FileMode.Open);
+            BinaryFormatter formatter = new BinaryFormatter();
+            try
+            {
+                this.lstUsers = (List<User>)formatter.Deserialize(fs);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                fs.Close();
+            }
         }
 
     }

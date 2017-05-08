@@ -17,7 +17,8 @@ namespace CSBike
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 #if TEST
-            Application.Run(new frmUsers(false));
+            //Application.Run(new frmUsers(false));
+            Application.Run(new frmUsers(true));
 #else
             Application.Run(new frmStart());
 #endif

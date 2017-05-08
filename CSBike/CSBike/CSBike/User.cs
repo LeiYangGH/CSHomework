@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 namespace CSBike
 {
+    [Serializable]
     public class User
     {
         private static int uniqueId = 0;
