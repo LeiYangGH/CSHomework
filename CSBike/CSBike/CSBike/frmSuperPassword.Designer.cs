@@ -31,18 +31,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtPwd = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblTimes = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
-            this.lblMsg = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 55);
+            this.label1.Location = new System.Drawing.Point(15, 96);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 20);
             this.label1.TabIndex = 0;
@@ -50,7 +46,7 @@
             // 
             // txtPwd
             // 
-            this.txtPwd.Location = new System.Drawing.Point(126, 52);
+            this.txtPwd.Location = new System.Drawing.Point(126, 93);
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.PasswordChar = '*';
             this.txtPwd.Size = new System.Drawing.Size(167, 26);
@@ -66,37 +62,10 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 97);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 20);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "还剩下";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(176, 97);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 20);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "次机会";
-            // 
-            // lblTimes
-            // 
-            this.lblTimes.AutoSize = true;
-            this.lblTimes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimes.Location = new System.Drawing.Point(101, 96);
-            this.lblTimes.Name = "lblTimes";
-            this.lblTimes.Size = new System.Drawing.Size(0, 29);
-            this.lblTimes.TabIndex = 5;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 15);
+            this.label4.Location = new System.Drawing.Point(15, 39);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(105, 20);
             this.label4.TabIndex = 0;
@@ -105,29 +74,17 @@
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(126, 12);
+            this.txtUserName.Location = new System.Drawing.Point(126, 36);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(167, 26);
             this.txtUserName.TabIndex = 1;
             this.txtUserName.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // lblMsg
-            // 
-            this.lblMsg.AutoSize = true;
-            this.lblMsg.Location = new System.Drawing.Point(41, 130);
-            this.lblMsg.Name = "lblMsg";
-            this.lblMsg.Size = new System.Drawing.Size(0, 20);
-            this.lblMsg.TabIndex = 6;
             // 
             // frmSuperPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(347, 220);
-            this.Controls.Add(this.lblMsg);
-            this.Controls.Add(this.lblTimes);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.label4);
@@ -149,11 +106,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPwd;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblTimes;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtUserName;
-        private System.Windows.Forms.Label lblMsg;
     }
 }

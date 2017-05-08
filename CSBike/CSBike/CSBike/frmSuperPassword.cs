@@ -26,10 +26,8 @@ namespace CSBike
             }
             else
             {
-                this.lblTimes.Text = (--this.leftTimes).ToString();
-                if (this.leftTimes <= 0)
+                if (--this.leftTimes <= 0)
                 {
-                    this.lblMsg.Text = "抱歉，你被禁止登录超级管理员";
                     this.DialogResult = DialogResult.Cancel;
                 }
             }
@@ -47,7 +45,6 @@ namespace CSBike
 
         private void frmSuperPassword_Load(object sender, EventArgs e)
         {
-            this.lblTimes.Text = (this.leftTimes).ToString();
         }
     }
 }
