@@ -14,20 +14,29 @@ namespace CSBike
     {
         private Repository repository = new Repository();
         private BindingList<User> lstUsers;
-
-        public frmUsers()
+        private bool isAdministrator;
+        public frmUsers()//never call
         {
             InitializeComponent();
         }
 
+        public frmUsers(bool isAdministrator)
+        {
+            InitializeComponent();
+            this.isAdministrator = isAdministrator;
+        }
+
         private void ViewAll()
         {
-            this.lstUsers = new BindingList<User>(this.repository.GetAllUsers());
+            var users = this.repository.GetAllUsers().Where(x => x.IsAdministrator == this.isAdministrator).ToList();
+            this.lstUsers = new BindingList<User>(users);
             this.dataGridView1.DataSource = this.lstUsers;
             //this.dataGridView1.Columns[0].HeaderText = "配件名称";
             //this.dataGridView1.Columns[1].HeaderText = "价格";
             //this.dataGridView1.Columns[2].HeaderText = "数量";
             //this.dataGridView1.Columns[3].HeaderText = "时间";
+
+
         }
 
         private User GetFirstSelectedUser()
@@ -46,7 +55,7 @@ namespace CSBike
         private void frmUsers_Load(object sender, EventArgs e)
         {
             this.ViewAll();
-
+            this.Text = this.isAdministrator ? "管理员管理" : "用户管理";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -80,7 +89,7 @@ namespace CSBike
 
         private void button1_Click(object sender, EventArgs e)
         {
-            frmEditUser editor = new frmEditUser();
+            frmEditUser editor = new frmEditUser(false);
             if (editor.ShowDialog() == DialogResult.OK)
             {
                 this.repository.AddUser(editor.user);

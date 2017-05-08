@@ -39,6 +39,10 @@
             this.txtTelephone = new System.Windows.Forms.TextBox();
             this.cboGender = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtpwd1 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtpwd2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -125,7 +129,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(454, 423);
+            this.button1.Location = new System.Drawing.Point(603, 433);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(95, 39);
             this.button1.TabIndex = 3;
@@ -133,13 +137,55 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(81, 392);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 20);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "密码";
+            this.label6.Visible = false;
+            // 
+            // txtpwd1
+            // 
+            this.txtpwd1.Location = new System.Drawing.Point(246, 392);
+            this.txtpwd1.Name = "txtpwd1";
+            this.txtpwd1.PasswordChar = '*';
+            this.txtpwd1.Size = new System.Drawing.Size(321, 26);
+            this.txtpwd1.TabIndex = 1;
+            this.txtpwd1.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(81, 457);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 20);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "重复密码";
+            this.label7.Visible = false;
+            // 
+            // txtpwd2
+            // 
+            this.txtpwd2.Location = new System.Drawing.Point(246, 457);
+            this.txtpwd2.Name = "txtpwd2";
+            this.txtpwd2.PasswordChar = '*';
+            this.txtpwd2.Size = new System.Drawing.Size(321, 26);
+            this.txtpwd2.TabIndex = 1;
+            this.txtpwd2.Visible = false;
+            // 
             // frmEditUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(696, 548);
+            this.ClientSize = new System.Drawing.Size(724, 548);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cboGender);
+            this.Controls.Add(this.txtpwd2);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtpwd1);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtTelephone);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtCardNumber);
@@ -151,6 +197,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmEditUser";
             this.Text = "frmEditUser";
+            this.Load += new System.EventHandler(this.frmEditUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,5 +216,9 @@
         private System.Windows.Forms.TextBox txtTelephone;
         private System.Windows.Forms.ComboBox cboGender;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtpwd1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtpwd2;
     }
 }

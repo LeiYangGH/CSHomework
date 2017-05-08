@@ -13,18 +13,40 @@ namespace CSBike
     public partial class frmEditUser : Form
     {
         public User user;
-        public frmEditUser()
+        private bool isAdding;
+        private bool isAdministrator;
+        public frmEditUser()//never use
         {
             InitializeComponent();
-            this.user = new User();
+            this.user = new User(false);
         }
 
-        public frmEditUser(User user) : this()
+        public frmEditUser(bool isAdministrator)
         {
+            InitializeComponent();
+            this.isAdministrator = isAdministrator;
+            this.user = new User(isAdministrator);
+            this.isAdding = true;
+            this.txtId.Text = this.user.Id.ToString();
+        }
+
+        public frmEditUser(User user)
+        {
+            InitializeComponent();
             this.user = user;
+            this.isAdministrator = user.IsAdministrator;
+            this.isAdding = false;
             this.SyncToControl();
         }
 
+        private void SetAdminControlsVisibility()
+        {
+            this.label6.Visible = this.isAdministrator;
+            this.label7.Visible = this.isAdministrator;
+            this.txtpwd1.Visible = this.isAdministrator;
+            this.txtpwd2.Visible = this.isAdministrator;
+            this.Text = (this.isAdding ? "添加" : "编辑") + (this.isAdministrator ? "管理员" : "用户");
+        }
 
         private void SyncFromControl()
         {
@@ -48,6 +70,12 @@ namespace CSBike
         {
             this.SyncFromControl();
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void frmEditUser_Load(object sender, EventArgs e)
+        {
+            this.SetAdminControlsVisibility();
+
         }
     }
 }
