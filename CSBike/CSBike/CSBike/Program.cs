@@ -16,7 +16,11 @@ namespace CSBike
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+#if TEST
+            Application.Run(new frmUsers());
+#else
             Application.Run(new frmStart());
+#endif
         }
     }
 }
