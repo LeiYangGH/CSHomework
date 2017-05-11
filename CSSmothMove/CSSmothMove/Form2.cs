@@ -53,8 +53,9 @@ namespace MrSmarty.CodeProject
             Image dstImage = new Bitmap(200, 200, srcImage.PixelFormat);
             Graphics g = Graphics.FromImage(dstImage);
             g.SmoothingMode = SmoothingMode.AntiAlias;
-
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            g.CompositingQuality = CompositingQuality.HighQuality;
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             using (Brush br = new SolidBrush(backGround))
             {
                 g.FillRectangle(br, 0, 0, dstImage.Width, dstImage.Height);
