@@ -32,7 +32,8 @@ namespace MrSmarty.CodeProject
         /// <param name="mode">Effect to be applied. Work only if <c>time</c> greater than 0</param>
         /// <param name="time">Time, in milliseconds, for effect playing. If this equal to 0 <c>mode</c> ignored and text showed at once</param>
         /// <param name="text">Text to display</param>
-        public void Show(Point pt, byte alpha, Color textColor, Font textFont, int showTimeMSec,  AnimateMode mode, uint time, string text)
+        public void Show(Point pt, byte alpha, Color textColor, Font textFont, 
+            int showTimeMSec,  AnimateMode mode, uint time, string text)
         {
             if(this._viewClock!=null)
             {
@@ -90,7 +91,7 @@ namespace MrSmarty.CodeProject
         {
             this._viewClock.Stop();
             this._viewClock.Dispose();
-            if(this._time > 0)
+            if (this._time > 0)
                 this.HideAnimate(this._mode, this._time);
             this.Close();
         }

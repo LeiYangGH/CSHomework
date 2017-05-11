@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using MrSmarty.CodeProject;
 namespace CSSmothMove
 {
     static class Program
@@ -17,7 +17,10 @@ namespace CSSmothMove
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
-            Application.Run(new MrSmarty.CodeProject.Demo());
+            //Application.Run(new MrSmarty.CodeProject.Demo());
+
+
+            Application.Run(new Form2());
         }
     }
 }

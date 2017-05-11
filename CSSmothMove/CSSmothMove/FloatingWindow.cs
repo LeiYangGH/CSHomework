@@ -121,6 +121,7 @@ namespace MrSmarty.CodeProject
         /// <param name="time">Time, in milliseconds, for effect playing</param>
         public virtual void ShowAnimate(AnimateMode mode, uint time)
         {
+            //return;
             uint dwFlag=0;
             switch(mode)
             {
