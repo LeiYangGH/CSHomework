@@ -104,5 +104,11 @@ namespace CSSmothMove
         {
             //Form1.danmuFormShowCount--;
         }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            //this.Invalidate();
+        }
     }
 }
