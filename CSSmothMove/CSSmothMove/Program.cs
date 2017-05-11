@@ -17,7 +17,7 @@ namespace CSSmothMove
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
-            //Application.Run(new MrSmarty.CodeProject.Demo());
+            //Application.Run(new Demo());
 
 
             Application.Run(new Form2());

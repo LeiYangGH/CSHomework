@@ -18,7 +18,14 @@ namespace MrSmarty.CodeProject
         private AnimateMode _mode;
         private uint _time;
         private GraphicsPath _gp;
+        private Image circleBmp;
         #endregion
+
+        public FloatingOSDWindow()
+        {
+            Bitmap bmp = (Bitmap)Image.FromFile("img.png");
+            this.circleBmp = this.CropToCircle(bmp, Color.Black);
+        }
 
         #region Public Methods
         /// <summary>
@@ -32,10 +39,10 @@ namespace MrSmarty.CodeProject
         /// <param name="mode">Effect to be applied. Work only if <c>time</c> greater than 0</param>
         /// <param name="time">Time, in milliseconds, for effect playing. If this equal to 0 <c>mode</c> ignored and text showed at once</param>
         /// <param name="text">Text to display</param>
-        public void Show(Point pt, byte alpha, Color textColor, Font textFont, 
-            int showTimeMSec,  AnimateMode mode, uint time, string text)
+        public void Show(Point pt, byte alpha, Color textColor, Font textFont,
+            int showTimeMSec, AnimateMode mode, uint time, string text)
         {
-            if(this._viewClock!=null)
+            if (this._viewClock != null)
             {
                 _viewClock.Stop();
                 _viewClock.Dispose();
@@ -47,20 +54,20 @@ namespace MrSmarty.CodeProject
             this._time = time;
             SizeF textArea;
             this._rScreen = Screen.PrimaryScreen.Bounds;
-            if(this._stringFormat == null)
+            if (this._stringFormat == null)
             {
                 this._stringFormat = new StringFormat();
                 this._stringFormat.Alignment = StringAlignment.Near;
                 this._stringFormat.LineAlignment = StringAlignment.Near;
                 this._stringFormat.Trimming = StringTrimming.EllipsisWord;
             }
-            using(Bitmap bm = new Bitmap(base.Width, base.Height))
-                using(Graphics fx = Graphics.FromImage(bm))
-                    textArea = fx.MeasureString(text, textFont, this._rScreen.Width, this._stringFormat);
+            using (Bitmap bm = new Bitmap(base.Width, base.Height))
+            using (Graphics fx = Graphics.FromImage(bm))
+                textArea = fx.MeasureString(text, textFont, this._rScreen.Width, this._stringFormat);
             base.Location = pt;
             base.Alpha = alpha;
             base.Size = new Size((int)Math.Ceiling(textArea.Width), (int)Math.Ceiling(textArea.Height));
-            if(time > 0)
+            if (time > 0)
                 base.ShowAnimate(mode, time);
             else
                 base.Show();
@@ -71,17 +78,43 @@ namespace MrSmarty.CodeProject
         }
         #endregion
 
+        private Image CropToCircle(Image srcImage, Color backGround)
+        {
+            //Image dstImage = new Bitmap(srcImage.Width, srcImage.Height, srcImage.PixelFormat);
+            Image dstImage = new Bitmap(200, 200, srcImage.PixelFormat);
+            Graphics g = Graphics.FromImage(dstImage);
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+
+            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            using (Brush br = new SolidBrush(backGround))
+            {
+                g.FillRectangle(br, 0, 0, dstImage.Width, dstImage.Height);
+            }
+            GraphicsPath path = new GraphicsPath();
+            //path.AddEllipse(0, 0, dstImage.Width, dstImage.Height);
+            path.AddEllipse(0, 0, dstImage.Width, dstImage.Height);
+            g.SetClip(path);
+            g.DrawImage(srcImage, 0, 0);
+
+            return dstImage;
+        }
+
         #region Overrided Drawing & Path Creation
         protected override void PerformPaint(PaintEventArgs e)
         {
-            if(base.Handle == IntPtr.Zero)
+            if (base.Handle == IntPtr.Zero)
                 return;
             Graphics g = e.Graphics;
-            if(this._gp != null)
+            g.Clear(Color.Black);
+            if (this._gp != null)
                 this._gp.Dispose();
             this._gp = new GraphicsPath();
             this._gp.AddString(this._text, this._textFont.FontFamily, (int)this._textFont.Style, g.DpiY * this._textFont.SizeInPoints / 72, base.Bound, this._stringFormat);
+            g.DrawImage(this.circleBmp, new Point(0, 0));
+
             g.SmoothingMode = SmoothingMode.HighQuality;
+            //g.SmoothingMode = SmoothingMode.AntiAlias;
+
             g.FillPath(this._brush, this._gp);
         }
         #endregion 
