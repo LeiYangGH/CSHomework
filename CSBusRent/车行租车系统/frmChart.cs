@@ -13,8 +13,8 @@ namespace 车行租车系统
     public partial class frmChart : Form
     {
         private DataTable dt;
-        int[] yval = { 5, 6, 4, 6, 3 };
-        string[] xval = { "A", "B", "C", "D", "E" };
+        int[] yval1 = { 5, 6, 4, 6, 3 };
+        string[] xval1 = { "A", "B", "C", "D", "E" };
         public frmChart()
         {
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace 车行租车系统
 
         private void GetTable()
         {
-            string sql = @"SELECT j. [ID],[LeiXing],u.Sex,[StartTime],[EndTime]
+            string sql = @"SELECT j.[ID],[LeiXing],u.Sex,[JinE],[StartTime],[EndTime]
                           FROM [CheHang].[dbo].[TB_JieYue] j
                           left join [CheHang].[dbo].[TB_User] u
                           on u.UserName = j.UserName";
@@ -32,15 +32,21 @@ namespace 车行租车系统
         private void frmChart_Load(object sender, EventArgs e)
         {
             this.GetTable();
-            var rows = this.dt.Rows.OfType<DataRow>();
-            this.xval = rows
-                .Select(r => r[1].ToString())
-                .Distinct().ToArray();
-            this.yval = this.xval.Select(x => rows.Count(r => x == r[1].ToString())).ToArray();
+            this.AddChartByLeiXing();
+            this.AddChartByUserType();
+            this.CalcAndShowTotal();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void AddChartByLeiXing()
         {
+            var rows = this.dt.Rows.OfType<DataRow>();
+            this.xval1 = rows
+                .Select(r => r[1].ToString())
+                .Distinct().ToArray();
+            this.yval1 = this.xval1
+                .Select(x => rows.Count(r =>
+                x == r[1].ToString()))
+                .ToArray();
             Chart chart = new Chart();
             this.panel1.Controls.Add(chart);
             chart.Dock = DockStyle.Fill;
@@ -52,7 +58,43 @@ namespace 车行租车系统
             chart.Series["Data"]["PieLineColor"] = "Black";
             chart.Series["Data"].IsValueShownAsLabel = true;
             chart.Series["Data"].Label = "#VALX: #PERCENT{P1}";
-            chart.Series["Data"].Points.DataBindXY(xval, yval);
+            chart.Series["Data"].Points.DataBindXY(xval1, yval1);
+        }
+
+        private void AddChartByUserType()
+        {
+            var rows = this.dt.Rows.OfType<DataRow>();
+            this.xval1 = rows
+                .Select(r => r[2].ToString())
+                .Distinct().ToArray();
+            this.yval1 = this.xval1
+                .Select(x => rows.Count(r =>
+                x == r[2].ToString()))
+                .ToArray();
+            Chart chart = new Chart();
+            this.panel2.Controls.Add(chart);
+            chart.Dock = DockStyle.Fill;
+            chart.ChartAreas.Add(new ChartArea());
+
+            chart.Series.Add(new Series("Data"));
+            chart.Series["Data"].ChartType = SeriesChartType.Pie;
+            chart.Series["Data"]["PieLabelStyle"] = "Outside";
+            chart.Series["Data"]["PieLineColor"] = "Black";
+            chart.Series["Data"].IsValueShownAsLabel = true;
+            chart.Series["Data"].Label = "#VALX: #PERCENT{P1}";
+            chart.Series["Data"].Points.DataBindXY(xval1, yval1);
+        }
+
+        private void CalcAndShowTotal()
+        {
+            var rows = this.dt.Rows.OfType<DataRow>();
+            int total = rows.Sum(x => Convert.ToInt32(x[3]));
+            this.lblTotal.Text = total.ToString();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
