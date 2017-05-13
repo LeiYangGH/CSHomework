@@ -23,6 +23,7 @@ namespace 车行租车系统
             var r = new Random();
             Bitmap[] bmp = Directory.GetFiles("Image", "*.jpg")
                 .OrderBy(x => r.Next()).Take(3).Select(x => (Bitmap)Image.FromFile(x)).ToArray();
+
             this.pictureBox1.Image = bmp[0];
             this.pictureBox2.Image = bmp[1];
             this.pictureBox3.Image = bmp[2];
