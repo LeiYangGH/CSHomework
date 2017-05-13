@@ -40,6 +40,9 @@ namespace 车行租车系统
         private void AddChartByLeiXing()
         {
             var rows = this.dt.Rows.OfType<DataRow>();
+            //加时间限制，统计当天，下同
+                //.Where(x=>Convert.ToDateTime(x[4]).Date<=DateTime.Now.Date
+                //&& Convert.ToDateTime(x[5]).Date >= DateTime.Now.Date);
             this.xval1 = rows
                 .Select(r => r[1].ToString())
                 .Distinct().ToArray();
