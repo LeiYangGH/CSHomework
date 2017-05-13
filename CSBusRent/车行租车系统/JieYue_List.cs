@@ -23,7 +23,7 @@ namespace 车行租车系统
             GetDate();
 
         }
- 
+
         public void GetDate()
         {
             string SQL = "select * from TB_JieYue";
@@ -85,13 +85,13 @@ namespace 车行租车系统
                 double ZuJin = Convert.ToDouble(ds.Tables[0].Rows[0]["ZuJIn"]);
                 System.TimeSpan sp = NW - JY;
                 int TS = sp.Days;
-                  double FeiYong=0;
+                double FeiYong = 0;
 
-                  FeiYong = TS * ZuJin;
-                if(FeiYong==0)
+                FeiYong = TS * ZuJin;
+                if (FeiYong == 0)
                     FeiYong = ZuJin;
 
-                  string SQL = "Update  TB_JieYue  set State='已归还', EndTime='" + DateTime.Now.ToString() + "' ,JinE=" + FeiYong + "  where ID=" + tid;
+                string SQL = "Update  TB_JieYue  set State='已归还', EndTime='" + DateTime.Now.ToString() + "' ,JinE=" + FeiYong + "  where ID=" + tid;
                 int B = DBHelper.Exec(SQL);
                 if (B > 0)
                 {
@@ -108,18 +108,24 @@ namespace 车行租车系统
         private void button2_Click(object sender, EventArgs e)
         {
             string SQL = "select * from TB_JieYue where 1=1";
-            if(!string.IsNullOrEmpty(this.textBox1.Text))
+            if (!string.IsNullOrEmpty(this.textBox1.Text))
             {
-                SQL=SQL+"  and BBianHao='" + this.textBox1.Text +"'";
-            }if(!string.IsNullOrEmpty(this.textBox2.Text))
+                SQL = SQL + "  and BBianHao='" + this.textBox1.Text + "'";
+            }
+            if (!string.IsNullOrEmpty(this.textBox2.Text))
             {
                 SQL = SQL + " and  JieYueZhe='" + this.textBox2.Text + "'";
             }
-          
+
             DataSet ds = DBHelper.GetDate(SQL);
             this.dataGridView1.DataSource = ds.Tables[0];
 
         }
- 
+
+        private void btnChart_Click(object sender, EventArgs e)
+        {
+            frmChart frm = new frmChart();
+            frm.ShowDialog();
+        }
     }
 }
