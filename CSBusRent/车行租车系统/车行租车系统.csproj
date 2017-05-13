@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0BDD4ED9-A0B4-44D5-A5CF-5CB7CEEDEA25}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>车行租车系统</RootNamespace>
+    <AssemblyName>车行租车系统</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminPWD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPWD.Designer.cs">
+      <DependentUpon>AdminPWD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBHelper.cs" />
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LeiXing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LeiXing.Designer.cs">
+      <DependentUpon>LeiXing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LeiXing_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LeiXing_List.Designer.cs">
+      <DependentUpon>LeiXing_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserInfo.cs" />
+    <Compile Include="Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin.Designer.cs">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin_List.Designer.cs">
+      <DependentUpon>Admin_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JieYueZhe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JieYueZhe.Designer.cs">
+      <DependentUpon>JieYueZhe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JieYueZhe_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JieYueZhe_List.Designer.cs">
+      <DependentUpon>JieYueZhe_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Car.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Car.Designer.cs">
+      <DependentUpon>Car.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Car_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Car_List.Designer.cs">
+      <DependentUpon>Car_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GZMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GZMain.Designer.cs">
+      <DependentUpon>GZMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JieYue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JieYue.Designer.cs">
+      <DependentUpon>JieYue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JieYue_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JieYue_List.Designer.cs">
+      <DependentUpon>JieYue_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="YGMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YGMain.Designer.cs">
+      <DependentUpon>YGMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyJieYue_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyJieYue_List.Designer.cs">
+      <DependentUpon>MyJieYue_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="YGPWD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YGPWD.Designer.cs">
+      <DependentUpon>YGPWD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserJieYue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserJieYue.Designer.cs">
+      <DependentUpon>UserJieYue.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AdminPWD.resx">
+      <DependentUpon>AdminPWD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeiXing.resx">
+      <DependentUpon>LeiXing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeiXing_List.resx">
+      <DependentUpon>LeiXing_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Admin.resx">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin_List.resx">
+      <DependentUpon>Admin_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JieYueZhe.resx">
+      <DependentUpon>JieYueZhe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JieYueZhe_List.resx">
+      <DependentUpon>JieYueZhe_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Car.resx">
+      <DependentUpon>Car.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Car_List.resx">
+      <DependentUpon>Car_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GZMain.resx">
+      <DependentUpon>GZMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JieYue.resx">
+      <DependentUpon>JieYue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JieYue_List.resx">
+      <DependentUpon>JieYue_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YGMain.resx">
+      <DependentUpon>YGMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyJieYue_List.resx">
+      <DependentUpon>MyJieYue_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YGPWD.resx">
+      <DependentUpon>YGPWD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserJieYue.resx">
+      <DependentUpon>UserJieYue.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
