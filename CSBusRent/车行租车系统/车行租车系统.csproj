@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;TEST</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -53,6 +53,12 @@
       <DependentUpon>AdminPWD.cs</DependentUpon>
     </Compile>
     <Compile Include="DBHelper.cs" />
+    <Compile Include="frmRecommand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRecommand.Designer.cs">
+      <DependentUpon>frmRecommand.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +166,9 @@
     </Compile>
     <EmbeddedResource Include="AdminPWD.resx">
       <DependentUpon>AdminPWD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRecommand.resx">
+      <DependentUpon>frmRecommand.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

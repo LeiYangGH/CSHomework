@@ -18,11 +18,18 @@ namespace 车行租车系统
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new  JieYueZhe().ShowDialog();
+            new JieYueZhe().ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+#if TEST
+            UserInfo.setUserPWD = "0001";
+            UserInfo.setUserName = "0001";
+
+            this.Hide();
+            new YGMain().ShowDialog();
+#else
             if (this.comboBox1.SelectedIndex == 0)
             {
                 string sql = "select * from TB_Admin where UserName='" + this.textBox1.Text + "' and  PWD='" + this.textBox2.Text + "' and QX='管理员'";
@@ -73,6 +80,8 @@ namespace 车行租车系统
                     MessageBox.Show("帐号或密码错误!");
                 }
             }
+#endif
         }
+
     }
 }
