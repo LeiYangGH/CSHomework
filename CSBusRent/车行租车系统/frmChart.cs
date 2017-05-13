@@ -7,12 +7,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using System.Windows.Forms.DataVisualization.Charting;
 namespace 车行租车系统
 {
     public partial class frmChart : Form
     {
         private DataTable dt;
+        int[] yval = { 5, 6, 4, 6, 3 };
+        string[] xval = { "A", "B", "C", "D", "E" };
         public frmChart()
         {
             InitializeComponent();
@@ -30,7 +32,22 @@ namespace 车行租车系统
         private void frmChart_Load(object sender, EventArgs e)
         {
             this.GetTable();
-            this.dataGridView1.DataSource = this.dt;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Chart chart = new Chart();
+            this.panel1.Controls.Add(chart);
+            chart.Dock = DockStyle.Fill;
+            chart.ChartAreas.Add(new ChartArea());
+
+            chart.Series.Add(new Series("Data"));
+            chart.Series["Data"].ChartType = SeriesChartType.Pie;
+            chart.Series["Data"]["PieLabelStyle"] = "Outside";
+            chart.Series["Data"]["PieLineColor"] = "Black";
+            chart.Series["Data"].IsValueShownAsLabel = true;
+            chart.Series["Data"].Label = "#VALX: #PERCENT{P1}";
+            chart.Series["Data"].Points.DataBindXY(xval, yval);
         }
     }
 }
