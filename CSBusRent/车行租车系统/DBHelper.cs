@@ -47,6 +47,17 @@ namespace 车行租车系统
         }
 
 
+        public static DataSet GetView(string viewName)
+        {
+            SqlConnection conn = new SqlConnection(GetConnStr());
+            conn.Open();
+            SqlDataAdapter sda = new SqlDataAdapter("select * from " + viewName, conn);
+            DataSet ds = new DataSet();
+            sda.Fill(ds);
+            conn.Close();
+            return ds;
+        }
+
 
 
         /// <summary>
