@@ -15,7 +15,11 @@ namespace 车行租车系统
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+#if TEST
+            Application.Run(new frmChart());
+#else
             Application.Run(new Login());
+#endif
         }
     }
 }
