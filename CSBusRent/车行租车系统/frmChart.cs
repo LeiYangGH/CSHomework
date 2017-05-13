@@ -32,6 +32,11 @@ namespace 车行租车系统
         private void frmChart_Load(object sender, EventArgs e)
         {
             this.GetTable();
+            var rows = this.dt.Rows.OfType<DataRow>();
+            this.xval = rows
+                .Select(r => r[1].ToString())
+                .Distinct().ToArray();
+            this.yval = this.xval.Select(x => rows.Count(r => x == r[1].ToString())).ToArray();
         }
 
         private void button2_Click(object sender, EventArgs e)
