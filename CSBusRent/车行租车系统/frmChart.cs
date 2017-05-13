@@ -14,8 +14,6 @@ namespace 车行租车系统
     {
         private DataTable dt1;
         private DataTable dt2;
-        //int[] yval1 = { 5, 6, 4, 6, 3 };
-        //string[] xval1 = { "A", "B", "C", "D", "E" };
         public frmChart()
         {
             InitializeComponent();

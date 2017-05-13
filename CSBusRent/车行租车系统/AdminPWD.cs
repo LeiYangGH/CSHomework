@@ -35,10 +35,11 @@ namespace 车行租车系统
 
                     try
                     {
+                        string tableName = Login.isAdmin ? "TB_Admin" : "[TB_Employee]";
 
-                        string SQL = "update TB_Admin set PWD='" + this.textBox2.Text + "' where UserName='" + UserInfo.getUserName + "'";
+                        string SQL = string.Format("update {0} set PWD='", tableName) + this.textBox2.Text + "' where UserName='" + UserInfo.getUserName + "'";
                         int B = DBHelper.Exec(SQL);
-                        if (B>0)
+                        if (B > 0)
                         {
                             MessageBox.Show("操作成功");
                         }

@@ -11,6 +11,7 @@ namespace 车行租车系统
 {
     public partial class Login : Form
     {
+        public static bool isAdmin;
         public Login()
         {
             InitializeComponent();
@@ -32,15 +33,16 @@ namespace 车行租车系统
 #else
             if (this.comboBox1.SelectedIndex == 0)
             {
+                Login.isAdmin = true;
                 string sql = "select * from TB_Admin where UserName='" + this.textBox1.Text + "' and  PWD='" + this.textBox2.Text + "' and QX='管理员'";
                 DataSet ds = DBHelper.GetDate(sql);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     UserInfo.setUserPWD = textBox2.Text.Trim();
                     UserInfo.setUserName = textBox1.Text.Trim();
- 
+
                     this.Hide();
-             new Main().ShowDialog();
+                    new Main().ShowDialog();
                 }
                 else
                 {
@@ -49,7 +51,8 @@ namespace 车行租车系统
             }
             if (this.comboBox1.SelectedIndex == 1)
             {
-                string sql = "select * from TB_Admin where UserName='" + this.textBox1.Text + "' and  PWD='" + this.textBox2.Text + "'  and QX='工作人员'";
+                Login.isAdmin = false;
+                string sql = "select * from [TB_Employee] where UserName='" + this.textBox1.Text + "' and  PWD='" + this.textBox2.Text + "'  and QX='工作人员'";
                 DataSet ds = DBHelper.GetDate(sql);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
@@ -63,8 +66,10 @@ namespace 车行租车系统
                 {
                     MessageBox.Show("帐号或密码错误!");
                 }
-            } if (this.comboBox1.SelectedIndex ==2)
+            }
+            if (this.comboBox1.SelectedIndex == 2)
             {
+                Login.isAdmin = false;
                 string sql = "select * from TB_User where UserName='" + this.textBox1.Text + "' and  PWD='" + this.textBox2.Text + "' ";
                 DataSet ds = DBHelper.GetDate(sql);
                 if (ds.Tables[0].Rows.Count > 0)
