@@ -26,8 +26,6 @@ namespace CSAutoLogin
             this.webBrowser1.Navigate(urlLogin);
         }
 
-
-
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             this.Text = (step++).ToString();
@@ -40,22 +38,10 @@ namespace CSAutoLogin
                 HtmlElement login = webBrowser1.Document.GetElementById("wp-submit");
                 login.InvokeMember("Click");
             }
-            else if (step == 2)
+            else if (step == 2)//logged in
             {
-                //this.webBrowser1.Document.ExecCommand("Copy", false, null);
-                //HtmlElement input = webBrowser1.Document.GetElementById("content_ifr");
-                //input.Focus();
-
                 SendKeys.Send("{TAB}");
-                //this.webBrowser1.Focus();
-                //this.webBrowser1.Document.ExecCommand("Paste", true, null);
                 timer2.Start();
-
-                //SendKeys.Send("{TAB}");
-            }
-            else if (step == 3)
-            {
-                //this.webBrowser1.Document.ExecCommand("Paste", false, null);
             }
         }
 
