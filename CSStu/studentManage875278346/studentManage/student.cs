@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace studentManage
 {
@@ -13,16 +8,16 @@ namespace studentManage
         {
 
         }
-
+        public Student(string id)
+        {
+            this.id = id;
+        }
         public Student(string name, string sex)
         {
             this.Name = name;
             this.Sex = sex;
         }
-        public Student(string id)
-        {
-            this.id = id;
-        }
+
         //public override string ToString()
         //{
         //    return id;

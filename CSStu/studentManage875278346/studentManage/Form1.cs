@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace studentManage
@@ -35,32 +33,15 @@ namespace studentManage
 
         private void 添加ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form2 newForm = new Form2();
-            if (newForm.ShowDialog() == DialogResult.OK)
+            Form2 f2 = new Form2();
+            if (f2.ShowDialog() == DialogResult.OK)
             {
-                //this.dataGridView1.Rows.Add();
-                //var row = this.dataGridView1.Rows.OfType<DataGridViewRow>().Last();
-                this.lstStudents.Add(newForm.stu);
+                this.lstStudents.Add(f2.stu);
                 this.Refresh();
             }
-
-
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            Read();
-        }
-
-        public void ReadFromFile()
-        {
-            this.lstStudents = File.ReadLines(txtFileName)
-                .Select(x => Student.CreateStudentFromLine(x))
-                .ToList();
-            this.Refresh();
-        }
-
-        public void Read()
+        public void ReadAndBind()
         {
             if (File.Exists(txtFileName))
             {
@@ -77,6 +58,18 @@ namespace studentManage
             }
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            ReadAndBind();
+        }
+
+        public void ReadFromFile()
+        {
+            this.lstStudents = File.ReadLines(txtFileName)
+                .Select(x => Student.CreateStudentFromLine(x))
+                .ToList();
+            this.Refresh();
+        }
 
         private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
         {
