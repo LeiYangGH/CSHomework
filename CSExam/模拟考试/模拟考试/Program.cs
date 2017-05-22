@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CSExam
+namespace 模拟考试
 {
     static class Program
     {

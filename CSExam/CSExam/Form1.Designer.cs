@@ -1,6 +1,6 @@
 ﻿namespace CSExam
 {
-    partial class Form1
+    partial class frmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNO = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lstClass = new System.Windows.Forms.ListBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.lblScore = new System.Windows.Forms.Label();
@@ -49,12 +49,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "学号";
             // 
-            // textBox1
+            // txtNO
             // 
-            this.textBox1.Location = new System.Drawing.Point(174, 27);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 26);
-            this.textBox1.TabIndex = 1;
+            this.txtNO.Location = new System.Drawing.Point(174, 27);
+            this.txtNO.Name = "txtNO";
+            this.txtNO.Size = new System.Drawing.Size(100, 26);
+            this.txtNO.TabIndex = 1;
             // 
             // label2
             // 
@@ -65,12 +65,12 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "姓名";
             // 
-            // textBox2
+            // txtName
             // 
-            this.textBox2.Location = new System.Drawing.Point(174, 86);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 26);
-            this.textBox2.TabIndex = 1;
+            this.txtName.Location = new System.Drawing.Point(174, 86);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(100, 26);
+            this.txtName.TabIndex = 1;
             // 
             // label3
             // 
@@ -90,18 +90,18 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "性别";
             // 
-            // listBox1
+            // lstClass
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Items.AddRange(new object[] {
+            this.lstClass.FormattingEnabled = true;
+            this.lstClass.ItemHeight = 20;
+            this.lstClass.Items.AddRange(new object[] {
             "1班",
             "2班",
             "3班"});
-            this.listBox1.Location = new System.Drawing.Point(174, 141);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(119, 64);
-            this.listBox1.TabIndex = 2;
+            this.lstClass.Location = new System.Drawing.Point(174, 141);
+            this.lstClass.Name = "lstClass";
+            this.lstClass.Size = new System.Drawing.Size(119, 64);
+            this.lstClass.TabIndex = 2;
             // 
             // comboBox1
             // 
@@ -132,7 +132,7 @@
             this.lblScore.Size = new System.Drawing.Size(0, 20);
             this.lblScore.TabIndex = 5;
             // 
-            // Form1
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -140,14 +140,14 @@
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lstClass);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtNO);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "frmMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -158,12 +158,12 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNO;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lstClass;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblScore;
