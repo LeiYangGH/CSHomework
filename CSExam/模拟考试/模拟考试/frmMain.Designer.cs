@@ -157,6 +157,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmMain";
             this.Text = "考试系统";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

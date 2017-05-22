@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -58,12 +59,24 @@
             this.radioButton222 = new System.Windows.Forms.RadioButton();
             this.radioButton221 = new System.Windows.Forms.RadioButton();
             this.label221 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.checkBox31 = new System.Windows.Forms.CheckBox();
+            this.checkBox32 = new System.Windows.Forms.CheckBox();
+            this.checkBox33 = new System.Windows.Forms.CheckBox();
+            this.checkBox34 = new System.Windows.Forms.CheckBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
@@ -237,18 +250,25 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.checkBox34);
+            this.tabPage3.Controls.Add(this.checkBox33);
+            this.tabPage3.Controls.Add(this.checkBox32);
+            this.tabPage3.Controls.Add(this.checkBox31);
+            this.tabPage3.Controls.Add(this.label31);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(597, 510);
+            this.tabPage3.Size = new System.Drawing.Size(692, 510);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "多选题";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.textBox4);
+            this.tabPage4.Controls.Add(this.label41);
             this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(597, 510);
+            this.tabPage4.Size = new System.Drawing.Size(692, 510);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "问答题";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -397,11 +417,104 @@
             this.label221.TabIndex = 0;
             this.label221.Text = "label2";
             // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(65, 65);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(51, 20);
+            this.label31.TabIndex = 0;
+            this.label31.Text = "label1";
+            // 
+            // checkBox31
+            // 
+            this.checkBox31.AutoSize = true;
+            this.checkBox31.Location = new System.Drawing.Point(69, 140);
+            this.checkBox31.Name = "checkBox31";
+            this.checkBox31.Size = new System.Drawing.Size(113, 24);
+            this.checkBox31.TabIndex = 1;
+            this.checkBox31.Text = "checkBox1";
+            this.checkBox31.UseVisualStyleBackColor = true;
+            // 
+            // checkBox32
+            // 
+            this.checkBox32.AutoSize = true;
+            this.checkBox32.Location = new System.Drawing.Point(69, 213);
+            this.checkBox32.Name = "checkBox32";
+            this.checkBox32.Size = new System.Drawing.Size(113, 24);
+            this.checkBox32.TabIndex = 1;
+            this.checkBox32.Text = "checkBox1";
+            this.checkBox32.UseVisualStyleBackColor = true;
+            // 
+            // checkBox33
+            // 
+            this.checkBox33.AutoSize = true;
+            this.checkBox33.Location = new System.Drawing.Point(69, 291);
+            this.checkBox33.Name = "checkBox33";
+            this.checkBox33.Size = new System.Drawing.Size(113, 24);
+            this.checkBox33.TabIndex = 1;
+            this.checkBox33.Text = "checkBox1";
+            this.checkBox33.UseVisualStyleBackColor = true;
+            // 
+            // checkBox34
+            // 
+            this.checkBox34.AutoSize = true;
+            this.checkBox34.Location = new System.Drawing.Point(69, 373);
+            this.checkBox34.Name = "checkBox34";
+            this.checkBox34.Size = new System.Drawing.Size(113, 24);
+            this.checkBox34.TabIndex = 1;
+            this.checkBox34.Text = "checkBox1";
+            this.checkBox34.UseVisualStyleBackColor = true;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(39, 32);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(51, 20);
+            this.label41.TabIndex = 0;
+            this.label41.Text = "label1";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(25, 93);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(624, 384);
+            this.textBox4.TabIndex = 1;
+            // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.Location = new System.Drawing.Point(739, 221);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(95, 52);
+            this.lblTime.TabIndex = 2;
+            this.lblTime.Text = "180";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(729, 152);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "剩下时间";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // frmExam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 543);
+            this.ClientSize = new System.Drawing.Size(860, 543);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblTime);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.tabControl1);
             this.Name = "frmExam";
@@ -416,11 +529,16 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -456,5 +574,15 @@
         private System.Windows.Forms.RadioButton radioButton212;
         private System.Windows.Forms.RadioButton radioButton211;
         private System.Windows.Forms.Label label211;
+        private System.Windows.Forms.CheckBox checkBox34;
+        private System.Windows.Forms.CheckBox checkBox33;
+        private System.Windows.Forms.CheckBox checkBox32;
+        private System.Windows.Forms.CheckBox checkBox31;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

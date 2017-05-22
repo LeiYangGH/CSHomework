@@ -23,7 +23,13 @@ namespace 模拟考试
         {
             frmExam f = new frmExam();
             if (f.ShowDialog() == DialogResult.OK)
-                MessageBox.Show("ok");
+            {
+                MessageBox.Show(
+                    string.Format("{0}{1}同学，你的成绩是{2}分！",
+                    this.stu.Class,
+                    this.stu.Name,
+                    f.score));
+            }
         }
 
         private void txtNO_TextChanged(object sender, EventArgs e)
@@ -49,6 +55,11 @@ namespace 模拟考试
         private void rdbF_CheckedChanged(object sender, EventArgs e)
         {
             this.stu.Sex = "女";
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
