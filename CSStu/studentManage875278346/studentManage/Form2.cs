@@ -12,17 +12,17 @@ namespace studentManage
 {
     public partial class Form2 : Form
     {
-        public student stu;
+        public Student stu;
 
 
 
         public Form2()
         {
             InitializeComponent();
-            this.stu = new student();
+            this.stu = new Student();
         }
 
-        public Form2(student currentStudent)
+        public Form2(Student currentStudent)
         {
             this.stu = currentStudent;
         }

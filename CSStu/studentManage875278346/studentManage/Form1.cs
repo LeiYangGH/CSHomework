@@ -12,18 +12,25 @@ namespace studentManage
 {
     public partial class Form1 : Form
     {
-        BindingList<student> bindingList;
-        private List<student> lstStudents;
+        BindingList<Student> bindingList;
+        private List<Student> lstStudents;
+        private string txtFileName = "students.txt";
 
         public Form1()
         {
             InitializeComponent();
-            this.lstStudents = new List<student>();
+            this.lstStudents = new List<Student>();
         }
 
         private void 关闭ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Refresh()
+        {
+            this.bindingList = new BindingList<Student>(lstStudents);
+            this.dataGridView1.DataSource = bindingList;
         }
 
         private void 添加ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -34,8 +41,7 @@ namespace studentManage
                 //this.dataGridView1.Rows.Add();
                 //var row = this.dataGridView1.Rows.OfType<DataGridViewRow>().Last();
                 this.lstStudents.Add(newForm.stu);
-                this.bindingList = new BindingList<student>(lstStudents);
-                this.dataGridView1.DataSource = bindingList;
+                this.Refresh();
             }
 
 
@@ -43,11 +49,32 @@ namespace studentManage
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            BindingData();
+            Read();
         }
-        public void BindingData()
-        {
 
+        public void ReadFromFile()
+        {
+            this.lstStudents = File.ReadLines(txtFileName)
+                .Select(x => Student.CreateStudentFromLine(x))
+                .ToList();
+            this.Refresh();
+        }
+
+        public void Read()
+        {
+            if (File.Exists(txtFileName))
+            {
+                try
+                {
+                    this.ReadFromFile();
+                    this.Refresh();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
 
@@ -61,6 +88,21 @@ namespace studentManage
 
         }
 
+        private void SaveUsersToFile()
+        {
+            File.WriteAllLines(this.txtFileName, this.lstStudents.Select(x => x.ToString()));
+        }
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                this.SaveUsersToFile();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

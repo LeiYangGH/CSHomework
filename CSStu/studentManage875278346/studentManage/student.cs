@@ -7,20 +7,26 @@ using System.Threading.Tasks;
 
 namespace studentManage
 {
-    public class student
+    public class Student
     {
-        public student()
+        public Student()
         {
 
         }
-        public student(string id)
+
+        public Student(string name, string sex)
+        {
+            this.Name = name;
+            this.Sex = sex;
+        }
+        public Student(string id)
         {
             this.id = id;
         }
-        public override string ToString()
-        {
-            return id;
-        }
+        //public override string ToString()
+        //{
+        //    return id;
+        //}
         private string id;
         public string Id
         {
@@ -183,14 +189,23 @@ namespace studentManage
         public override bool Equals(object obj)
         {
             bool same = false;
-            if (obj is student)
+            if (obj is Student)
             {
-                student s = obj as student;
+                Student s = obj as Student;
                 if (s.id == this.id)
                     same = true;
             }
             return same;
         }
 
+        public static Student CreateStudentFromLine(string line)
+        {
+            string[] ss = line.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            return new Student(ss[0], ss[1]);
+        }
+        public override string ToString()
+        {
+            return string.Format("{0},{1}", this.Name, this.Sex);
+        }
     }
 }

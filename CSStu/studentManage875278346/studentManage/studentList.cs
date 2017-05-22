@@ -7,10 +7,10 @@ using System.Collections.ObjectModel;
 
 namespace studentManage
 {
-   public  class studentList:Collection<student>
+   public  class studentList:Collection<Student>
 
     {
-        public void Add(student s)
+        public void Add(Student s)
        {
 
            base.Add(s);
@@ -22,7 +22,7 @@ namespace studentManage
        {
             base.RemoveAt(index);
         }
-        public void  Update(student id, int index)
+        public void  Update(Student id, int index)
         {
             base.SetItem(index, id);
         }
@@ -31,10 +31,10 @@ namespace studentManage
             base.Clear();
         }
 
-        public student Find(string studentNumber)
+        public Student Find(string studentNumber)
         {
             int pos = -1;
-            pos = base.IndexOf(new student(studentNumber));
+            pos = base.IndexOf(new Student(studentNumber));
             if (pos > -1)
             {
                 return Items[pos];
@@ -44,7 +44,7 @@ namespace studentManage
         }
         public bool Modify(string studentNumber, string interest)
         {
-            student stu = Find(studentNumber);
+            Student stu = Find(studentNumber);
             if (stu != null)
             {
                 stu.Interest = interest;

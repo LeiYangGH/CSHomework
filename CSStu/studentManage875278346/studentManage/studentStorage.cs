@@ -15,7 +15,7 @@ namespace studentManage
                 throw new ArgumentNullException("path is not exsit");
             StreamWriter sw = new StreamWriter(filename, false);
             
-                foreach (student p in list)
+                foreach (Student p in list)
                 {
                     sw.WriteLine(p.Id);
                     sw.WriteLine(string.IsNullOrEmpty(p.Grade) ? "" : p.Grade);

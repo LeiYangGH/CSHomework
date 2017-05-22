@@ -50,7 +50,7 @@ namespace studentManage
                 position = 0;
         
         }
-        public student CurrentStudent
+        public Student CurrentStudent
         {
             get
             {
