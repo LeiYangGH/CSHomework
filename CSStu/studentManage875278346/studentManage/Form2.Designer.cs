@@ -56,26 +56,29 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 14);
+            this.label1.Location = new System.Drawing.Point(36, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 12);
+            this.label1.Size = new System.Drawing.Size(55, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name:";
             // 
             // textName
             // 
-            this.textName.Location = new System.Drawing.Point(59, 11);
+            this.textName.Location = new System.Drawing.Point(88, 18);
+            this.textName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textName.Name = "textName";
-            this.textName.Size = new System.Drawing.Size(326, 21);
+            this.textName.Size = new System.Drawing.Size(487, 26);
             this.textName.TabIndex = 1;
             this.textName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 41);
+            this.label2.Location = new System.Drawing.Point(45, 68);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.Size = new System.Drawing.Size(40, 20);
             this.label2.TabIndex = 0;
             this.label2.Text = "Sex:";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -83,68 +86,76 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(36, 67);
+            this.label3.Location = new System.Drawing.Point(54, 112);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(23, 12);
+            this.label3.Size = new System.Drawing.Size(30, 20);
             this.label3.TabIndex = 0;
             this.label3.Text = "ID:";
             // 
             // textGrade
             // 
-            this.textGrade.Location = new System.Drawing.Point(59, 119);
+            this.textGrade.Location = new System.Drawing.Point(88, 198);
+            this.textGrade.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textGrade.Name = "textGrade";
-            this.textGrade.Size = new System.Drawing.Size(326, 21);
+            this.textGrade.Size = new System.Drawing.Size(487, 26);
             this.textGrade.TabIndex = 1;
             this.textGrade.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textID
             // 
-            this.textID.Location = new System.Drawing.Point(59, 64);
+            this.textID.Location = new System.Drawing.Point(88, 107);
+            this.textID.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textID.Name = "textID";
-            this.textID.Size = new System.Drawing.Size(326, 21);
+            this.textID.Size = new System.Drawing.Size(487, 26);
             this.textID.TabIndex = 1;
             this.textID.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 149);
+            this.label4.Location = new System.Drawing.Point(18, 248);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 12);
+            this.label4.Size = new System.Drawing.Size(58, 20);
             this.label4.TabIndex = 0;
             this.label4.Text = "Intake:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 122);
+            this.label5.Location = new System.Drawing.Point(27, 203);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 12);
+            this.label5.Size = new System.Drawing.Size(58, 20);
             this.label5.TabIndex = 0;
             this.label5.Text = "Grade:";
             // 
             // textIntake
             // 
-            this.textIntake.Location = new System.Drawing.Point(59, 146);
+            this.textIntake.Location = new System.Drawing.Point(88, 243);
+            this.textIntake.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textIntake.Name = "textIntake";
-            this.textIntake.Size = new System.Drawing.Size(326, 21);
+            this.textIntake.Size = new System.Drawing.Size(487, 26);
             this.textIntake.TabIndex = 1;
             this.textIntake.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBirth
             // 
-            this.textBirth.Location = new System.Drawing.Point(59, 173);
+            this.textBirth.Location = new System.Drawing.Point(88, 288);
+            this.textBirth.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBirth.Name = "textBirth";
-            this.textBirth.Size = new System.Drawing.Size(326, 21);
+            this.textBirth.Size = new System.Drawing.Size(487, 26);
             this.textBirth.TabIndex = 1;
             this.textBirth.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(18, 176);
+            this.label6.Location = new System.Drawing.Point(27, 293);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 12);
+            this.label6.Size = new System.Drawing.Size(46, 20);
             this.label6.TabIndex = 0;
             this.label6.Text = "Birth:";
             this.label6.Click += new System.EventHandler(this.label6_Click);
@@ -152,26 +163,29 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(0, 230);
+            this.label7.Location = new System.Drawing.Point(0, 383);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 12);
+            this.label7.Size = new System.Drawing.Size(68, 20);
             this.label7.TabIndex = 0;
             this.label7.Text = "Interest:";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // textHostel
             // 
-            this.textHostel.Location = new System.Drawing.Point(59, 200);
+            this.textHostel.Location = new System.Drawing.Point(88, 333);
+            this.textHostel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textHostel.Name = "textHostel";
-            this.textHostel.Size = new System.Drawing.Size(326, 21);
+            this.textHostel.Size = new System.Drawing.Size(487, 26);
             this.textHostel.TabIndex = 1;
             this.textHostel.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // 确定
             // 
-            this.确定.Location = new System.Drawing.Point(59, 264);
+            this.确定.Location = new System.Drawing.Point(88, 440);
+            this.确定.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.确定.Name = "确定";
-            this.确定.Size = new System.Drawing.Size(75, 23);
+            this.确定.Size = new System.Drawing.Size(112, 38);
             this.确定.TabIndex = 2;
             this.确定.Text = "确定";
             this.确定.UseVisualStyleBackColor = true;
@@ -179,9 +193,10 @@
             // 
             // 取消
             // 
-            this.取消.Location = new System.Drawing.Point(215, 264);
+            this.取消.Location = new System.Drawing.Point(322, 440);
+            this.取消.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.取消.Name = "取消";
-            this.取消.Size = new System.Drawing.Size(75, 23);
+            this.取消.Size = new System.Drawing.Size(112, 38);
             this.取消.TabIndex = 2;
             this.取消.Text = "取消";
             this.取消.UseVisualStyleBackColor = true;
@@ -189,62 +204,70 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(407, 18);
+            this.pictureBox1.Location = new System.Drawing.Point(610, 30);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(101, 104);
+            this.pictureBox1.Size = new System.Drawing.Size(152, 173);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
             // textInterest
             // 
-            this.textInterest.Location = new System.Drawing.Point(59, 227);
+            this.textInterest.Location = new System.Drawing.Point(88, 378);
+            this.textInterest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textInterest.Name = "textInterest";
-            this.textInterest.Size = new System.Drawing.Size(326, 21);
+            this.textInterest.Size = new System.Drawing.Size(487, 26);
             this.textInterest.TabIndex = 1;
             this.textInterest.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 203);
+            this.label8.Location = new System.Drawing.Point(18, 338);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 12);
+            this.label8.Size = new System.Drawing.Size(59, 20);
             this.label8.TabIndex = 0;
             this.label8.Text = "Hostel:";
             this.label8.Click += new System.EventHandler(this.label6_Click);
             // 
             // comboSex
             // 
+            this.comboSex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboSex.FormattingEnabled = true;
             this.comboSex.Items.AddRange(new object[] {
             "男",
             "女"});
-            this.comboSex.Location = new System.Drawing.Point(59, 38);
+            this.comboSex.Location = new System.Drawing.Point(88, 63);
+            this.comboSex.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboSex.Name = "comboSex";
-            this.comboSex.Size = new System.Drawing.Size(52, 20);
+            this.comboSex.Size = new System.Drawing.Size(76, 28);
             this.comboSex.TabIndex = 4;
             // 
             // textMajor
             // 
-            this.textMajor.Location = new System.Drawing.Point(59, 92);
+            this.textMajor.Location = new System.Drawing.Point(88, 153);
+            this.textMajor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textMajor.Name = "textMajor";
-            this.textMajor.Size = new System.Drawing.Size(326, 21);
+            this.textMajor.Size = new System.Drawing.Size(487, 26);
             this.textMajor.TabIndex = 1;
             this.textMajor.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(18, 95);
+            this.label9.Location = new System.Drawing.Point(27, 158);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(53, 23);
+            this.label9.Size = new System.Drawing.Size(80, 38);
             this.label9.TabIndex = 5;
             this.label9.Text = "Major:";
             // 
             // 跳转
             // 
-            this.跳转.Location = new System.Drawing.Point(359, 264);
+            this.跳转.Location = new System.Drawing.Point(538, 440);
+            this.跳转.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.跳转.Name = "跳转";
-            this.跳转.Size = new System.Drawing.Size(75, 23);
+            this.跳转.Size = new System.Drawing.Size(112, 38);
             this.跳转.TabIndex = 6;
             this.跳转.Text = "跳转";
             this.跳转.UseVisualStyleBackColor = true;
@@ -252,9 +275,9 @@
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(520, 312);
+            this.ClientSize = new System.Drawing.Size(780, 520);
             this.Controls.Add(this.跳转);
             this.Controls.Add(this.comboSex);
             this.Controls.Add(this.pictureBox1);
@@ -277,6 +300,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form2";
             this.Text = "添加信息";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

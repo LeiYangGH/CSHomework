@@ -34,61 +34,61 @@ namespace studentManage
         
         public static studentList ReadStudents(string filename)
         {
-            
-                StreamReader sr = new StreamReader(filename);
-                studentList stu1 = new studentList();
-                student p = null;
-                do
-                {
 
-                    string id = sr.ReadLine();
+            //StreamReader sr = new StreamReader(filename);
+            //studentList stu1 = new studentList();
+            //student p = null;
+            //do
+            //{
 
-                    if (string.IsNullOrEmpty(id))
-                        break;
-                    p = new student(id);
-                   
-                    string sex = sr.ReadLine();
-                try
-                {
-                    bool ss = bool.Parse(sex);
-                }
-                catch { }
-                if(sex=="男")
-                p.Sex = true;
-                else if (sex == "女")
-                    p.Sex = false;
-                  
-                try
-                {
-                    string birth = sr.ReadLine();
-                    if (!string.IsNullOrEmpty(birth))
-                    {
-                        p.Birth = DateTime.Parse(birth);
-                    }
-                }
-                catch
-                { }
-                try
-                {
-                    string intake = sr.ReadLine();
-                    if (!string.IsNullOrEmpty(intake))
-                    {
-                        p.Intake = DateTime.Parse(intake);
-                    }
-                }
-                catch { }
-                    p.Name = sr.ReadLine();
-                    p.Major = sr.ReadLine();
-                    p.Interest = sr.ReadLine();
-                    p.Hostel = sr.ReadLine();
-                  
-                   
+            //    string id = sr.ReadLine();
 
-                    stu1.Add(p);
-                }
-                while (p != null);
-                return stu1;
+            //    if (string.IsNullOrEmpty(id))
+            //        break;
+            //    p = new student(id);
 
+            //    string sex = sr.ReadLine();
+            //try
+            //{
+            //    bool ss = bool.Parse(sex);
+            //}
+            //catch { }
+            //if(sex=="男")
+            //p.Sex = true;
+            //else if (sex == "女")
+            //    p.Sex = false;
+
+            //try
+            //{
+            //    string birth = sr.ReadLine();
+            //    if (!string.IsNullOrEmpty(birth))
+            //    {
+            //        p.Birth = DateTime.Parse(birth);
+            //    }
+            //}
+            //catch
+            //{ }
+            //try
+            //{
+            //    string intake = sr.ReadLine();
+            //    if (!string.IsNullOrEmpty(intake))
+            //    {
+            //        p.Intake = DateTime.Parse(intake);
+            //    }
+            //}
+            //catch { }
+            //    p.Name = sr.ReadLine();
+            //    p.Major = sr.ReadLine();
+            //    p.Interest = sr.ReadLine();
+            //    p.Hostel = sr.ReadLine();
+
+
+
+            //    stu1.Add(p);
+            //}
+            //while (p != null);
+            //return stu1;
+            return null;
 
             }
             

@@ -9,9 +9,11 @@ namespace studentManage
 {
     public class student
     {
+        public student()
+        {
 
+        }
         public student(string id)
-
         {
             this.id = id;
         }
@@ -30,11 +32,11 @@ namespace studentManage
             {
                 id = value;
             }
-            
+
         }
 
-        private string  grade;//年级
-        public string   Grade
+        private string grade;//年级
+        public string Grade
         {
             get
             {
@@ -78,8 +80,8 @@ namespace studentManage
             }
         }
 
-        private bool sex;
-        public bool Sex
+        private string sex;
+        public string Sex
         {
             get
             {
@@ -143,21 +145,21 @@ namespace studentManage
             }
         }
 
-       
 
-        private string  picture;
-        public string  Picture
+
+        private string picture;
+        public string Picture
         {
 
             get
             {
-               return picture;
+                return picture;
             }
-            set 
+            set
             {
 
                 picture = value;
-                    
+
 
             }
 
