@@ -19,7 +19,7 @@ namespace 模拟考试
 
             this.SingleChoiceQuestions = new SingleChoiceQuestion[]
               {
-                new SingleChoiceQuestion() { Title= "5+5=" ,Choices=new string[] { "1","2,","8","10"},CorrectChoiceId=3 },
+                new SingleChoiceQuestion() { Title= "5+5=" ,Choices=new string[] { "10","2,","8","1"},CorrectChoiceId=0 },
                 new SingleChoiceQuestion() { Title= "哪个是C语言关键字" ,Choices=new string[] { "private","class,","pointer","typedef"},CorrectChoiceId=3 }
               };
 
