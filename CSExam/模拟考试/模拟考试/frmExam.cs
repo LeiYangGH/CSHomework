@@ -15,6 +15,7 @@ namespace 模拟考试
         private Questions qs = new Questions();
         public int score = 0;
         private int seconds = 180;
+        //private int seconds = 5;//test
         public frmExam()
         {
             InitializeComponent();
@@ -108,7 +109,9 @@ namespace 模拟考试
             if (this.seconds <= 0)
             {
                 this.timer1.Stop();
+                MessageBox.Show("时间到！");
                 this.Stop();
+
             }
         }
     }

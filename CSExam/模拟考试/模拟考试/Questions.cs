@@ -28,14 +28,14 @@ namespace 模拟考试
                 Title = "哪些城市是中国的",
                 Choices = new string[] { "杭州", "四川,", "苏州", "洛杉矶" },
                 CorrectChoiceIds = new int[] { 0, 1, 2 },
-                score = 20
+                score = 10
             };
 
             this.ArticleQuestion = new ArticleQuestion()
             {
                 Title = "杭州有哪些景点？",
-                MinLength = 15,
-                score = 30
+                MinLength = 20,
+                score = 40
             };
         }
         public TrueFalseQuestion[] TrueFalseQuestions { get; set; }
