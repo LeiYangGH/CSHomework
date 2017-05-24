@@ -38,7 +38,7 @@ namespace CSBike
         {
             frmSuperPassword frmSuper = new frmSuperPassword();
             var result = frmSuper.ShowDialog();
-            if(result==DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 frmUsers frm = new frmUsers(true);
                 frm.ShowDialog();
@@ -48,6 +48,34 @@ namespace CSBike
                 this.btnAdmin.Enabled = false;
             }
 
+        }
+
+        private void btnBorrow_Click(object sender, EventArgs e)
+        {
+            frmBorrow frm = new frmBorrow();
+            frm.ShowDialog();
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            frmReturn frm = new frmReturn();
+            frm.ShowDialog();
+        }
+
+        private void btnTransaction_Click(object sender, EventArgs e)
+        {
+            frmBikeHistory frm = new frmBikeHistory();
+            frm.ShowDialog();
+        }
+
+        private void frmStart_Load(object sender, EventArgs e)
+        {
+            BikesHistory.ReadHistory();
+        }
+
+        private void frmStart_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            BikesHistory.SaveHistory();
         }
     }
 }

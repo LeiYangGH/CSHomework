@@ -18,7 +18,8 @@ namespace CSBike
             Application.SetCompatibleTextRenderingDefault(false);
 #if TEST
             //Application.Run(new frmUsers(false));
-            Application.Run(new frmUsers(true));
+            //Application.Run(new frmUsers(true));
+            Application.Run(new frmBorrow());
 #else
             Application.Run(new frmStart());
 #endif

@@ -31,12 +31,6 @@ namespace CSBike
             var users = this.repository.GetAllUsers().Where(x => x.IsAdministrator == this.isAdministrator).ToList();
             this.lstUsers = new BindingList<User>(users);
             this.dataGridView1.DataSource = this.lstUsers;
-            //this.dataGridView1.Columns[0].HeaderText = "配件名称";
-            //this.dataGridView1.Columns[1].HeaderText = "价格";
-            //this.dataGridView1.Columns[2].HeaderText = "数量";
-            //this.dataGridView1.Columns[3].HeaderText = "时间";
-
-
         }
 
         private User GetFirstSelectedUser()

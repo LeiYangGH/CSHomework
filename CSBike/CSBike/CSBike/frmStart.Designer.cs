@@ -39,7 +39,7 @@
             // 
             // btnBike
             // 
-            this.btnBike.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnBike.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnBike.Location = new System.Drawing.Point(192, 40);
             this.btnBike.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBike.Name = "btnBike";
@@ -51,7 +51,7 @@
             // 
             // btnUser
             // 
-            this.btnUser.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnUser.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnUser.Location = new System.Drawing.Point(192, 127);
             this.btnUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUser.Name = "btnUser";
@@ -63,7 +63,7 @@
             // 
             // btnAdmin
             // 
-            this.btnAdmin.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAdmin.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnAdmin.Location = new System.Drawing.Point(192, 213);
             this.btnAdmin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAdmin.Name = "btnAdmin";
@@ -75,7 +75,7 @@
             // 
             // btnTransaction
             // 
-            this.btnTransaction.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnTransaction.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnTransaction.Location = new System.Drawing.Point(192, 300);
             this.btnTransaction.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnTransaction.Name = "btnTransaction";
@@ -83,10 +83,11 @@
             this.btnTransaction.TabIndex = 3;
             this.btnTransaction.Text = "交易管理";
             this.btnTransaction.UseVisualStyleBackColor = true;
+            this.btnTransaction.Click += new System.EventHandler(this.btnTransaction_Click);
             // 
             // btnBorrow
             // 
-            this.btnBorrow.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnBorrow.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnBorrow.Location = new System.Drawing.Point(192, 387);
             this.btnBorrow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBorrow.Name = "btnBorrow";
@@ -94,10 +95,11 @@
             this.btnBorrow.TabIndex = 4;
             this.btnBorrow.Text = "借车";
             this.btnBorrow.UseVisualStyleBackColor = true;
+            this.btnBorrow.Click += new System.EventHandler(this.btnBorrow_Click);
             // 
             // btnReturn
             // 
-            this.btnReturn.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnReturn.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnReturn.Location = new System.Drawing.Point(192, 473);
             this.btnReturn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnReturn.Name = "btnReturn";
@@ -105,10 +107,11 @@
             this.btnReturn.TabIndex = 5;
             this.btnReturn.Text = "还车";
             this.btnReturn.UseVisualStyleBackColor = true;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
             // btnClose
             // 
-            this.btnClose.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnClose.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnClose.Location = new System.Drawing.Point(192, 560);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
@@ -133,6 +136,8 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmStart";
             this.Text = "Start";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmStart_FormClosing);
+            this.Load += new System.EventHandler(this.frmStart_Load);
             this.ResumeLayout(false);
 
         }

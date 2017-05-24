@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BikesHistory.cs" />
     <Compile Include="clsBike.cs" />
     <Compile Include="clsData.cs" />
     <Compile Include="frmBike.cs">
@@ -58,11 +59,29 @@
     <Compile Include="frmBikeDetail.designer.cs">
       <DependentUpon>frmBikeDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBikeHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBikeHistory.Designer.cs">
+      <DependentUpon>frmBikeHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBorrow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBorrow.Designer.cs">
+      <DependentUpon>frmBorrow.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmEditUser.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmEditUser.Designer.cs">
       <DependentUpon>frmEditUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReturn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReturn.Designer.cs">
+      <DependentUpon>frmReturn.cs</DependentUpon>
     </Compile>
     <Compile Include="frmStart.cs">
       <SubType>Form</SubType>
@@ -92,8 +111,17 @@
     <EmbeddedResource Include="frmBikeDetail.resx">
       <DependentUpon>frmBikeDetail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmBikeHistory.resx">
+      <DependentUpon>frmBikeHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBorrow.resx">
+      <DependentUpon>frmBorrow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmEditUser.resx">
       <DependentUpon>frmEditUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReturn.resx">
+      <DependentUpon>frmReturn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmStart.resx">
       <DependentUpon>frmStart.cs</DependentUpon>
