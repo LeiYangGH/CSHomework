@@ -37,20 +37,21 @@ namespace CSDocxGenerator
             oDoc = oWord.Documents.Add(ref oMissing, ref oMissing,
             ref oMissing, ref oMissing);
             Word.Paragraph oPara1;
-            oPara1 = oDoc.Content.Paragraphs.Add(ref oMissing);
-            oPara1.Range.Text = $"2017年度部卫片";
-            oPara1.Range.Font.Bold = 1;
-            oPara1.Range.Font.Size = 36;
-            oPara1.Format.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
-            oPara1.Range.InsertParagraphAfter();
+            //oPara1 = oDoc.Content.Paragraphs.Add(ref oMissing);
+            //oPara1.Range.Text = $"2017年度部卫片";
+            //oPara1.Range.Font.Bold = 1;
+            //oPara1.Range.Font.Size = 36;
+            //oPara1.Format.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
+            //oPara1.Range.InsertParagraphAfter();
             for (int i = from; i <= to; i++)
             {
-                oDoc.Words.Last.InsertBreak(Word.WdBreakType.wdPageBreak);
+                if (i > from)
+                    oDoc.Words.Last.InsertBreak(Word.WdBreakType.wdPageBreak);
 
                 oPara1 = oDoc.Content.Paragraphs.Add(ref oMissing);
-                oPara1.Range.Text = i.ToString();
+                oPara1.Range.Text = $"2017年度部卫片{i}号";
                 oPara1.Range.Font.Bold = 1;
-                oPara1.Range.Font.Size = 36;
+                oPara1.Range.Font.Size = 55;
                 oPara1.Format.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
                 oPara1.Range.InsertParagraphAfter();
             }
