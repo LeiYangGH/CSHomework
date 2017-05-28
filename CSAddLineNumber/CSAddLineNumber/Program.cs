@@ -27,7 +27,6 @@ namespace CSAddLineNumber
             }
             Console.WriteLine("OK!, please check output file:" + outFile);
             Console.ReadLine();
-
         }
     }
 }
