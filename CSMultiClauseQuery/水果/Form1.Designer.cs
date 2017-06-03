@@ -35,18 +35,18 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.textBoxn = new System.Windows.Forms.TextBox();
+            this.textBoxpl = new System.Windows.Forms.TextBox();
+            this.textBoxt = new System.Windows.Forms.TextBox();
+            this.textBoxs = new System.Windows.Forms.TextBox();
+            this.textBoxc = new System.Windows.Forms.TextBox();
+            this.textBoxpr = new System.Windows.Forms.TextBox();
+            this.checkBoxn = new System.Windows.Forms.CheckBox();
+            this.checkBoxpl = new System.Windows.Forms.CheckBox();
+            this.checkBoxt = new System.Windows.Forms.CheckBox();
+            this.checkBoxs = new System.Windows.Forms.CheckBox();
+            this.checkBoxc = new System.Windows.Forms.CheckBox();
+            this.checkBoxpr = new System.Windows.Forms.CheckBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
@@ -138,119 +138,119 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "价格";
             // 
-            // textBox1
+            // textBoxn
             // 
-            this.textBox1.Location = new System.Drawing.Point(172, 43);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(148, 26);
-            this.textBox1.TabIndex = 7;
+            this.textBoxn.Location = new System.Drawing.Point(172, 43);
+            this.textBoxn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxn.Name = "textBoxn";
+            this.textBoxn.Size = new System.Drawing.Size(148, 26);
+            this.textBoxn.TabIndex = 7;
             // 
-            // textBox2
+            // textBoxpl
             // 
-            this.textBox2.Location = new System.Drawing.Point(172, 93);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(148, 26);
-            this.textBox2.TabIndex = 8;
+            this.textBoxpl.Location = new System.Drawing.Point(172, 93);
+            this.textBoxpl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxpl.Name = "textBoxpl";
+            this.textBoxpl.Size = new System.Drawing.Size(148, 26);
+            this.textBoxpl.TabIndex = 8;
             // 
-            // textBox3
+            // textBoxt
             // 
-            this.textBox3.Location = new System.Drawing.Point(172, 152);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(148, 26);
-            this.textBox3.TabIndex = 9;
+            this.textBoxt.Location = new System.Drawing.Point(172, 152);
+            this.textBoxt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxt.Name = "textBoxt";
+            this.textBoxt.Size = new System.Drawing.Size(148, 26);
+            this.textBoxt.TabIndex = 9;
             // 
-            // textBox4
+            // textBoxs
             // 
-            this.textBox4.Location = new System.Drawing.Point(707, 43);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(148, 26);
-            this.textBox4.TabIndex = 10;
+            this.textBoxs.Location = new System.Drawing.Point(707, 43);
+            this.textBoxs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxs.Name = "textBoxs";
+            this.textBoxs.Size = new System.Drawing.Size(148, 26);
+            this.textBoxs.TabIndex = 10;
             // 
-            // textBox5
+            // textBoxc
             // 
-            this.textBox5.Location = new System.Drawing.Point(707, 93);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(148, 26);
-            this.textBox5.TabIndex = 11;
+            this.textBoxc.Location = new System.Drawing.Point(707, 93);
+            this.textBoxc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxc.Name = "textBoxc";
+            this.textBoxc.Size = new System.Drawing.Size(148, 26);
+            this.textBoxc.TabIndex = 11;
             // 
-            // textBox6
+            // textBoxpr
             // 
-            this.textBox6.Location = new System.Drawing.Point(707, 152);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(148, 26);
-            this.textBox6.TabIndex = 12;
+            this.textBoxpr.Location = new System.Drawing.Point(707, 152);
+            this.textBoxpr.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxpr.Name = "textBoxpr";
+            this.textBoxpr.Size = new System.Drawing.Size(148, 26);
+            this.textBoxpr.TabIndex = 12;
             // 
-            // checkBox1
+            // checkBoxn
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(368, 43);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(131, 24);
-            this.checkBox1.TabIndex = 13;
-            this.checkBox1.Text = "是否加入条件";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxn.AutoSize = true;
+            this.checkBoxn.Location = new System.Drawing.Point(368, 43);
+            this.checkBoxn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBoxn.Name = "checkBoxn";
+            this.checkBoxn.Size = new System.Drawing.Size(131, 24);
+            this.checkBoxn.TabIndex = 13;
+            this.checkBoxn.Text = "是否加入条件";
+            this.checkBoxn.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // checkBoxpl
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(368, 92);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(131, 24);
-            this.checkBox2.TabIndex = 14;
-            this.checkBox2.Text = "是否加入条件";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBoxpl.AutoSize = true;
+            this.checkBoxpl.Location = new System.Drawing.Point(368, 92);
+            this.checkBoxpl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBoxpl.Name = "checkBoxpl";
+            this.checkBoxpl.Size = new System.Drawing.Size(131, 24);
+            this.checkBoxpl.TabIndex = 14;
+            this.checkBoxpl.Text = "是否加入条件";
+            this.checkBoxpl.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // checkBoxt
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(368, 152);
-            this.checkBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(131, 24);
-            this.checkBox3.TabIndex = 15;
-            this.checkBox3.Text = "是否加入条件";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBoxt.AutoSize = true;
+            this.checkBoxt.Location = new System.Drawing.Point(368, 152);
+            this.checkBoxt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBoxt.Name = "checkBoxt";
+            this.checkBoxt.Size = new System.Drawing.Size(131, 24);
+            this.checkBoxt.TabIndex = 15;
+            this.checkBoxt.Text = "是否加入条件";
+            this.checkBoxt.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // checkBoxs
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(914, 47);
-            this.checkBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(131, 24);
-            this.checkBox4.TabIndex = 16;
-            this.checkBox4.Text = "是否加入条件";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBoxs.AutoSize = true;
+            this.checkBoxs.Location = new System.Drawing.Point(914, 47);
+            this.checkBoxs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBoxs.Name = "checkBoxs";
+            this.checkBoxs.Size = new System.Drawing.Size(131, 24);
+            this.checkBoxs.TabIndex = 16;
+            this.checkBoxs.Text = "是否加入条件";
+            this.checkBoxs.UseVisualStyleBackColor = true;
             // 
-            // checkBox5
+            // checkBoxc
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(914, 98);
-            this.checkBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(131, 24);
-            this.checkBox5.TabIndex = 17;
-            this.checkBox5.Text = "是否加入条件";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBoxc.AutoSize = true;
+            this.checkBoxc.Location = new System.Drawing.Point(914, 98);
+            this.checkBoxc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBoxc.Name = "checkBoxc";
+            this.checkBoxc.Size = new System.Drawing.Size(131, 24);
+            this.checkBoxc.TabIndex = 17;
+            this.checkBoxc.Text = "是否加入条件";
+            this.checkBoxc.UseVisualStyleBackColor = true;
             // 
-            // checkBox6
+            // checkBoxpr
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(914, 155);
-            this.checkBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(131, 24);
-            this.checkBox6.TabIndex = 18;
-            this.checkBox6.Text = "是否加入条件";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBoxpr.AutoSize = true;
+            this.checkBoxpr.Location = new System.Drawing.Point(914, 155);
+            this.checkBoxpr.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBoxpr.Name = "checkBoxpr";
+            this.checkBoxpr.Size = new System.Drawing.Size(131, 24);
+            this.checkBoxpr.TabIndex = 18;
+            this.checkBoxpr.Text = "是否加入条件";
+            this.checkBoxpr.UseVisualStyleBackColor = true;
             // 
             // textBox7
             // 
@@ -399,18 +399,18 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.checkBox6);
-            this.Controls.Add(this.checkBox5);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.checkBoxpr);
+            this.Controls.Add(this.checkBoxc);
+            this.Controls.Add(this.checkBoxs);
+            this.Controls.Add(this.checkBoxt);
+            this.Controls.Add(this.checkBoxpl);
+            this.Controls.Add(this.checkBoxn);
+            this.Controls.Add(this.textBoxpr);
+            this.Controls.Add(this.textBoxc);
+            this.Controls.Add(this.textBoxs);
+            this.Controls.Add(this.textBoxt);
+            this.Controls.Add(this.textBoxpl);
+            this.Controls.Add(this.textBoxn);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -438,18 +438,18 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.TextBox textBoxn;
+        private System.Windows.Forms.TextBox textBoxpl;
+        private System.Windows.Forms.TextBox textBoxt;
+        private System.Windows.Forms.TextBox textBoxs;
+        private System.Windows.Forms.TextBox textBoxc;
+        private System.Windows.Forms.TextBox textBoxpr;
+        private System.Windows.Forms.CheckBox checkBoxn;
+        private System.Windows.Forms.CheckBox checkBoxpl;
+        private System.Windows.Forms.CheckBox checkBoxt;
+        private System.Windows.Forms.CheckBox checkBoxs;
+        private System.Windows.Forms.CheckBox checkBoxc;
+        private System.Windows.Forms.CheckBox checkBoxpr;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox9;

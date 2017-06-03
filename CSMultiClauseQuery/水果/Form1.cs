@@ -15,6 +15,8 @@ namespace 水果
     public partial class Form1 : Form
     {
         OleDbConnection myConnection;
+        DataTable dt;
+
         string strConnection = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=水果.mdb";
         public DataSet myDataSet;
         BindingManagerBase myBind;
@@ -23,16 +25,24 @@ namespace 水果
             InitializeComponent();
         }
 
+
+
         private void button1_Click(object sender, EventArgs e)
         {
-            myConnection = new OleDbConnection(strConnection);
-            DataTable dt = new DataTable();
-            myConnection.Open();
-           
-            string strDa = "SELECT * from sg";
-            OleDbDataAdapter myDa = new OleDbDataAdapter(strDa, myConnection);
+            if (this.dt == null)
+            {
+                this.dt = new DataTable();
+                myConnection = new OleDbConnection(strConnection);
+                myConnection.Open();
 
-            myDa.Fill(dt);
+                string strDa = "SELECT * from sg";
+                OleDbDataAdapter myDa = new OleDbDataAdapter(strDa, myConnection);
+
+                myDa.Fill(dt);
+                myConnection.Close();
+
+            }
+
             var lstFruits = dt.Rows.OfType<DataRow>()
                 .Select(x => new Fruit(
                     x[0].ToString(),
@@ -41,13 +51,30 @@ namespace 水果
                     x[3].ToString(),
                     x[4].ToString(),
                     x[5].ToString()
-                    )).ToList();
-            dataGridView1.DataSource = dt;
-            dataGridView1.DataSource = lstFruits;
+                    ));
+
+            if (this.checkBoxn.Checked)
+                lstFruits = lstFruits.Where(x => x.Name.Trim() == this.textBoxn.Text.Trim());
+
+            if (this.checkBoxs.Checked)
+                lstFruits = lstFruits.Where(x => x.Season.Trim() == this.textBoxs.Text.Trim());
+
+            if (this.checkBoxpl.Checked)
+                lstFruits = lstFruits.Where(x => x.Place.Trim() == this.textBoxpl.Text.Trim());
+
+            if (this.checkBoxc.Checked)
+                lstFruits = lstFruits.Where(x => x.Color.Trim() == this.textBoxc.Text.Trim());
+
+            if (this.checkBoxt.Checked)
+                lstFruits = lstFruits.Where(x => x.Type.Trim() == this.textBoxt.Text.Trim());
+
+            if (this.checkBoxpr.Checked)
+                lstFruits = lstFruits.Where(x => x.Name.Trim() == this.textBoxpr.Text.Trim());
+
+            dataGridView1.DataSource = lstFruits.ToList();
 
             //myBind = this.BindingContext[myDataSet, "sg"];
 
-            myConnection.Close();
 
             //dataGridView1.Columns[0].Width = 50;
         }
