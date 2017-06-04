@@ -103,6 +103,7 @@ namespace 反坦克导弹数据查询软件
 
             var lstFruits = dt.Rows.OfType<DataRow>()
                 .Select(x => new Fruit(
+                  Convert.ToInt32(x["K"]),
                     x["导弹名称"].ToString(),
                     x["国家"].ToString(),
                     x["制导方式"].ToString(),
@@ -143,8 +144,11 @@ namespace 反坦克导弹数据查询软件
         {
             if (dataGridView1.CurrentRow != null)
             {
-                int index = this.dataGridView1.CurrentRow.Index;
-                DataRow dr = this.dt.Rows[index];
+                this.Text = dataGridView1.CurrentRow.Cells["ID"].Value.ToString();
+                DataRow dr = this.dt.Rows.OfType<DataRow>()
+                    .FirstOrDefault(x => x["K"].ToString() == dataGridView1.CurrentRow.Cells["ID"].Value.ToString());
+                if (dr == null)
+                    return;
                 导弹名称.Text = dr["导弹名称"].ToString();
                 国家.Text = dr["国家"].ToString();
                 导弹弹长.Text = dr["导弹弹长"].ToString();
@@ -192,8 +196,9 @@ namespace 反坦克导弹数据查询软件
 
     public class Fruit
     {
-        public Fruit(string p1, string p2, string p3, string p4, string p5, string p6, string p7, string p8)
+        public Fruit(int id, string p1, string p2, string p3, string p4, string p5, string p6, string p7, string p8)
         {
+            this.ID = id;
             this.P1 = p1;
             this.P2 = p2;
             this.P3 = p3;
@@ -203,6 +208,9 @@ namespace 反坦克导弹数据查询软件
             this.P7 = p7;
             this.P8 = p8;
         }
+
+        public int ID { get; set; }
+
         [DisplayName("导弹名称")]
         public string P1 { get; set; }
 
