@@ -103,14 +103,14 @@ namespace 反坦克导弹数据查询软件
 
             var lstFruits = dt.Rows.OfType<DataRow>()
                 .Select(x => new Fruit(
-                    x[0].ToString(),
-                    x[1].ToString(),
-                    x[2].ToString(),
-                    x[3].ToString(),
-                    x[4].ToString(),
-                    x[5].ToString(),
-                    x[6].ToString(),
-                    x[7].ToString()
+                    x["导弹名称"].ToString(),
+                    x["国家"].ToString(),
+                    x["制导方式"].ToString(),
+                    x["战斗部"].ToString(),
+                    x["导引头"].ToString(),
+                    x["飞行速度"].ToString(),
+                    x["导弹最小射程"].ToString(),
+                    x["破甲厚度"].ToString()
                     ));
 
             if (this.checkBox1.Checked)
