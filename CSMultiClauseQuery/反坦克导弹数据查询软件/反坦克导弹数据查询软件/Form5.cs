@@ -143,6 +143,28 @@ namespace 反坦克导弹数据查询软件
         {
             if (dataGridView1.CurrentRow != null)
             {
+                int index = this.dataGridView1.CurrentRow.Index;
+                DataRow dr = this.dt.Rows[index];
+                导弹名称.Text = dr["导弹名称"].ToString();
+                国家.Text = dr["国家"].ToString();
+                导弹弹长.Text = dr["导弹弹长"].ToString();
+                导弹弹径.Text = dr["导弹弹径"].ToString();
+                导弹翼展.Text = dr["导弹翼展"].ToString();
+                导弹弹重.Text = dr["导弹弹重"].ToString();
+                导弹最小射程.Text = dr["导弹最小射程"].ToString();
+                导弹最大射程.Text = dr["导弹最大射程"].ToString();
+                飞行速度.Text = dr["飞行速度"].ToString();
+                破甲厚度.Text = dr["破甲厚度"].ToString();
+                战斗部.Text = dr["战斗部"].ToString();
+                制导方式.Text = dr["制导方式"].ToString();
+                导引头.Text = dr["导引头"].ToString();
+                动力装置.Text = dr["动力装置"].ToString();
+                命中概率.Text = dr["命中概率"].ToString();
+                发射载体.Text = dr["发射载体"].ToString();
+                使用条件.Text = dr["使用条件"].ToString();
+                生产厂家.Text = dr["生产厂家"].ToString();
+
+
                 //导弹名称.Text = dataGridView1.CurrentRow.Cells["导弹名称"].Value.ToString();
                 //国家.Text = dataGridView1.CurrentRow.Cells["国家"].Value.ToString();
                 //导弹弹长.Text = dataGridView1.CurrentRow.Cells["导弹弹长"].Value.ToString();
