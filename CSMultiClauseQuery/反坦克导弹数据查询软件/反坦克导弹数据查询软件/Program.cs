@@ -16,8 +16,8 @@ namespace 反坦克导弹数据查询软件
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 登录());
-            //Application.Run(new Form5());
+            //Application.Run(new 登录());
+            Application.Run(new Form5());
         }
     }
 }

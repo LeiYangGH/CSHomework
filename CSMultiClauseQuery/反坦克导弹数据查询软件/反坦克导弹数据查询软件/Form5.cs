@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace 反坦克导弹数据查询软件
     public partial class Form5 : Form
     {
         OleDbConnection myConnection;
-        string strConnection = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=DD.mdb";
+        string connStr = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=DD.mdb";
         DataTable dt;
         public Form5()
         {
@@ -90,7 +91,7 @@ namespace 反坦克导弹数据查询软件
             if (this.dt == null)
             {
                 this.dt = new DataTable();
-                myConnection = new OleDbConnection(strConnection);
+                myConnection = new OleDbConnection(connStr);
                 myConnection.Open();
 
                 string strDa = "SELECT * from AKD";
@@ -140,15 +141,19 @@ namespace 反坦克导弹数据查询软件
             dataGridView1.Columns[0].Width = 50;
         }
 
+        private Dictionary<int, string> dicIDImage = new Dictionary<int, string>();
+
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow != null)
             {
+
                 this.Text = dataGridView1.CurrentRow.Cells["ID"].Value.ToString();
                 DataRow dr = this.dt.Rows.OfType<DataRow>()
                     .FirstOrDefault(x => x["K"].ToString() == dataGridView1.CurrentRow.Cells["ID"].Value.ToString());
                 if (dr == null)
                     return;
+                int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ID"].Value);
                 导弹名称.Text = dr["导弹名称"].ToString();
                 国家.Text = dr["国家"].ToString();
                 导弹弹长.Text = dr["导弹弹长"].ToString();
@@ -167,8 +172,12 @@ namespace 反坦克导弹数据查询软件
                 发射载体.Text = dr["发射载体"].ToString();
                 使用条件.Text = dr["使用条件"].ToString();
                 生产厂家.Text = dr["生产厂家"].ToString();
-
-
+                string imageLocation = null;
+                if (dr["图片"] != null && !string.IsNullOrWhiteSpace(dr["图片"].ToString()))
+                    imageLocation = Path.Combine(imagesDir, dr["图片"].ToString());
+                else if (this.dicIDImage.ContainsKey(id))
+                    imageLocation = Path.Combine(imagesDir, this.dicIDImage[id]);
+                this.pictureBox1.ImageLocation = imageLocation;
                 //导弹名称.Text = dataGridView1.CurrentRow.Cells["导弹名称"].Value.ToString();
                 //国家.Text = dataGridView1.CurrentRow.Cells["国家"].Value.ToString();
                 //导弹弹长.Text = dataGridView1.CurrentRow.Cells["导弹弹长"].Value.ToString();
@@ -199,6 +208,78 @@ namespace 反坦克导弹数据查询软件
             this.Hide();
         }
 
+        private string CopyAndRenameImage(string imageFileName)
+        {
+            try
+            {
+                string guid = Guid.NewGuid().ToString();
+                File.Copy(imageFileName, Path.Combine(imagesDir, guid));
+                return guid;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+
+        }
+
+        private void btnUpdateImage_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow == null)
+                return;
+
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "图片|*.jpg;*.png;*.bmp";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = dlg.FileName;
+                //if (new FileInfo(fileName).Length > 100 * 100)
+                //{
+                //    MessageBox.Show("图片不能大于10k！");
+                //    return;
+                //}
+                //this.pictureBox1.ImageLocation = fileName;
+                int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ID"].Value);
+
+                try
+                {
+                    string guid = CopyAndRenameImage(fileName);
+
+                    using (OleDbConnection connection = new OleDbConnection(connStr))
+                    {
+                        string sql = @"update [AKD] set [图片]=@img where [K]=@id";
+                        OleDbCommand cmd = new OleDbCommand(sql, connection);
+                        cmd.Parameters.AddWithValue("@img", guid);
+                        cmd.Parameters.AddWithValue("@id", id);
+                        connection.Open();
+                        cmd.ExecuteNonQuery();
+                        if (this.dicIDImage.ContainsKey(id))
+                            this.dicIDImage[id] = guid;
+                        else
+                            this.dicIDImage.Add(id, guid);
+                        MessageBox.Show("ok");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private string imagesDir = Path.Combine(Environment.CurrentDirectory, @"Images");
+        private void Form5_Load(object sender, EventArgs e)
+        {
+            if (!Directory.Exists(imagesDir))
+                Directory.CreateDirectory(imagesDir);
+        }
     }
 
     public class Fruit
