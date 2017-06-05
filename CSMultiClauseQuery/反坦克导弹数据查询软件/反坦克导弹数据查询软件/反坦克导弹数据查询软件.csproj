@@ -69,17 +69,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DDDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="frmUpdate.cs">
+    <Compile Include="修改.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUpdate.Designer.cs">
-      <DependentUpon>frmUpdate.cs</DependentUpon>
+    <Compile Include="修改.Designer.cs">
+      <DependentUpon>修改.cs</DependentUpon>
     </Compile>
-    <Compile Include="改删.cs">
+    <Compile Include="删除.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="改删.Designer.cs">
-      <DependentUpon>改删.cs</DependentUpon>
+    <Compile Include="删除.Designer.cs">
+      <DependentUpon>删除.cs</DependentUpon>
     </Compile>
     <Compile Include="注册.cs">
       <SubType>Form</SubType>
@@ -131,11 +131,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmUpdate.resx">
-      <DependentUpon>frmUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="修改.resx">
+      <DependentUpon>修改.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="改删.resx">
-      <DependentUpon>改删.cs</DependentUpon>
+    <EmbeddedResource Include="删除.resx">
+      <DependentUpon>删除.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="注册.resx">
       <DependentUpon>注册.cs</DependentUpon>
@@ -195,7 +195,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DD.mdb">
+    <Content Include="DD.MDB">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

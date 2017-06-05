@@ -37,7 +37,7 @@ namespace 反坦克导弹数据查询软件
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            改删 form = new 改删();
+            删除 form = new 删除();
             form.Show();
             this.Hide();
         }
@@ -110,7 +110,7 @@ namespace 反坦克导弹数据查询软件
                     x["战斗部"].ToString(),
                     x["导引头"].ToString(),
                     x["飞行速度"].ToString(),
-                    x["导弹最小射程"].ToString(),
+                    x["导弹最大射程"].ToString(),
                     x["破甲厚度"].ToString()
                     ));
 
@@ -190,6 +190,13 @@ namespace 反坦克导弹数据查询软件
 
 
             }
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            修改 form = new 修改();
+            form.Show();
+            this.Hide();
         }
 
     }

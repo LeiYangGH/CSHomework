@@ -30,11 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(增加));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -76,10 +78,14 @@
             this.导弹弹重 = new System.Windows.Forms.TextBox();
             this.导弹弹径 = new System.Windows.Forms.TextBox();
             this.国家 = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pb_ImageIn = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_ImageIn)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -91,12 +97,22 @@
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(204, 20);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 24);
+            this.btnAdd.TabIndex = 56;
+            this.btnAdd.Text = "新增";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel6,
             this.toolStripButton2,
             this.toolStripButton3,
+            this.toolStripButton7,
             this.toolStripButton4,
             this.toolStripButton5,
             this.toolStripButton1,
@@ -133,6 +149,16 @@
             this.toolStripButton3.Text = "高级查询";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(60, 22);
+            this.toolStripButton7.Text = "修改数据";
+            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
+            // 
             // toolStripButton4
             // 
             this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -140,7 +166,7 @@
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Size = new System.Drawing.Size(60, 22);
-            this.toolStripButton4.Text = "改删数据";
+            this.toolStripButton4.Text = "删除数据";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripButton5
@@ -176,6 +202,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.使用条件);
             this.groupBox1.Controls.Add(this.生产厂家);
@@ -507,14 +534,34 @@
             this.国家.Size = new System.Drawing.Size(168, 21);
             this.国家.TabIndex = 0;
             // 
-            // btnAdd
+            // groupBox3
             // 
-            this.btnAdd.Location = new System.Drawing.Point(204, 20);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 24);
-            this.btnAdd.TabIndex = 56;
-            this.btnAdd.Text = "新增";
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.pb_ImageIn);
+            this.groupBox3.Location = new System.Drawing.Point(659, 24);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(216, 212);
+            this.groupBox3.TabIndex = 36;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "图片写入数据库";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(68, 189);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "选择图片";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // pb_ImageIn
+            // 
+            this.pb_ImageIn.Location = new System.Drawing.Point(3, 17);
+            this.pb_ImageIn.Name = "pb_ImageIn";
+            this.pb_ImageIn.Size = new System.Drawing.Size(213, 166);
+            this.pb_ImageIn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pb_ImageIn.TabIndex = 0;
+            this.pb_ImageIn.TabStop = false;
             // 
             // 增加
             // 
@@ -532,6 +579,8 @@
             this.toolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pb_ImageIn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -587,6 +636,10 @@
         internal System.Windows.Forms.TextBox 导弹弹径;
         internal System.Windows.Forms.TextBox 国家;
         internal System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.ToolStripButton toolStripButton7;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox pb_ImageIn;
 
     }
 }

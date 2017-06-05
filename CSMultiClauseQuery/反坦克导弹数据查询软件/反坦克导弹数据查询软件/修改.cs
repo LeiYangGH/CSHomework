@@ -11,17 +11,20 @@ using System.Windows.Forms;
 
 namespace 反坦克导弹数据查询软件
 {
-    public partial class 数据展示 : Form
+    public partial class 修改 : Form
     {
-        OleDbConnection myConnection;
-        string strConnection = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=DD.mdb";
-        public DataSet myDataSet;
-        BindingManagerBase myBind;
-        public 数据展示()
+        public 修改()
         {
             InitializeComponent();
         }
-        
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            增加 form = new 增加();
+            form.Show();
+            this.Hide();
+        }
+
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             模糊查询 form = new 模糊查询();
@@ -36,16 +39,16 @@ namespace 反坦克导弹数据查询软件
             this.Hide();
         }
 
-        private void toolStripButton4_Click(object sender, EventArgs e)
+        private void toolStripButton7_Click(object sender, EventArgs e)
         {
-            增加 form = new 增加();
+            删除 form = new 删除();
             form.Show();
             this.Hide();
         }
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
-            删除 form = new 删除();
+            数据展示 form = new 数据展示();
             form.Show();
             this.Hide();
         }
@@ -71,47 +74,17 @@ namespace 反坦克导弹数据查询软件
             }
         }
 
-        private void Form6_Load(object sender, EventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
-            myConnection = new OleDbConnection(strConnection);
-            myDataSet = new DataSet();
-            myConnection.Open();
-            myDataSet.Clear();
-            string strDa = "SELECT * from AKD";
-            OleDbDataAdapter myDa = new OleDbDataAdapter(strDa, myConnection);
-
-            myDa.Fill(myDataSet, "AKD");
-            dataGridView1.DataSource = myDataSet.Tables["AKD"];
-
-            myBind = this.BindingContext[myDataSet, "AKD"];
-            
-            myConnection.Close();
-
-            dataGridView1.Columns[0].Width = 50;
-
+            this.aKDTableAdapter.Update(this.dDDataSet.AKD);
+            MessageBox.Show("ok");
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void 修改_Load(object sender, EventArgs e)
         {
+            // TODO:  这行代码将数据加载到表“dDDataSet.AKD”中。您可以根据需要移动或删除它。
+            this.aKDTableAdapter.Fill(this.dDDataSet.AKD);
 
         }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-             
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
-        }
-
-        private void toolStripButton7_Click(object sender, EventArgs e)
-        {
-            修改 form = new 修改();
-            form.Show();
-            this.Hide();
-        }
-       
     }
 }

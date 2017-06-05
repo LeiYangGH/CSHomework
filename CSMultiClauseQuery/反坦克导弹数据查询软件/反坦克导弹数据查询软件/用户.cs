@@ -174,7 +174,7 @@ namespace 反坦克导弹数据查询软件
 
         private void toolStripButton4_Click_1(object sender, EventArgs e)
         {
-            改删 form = new 改删();
+            删除 form = new 删除();
             form.Show();
             this.Hide();
         }
@@ -217,6 +217,13 @@ namespace 反坦克导弹数据查询软件
         private void toolStripButton8_Click(object sender, EventArgs e)
         {
             模糊查询 form = new 模糊查询();
+            form.Show();
+            this.Hide();
+        }
+
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            修改 form = new 修改();
             form.Show();
             this.Hide();
         }

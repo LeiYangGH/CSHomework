@@ -1,6 +1,6 @@
 ﻿namespace 反坦克导弹数据查询软件
 {
-    partial class Form5
+    partial class 删除
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form5));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(删除));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnDel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label19 = new System.Windows.Forms.Label();
             this.使用条件 = new System.Windows.Forms.TextBox();
@@ -76,63 +77,25 @@
             this.导弹弹重 = new System.Windows.Forms.TextBox();
             this.导弹弹径 = new System.Windows.Forms.TextBox();
             this.国家 = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.txtSearch8 = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.txtSearch7 = new System.Windows.Forms.TextBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.txtSearch6 = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.txtSearch5 = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.txtSearch4 = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.txtSearch3 = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtSearch2 = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.BtSearch = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtSearch1 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel6,
             this.toolStripButton2,
             this.toolStripButton3,
-            this.toolStripButton7,
             this.toolStripButton4,
+            this.toolStripButton7,
             this.toolStripButton5,
             this.toolStripButton1,
             this.toolStripButton6});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(946, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(951, 25);
             this.toolStrip1.TabIndex = 18;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -158,8 +121,18 @@
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(60, 22);
-            this.toolStripButton3.Text = "增加数据";
+            this.toolStripButton3.Text = "高级查询";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(60, 22);
+            this.toolStripButton4.Text = "增加数据";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripButton7
             // 
@@ -170,16 +143,6 @@
             this.toolStripButton7.Size = new System.Drawing.Size(60, 22);
             this.toolStripButton7.Text = "修改数据";
             this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
-            // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(60, 22);
-            this.toolStripButton4.Text = "删除数据";
-            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripButton5
             // 
@@ -214,19 +177,25 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(48, 151);
-            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 28);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(842, 153);
-            this.dataGridView1.TabIndex = 21;
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.Size = new System.Drawing.Size(914, 246);
+            this.dataGridView1.TabIndex = 19;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // btnDel
+            // 
+            this.btnDel.Location = new System.Drawing.Point(381, 722);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(75, 24);
+            this.btnDel.TabIndex = 58;
+            this.btnDel.Text = "刪除";
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.使用条件);
             this.groupBox1.Controls.Add(this.生产厂家);
@@ -264,10 +233,10 @@
             this.groupBox1.Controls.Add(this.导弹弹径);
             this.groupBox1.Controls.Add(this.国家);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox1.Location = new System.Drawing.Point(12, 310);
+            this.groupBox1.Location = new System.Drawing.Point(12, 280);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(914, 433);
-            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabIndex = 59;
             this.groupBox1.TabStop = false;
             // 
             // label19
@@ -558,356 +527,23 @@
             this.国家.Size = new System.Drawing.Size(168, 21);
             this.国家.TabIndex = 0;
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.checkBox8);
-            this.groupBox3.Controls.Add(this.checkBox7);
-            this.groupBox3.Controls.Add(this.checkBox6);
-            this.groupBox3.Controls.Add(this.checkBox5);
-            this.groupBox3.Controls.Add(this.checkBox4);
-            this.groupBox3.Controls.Add(this.checkBox3);
-            this.groupBox3.Controls.Add(this.checkBox2);
-            this.groupBox3.Controls.Add(this.checkBox1);
-            this.groupBox3.Controls.Add(this.label31);
-            this.groupBox3.Controls.Add(this.txtSearch8);
-            this.groupBox3.Controls.Add(this.label32);
-            this.groupBox3.Controls.Add(this.label33);
-            this.groupBox3.Controls.Add(this.txtSearch7);
-            this.groupBox3.Controls.Add(this.label34);
-            this.groupBox3.Controls.Add(this.label25);
-            this.groupBox3.Controls.Add(this.txtSearch6);
-            this.groupBox3.Controls.Add(this.label26);
-            this.groupBox3.Controls.Add(this.txtSearch5);
-            this.groupBox3.Controls.Add(this.label27);
-            this.groupBox3.Controls.Add(this.label28);
-            this.groupBox3.Controls.Add(this.label29);
-            this.groupBox3.Controls.Add(this.label30);
-            this.groupBox3.Controls.Add(this.txtSearch4);
-            this.groupBox3.Controls.Add(this.label24);
-            this.groupBox3.Controls.Add(this.txtSearch3);
-            this.groupBox3.Controls.Add(this.label23);
-            this.groupBox3.Controls.Add(this.txtSearch2);
-            this.groupBox3.Controls.Add(this.label22);
-            this.groupBox3.Controls.Add(this.label21);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.BtSearch);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.txtSearch1);
-            this.groupBox3.Location = new System.Drawing.Point(48, 28);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(886, 117);
-            this.groupBox3.TabIndex = 19;
-            this.groupBox3.TabStop = false;
-            // 
-            // checkBox8
-            // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(718, 87);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(15, 14);
-            this.checkBox8.TabIndex = 36;
-            this.checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(321, 91);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(15, 14);
-            this.checkBox7.TabIndex = 35;
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(718, 65);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(15, 14);
-            this.checkBox6.TabIndex = 34;
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(719, 42);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(15, 14);
-            this.checkBox5.TabIndex = 33;
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(718, 13);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(15, 14);
-            this.checkBox4.TabIndex = 32;
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(321, 68);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(15, 14);
-            this.checkBox3.TabIndex = 31;
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(321, 38);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(15, 14);
-            this.checkBox2.TabIndex = 30;
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(321, 18);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 29;
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(469, 93);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(59, 12);
-            this.label31.TabIndex = 28;
-            this.label31.Text = "查询条件8";
-            // 
-            // txtSearch8
-            // 
-            this.txtSearch8.Location = new System.Drawing.Point(545, 89);
-            this.txtSearch8.Name = "txtSearch8";
-            this.txtSearch8.Size = new System.Drawing.Size(164, 21);
-            this.txtSearch8.TabIndex = 27;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(405, 94);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(53, 12);
-            this.label32.TabIndex = 26;
-            this.label32.Text = "破甲厚度";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(79, 93);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(59, 12);
-            this.label33.TabIndex = 25;
-            this.label33.Text = "查询条件7";
-            // 
-            // txtSearch7
-            // 
-            this.txtSearch7.Location = new System.Drawing.Point(155, 89);
-            this.txtSearch7.Name = "txtSearch7";
-            this.txtSearch7.Size = new System.Drawing.Size(160, 21);
-            this.txtSearch7.TabIndex = 24;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(6, 93);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(53, 12);
-            this.label34.TabIndex = 23;
-            this.label34.Text = "射    程";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(469, 69);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(59, 12);
-            this.label25.TabIndex = 22;
-            this.label25.Text = "查询条件6";
-            // 
-            // txtSearch6
-            // 
-            this.txtSearch6.Location = new System.Drawing.Point(545, 65);
-            this.txtSearch6.Name = "txtSearch6";
-            this.txtSearch6.Size = new System.Drawing.Size(164, 21);
-            this.txtSearch6.TabIndex = 21;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(469, 42);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(59, 12);
-            this.label26.TabIndex = 20;
-            this.label26.Text = "查询条件5";
-            // 
-            // txtSearch5
-            // 
-            this.txtSearch5.Location = new System.Drawing.Point(545, 38);
-            this.txtSearch5.Name = "txtSearch5";
-            this.txtSearch5.Size = new System.Drawing.Size(164, 21);
-            this.txtSearch5.TabIndex = 19;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(405, 70);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(53, 12);
-            this.label27.TabIndex = 18;
-            this.label27.Text = "飞行速度";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(405, 44);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(53, 12);
-            this.label28.TabIndex = 17;
-            this.label28.Text = "导 引 头";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(469, 17);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(59, 12);
-            this.label29.TabIndex = 16;
-            this.label29.Text = "查询条件4";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(405, 18);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(53, 12);
-            this.label30.TabIndex = 15;
-            this.label30.Text = "战 斗 部";
-            // 
-            // txtSearch4
-            // 
-            this.txtSearch4.Location = new System.Drawing.Point(545, 13);
-            this.txtSearch4.Name = "txtSearch4";
-            this.txtSearch4.Size = new System.Drawing.Size(164, 21);
-            this.txtSearch4.TabIndex = 14;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(79, 69);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(59, 12);
-            this.label24.TabIndex = 13;
-            this.label24.Text = "查询条件3";
-            // 
-            // txtSearch3
-            // 
-            this.txtSearch3.Location = new System.Drawing.Point(155, 65);
-            this.txtSearch3.Name = "txtSearch3";
-            this.txtSearch3.Size = new System.Drawing.Size(160, 21);
-            this.txtSearch3.TabIndex = 12;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(79, 42);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(59, 12);
-            this.label23.TabIndex = 11;
-            this.label23.Text = "查询条件2";
-            // 
-            // txtSearch2
-            // 
-            this.txtSearch2.Location = new System.Drawing.Point(155, 38);
-            this.txtSearch2.Name = "txtSearch2";
-            this.txtSearch2.Size = new System.Drawing.Size(160, 21);
-            this.txtSearch2.TabIndex = 10;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(6, 69);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(53, 12);
-            this.label22.TabIndex = 9;
-            this.label22.Text = "制导方式";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(6, 43);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(53, 12);
-            this.label21.TabIndex = 7;
-            this.label21.Text = "国    家";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(79, 17);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 12);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "查询条件1";
-            // 
-            // BtSearch
-            // 
-            this.BtSearch.Location = new System.Drawing.Point(749, 44);
-            this.BtSearch.Name = "BtSearch";
-            this.BtSearch.Size = new System.Drawing.Size(75, 23);
-            this.BtSearch.TabIndex = 2;
-            this.BtSearch.Text = "查询";
-            this.BtSearch.UseVisualStyleBackColor = true;
-            this.BtSearch.Click += new System.EventHandler(this.BtSearch_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 17);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 12);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "导弹名称";
-            // 
-            // txtSearch1
-            // 
-            this.txtSearch1.Location = new System.Drawing.Point(155, 13);
-            this.txtSearch1.Name = "txtSearch1";
-            this.txtSearch1.Size = new System.Drawing.Size(160, 21);
-            this.txtSearch1.TabIndex = 1;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(645, 20);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(263, 222);
-            this.pictureBox1.TabIndex = 36;
-            this.pictureBox1.TabStop = false;
-            // 
-            // Form5
+            // 删除
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(946, 622);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(951, 758);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.btnDel);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "Form5";
-            this.Text = "高级查询";
+            this.Name = "删除";
+            this.Text = "改删";
+            this.Load += new System.EventHandler(this.改删_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -924,78 +560,44 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.DataGridView dataGridView1;
+        internal System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox 使用条件;
-        private System.Windows.Forms.TextBox 生产厂家;
+        internal System.Windows.Forms.TextBox 使用条件;
+        internal System.Windows.Forms.TextBox 生产厂家;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox 命中概率;
-        private System.Windows.Forms.TextBox 发射载体;
+        internal System.Windows.Forms.TextBox 命中概率;
+        internal System.Windows.Forms.TextBox 发射载体;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox 导引头;
-        private System.Windows.Forms.TextBox 动力装置;
+        internal System.Windows.Forms.TextBox 导引头;
+        internal System.Windows.Forms.TextBox 动力装置;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox 战斗部;
-        private System.Windows.Forms.TextBox 飞行速度;
-        private System.Windows.Forms.TextBox 制导方式;
-        private System.Windows.Forms.TextBox 破甲厚度;
+        internal System.Windows.Forms.TextBox 战斗部;
+        internal System.Windows.Forms.TextBox 飞行速度;
+        internal System.Windows.Forms.TextBox 制导方式;
+        internal System.Windows.Forms.TextBox 破甲厚度;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox 导弹最小射程;
-        private System.Windows.Forms.TextBox 导弹翼展;
-        private System.Windows.Forms.TextBox 导弹弹长;
-        private System.Windows.Forms.TextBox 导弹名称;
-        private System.Windows.Forms.TextBox 导弹最大射程;
+        internal System.Windows.Forms.TextBox 导弹最小射程;
+        internal System.Windows.Forms.TextBox 导弹翼展;
+        internal System.Windows.Forms.TextBox 导弹弹长;
+        internal System.Windows.Forms.TextBox 导弹名称;
+        internal System.Windows.Forms.TextBox 导弹最大射程;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox 导弹弹重;
-        private System.Windows.Forms.TextBox 导弹弹径;
-        private System.Windows.Forms.TextBox 国家;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox txtSearch3;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox txtSearch2;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button BtSearch;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.TextBox txtSearch8;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox txtSearch7;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox txtSearch6;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox txtSearch5;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox txtSearch4;
-        private System.Windows.Forms.CheckBox checkBox1;
-        public System.Windows.Forms.TextBox txtSearch1;
-        private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
+        internal System.Windows.Forms.TextBox 导弹弹重;
+        internal System.Windows.Forms.TextBox 导弹弹径;
+        internal System.Windows.Forms.TextBox 国家;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
