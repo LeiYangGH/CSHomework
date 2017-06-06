@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,7 +45,7 @@ namespace 反坦克导弹数据查询软件
         {
             InitializeComponent();
             OpenDb();
-   
+
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -82,7 +83,7 @@ namespace 反坦克导弹数据查询软件
             DataSet searchds = new DataSet();
             DataTable searchtable;
             DataRow searchrow;
-            switch(Cmbtype.SelectedIndex)
+            switch (Cmbtype.SelectedIndex)
             {
                 case -1:
                     {
@@ -115,7 +116,7 @@ namespace 反坦克导弹数据查询软件
             try
             {
                 searchrow = searchtable.Rows[0];
-              
+
             }
             catch
             {
@@ -123,20 +124,20 @@ namespace 反坦克导弹数据查询软件
                 return;
             }
             dataGridView1.DataSource = searchtable;
-      
-            
+
+
         }
 
-        
+
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
             DialogResult myresult;
             myresult = MessageBox.Show("是否退出程序", "退出提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if(myresult == DialogResult.Yes)
+            if (myresult == DialogResult.Yes)
             {
                 Application.Exit();
             }
-            else if(myresult == DialogResult.No)
+            else if (myresult == DialogResult.No)
             {
                 return;
             }
@@ -181,14 +182,19 @@ namespace 反坦克导弹数据查询软件
                 发射载体.Text = dataGridView1.CurrentRow.Cells["发射载体"].Value.ToString();
                 使用条件.Text = dataGridView1.CurrentRow.Cells["使用条件"].Value.ToString();
                 生产厂家.Text = dataGridView1.CurrentRow.Cells["生产厂家"].Value.ToString();
-                
-
-            } 
+                object colImageValue = dataGridView1.CurrentRow.Cells["图片"].Value;
+                string imageLocation = null;
+                if (colImageValue != null && !string.IsNullOrWhiteSpace(colImageValue.ToString()))
+                    imageLocation = Path.Combine(imagesDir, colImageValue.ToString());
+                this.pictureBox1.ImageLocation = imageLocation;
+            }
         }
 
+        private string imagesDir = Path.Combine(Environment.CurrentDirectory, @"Images");
         private void 模糊查询_Load(object sender, EventArgs e)
         {
-
+            if (!Directory.Exists(imagesDir))
+                Directory.CreateDirectory(imagesDir);
         }
 
         private void toolStripButton7_Click(object sender, EventArgs e)
@@ -197,6 +203,6 @@ namespace 反坦克导弹数据查询软件
             form.Show();
             this.Hide();
         }
-        
+
     }
 }
