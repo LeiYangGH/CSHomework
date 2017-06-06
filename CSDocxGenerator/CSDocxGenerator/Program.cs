@@ -1,11 +1,11 @@
-﻿using Microsoft.Office.Interop.Word;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Office.Interop.Word;
 using Word = Microsoft.Office.Interop.Word;
 namespace CSDocxGenerator
 {
@@ -49,7 +49,7 @@ namespace CSDocxGenerator
                     oDoc.Words.Last.InsertBreak(Word.WdBreakType.wdPageBreak);
 
                 oPara1 = oDoc.Content.Paragraphs.Add(ref oMissing);
-                oPara1.Range.Text = $"2017年度部卫片{i}号";
+                oPara1.Range.Text =  "2017年度部卫片"+i.ToString()+"号";
                 oPara1.Range.Font.Bold = 1;
                 oPara1.Range.Font.Size = 55;
                 oPara1.Format.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;

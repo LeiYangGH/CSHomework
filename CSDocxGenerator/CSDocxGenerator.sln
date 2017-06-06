@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.3
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSDocxGenerator", "CSDocxGenerator\CSDocxGenerator.csproj", "{CE0DA718-EC9B-4016-AE66-8803DA675A72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocxGeneratorForm", "DocxGeneratorForm\DocxGeneratorForm.csproj", "{764B589D-8987-45BA-AF5E-C790FCEB896A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{CE0DA718-EC9B-4016-AE66-8803DA675A72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE0DA718-EC9B-4016-AE66-8803DA675A72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE0DA718-EC9B-4016-AE66-8803DA675A72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{764B589D-8987-45BA-AF5E-C790FCEB896A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{764B589D-8987-45BA-AF5E-C790FCEB896A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{764B589D-8987-45BA-AF5E-C790FCEB896A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{764B589D-8987-45BA-AF5E-C790FCEB896A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
