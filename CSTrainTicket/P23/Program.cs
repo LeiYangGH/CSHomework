@@ -17,7 +17,8 @@ namespace P23
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 #if TEST
-            Application.Run(new Form2());
+            //Application.Run(new Form2());
+            Application.Run(new Form3());
 #else
             Application.Run(new frmStart());
 #endif

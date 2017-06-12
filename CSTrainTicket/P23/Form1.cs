@@ -22,14 +22,16 @@ namespace P23
         {
 #if TEST
 #else
-            frmSuperPassword frmSuper = new frmSuperPassword();
-            var result = frmSuper.ShowDialog();
-            if (result != DialogResult.OK)
-            {
-                this.Close();
-            }
+            //frmSuperPassword frmSuper = new frmSuperPassword();
+            //var result = frmSuper.ShowDialog();
+            //if (result != DialogResult.OK)
+            //{
+            //    this.Close();
+            //}
 #endif
             Repository.ReadTickets();
+            Repository.ReadPassengers();
+
         }
 
         private void btnBike_Click(object sender, EventArgs e)
@@ -41,6 +43,13 @@ namespace P23
         private void frmStart_FormClosing(object sender, FormClosingEventArgs e)
         {
             Repository.SaveTickets();
+            Repository.SavePassengers();
+        }
+
+        private void btnUser_Click(object sender, EventArgs e)
+        {
+            Form3 frm = new Form3();
+            frm.ShowDialog();
         }
     }
 }

@@ -59,6 +59,8 @@ namespace P23
             {
                 var t = Repository.lstTickets.First(x => x.No == this.lbTicket.SelectedItem.ToString());
                 Repository.lstTickets.Remove(t);
+                this.lbTicket.Items.Remove(this.lbTicket.SelectedItem.ToString());
+
                 MessageBox.Show("删除成功");
             }
         }

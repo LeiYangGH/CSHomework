@@ -51,5 +51,47 @@ namespace P23
                 fs.Close();
             }
         }
+
+
+        public static List<Passenger> lstPassengers = new List<Passenger>();
+        private const string PassengersFileName = "Passengers.dat";
+
+        public static void SavePassengers()
+        {
+            FileStream fs = new FileStream(PassengersFileName, FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+            try
+            {
+                formatter.Serialize(fs, lstPassengers);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                fs.Close();
+            }
+        }
+
+        public static void ReadPassengers()
+        {
+            if (!File.Exists(PassengersFileName))
+                return;
+            FileStream fs = new FileStream(PassengersFileName, FileMode.Open);
+            BinaryFormatter formatter = new BinaryFormatter();
+            try
+            {
+                lstPassengers = (List<Passenger>)formatter.Deserialize(fs);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                fs.Close();
+            }
+        }
     }
 }
