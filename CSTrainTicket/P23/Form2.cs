@@ -73,7 +73,10 @@ namespace P23
         private void Form2_Load(object sender, EventArgs e)
         {
             this.lbTicket.Items.Clear();
-            this.lbTicket.Items.AddRange(Repository.lstTickets.Select(x=>x.No).ToArray());
+            var allTNos = Repository.lstTickets
+                .Select(x => x.No).ToArray();
+            var allSoldNos = Repository.lstHistorys.Select(h => h.TicketNO).ToArray();
+            this.lbTicket.Items.AddRange(allTNos.Except(allSoldNos).ToArray());
         }
     }
 }

@@ -30,7 +30,6 @@
         {
             this.btnBike = new System.Windows.Forms.Button();
             this.btnUser = new System.Windows.Forms.Button();
-            this.btnAdmin = new System.Windows.Forms.Button();
             this.btnTransaction = new System.Windows.Forms.Button();
             this.btnBorrow = new System.Windows.Forms.Button();
             this.btnReturn = new System.Windows.Forms.Button();
@@ -61,60 +60,53 @@
             this.btnUser.UseVisualStyleBackColor = true;
             this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
             // 
-            // btnAdmin
-            // 
-            this.btnAdmin.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnAdmin.Location = new System.Drawing.Point(458, 317);
-            this.btnAdmin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnAdmin.Name = "btnAdmin";
-            this.btnAdmin.Size = new System.Drawing.Size(378, 82);
-            this.btnAdmin.TabIndex = 3;
-            this.btnAdmin.Text = "管理员管理";
-            this.btnAdmin.UseVisualStyleBackColor = true;
-            // 
             // btnTransaction
             // 
             this.btnTransaction.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnTransaction.Location = new System.Drawing.Point(458, 672);
+            this.btnTransaction.Location = new System.Drawing.Point(458, 542);
             this.btnTransaction.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnTransaction.Name = "btnTransaction";
             this.btnTransaction.Size = new System.Drawing.Size(378, 82);
             this.btnTransaction.TabIndex = 4;
             this.btnTransaction.Text = "交易管理";
             this.btnTransaction.UseVisualStyleBackColor = true;
+            this.btnTransaction.Click += new System.EventHandler(this.btnTransaction_Click);
             // 
             // btnBorrow
             // 
             this.btnBorrow.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnBorrow.Location = new System.Drawing.Point(458, 440);
+            this.btnBorrow.Location = new System.Drawing.Point(458, 310);
             this.btnBorrow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBorrow.Name = "btnBorrow";
             this.btnBorrow.Size = new System.Drawing.Size(378, 82);
             this.btnBorrow.TabIndex = 5;
             this.btnBorrow.Text = "售票";
             this.btnBorrow.UseVisualStyleBackColor = true;
+            this.btnBorrow.Click += new System.EventHandler(this.btnBorrow_Click);
             // 
             // btnReturn
             // 
             this.btnReturn.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnReturn.Location = new System.Drawing.Point(458, 557);
+            this.btnReturn.Location = new System.Drawing.Point(458, 427);
             this.btnReturn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(378, 82);
             this.btnReturn.TabIndex = 6;
             this.btnReturn.Text = "退票";
             this.btnReturn.UseVisualStyleBackColor = true;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnClose.Location = new System.Drawing.Point(458, 795);
+            this.btnClose.Location = new System.Drawing.Point(458, 665);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(378, 82);
             this.btnClose.TabIndex = 7;
             this.btnClose.Text = "关闭";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // frmStart
             // 
@@ -125,7 +117,6 @@
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnBorrow);
             this.Controls.Add(this.btnTransaction);
-            this.Controls.Add(this.btnAdmin);
             this.Controls.Add(this.btnUser);
             this.Controls.Add(this.btnBike);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -141,7 +132,6 @@
 
         private System.Windows.Forms.Button btnBike;
         private System.Windows.Forms.Button btnUser;
-        private System.Windows.Forms.Button btnAdmin;
         private System.Windows.Forms.Button btnTransaction;
         private System.Windows.Forms.Button btnBorrow;
         private System.Windows.Forms.Button btnReturn;

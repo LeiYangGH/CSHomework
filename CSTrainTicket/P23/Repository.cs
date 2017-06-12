@@ -93,5 +93,47 @@ namespace P23
                 fs.Close();
             }
         }
+
+
+        public static List<History> lstHistorys = new List<History>();
+        private const string HistorysFileName = "Historys.dat";
+
+        public static void SaveHistorys()
+        {
+            FileStream fs = new FileStream(HistorysFileName, FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+            try
+            {
+                formatter.Serialize(fs, lstHistorys);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                fs.Close();
+            }
+        }
+
+        public static void ReadHistorys()
+        {
+            if (!File.Exists(HistorysFileName))
+                return;
+            FileStream fs = new FileStream(HistorysFileName, FileMode.Open);
+            BinaryFormatter formatter = new BinaryFormatter();
+            try
+            {
+                lstHistorys = (List<History>)formatter.Deserialize(fs);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                fs.Close();
+            }
+        }
     }
 }
