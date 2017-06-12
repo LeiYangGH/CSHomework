@@ -77,10 +77,18 @@ namespace P23
                 MessageBox.Show("请先选择再点删除");
             else
             {
-                var t = Repository.lstPassengers.First(x => x.Id == this.listView1.SelectedItems[0].Text);
-                Repository.lstPassengers.Remove(t);
-                this.listView1.Items.Remove(this.listView1.SelectedItems[0]);
-                MessageBox.Show("删除成功");
+                if(Repository.lstHistorys.Any(x=>x.PassengerId== this.listView1.SelectedItems[0].Text))
+                {
+                    MessageBox.Show("此乘客已经购票，不能删除（否则会影响后面交易管理界面的显示）");
+                }
+                else
+                {
+                    var t = Repository.lstPassengers.First(x => x.Id == this.listView1.SelectedItems[0].Text);
+                    Repository.lstPassengers.Remove(t);
+                    this.listView1.Items.Remove(this.listView1.SelectedItems[0]);
+                    MessageBox.Show("删除成功");
+                }
+
             }
         }
     }

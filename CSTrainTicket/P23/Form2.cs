@@ -67,10 +67,16 @@ namespace P23
             else
             {
                 var t = Repository.lstTickets.First(x => x.No == this.listView1.SelectedItems[0].Text);
-                Repository.lstTickets.Remove(t);
-                this.listView1.Items.Remove(this.listView1.SelectedItems[0]);
-
-                MessageBox.Show("删除成功");
+                if (History.IsTicketSold(this.listView1.SelectedItems[0].Text))
+                {
+                    MessageBox.Show("此票已售不能删除");
+                }
+                else
+                {
+                    Repository.lstTickets.Remove(t);
+                    this.listView1.Items.Remove(this.listView1.SelectedItems[0]);
+                    MessageBox.Show("删除成功");
+                }
             }
         }
 
