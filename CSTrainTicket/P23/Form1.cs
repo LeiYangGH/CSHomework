@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSBike;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,16 @@ namespace P23
         public frmStart()
         {
             InitializeComponent();
+        }
+
+        private void frmStart_Load(object sender, EventArgs e)
+        {
+            frmSuperPassword frmSuper = new frmSuperPassword();
+            var result = frmSuper.ShowDialog();
+            if (result != DialogResult.OK)
+            {
+                this.Close();
+            }
         }
     }
 }

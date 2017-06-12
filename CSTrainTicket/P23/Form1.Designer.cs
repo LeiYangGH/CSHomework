@@ -40,9 +40,10 @@
             // btnBike
             // 
             this.btnBike.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnBike.Location = new System.Drawing.Point(305, 60);
+            this.btnBike.Location = new System.Drawing.Point(458, 100);
+            this.btnBike.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBike.Name = "btnBike";
-            this.btnBike.Size = new System.Drawing.Size(252, 49);
+            this.btnBike.Size = new System.Drawing.Size(378, 82);
             this.btnBike.TabIndex = 1;
             this.btnBike.Text = "车票管理";
             this.btnBike.UseVisualStyleBackColor = true;
@@ -50,9 +51,10 @@
             // btnUser
             // 
             this.btnUser.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnUser.Location = new System.Drawing.Point(305, 122);
+            this.btnUser.Location = new System.Drawing.Point(458, 203);
+            this.btnUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUser.Name = "btnUser";
-            this.btnUser.Size = new System.Drawing.Size(252, 49);
+            this.btnUser.Size = new System.Drawing.Size(378, 82);
             this.btnUser.TabIndex = 2;
             this.btnUser.Text = "客户管理";
             this.btnUser.UseVisualStyleBackColor = true;
@@ -60,9 +62,10 @@
             // btnAdmin
             // 
             this.btnAdmin.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnAdmin.Location = new System.Drawing.Point(305, 190);
+            this.btnAdmin.Location = new System.Drawing.Point(458, 317);
+            this.btnAdmin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAdmin.Name = "btnAdmin";
-            this.btnAdmin.Size = new System.Drawing.Size(252, 49);
+            this.btnAdmin.Size = new System.Drawing.Size(378, 82);
             this.btnAdmin.TabIndex = 3;
             this.btnAdmin.Text = "管理员管理";
             this.btnAdmin.UseVisualStyleBackColor = true;
@@ -70,9 +73,10 @@
             // btnTransaction
             // 
             this.btnTransaction.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnTransaction.Location = new System.Drawing.Point(305, 403);
+            this.btnTransaction.Location = new System.Drawing.Point(458, 672);
+            this.btnTransaction.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnTransaction.Name = "btnTransaction";
-            this.btnTransaction.Size = new System.Drawing.Size(252, 49);
+            this.btnTransaction.Size = new System.Drawing.Size(378, 82);
             this.btnTransaction.TabIndex = 4;
             this.btnTransaction.Text = "交易管理";
             this.btnTransaction.UseVisualStyleBackColor = true;
@@ -80,9 +84,10 @@
             // btnBorrow
             // 
             this.btnBorrow.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnBorrow.Location = new System.Drawing.Point(305, 264);
+            this.btnBorrow.Location = new System.Drawing.Point(458, 440);
+            this.btnBorrow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBorrow.Name = "btnBorrow";
-            this.btnBorrow.Size = new System.Drawing.Size(252, 49);
+            this.btnBorrow.Size = new System.Drawing.Size(378, 82);
             this.btnBorrow.TabIndex = 5;
             this.btnBorrow.Text = "售票";
             this.btnBorrow.UseVisualStyleBackColor = true;
@@ -90,9 +95,10 @@
             // btnReturn
             // 
             this.btnReturn.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnReturn.Location = new System.Drawing.Point(305, 334);
+            this.btnReturn.Location = new System.Drawing.Point(458, 557);
+            this.btnReturn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(252, 49);
+            this.btnReturn.Size = new System.Drawing.Size(378, 82);
             this.btnReturn.TabIndex = 6;
             this.btnReturn.Text = "退票";
             this.btnReturn.UseVisualStyleBackColor = true;
@@ -100,18 +106,19 @@
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnClose.Location = new System.Drawing.Point(305, 477);
+            this.btnClose.Location = new System.Drawing.Point(458, 795);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(252, 49);
+            this.btnClose.Size = new System.Drawing.Size(378, 82);
             this.btnClose.TabIndex = 7;
             this.btnClose.Text = "关闭";
             this.btnClose.UseVisualStyleBackColor = true;
             // 
             // frmStart
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(901, 538);
+            this.ClientSize = new System.Drawing.Size(1352, 897);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnBorrow);
@@ -119,8 +126,10 @@
             this.Controls.Add(this.btnAdmin);
             this.Controls.Add(this.btnUser);
             this.Controls.Add(this.btnBike);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmStart";
             this.Text = "start";
+            this.Load += new System.EventHandler(this.frmStart_Load);
             this.ResumeLayout(false);
 
         }
