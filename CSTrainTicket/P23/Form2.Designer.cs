@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbTicket = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -39,18 +38,11 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.票号 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.日期 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.价格 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
-            // 
-            // lbTicket
-            // 
-            this.lbTicket.FormattingEnabled = true;
-            this.lbTicket.ItemHeight = 20;
-            this.lbTicket.Location = new System.Drawing.Point(33, 43);
-            this.lbTicket.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.lbTicket.Name = "lbTicket";
-            this.lbTicket.Size = new System.Drawing.Size(346, 444);
-            this.lbTicket.TabIndex = 0;
-            this.lbTicket.SelectedIndexChanged += new System.EventHandler(this.ticket_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -152,11 +144,40 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 26);
             this.dateTimePicker1.TabIndex = 19;
             // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.票号,
+            this.日期,
+            this.价格});
+            this.listView1.Location = new System.Drawing.Point(41, 65);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(380, 439);
+            this.listView1.TabIndex = 20;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // 票号
+            // 
+            this.票号.Text = "票号";
+            this.票号.Width = 108;
+            // 
+            // 日期
+            // 
+            this.日期.Text = "日期";
+            this.日期.Width = 148;
+            // 
+            // 价格
+            // 
+            this.价格.Text = "价格";
+            this.价格.Width = 72;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(872, 752);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox1);
@@ -167,7 +188,6 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.lbTicket);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form2";
             this.Text = "车票管理";
@@ -178,8 +198,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox lbTicket;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
@@ -190,5 +208,9 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader 票号;
+        private System.Windows.Forms.ColumnHeader 日期;
+        private System.Windows.Forms.ColumnHeader 价格;
     }
 }

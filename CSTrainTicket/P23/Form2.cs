@@ -22,6 +22,14 @@ namespace P23
 
         }
 
+        private void AddItem(Ticket t)
+        {
+            ListViewItem item = new ListViewItem(t.No);
+            item.SubItems.Add(t.Date.ToString());
+            item.SubItems.Add(t.Price.ToString());
+            this.listView1.Items.Add(item);
+        }
+
         //new
         private void button1_Click(object sender, EventArgs e)
         {
@@ -33,17 +41,18 @@ namespace P23
                     this.dateTimePicker1.Value,
                     Convert.ToInt32(this.textBox3.Text.Trim()));
                 Repository.lstTickets.Add(t);
-                this.lbTicket.Items.Add(t.No);
+                //this.lbTicket.Items.Add(t.No);
+                this.AddItem(t);
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (this.lbTicket.SelectedItem == null)
+            if (this.listView1.SelectedItems == null)
                 MessageBox.Show("请先选择再点修改");
             else
             {
-                var t = Repository.lstTickets.First(x => x.No == this.lbTicket.SelectedItem.ToString());
+                var t = Repository.lstTickets.First(x => x.No == this.listView1.SelectedItems[0].Text);
                 t.Date = this.dateTimePicker1.Value;
                 t.Price = Convert.ToInt32(this.textBox3.Text.Trim());
                 MessageBox.Show("修改成功");
@@ -53,13 +62,13 @@ namespace P23
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (this.lbTicket.SelectedItem == null)
+            if (this.listView1.SelectedItems == null)
                 MessageBox.Show("请先选择再点删除");
             else
             {
-                var t = Repository.lstTickets.First(x => x.No == this.lbTicket.SelectedItem.ToString());
+                var t = Repository.lstTickets.First(x => x.No == this.listView1.SelectedItems[0].Text);
                 Repository.lstTickets.Remove(t);
-                this.lbTicket.Items.Remove(this.lbTicket.SelectedItem.ToString());
+                this.listView1.Items.Remove(this.listView1.SelectedItems[0]);
 
                 MessageBox.Show("删除成功");
             }
@@ -72,11 +81,20 @@ namespace P23
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            this.lbTicket.Items.Clear();
+            this.listView1.BeginUpdate();
+            this.listView1.Items.Clear();
             var allTNos = Repository.lstTickets
                 .Select(x => x.No).ToArray();
             var allSoldNos = Repository.lstHistorys.Select(h => h.TicketNO).ToArray();
-            this.lbTicket.Items.AddRange(allTNos.Except(allSoldNos).ToArray());
+            foreach (string s in allTNos.Except(allSoldNos))
+            {
+                Ticket t = Repository.lstTickets.First(x => x.No == s);
+                ListViewItem item = new ListViewItem(t.No);
+                item.SubItems.Add(t.Date.ToString());
+                item.SubItems.Add(t.Price.ToString());
+                this.listView1.Items.Add(item);
+            }
+            this.listView1.EndUpdate();
         }
     }
 }

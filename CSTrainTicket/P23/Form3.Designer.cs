@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbPeople = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -41,17 +40,12 @@
             this.textBoxgender = new System.Windows.Forms.TextBox();
             this.textBoxname = new System.Windows.Forms.TextBox();
             this.textBoxid = new System.Windows.Forms.TextBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.身份证 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.姓名 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.性别 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.年龄 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
-            // 
-            // lbPeople
-            // 
-            this.lbPeople.FormattingEnabled = true;
-            this.lbPeople.ItemHeight = 20;
-            this.lbPeople.Location = new System.Drawing.Point(74, 93);
-            this.lbPeople.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.lbPeople.Name = "lbPeople";
-            this.lbPeople.Size = new System.Drawing.Size(416, 464);
-            this.lbPeople.TabIndex = 0;
             // 
             // button2
             // 
@@ -173,11 +167,46 @@
             this.textBoxid.Size = new System.Drawing.Size(224, 26);
             this.textBoxid.TabIndex = 24;
             // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.身份证,
+            this.姓名,
+            this.性别,
+            this.年龄});
+            this.listView1.Location = new System.Drawing.Point(51, 58);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(464, 501);
+            this.listView1.TabIndex = 25;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // 身份证
+            // 
+            this.身份证.Text = "身份证";
+            this.身份证.Width = 159;
+            // 
+            // 姓名
+            // 
+            this.姓名.Text = "姓名";
+            this.姓名.Width = 77;
+            // 
+            // 性别
+            // 
+            this.性别.Text = "性别";
+            this.性别.Width = 79;
+            // 
+            // 年龄
+            // 
+            this.年龄.Text = "年龄";
+            this.年龄.Width = 71;
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1041, 813);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.textBoxid);
             this.Controls.Add(this.textBoxname);
             this.Controls.Add(this.textBoxgender);
@@ -190,7 +219,6 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.lbPeople);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form3";
             this.Text = "客户管理";
@@ -201,8 +229,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox lbPeople;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
@@ -215,5 +241,10 @@
         private System.Windows.Forms.TextBox textBoxgender;
         private System.Windows.Forms.TextBox textBoxname;
         private System.Windows.Forms.TextBox textBoxid;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader 身份证;
+        private System.Windows.Forms.ColumnHeader 姓名;
+        private System.Windows.Forms.ColumnHeader 性别;
+        private System.Windows.Forms.ColumnHeader 年龄;
     }
 }
