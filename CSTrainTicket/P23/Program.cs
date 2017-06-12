@@ -16,7 +16,11 @@ namespace P23
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+#if TEST
+            Application.Run(new Form2());
+#else
             Application.Run(new frmStart());
+#endif
         }
     }
 }

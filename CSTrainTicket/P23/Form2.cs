@@ -21,5 +21,57 @@ namespace P23
         {
 
         }
+
+        //new
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Trim() == "")
+                MessageBox.Show("请先输入再点新建");
+            else
+            {
+                var t = new Ticket(this.textBox1.Text.Trim(),
+                    this.dateTimePicker1.Value,
+                    Convert.ToInt32(this.textBox3.Text.Trim()));
+                Repository.lstTickets.Add(t);
+                this.lbTicket.Items.Add(t.No);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (this.lbTicket.SelectedItem == null)
+                MessageBox.Show("请先选择再点修改");
+            else
+            {
+                var t = Repository.lstTickets.First(x => x.No == this.lbTicket.SelectedItem.ToString());
+                t.Date = this.dateTimePicker1.Value;
+                t.Price = Convert.ToInt32(this.textBox3.Text.Trim());
+                MessageBox.Show("修改成功");
+            }
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (this.lbTicket.SelectedItem == null)
+                MessageBox.Show("请先选择再点删除");
+            else
+            {
+                var t = Repository.lstTickets.First(x => x.No == this.lbTicket.SelectedItem.ToString());
+                Repository.lstTickets.Remove(t);
+                MessageBox.Show("删除成功");
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            this.lbTicket.Items.Clear();
+            this.lbTicket.Items.AddRange(Repository.lstTickets.Select(x=>x.No).ToArray());
+        }
     }
 }

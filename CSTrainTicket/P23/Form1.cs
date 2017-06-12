@@ -20,12 +20,27 @@ namespace P23
 
         private void frmStart_Load(object sender, EventArgs e)
         {
+#if TEST
+#else
             frmSuperPassword frmSuper = new frmSuperPassword();
             var result = frmSuper.ShowDialog();
             if (result != DialogResult.OK)
             {
                 this.Close();
             }
+#endif
+            Repository.ReadTickets();
+        }
+
+        private void btnBike_Click(object sender, EventArgs e)
+        {
+            Form2 frm = new Form2();
+            frm.ShowDialog();
+        }
+
+        private void frmStart_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Repository.SaveTickets();
         }
     }
 }

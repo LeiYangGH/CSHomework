@@ -47,6 +47,7 @@
             this.btnBike.TabIndex = 1;
             this.btnBike.Text = "车票管理";
             this.btnBike.UseVisualStyleBackColor = true;
+            this.btnBike.Click += new System.EventHandler(this.btnBike_Click);
             // 
             // btnUser
             // 
@@ -129,6 +130,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmStart";
             this.Text = "start";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmStart_FormClosing);
             this.Load += new System.EventHandler(this.frmStart_Load);
             this.ResumeLayout(false);
 
