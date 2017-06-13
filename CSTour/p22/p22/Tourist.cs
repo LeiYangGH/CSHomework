@@ -9,16 +9,16 @@ namespace p22
     [Serializable]
     public class Tourist
     {
-        public Tourist(string i, string n, string g, string t)
+        public Tourist(string n, string g, string i,  string t)
         {
-            this.Id = i;
             this.Name = n;
             this.Gender = g;
+            this.Id = i;
             this.Tel = t;
         }
-        public string Id { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }
+        public string Id { get; set; }
         public string Tel { get; set; }
     }
 }
