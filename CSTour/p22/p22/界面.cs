@@ -19,12 +19,13 @@ namespace p22
 
         private void 界面_Load(object sender, EventArgs e)
         {
-            //登录 frmSuper = new 登录();
-            //var result = frmSuper.ShowDialog();
-            //if (result != DialogResult.OK)
-            //{
-            //    this.Close();
-            //}
+            //return;
+            登录 frmSuper = new 登录();
+            var result = frmSuper.ShowDialog();
+            if (result != DialogResult.OK)
+            {
+                this.Close();
+            }
         }
 
         private void btn1_Click(object sender, EventArgs e)
