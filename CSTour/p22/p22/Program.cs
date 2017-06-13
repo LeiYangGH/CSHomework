@@ -16,7 +16,7 @@ namespace p22
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 登录());
+            Application.Run(new 界面());
         }
     }
 }

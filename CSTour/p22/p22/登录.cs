@@ -19,12 +19,19 @@ namespace p22
 
         private void btnok_Click(object sender, EventArgs e)
         {
-
+            if (this.textBox1.Text == "123" && this.textBox2.Text == "111")
+            {
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show("用户名或密码错误！");
+                this.DialogResult = DialogResult.Cancel;
+            }
         }
-        int trail = 0;
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

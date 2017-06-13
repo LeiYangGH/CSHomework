@@ -16,5 +16,15 @@ namespace p22
         {
             InitializeComponent();
         }
+
+        private void 界面_Load(object sender, EventArgs e)
+        {
+            登录 frmSuper = new 登录();
+            var result = frmSuper.ShowDialog();
+            if (result != DialogResult.OK)
+            {
+                this.Close();
+            }
+        }
     }
 }
