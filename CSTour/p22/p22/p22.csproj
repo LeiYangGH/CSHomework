@@ -44,8 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clstourist.cs" />
-    <Compile Include="clsuser.cs" />
+    <Compile Include="Route.cs" />
+    <Compile Include="Tourist.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="DataReadWriteDisplay.cs" />
     <Compile Include="游客信息.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -19,12 +19,35 @@ namespace p22
 
         private void 界面_Load(object sender, EventArgs e)
         {
-            登录 frmSuper = new 登录();
-            var result = frmSuper.ShowDialog();
-            if (result != DialogResult.OK)
-            {
-                this.Close();
-            }
+            //登录 frmSuper = new 登录();
+            //var result = frmSuper.ShowDialog();
+            //if (result != DialogResult.OK)
+            //{
+            //    this.Close();
+            //}
+        }
+
+        private void btn1_Click(object sender, EventArgs e)
+        {
+            btn1 frm = new btn1();
+            frm.ShowDialog();
+        }
+
+        private void btn2_Click(object sender, EventArgs e)
+        {
+            路线价格 frm = new 路线价格();
+            frm.ShowDialog();
+        }
+
+        private void btn3_Click(object sender, EventArgs e)
+        {
+            btn2 frm = new btn2();
+            frm.ShowDialog();
+        }
+
+        private void btn4_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
