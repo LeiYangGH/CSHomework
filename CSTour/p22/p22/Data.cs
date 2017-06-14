@@ -11,7 +11,7 @@ namespace p22
 {
     public sealed class data<T> where T : class
     {
-        private List<T> lst;
+        internal List<T> lst;
         private string fileName;
         private Func<T, string[]> ColumnsData;
         public data(string TName, Func<T, string[]> columnsData)
@@ -89,6 +89,7 @@ namespace p22
                 ListViewItem item = new ListViewItem(cols[0]);
                 for (int i = 1; i < cols.Length; i++)
                     item.SubItems.Add(cols[i]);
+                item.Tag = t;
                 lvw.Items.Add(item);
             }
             lvw.EndUpdate();
@@ -101,6 +102,7 @@ namespace p22
             ListViewItem item = new ListViewItem(cols[0]);
             for (int i = 1; i < cols.Length; i++)
                 item.SubItems.Add(cols[i]);
+            item.Tag = t;
             lvw.Items.Add(item);
         }
     }
