@@ -50,5 +50,11 @@ namespace p22
         {
             this.Close();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            路线选择 frm = new 路线选择();
+            frm.ShowDialog();
+        }
     }
 }
