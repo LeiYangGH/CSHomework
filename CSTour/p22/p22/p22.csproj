@@ -47,7 +47,7 @@
     <Compile Include="Route.cs" />
     <Compile Include="Tourist.cs" />
     <Compile Include="Employee.cs" />
-    <Compile Include="DataReadWriteDisplay.cs" />
+    <Compile Include="Data.cs" />
     <Compile Include="游客信息.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +80,12 @@
     <Compile Include="路线价格.Designer.cs">
       <DependentUpon>路线价格.cs</DependentUpon>
     </Compile>
+    <Compile Include="路线选择.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="路线选择.Designer.cs">
+      <DependentUpon>路线选择.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="员工信息.resx">
       <DependentUpon>员工信息.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,6 +109,9 @@
     </Compile>
     <EmbeddedResource Include="路线价格.resx">
       <DependentUpon>路线价格.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="路线选择.resx">
+      <DependentUpon>路线选择.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

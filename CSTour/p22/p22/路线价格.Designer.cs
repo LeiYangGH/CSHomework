@@ -49,8 +49,9 @@
             this.dpDOP.Location = new System.Drawing.Point(321, 377);
             this.dpDOP.Margin = new System.Windows.Forms.Padding(7);
             this.dpDOP.Name = "dpDOP";
-            this.dpDOP.Size = new System.Drawing.Size(499, 39);
+            this.dpDOP.Size = new System.Drawing.Size(499, 29);
             this.dpDOP.TabIndex = 12;
+            this.dpDOP.ValueChanged += new System.EventHandler(this.dpDOP_ValueChanged);
             // 
             // label2
             // 
@@ -58,7 +59,7 @@
             this.label2.Location = new System.Drawing.Point(113, 308);
             this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(146, 42);
+            this.label2.Size = new System.Drawing.Size(96, 28);
             this.label2.TabIndex = 14;
             this.label2.Text = "路线信息";
             // 
@@ -68,7 +69,7 @@
             this.label3.Location = new System.Drawing.Point(113, 438);
             this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 42);
+            this.label3.Size = new System.Drawing.Size(54, 28);
             this.label3.TabIndex = 15;
             this.label3.Text = "价格";
             // 
@@ -78,7 +79,7 @@
             this.label1.Location = new System.Drawing.Point(103, 378);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 42);
+            this.label1.Size = new System.Drawing.Size(96, 28);
             this.label1.TabIndex = 16;
             this.label1.Text = "出发时间";
             // 
@@ -98,7 +99,7 @@
             0,
             0});
             this.numPrice.Name = "numPrice";
-            this.numPrice.Size = new System.Drawing.Size(216, 39);
+            this.numPrice.Size = new System.Drawing.Size(216, 29);
             this.numPrice.TabIndex = 17;
             this.numPrice.ValueChanged += new System.EventHandler(this.numPrice_ValueChanged);
             // 
@@ -116,7 +117,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(331, 302);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(306, 49);
+            this.textBox1.Size = new System.Drawing.Size(306, 35);
             this.textBox1.TabIndex = 20;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -142,6 +143,7 @@
             this.listView1.TabIndex = 22;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // 路线信息
             // 
@@ -160,7 +162,7 @@
             // 
             // 路线价格
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(20F, 42F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(905, 629);
             this.Controls.Add(this.listView1);

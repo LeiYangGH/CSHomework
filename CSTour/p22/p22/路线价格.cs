@@ -12,11 +12,11 @@ namespace p22
 {
     public partial class 路线价格 : Form
     {
-        private DataReadWriteDisplay<Route> data;
+        private data<Route> data;
         public 路线价格()
         {
             InitializeComponent();
-            this.data = new DataReadWriteDisplay<Route>("Route",
+            this.data = new data<Route>("Route",
            (x) =>
            {
                return new string[] {
@@ -75,6 +75,16 @@ namespace p22
             {
                 MessageBox.Show("不能重复添加！");
             }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dpDOP_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

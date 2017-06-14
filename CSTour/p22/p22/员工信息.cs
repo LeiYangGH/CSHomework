@@ -12,11 +12,11 @@ namespace p22
 {
     public partial class btn2 : Form
     {
-        private DataReadWriteDisplay<Employee> data;
+        private data<Employee> data;
         public btn2()
         {
             InitializeComponent();
-            this.data = new DataReadWriteDisplay<Employee>("Employee",
+            this.data = new data<Employee>("Employee",
                 (x) =>
                 {
                     return new string[] {
