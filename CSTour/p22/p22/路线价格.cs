@@ -15,15 +15,6 @@ namespace p22
         public 路线价格()
         {
             InitializeComponent();
-           // Repository.dataRoute = new data<Route>("Route",
-           //(x) =>
-           //{
-           //    return new string[] {
-           //             x.Descriptions,
-           //             x.Date.ToString(),
-           //             x.Price.ToString()
-           //};
-           //});
         }
 
         private void 路线价格_FormClosing(object sender, FormClosingEventArgs e)

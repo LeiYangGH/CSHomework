@@ -23,7 +23,7 @@ namespace p22
             Repository.dataTourist.ReadFile();
             Repository.dataActivity.ReadFile();
 
-            return;
+            //return;
             登录 frmSuper = new 登录();
             var result = frmSuper.ShowDialog();
             if (result != DialogResult.OK)

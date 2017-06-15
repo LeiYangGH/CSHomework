@@ -15,16 +15,6 @@ namespace p22
         public btn1()
         {
             InitializeComponent();
-          //  Repository.dataTourist = new data<Tourist>("btn1",
-          //(x) =>
-          //{
-          //    return new string[] {
-          //              x.Name,
-          //              x.Gender,
-          //              x.Id,
-          //              x.Tel
-          //};
-          //});
         }
 
         private void SetButtonEnable()
