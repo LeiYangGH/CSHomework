@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="Route.cs" />
     <Compile Include="Tourist.cs" />
     <Compile Include="Employee.cs" />

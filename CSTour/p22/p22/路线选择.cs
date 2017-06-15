@@ -12,41 +12,31 @@ namespace p22
 {
     public partial class 路线选择 : Form
     {
-        private data<Activity> data;
         public 路线选择()
         {
             InitializeComponent();
-            this.data = new data<Activity>("Activity",
-            (x) =>
-            {
-                return new string[] {
-                                x.Name,
-                                x.Date.ToString(),
-                                x.State
-            };
-            });
+
         }
 
         private void SetButtonEnable()
         {
-            bool b = !string.IsNullOrWhiteSpace(this.txtName.Text.Trim())
-                && !string.IsNullOrWhiteSpace(this.cboState.Text.Trim());
+            bool b = !string.IsNullOrWhiteSpace(this.cboR.Text.Trim())
+                && !string.IsNullOrWhiteSpace(this.cboT.Text.Trim());
             this.btnAdd.Enabled = b;
-            this.btnUpdate.Enabled = b;
         }
 
         private string GetActivityString(Activity x)
         {
-            return string.Format("{0}{1}{2}", x.Name, x.Date, x.State);
+            return string.Format("{0}{1}", x.TouristName, x.RouteDescriptions);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             this.btnAdd.Enabled = false;
-            Activity t = new Activity(this.txtName.Text.Trim(), this.dtpGo.Value, this.cboState.Text);
-            if (this.data.Add(t, x => this.GetActivityString(x)))
+            Activity t = new Activity(this.cboT.Text.Trim(), this.cboR.Text.Trim());
+            if (Repository.dataActivity.Add(t, x => this.GetActivityString(x)))
             {
-                this.data.AddOneToListView(this.listView1, t);
+                this.AddOneToListView(t);
                 //MessageBox.Show("添加成功！");
             }
             else
@@ -55,15 +45,63 @@ namespace p22
             }
         }
 
+        public void AddAllToListView()
+        {
+            this.listView1.BeginUpdate();
+            this.listView1.Items.Clear();
+            foreach (Activity t in Repository.dataActivity.lst)
+            {
+                Tourist tou = Repository.GetTouristByName(t.TouristName);
+                Route r = Repository.GetRouteByDesc(t.RouteDescriptions);
+                ListViewItem item = new ListViewItem(tou.Name);
+                item.SubItems.Add(tou.Gender);
+                item.SubItems.Add(tou.Id);
+                item.SubItems.Add(tou.Tel);
+                item.SubItems.Add(r.Descriptions);
+                item.SubItems.Add(r.Price.ToString());
+                item.SubItems.Add(r.Date.ToString());
+                item.Tag = t;
+                this.listView1.Items.Add(item);
+            }
+            this.listView1.EndUpdate();
+        }
+
+
+        public void AddOneToListView(Activity t)
+        {
+
+            this.listView1.BeginUpdate();
+            Tourist tou = Repository.GetTouristByName(t.TouristName);
+            Route r = Repository.GetRouteByDesc(t.RouteDescriptions);
+            ListViewItem item = new ListViewItem(tou.Name);
+            item.SubItems.Add(tou.Gender);
+            item.SubItems.Add(tou.Id);
+            item.SubItems.Add(tou.Tel);
+            item.SubItems.Add(r.Descriptions);
+            item.SubItems.Add(r.Price.ToString());
+            item.SubItems.Add(r.Date.ToString());
+            item.Tag = t;
+            this.listView1.Items.Add(item);
+            this.listView1.EndUpdate();
+        }
+
+        private void FillCombo()
+        {
+            this.cboT.Items.Clear();
+            this.cboT.Items.AddRange(Repository.dataTourist.lst.Select(x => x.Name).ToArray());
+            this.cboR.Items.Clear();
+            this.cboR.Items.AddRange(Repository.dataRoute.lst.Select(x => x.Descriptions).ToArray());
+        }
+
         private void 路线选择_Load(object sender, EventArgs e)
         {
-            this.data.ReadFile();
-            this.data.AddAllToListView(this.listView1);
+            this.FillCombo();
+            this.AddAllToListView();
         }
 
         private void 路线选择_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.data.SaveFile();
+            Repository.dataActivity.SaveFile();
 
         }
 
@@ -92,7 +130,7 @@ namespace p22
             Activity sel = this.GetSelectedActivity();
             if (sel == null)
                 return;
-            this.data.lst.Remove(sel);
+            Repository.dataActivity.lst.Remove(sel);
             this.listView1.Items.Remove(this.listView1.SelectedItems[0]);
         }
 
@@ -102,43 +140,41 @@ namespace p22
 
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+
+
+        //private void HighlightItem(string name)
+        //{
+        //    foreach (ListViewItem it in this.listView1.Items)
+        //    {
+        //        Activity a = it.Tag as Activity;
+        //        if (a.Name.Contains(name))
+        //            it.ForeColor = Color.Blue;
+        //        else
+        //            it.ForeColor = Color.Black;
+        //    }
+        //}
+
+        //private void txtSearch_TextChanged(object sender, EventArgs e)
+        //{
+        //    this.HighlightItem(this.txtSearch.Text.Trim());
+        //}
+
+        private void cboT_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Activity sel = this.GetSelectedActivity();
-            if (sel == null)
-                return;
-            this.btnAdd.Enabled = false;
-            Activity t = new Activity(this.txtName.Text.Trim(), this.dtpGo.Value, this.cboState.Text);
-            if (this.GetActivityString(t) == this.GetActivityString(sel))
-            {
-                MessageBox.Show("修改前后的值不能一样！");
-                return;
-            }
-            sel.Name = t.Name;
-            sel.Date = t.Date;
-            sel.State = t.State;
-            var item = this.listView1.SelectedItems[0];
-            item.SubItems.Clear();
-            item.Text = sel.Name;
-            item.SubItems.Add(t.Date.ToString());
-            item.SubItems.Add(t.State);
+            this.SetButtonEnable();
+
         }
 
-        private void HighlightItem(string name)
+        private void cboR_SelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (ListViewItem it in this.listView1.Items)
-            {
-                Activity a = it.Tag as Activity;
-                if (a.Name.Contains(name))
-                    it.ForeColor = Color.Blue;
-                else
-                    it.ForeColor = Color.Black;
-            }
+            this.SetButtonEnable();
+
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.HighlightItem(this.txtSearch.Text.Trim());
+            var sel = this.listView1.SelectedItems;
+            this.btnDel.Enabled = !(sel == null || sel.Count == 0);
         }
     }
 }

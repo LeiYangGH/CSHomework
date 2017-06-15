@@ -19,7 +19,11 @@ namespace p22
 
         private void 界面_Load(object sender, EventArgs e)
         {
-            //return;
+            Repository.dataRoute.ReadFile();
+            Repository.dataTourist.ReadFile();
+            Repository.dataActivity.ReadFile();
+
+            return;
             登录 frmSuper = new 登录();
             var result = frmSuper.ShowDialog();
             if (result != DialogResult.OK)

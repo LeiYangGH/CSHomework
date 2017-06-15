@@ -12,20 +12,19 @@ namespace p22
 {
     public partial class btn1 : Form
     {
-        private data<Tourist> data;
         public btn1()
         {
             InitializeComponent();
-            this.data = new data<Tourist>("btn1",
-          (x) =>
-          {
-              return new string[] {
-                        x.Name,
-                        x.Gender,
-                        x.Id,
-                        x.Tel
-          };
-          });
+          //  Repository.dataTourist = new data<Tourist>("btn1",
+          //(x) =>
+          //{
+          //    return new string[] {
+          //              x.Name,
+          //              x.Gender,
+          //              x.Id,
+          //              x.Tel
+          //};
+          //});
         }
 
         private void SetButtonEnable()
@@ -48,9 +47,9 @@ namespace p22
                 this.textBoxi.Text.Trim(),
                 this.textBoxt.Text.Trim()
                 );
-            if (this.data.Add(t, x => x.Id))
+            if (Repository.dataTourist.Add(t, x => x.Name))
             {
-                this.data.AddOneToListView(this.listView1, t);
+                Repository.dataTourist.AddOneToListView(this.listView1, t);
                 //MessageBox.Show("添加成功！");
             }
             else
@@ -89,13 +88,12 @@ namespace p22
 
         private void btn1_Load(object sender, EventArgs e)
         {
-            this.data.ReadFile();
-            this.data.AddAllToListView(this.listView1);
+            Repository.dataTourist.AddAllToListView(this.listView1);
         }
 
         private void btn1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.data.SaveFile();
+            Repository.dataTourist.SaveFile();
 
         }
     }

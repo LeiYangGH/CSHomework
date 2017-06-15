@@ -9,14 +9,12 @@ namespace p22
     [Serializable]
     public class Activity
     {
-        public Activity(string n, DateTime d, string s)
+        public Activity(string t, string r)
         {
-            this.Name = n;
-            this.Date = d;
-            this.State = s;
+            this.TouristName = t;
+            this.RouteDescriptions = r;
         }
-        public string Name { get; set; }
-        public DateTime Date { get; set; }
-        public string State { get; set; }
+        public string TouristName { get; set; }
+        public string RouteDescriptions { get; set; }
     }
 }

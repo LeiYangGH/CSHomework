@@ -12,31 +12,29 @@ namespace p22
 {
     public partial class 路线价格 : Form
     {
-        private data<Route> data;
         public 路线价格()
         {
             InitializeComponent();
-            this.data = new data<Route>("Route",
-           (x) =>
-           {
-               return new string[] {
-                        x.Descriptions,
-                        x.Date.ToString(),
-                        x.Price.ToString()
-           };
-           });
+           // Repository.dataRoute = new data<Route>("Route",
+           //(x) =>
+           //{
+           //    return new string[] {
+           //             x.Descriptions,
+           //             x.Date.ToString(),
+           //             x.Price.ToString()
+           //};
+           //});
         }
 
         private void 路线价格_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.data.SaveFile();
+            Repository.dataRoute.SaveFile();
 
         }
 
         private void 路线价格_Load(object sender, EventArgs e)
         {
-            this.data.ReadFile();
-            this.data.AddAllToListView(this.listView1);
+            Repository.dataRoute.AddAllToListView(this.listView1);
         }
 
         private void SetButtonEnable()
@@ -66,9 +64,9 @@ namespace p22
         {
             this.btnSave.Enabled = false;
             Route t = new Route(this.textBox1.Text.Trim(), this.dpDOP.Value, (int)this.numPrice.Value);
-            if (this.data.Add(t, x => x.Descriptions))
+            if (Repository.dataRoute.Add(t, x => x.Descriptions))
             {
-                this.data.AddOneToListView(this.listView1, t);
+                Repository.dataRoute.AddOneToListView(this.listView1, t);
                 //MessageBox.Show("添加成功！");
             }
             else
