@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Configuration;
 namespace BigJob
 {
     class database
@@ -14,7 +14,8 @@ namespace BigJob
         public string sql;
         //与SQL Server的连接字符串设
 
-        public string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source =kpsdatabase2.mdb";
+        //public string strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source =kpsdatabase2.mdb";
+        public string strCon = ConfigurationManager.ConnectionStrings["kpsdatabase2"].ConnectionString;
         //与数据库的连接
         public OleDbConnection acecon;
         public OleDbDataAdapter aceda;
