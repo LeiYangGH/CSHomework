@@ -25,7 +25,7 @@ namespace RotateTransformDemo
         {
             InitializeComponent();
             this.TopMost = true;
-            timerSpeed.Interval = 1000;
+            timerSpeed.Interval = 300;
             timerSpeed.Enabled = true;
             timerSpeed.Tick += new EventHandler(timerSpeed_Tick);
             this.Left = 200;
@@ -72,15 +72,7 @@ namespace RotateTransformDemo
         {
             this.Left = 200;
             this.Top = 200;
-            SetBits(FullImage as Bitmap);
-        }
-
-        private Image FullImage
-        {
-            get
-            {
-                return RotateTransformDemo.Properties.Resources.ges;
-            }
+            SetBits(RotateTransformDemo.Properties.Resources.ges);
         }
 
         void Form2_DoubleClick(object sender, EventArgs e)
