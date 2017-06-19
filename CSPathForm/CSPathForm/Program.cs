@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BigJob
+namespace CSPathForm
 {
     static class Program
     {
@@ -16,9 +16,7 @@ namespace BigJob
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Main());
-            //Application.Run(new login());
-            Application.Run(new frmEmployee());
+            Application.Run(new Form1());
         }
     }
 }
