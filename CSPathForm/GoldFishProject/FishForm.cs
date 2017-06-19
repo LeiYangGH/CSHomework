@@ -26,10 +26,11 @@ namespace RotateTransformDemo
             InitializeComponent();
             this.TopMost = true;
             timerSpeed.Interval = 300;
-            timerSpeed.Enabled = true;
+            //timerSpeed.Enabled = true;
             timerSpeed.Tick += new EventHandler(timerSpeed_Tick);
             this.Left = 200;
             this.Top = 200;
+
             this.DoubleClick += new EventHandler(Form2_DoubleClick);
         }
 
@@ -47,6 +48,11 @@ namespace RotateTransformDemo
             InitializeStyles();
             base.OnHandleCreated(e);
             haveHandle = true;
+            this.Invoke((MethodInvoker)delegate
+            {
+                SetBits(RotateTransformDemo.Properties.Resources.ges);
+            });
+
         }
 
         protected override CreateParams CreateParams
@@ -70,8 +76,7 @@ namespace RotateTransformDemo
 
         void timerSpeed_Tick(object sender, EventArgs e)
         {
-            this.Left = 200;
-            this.Top = 200;
+
             SetBits(RotateTransformDemo.Properties.Resources.ges);
         }
 
@@ -83,7 +88,8 @@ namespace RotateTransformDemo
 
         public void SetBits(Bitmap bitmap)
         {
-            if (!haveHandle) return;
+            if (!haveHandle)
+                return;
 
             if (!Bitmap.IsCanonicalPixelFormat(bitmap.PixelFormat) || !Bitmap.IsAlphaPixelFormat(bitmap.PixelFormat))
                 throw new ApplicationException("The picture must be 32bit picture with alpha channel.");
