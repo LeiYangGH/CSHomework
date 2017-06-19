@@ -17,48 +17,20 @@ namespace RotateTransformDemo
     public partial class FishForm : Form
     {
         Point oldPoint = new Point(0, 0);
-        bool mouseDown = false;
         bool haveHandle = false;
         Timer timerSpeed = new Timer();
-        int MaxCount = 50;
-        float stepX = 2f;
-        float stepY = 0f;
-        int count = 0;
-        bool speedMode = false;
-        float left = 0f, top = 0f;
 
-        bool toRight = true;
-        int frameCount = 20;
-        int frame = 0;
-        //int frameWidth = 100;
-        //int frameHeight = 100; 
-        int frameWidth = RotateTransformDemo.Properties.Resources.ges.Width;
-        int frameHeight = RotateTransformDemo.Properties.Resources.ges.Height;
+
         public FishForm()
         {
             InitializeComponent();
             this.TopMost = true;
-            toRight = true;
-            frame = 20;
-            frame = 0;
-            //frameWidth = FullImage.Width / 20;
-            frameWidth = FullImage.Width;
-            frameHeight = FullImage.Height;
-            //left = -frameWidth;
-            //top = Screen.PrimaryScreen.WorkingArea.Height / 2f;
-
-            //timerSpeed.Interval = 50;
             timerSpeed.Interval = 1000;
             timerSpeed.Enabled = true;
             timerSpeed.Tick += new EventHandler(timerSpeed_Tick);
-
+            this.Left = 200;
+            this.Top = 200;
             this.DoubleClick += new EventHandler(Form2_DoubleClick);
-            //this.MouseDown += new MouseEventHandler(Form2_MouseDown);
-            //this.MouseUp += new MouseEventHandler(Form2_MouseUp);
-            //this.MouseMove += new MouseEventHandler(Form2_MouseMove);
- 
-            //SetBits(FullImage as Bitmap);
-
         }
 
         #region Override
@@ -89,15 +61,6 @@ namespace RotateTransformDemo
 
         #endregion
 
-        //void Form2_MouseUp(object sender, MouseEventArgs e)
-        //{
-        //    count = 0;
-        //    MaxCount = new Random().Next(70) + 40;
-        //    timerSpeed.Interval = new Random().Next(20) + 2;
-        //    speedMode = true;
-        //    mouseDown = false;
-        //}
-
         private void InitializeStyles()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -107,79 +70,16 @@ namespace RotateTransformDemo
 
         void timerSpeed_Tick(object sender, EventArgs e)
         {
-            //if (!mouseDown)
-            //{
-            //    count++;
-            //    if (count > MaxCount)
-            //    {
-            //        MaxCount = new Random().Next(70) + 30;
-            //        if (speedMode) timerSpeed.Interval = 50;
-
-            //        count = 0;
-            //        stepX = (float)new Random().NextDouble() * 3f + 0.5f;
-            //        stepY = ((float)new Random().NextDouble() - 0.5f) * 0.5f;
-            //    }
-
-            //    left = (left + (toRight ? 1 : -1) * stepX);
-            //    top = (top + stepY);
-            //    FixLeftTop();
-            //    this.Left = (int)left;
-            //    this.Top = (int)top;
-            //}
-            //frame++;
-            //if (frame >= frameCount) frame = 0;
-            this.Left =200;
-            this.Top = (int)top;
-            SetBits(FrameImage);
-        }
-
-        private void FixLeftTop()
-        {
-            if (toRight && left > Screen.PrimaryScreen.WorkingArea.Width)
-            {
-                toRight = false;
-                frame = 0;
-                count = 0;
-            }
-            else if (!toRight && left < -frameWidth)
-            {
-                toRight = true;
-                frame = 0;
-                count = 0;
-            }
-            if (top < -frameHeight)
-            {
-                stepY = 1f;
-                count = 0;
-            }
-            else if (top > Screen.PrimaryScreen.WorkingArea.Height)
-            {
-                stepY = -1f;
-                count = 0;
-            }
+            this.Left = 200;
+            this.Top = 200;
+            SetBits(FullImage as Bitmap);
         }
 
         private Image FullImage
         {
             get
             {
-                //if (toRight)
-                //    return RotateTransformDemo.Properties.Resources.Right;
-                //else
-                //    return RotateTransformDemo.Properties.Resources.Left;
                 return RotateTransformDemo.Properties.Resources.ges;
-            }
-        }
-
-        public Bitmap FrameImage
-        {
-            get
-            {
-                Bitmap bitmap = new Bitmap(frameWidth, frameHeight);
-                Graphics g = Graphics.FromImage(bitmap);
-                g.DrawImage(FullImage, new Rectangle(0, 0, bitmap.Width, bitmap.Height),
-                    new Rectangle(frameWidth * frame, 0, frameWidth, frameHeight), GraphicsUnit.Pixel);
-                return bitmap;
             }
         }
 
@@ -188,24 +88,6 @@ namespace RotateTransformDemo
             this.Dispose();
         }
 
-        //void Form2_MouseMove(object sender, MouseEventArgs e)
-        //{
-        //    if (mouseDown)
-        //    {
-        //        this.Left += (e.X - oldPoint.X);
-        //        this.Top += (e.Y - oldPoint.Y);
-        //        left = this.Left;
-        //        top = this.Top;
-        //        FixLeftTop();
-        //    }
-        //}
-
-        //void Form2_MouseDown(object sender, MouseEventArgs e)
-        //{
-        //    if (e.Button == MouseButtons.Right) this.Dispose();
-        //    oldPoint = e.Location;
-        //    mouseDown = true;
-        //}
 
         public void SetBits(Bitmap bitmap)
         {
