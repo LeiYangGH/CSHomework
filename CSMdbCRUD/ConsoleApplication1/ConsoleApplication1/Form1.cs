@@ -45,9 +45,9 @@ namespace ConsoleApplication1
         private void button2_Click(object sender, EventArgs e)
         {
             var r = this.peifang2DataSet.peifang2.NewRow();
-            r[0] = this.peifang2DataSet.peifang2.Rows
-                .OfType<peifang2DataSet.peifang2Row>()
-                .Max(x => Convert.ToInt32(x[0]))+1;
+            //r[0] = this.peifang2DataSet.peifang2.Rows
+            //    .OfType<peifang2DataSet.peifang2Row>()
+            //    .Max(x => Convert.ToInt32(x[0]))+1;
                 
             this.peifang2DataSet.peifang2.Rows.Add(r);
 
