@@ -44,12 +44,30 @@ namespace ConsoleApplication1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.peifang2DataSet.peifang2.Rows.Add(this.peifang2DataSet.peifang2.NewRow());
+            var r = this.peifang2DataSet.peifang2.NewRow();
+            r[0] = this.peifang2DataSet.peifang2.Rows
+                .OfType<peifang2DataSet.peifang2Row>()
+                .Max(x => Convert.ToInt32(x[0]))+1;
+                
+            this.peifang2DataSet.peifang2.Rows.Add(r);
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             this.peifang2DataSet.peifang2.Rows[this.dataGridView1.CurrentCell.RowIndex].Delete();
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            var r = this.dataGridView1.SelectedRows;
+            if(r!=null && r.Count>0)
+            {
+                var sel = this.dataGridView1.SelectedRows[0];
+                this.label1.Text = sel.Cells[1].Value.ToString();
+                this.label2.Text = sel.Cells[2].Value.ToString();
+                this.label3.Text = sel.Cells[3].Value.ToString();
+            }
         }
     }
 }
