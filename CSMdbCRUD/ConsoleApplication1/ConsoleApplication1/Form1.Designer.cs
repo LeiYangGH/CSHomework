@@ -28,27 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.peifang2DataSet = new ConsoleApplication1.peifang2DataSet();
+            this.peifang2BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.peifang2TableAdapter = new ConsoleApplication1.peifang2DataSetTableAdapters.peifang2TableAdapter();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.骨料DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.粉料DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.水DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.peifang2DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.peifang2BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(-14, 39);
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn,
+            this.骨料DataGridViewTextBoxColumn,
+            this.粉料DataGridViewTextBoxColumn,
+            this.水DataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.peifang2BindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(-21, 65);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(776, 185);
+            this.dataGridView1.Size = new System.Drawing.Size(1164, 308);
             this.dataGridView1.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(600, 230);
+            this.button1.Location = new System.Drawing.Point(900, 383);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(112, 38);
             this.button1.TabIndex = 3;
             this.button1.Text = "保存";
             this.button1.UseVisualStyleBackColor = true;
@@ -56,9 +75,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(292, 230);
+            this.button2.Location = new System.Drawing.Point(438, 383);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(112, 38);
             this.button2.TabIndex = 4;
             this.button2.Text = "添加行";
             this.button2.UseVisualStyleBackColor = true;
@@ -66,26 +86,69 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(417, 230);
+            this.button3.Location = new System.Drawing.Point(626, 383);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(112, 38);
             this.button3.TabIndex = 5;
             this.button3.Text = "删除行";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // peifang2DataSet
+            // 
+            this.peifang2DataSet.DataSetName = "peifang2DataSet";
+            this.peifang2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // peifang2BindingSource
+            // 
+            this.peifang2BindingSource.DataMember = "peifang2";
+            this.peifang2BindingSource.DataSource = this.peifang2DataSet;
+            // 
+            // peifang2TableAdapter
+            // 
+            this.peifang2TableAdapter.ClearBeforeFill = true;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            // 
+            // 骨料DataGridViewTextBoxColumn
+            // 
+            this.骨料DataGridViewTextBoxColumn.DataPropertyName = "骨料";
+            this.骨料DataGridViewTextBoxColumn.HeaderText = "骨料";
+            this.骨料DataGridViewTextBoxColumn.Name = "骨料DataGridViewTextBoxColumn";
+            // 
+            // 粉料DataGridViewTextBoxColumn
+            // 
+            this.粉料DataGridViewTextBoxColumn.DataPropertyName = "粉料";
+            this.粉料DataGridViewTextBoxColumn.HeaderText = "粉料";
+            this.粉料DataGridViewTextBoxColumn.Name = "粉料DataGridViewTextBoxColumn";
+            // 
+            // 水DataGridViewTextBoxColumn
+            // 
+            this.水DataGridViewTextBoxColumn.DataPropertyName = "水";
+            this.水DataGridViewTextBoxColumn.HeaderText = "水";
+            this.水DataGridViewTextBoxColumn.Name = "水DataGridViewTextBoxColumn";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(825, 262);
+            this.ClientSize = new System.Drawing.Size(1238, 437);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.peifang2DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.peifang2BindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -96,5 +159,12 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private peifang2DataSet peifang2DataSet;
+        private System.Windows.Forms.BindingSource peifang2BindingSource;
+        private peifang2DataSetTableAdapters.peifang2TableAdapter peifang2TableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 骨料DataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 粉料DataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 水DataGridViewTextBoxColumn;
     }
 }
