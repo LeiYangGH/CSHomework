@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{FAAA66C4-EFAE-4866-ADEE-BD2345ED78D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfMdbCRUD", "WpfMdbCRUD\WpfMdbCRUD.csproj", "{FB84DB09-FC25-4B43-A3AB-2129B400F48B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FAAA66C4-EFAE-4866-ADEE-BD2345ED78D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAAA66C4-EFAE-4866-ADEE-BD2345ED78D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAAA66C4-EFAE-4866-ADEE-BD2345ED78D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB84DB09-FC25-4B43-A3AB-2129B400F48B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB84DB09-FC25-4B43-A3AB-2129B400F48B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB84DB09-FC25-4B43-A3AB-2129B400F48B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB84DB09-FC25-4B43-A3AB-2129B400F48B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
