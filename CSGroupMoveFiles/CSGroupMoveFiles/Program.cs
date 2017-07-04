@@ -21,6 +21,52 @@ namespace CSGroupMoveFiles
 
         public static string rangeGroupParentDir;
 
+        public static Dictionary<ErrorType, List<string>> ErrorLogs = new Dictionary<ErrorType, List<string>>();
+        public static Dictionary<ErrorType, string> ErrorDescs = new Dictionary<ErrorType, string>()
+        {
+            { ErrorType.FileAlreadyExist,"文件已经存在，备份失败" },
+            { ErrorType.InvalidFileName,"文件名不合法" },
+            { ErrorType.NeedRename8,"目标文件夹内已存在相同前8位文件名的文件，未移动，重命名" },
+            { ErrorType.Rename8Exists,"文件已存在，所以重命名取消" },
+            { ErrorType.Scope2FolderNotExist,"文件无法移动，因为二级范围文件夹不存在" },
+        };
+
+        public static void AddErrorLog(ErrorType errorType, string errorMsg)
+        {
+            var lst = ErrorLogs[errorType];
+            if (lst == null)
+                lst = new List<string>();
+            else
+                lst.Add(errorMsg);
+        }
+
+        public static void WriteLogs()
+        {
+            string logFileName = Path.Combine(Program.curDir, DateTime.Now.ToString("LogyyyyMMddHHmmss") + ".txt");
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(logFileName))
+                {
+                    foreach (var kv in ErrorLogs)
+                    {
+                        sw.WriteLine("----------{0}---------", kv.Key);
+                        foreach (string msg in kv.Value)
+                        {
+                            sw.WriteLine(msg);
+                        }
+                        sw.WriteLine("----------------------\n\n", kv.Key);
+                    }
+                }
+                Console.WriteLine("日志保存到了{0}", logFileName);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
+        }
+
         static bool IsValidPdf(string fullName)
         {
             return regValidFile.IsMatch(Path.GetFileNameWithoutExtension(fullName));
@@ -39,6 +85,7 @@ namespace CSGroupMoveFiles
                 foreach (string badFile in badFileNames)
                 {
                     Console.WriteLine(Path.GetFileName(badFile));
+                    Program.AddErrorLog(ErrorType.InvalidFileName, Path.GetFileName(badFile));
                 }
                 Console.WriteLine("--------------------");
             }
@@ -71,6 +118,15 @@ namespace CSGroupMoveFiles
 
             Console.ReadLine();
         }
+    }
+
+    public enum ErrorType
+    {
+        InvalidFileName,
+        FileAlreadyExist,
+        Scope2FolderNotExist,
+        NeedRename8,
+        Rename8Exists
     }
 
     public class PDFFile
@@ -125,6 +181,7 @@ namespace CSGroupMoveFiles
             if (File.Exists(des))
             {
                 Console.WriteLine("文件{0}已经存在，备份失败", this.ShortName);
+                Program.AddErrorLog(ErrorType.FileAlreadyExist, this.ShortName);
             }
             else
             {
@@ -152,6 +209,7 @@ namespace CSGroupMoveFiles
             if (!Directory.Exists(rangeDir))
             {
                 Console.WriteLine("文件无法移动，因为二级范围文件夹不存在:\n{0}\n{1}\n", this.ShortNameWithoutExt, this.GroupRangeName);
+                Program.AddErrorLog(ErrorType.Scope2FolderNotExist, string.Format("{0}\n{1}\n\n", this.ShortNameWithoutExt, this.GroupRangeName));
                 return;
             }
 
@@ -168,10 +226,12 @@ namespace CSGroupMoveFiles
             if (!this.ShortNameWithoutExt.EndsWith(Program.RM) && ExistGrouped8FileName(desDir))
             {
                 Console.WriteLine("目标文件夹内已存在相同前8位文件名的文件，未移动，重命名:\n{0}\n{1}\n", this.ShortName, this.GroupName);
+                Program.AddErrorLog(ErrorType.NeedRename8, string.Format("{0}\n{1}\n\n", this.ShortName, this.GroupName));
                 string renameFullName = Path.Combine(Program.curDir, this.ShortNameWithoutExt + "_重命名" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".pdf");
                 if (File.Exists(renameFullName))
                 {
                     Console.WriteLine("文件已存在{0}，所以重命名取消", renameFullName);
+                    Program.AddErrorLog(ErrorType.Rename8Exists, renameFullName);
                 }
                 else
                 {
