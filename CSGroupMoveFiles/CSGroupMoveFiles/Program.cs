@@ -33,11 +33,11 @@ namespace CSGroupMoveFiles
 
         public static void AddErrorLog(ErrorType errorType, string errorMsg)
         {
-            var lst = ErrorLogs[errorType];
-            if (lst == null)
-                lst = new List<string>();
-            else
-                lst.Add(errorMsg);
+            if (!ErrorLogs.ContainsKey(errorType))
+            {
+                ErrorLogs.Add(errorType, new List<string>());
+            }
+            ErrorLogs[errorType].Add(errorMsg);
         }
 
         public static void WriteLogs()
@@ -49,12 +49,14 @@ namespace CSGroupMoveFiles
                 {
                     foreach (var kv in ErrorLogs)
                     {
-                        sw.WriteLine("----------{0}---------", kv.Key);
+                        sw.WriteLine("----------{0}---------", ErrorDescs[kv.Key]);
                         foreach (string msg in kv.Value)
                         {
                             sw.WriteLine(msg);
                         }
-                        sw.WriteLine("----------------------\n\n", kv.Key);
+                        sw.WriteLine("----------------------\n");
+                        sw.WriteLine();
+                        sw.WriteLine();
                     }
                 }
                 Console.WriteLine("日志保存到了{0}", logFileName);
@@ -85,7 +87,7 @@ namespace CSGroupMoveFiles
                 foreach (string badFile in badFileNames)
                 {
                     Console.WriteLine(Path.GetFileName(badFile));
-                    Program.AddErrorLog(ErrorType.InvalidFileName, Path.GetFileName(badFile));
+                    AddErrorLog(ErrorType.InvalidFileName, Path.GetFileName(badFile));
                 }
                 Console.WriteLine("--------------------");
             }
@@ -115,7 +117,6 @@ namespace CSGroupMoveFiles
                 WriteLogs();
                 Console.WriteLine("完成");
             });
-
             Console.ReadLine();
         }
     }
