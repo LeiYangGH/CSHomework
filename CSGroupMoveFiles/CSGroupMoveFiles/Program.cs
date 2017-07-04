@@ -42,7 +42,7 @@ namespace CSGroupMoveFiles
 
         public static void WriteLogs()
         {
-            string logFileName = Path.Combine(Program.curDir, DateTime.Now.ToString("LogyyyyMMddHHmmss") + ".txt");
+            string logFileName = Path.Combine(Program.curDir, "Log" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".txt");
             try
             {
                 using (StreamWriter sw = new StreamWriter(logFileName))
@@ -112,7 +112,7 @@ namespace CSGroupMoveFiles
                     pdf.Process();
                     Thread.Sleep(1000);
                 }
-
+                WriteLogs();
                 Console.WriteLine("完成");
             });
 
