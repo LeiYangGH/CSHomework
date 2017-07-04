@@ -24,6 +24,7 @@ namespace CSGroupMoveFiles
         public static Dictionary<ErrorType, List<string>> ErrorLogs = new Dictionary<ErrorType, List<string>>();
         public static Dictionary<ErrorType, string> ErrorDescs = new Dictionary<ErrorType, string>()
         {
+            { ErrorType.Move,"移动成功" },
             { ErrorType.FileAlreadyExist,"文件已经存在，备份失败" },
             { ErrorType.InvalidFileName,"文件名不合法" },
             { ErrorType.NeedRename8,"目标文件夹内已存在相同前8位文件名的文件，未移动，重命名" },
@@ -123,6 +124,7 @@ namespace CSGroupMoveFiles
 
     public enum ErrorType
     {
+        Move,
         InvalidFileName,
         FileAlreadyExist,
         Scope2FolderNotExist,
@@ -252,6 +254,7 @@ namespace CSGroupMoveFiles
             try
             {
                 File.Move(this.FullName, desFullName);
+                Program.AddErrorLog(ErrorType.Move, this.ShortName);
             }
             catch (Exception ex)
             {
