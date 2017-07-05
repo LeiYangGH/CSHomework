@@ -221,6 +221,9 @@ namespace CSGroupMoveFiles
             {
                 Console.WriteLine("创建三级分组文件夹---{0}---", this.GroupName);
                 Directory.CreateDirectory(desDir);
+                //string thumbsFileName = Path.Combine(desDir, "Thumbs.db");
+                //File.Create(thumbsFileName).Dispose();
+                //Console.WriteLine("生成了{0}", thumbsFileName);
             }
             string desFullName = Path.Combine(desDir, this.ShortName);
 
