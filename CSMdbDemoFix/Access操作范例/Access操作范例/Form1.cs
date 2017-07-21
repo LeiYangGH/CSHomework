@@ -18,7 +18,7 @@ namespace Access操作范例
             InitializeComponent();
         }
 
-        string Accessfile = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=数据文件夹//AutoDesk.mdb";   //数据库文件名
+        string connStr = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=数据文件夹//AutoDesk.mdb";   //数据库文件名
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -31,7 +31,7 @@ namespace Access操作范例
         //连接数据库表1并显示到DataGridView1中
         private void ConnAccess1()
         {
-            OleDbConnection myConn1 = new OleDbConnection(Accessfile); //连接到数据库
+            OleDbConnection myConn1 = new OleDbConnection(connStr); //连接到数据库
             string myStr1 = "select[编号],[姓名],[信息] from [表1]";//选择数据表
             OleDbDataAdapter myAda1 = new OleDbDataAdapter(myStr1, myConn1); //打开数据表
             DataTable mydt1 = new DataTable(); //声明一个记录集
@@ -40,14 +40,14 @@ namespace Access操作范例
             myConn1.Close();//断开数据库连接
             foreach (DataGridViewRow row in this.dataGridView1.Rows)  //编号自动排序
             {
-                row.Cells[0].Value = (row.Index+1).ToString();
+                row.Cells[0].Value = (row.Index + 1).ToString();
             }
         }
 
         //向数据库表1中添加数据
         private void AddtoAccess1()
         {
-            OleDbConnection myConn1 = new OleDbConnection(Accessfile); //连接到数据库
+            OleDbConnection myConn1 = new OleDbConnection(connStr); //连接到数据库
             myConn1.Open();
 
             if (textBox1.Text == "" || textBox2.Text == "")
@@ -70,7 +70,7 @@ namespace Access操作范例
         //删除DataGridView1选中行的数据，并更新数据表1
         private void DeleteAccess1()
         {
-            OleDbConnection myConn1 = new OleDbConnection(Accessfile);
+            OleDbConnection myConn1 = new OleDbConnection(connStr);
             if (dataGridView1.CurrentRow == null)
             {
                 MessageBox.Show("请先选中要删除的数据行");
@@ -81,7 +81,7 @@ namespace Access操作范例
                 for (int i = 0; i < dataGridView1.RowCount; i++)
                 {
                     myConn1.Open();
-                    string idname1 = dataGridView1[0,i].Value.ToString();
+                    string idname1 = dataGridView1[0, i].Value.ToString();
                     //string idname1 = dataGridView1[0,i].Value.ToString();
                     string delStr1 = "delete from [表1] where [编号]=" + idname1 + " ";
                     OleDbCommand myCmd1 = new OleDbCommand(delStr1, myConn1);
@@ -96,15 +96,21 @@ namespace Access操作范例
         private void SavetoAccess1()
         {
             dataGridView1.EndEdit();
-            OleDbConnection myConn1 = new OleDbConnection(Accessfile);
-            for (int i = 0; i < dataGridView1.RowCount; i++)
+            using (OleDbConnection conn = new OleDbConnection(connStr))
             {
-                myConn1.Open();
-                string idname1 = dataGridView1.Rows[i].Cells["编号"].Value.ToString();
-                string updateStr1 = " update [表1] set [姓名] ='" + dataGridView1[1, i].Value + "',[信息] ='" + dataGridView1[2, i].Value + "' where [编号]=" + idname1 + "";
-                OleDbCommand myCmd1 = new OleDbCommand(updateStr1, myConn1);
-                myCmd1.ExecuteNonQuery();
-                myConn1.Close();
+                conn.Open();
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    string id = dataGridView1.Rows[i].Cells["编号"].Value.ToString();
+                    string sql = "update [表1] set [姓名] = @name, [信息] = @info where [编号] = @id";
+                    DataGridViewRow row = dataGridView1.Rows[i];
+                    OleDbCommand cmd = new OleDbCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@name", row.Cells[1].Value);
+                    cmd.Parameters.AddWithValue("@info", row.Cells[2].Value);
+                    cmd.Parameters.AddWithValue("@id", row.Cells[0].Value);
+                    cmd.ExecuteNonQuery();
+                }
+                MessageBox.Show("ok");
             }
         }
 
