@@ -23,10 +23,7 @@ namespace Access操作范例
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //不显示datagridview的最后一行
-            dataGridView1.AllowUserToAddRows = false;
-            //将Datagridview设置为列宽自适应
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.FillGrid();
         }
 
         //连接数据库表1并显示到DataGridView1中
@@ -152,7 +149,24 @@ namespace Access操作范例
 
         private void button8_Click(object sender, EventArgs e)
         {
+            string name = this.txtNameSearch.Text.Trim();
 
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("请先输入查询名称");
+                return;
+            }
+            if (this.dt == null || this.dt.Rows.Count == 0)
+            {
+                MessageBox.Show("请先加载表格");
+                return;
+            }
+            DataRow row = this.dt.Rows.OfType<DataRow>()
+                .FirstOrDefault(x => x[1].ToString() == name);
+            string info = "";
+            if (row != null)
+                info = row[2].ToString();
+            this.lblInfo.Text = info;
         }
 
 

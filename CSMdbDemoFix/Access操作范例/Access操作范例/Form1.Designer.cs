@@ -35,12 +35,12 @@
             this.button4 = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtInfo = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtNameSearch = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblInfo = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -104,6 +104,7 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(22, 75);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -176,14 +177,14 @@
             this.txtInfo.Size = new System.Drawing.Size(448, 26);
             this.txtInfo.TabIndex = 6;
             // 
-            // textBox3
+            // txtNameSearch
             // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox3.Location = new System.Drawing.Point(22, 792);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(110, 26);
-            this.textBox3.TabIndex = 7;
+            this.txtNameSearch.BackColor = System.Drawing.SystemColors.Control;
+            this.txtNameSearch.Location = new System.Drawing.Point(22, 792);
+            this.txtNameSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtNameSearch.Name = "txtNameSearch";
+            this.txtNameSearch.Size = new System.Drawing.Size(110, 26);
+            this.txtNameSearch.TabIndex = 7;
             // 
             // button5
             // 
@@ -226,15 +227,15 @@
             this.label3.TabIndex = 12;
             this.label3.Text = "将数据添加到鼠标选中的位置，并存入数据库";
             // 
-            // label4
+            // lblInfo
             // 
-            this.label4.BackColor = System.Drawing.SystemColors.Control;
-            this.label4.Location = new System.Drawing.Point(22, 842);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(585, 83);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "label4";
+            this.lblInfo.BackColor = System.Drawing.SystemColors.Control;
+            this.lblInfo.Location = new System.Drawing.Point(22, 842);
+            this.lblInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(585, 83);
+            this.lblInfo.TabIndex = 0;
+            this.lblInfo.Text = "label4";
             // 
             // button6
             // 
@@ -798,10 +799,10 @@
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtNameSearch);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.label3);
@@ -833,12 +834,12 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtInfo;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtNameSearch;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label5;
