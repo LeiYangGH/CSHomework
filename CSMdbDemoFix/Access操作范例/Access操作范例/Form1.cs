@@ -13,6 +13,7 @@ namespace Access操作范例
 {
     public partial class Form1 : Form
     {
+        private DataTable dt = new DataTable();
         public Form1()
         {
             InitializeComponent();
@@ -29,67 +30,69 @@ namespace Access操作范例
         }
 
         //连接数据库表1并显示到DataGridView1中
-        private void ConnAccess1()
+        private void FillGrid()
         {
+            this.dt.Clear();
             OleDbConnection myConn1 = new OleDbConnection(connStr); //连接到数据库
             string myStr1 = "select[编号],[姓名],[信息] from [表1]";//选择数据表
             OleDbDataAdapter myAda1 = new OleDbDataAdapter(myStr1, myConn1); //打开数据表
-            DataTable mydt1 = new DataTable(); //声明一个记录集
-            myAda1.Fill(mydt1);//将表中数据填充到记录集中
-            dataGridView1.DataSource = mydt1; //设定显示控件的数据源
-            myConn1.Close();//断开数据库连接
-            foreach (DataGridViewRow row in this.dataGridView1.Rows)  //编号自动排序
+            myAda1.Fill(this.dt);//将表中数据填充到记录集中
+            dataGridView1.DataSource = this.dt; //设定显示控件的数据源
+        }
+
+        private bool GetInput(out string name, out string info)
+        {
+            string n = this.txtName.Text.Trim();
+            string i = this.txtInfo.Text.Trim();
+            name = n;
+            info = i;
+            if (string.IsNullOrWhiteSpace(n) ||
+               string.IsNullOrWhiteSpace(i))
             {
-                row.Cells[0].Value = (row.Index + 1).ToString();
+                MessageBox.Show("空值没有任何意义！");
+                return false;
             }
+            else
+                return true;
         }
 
         //向数据库表1中添加数据
         private void AddtoAccess1()
         {
-            OleDbConnection myConn1 = new OleDbConnection(connStr); //连接到数据库
-            myConn1.Open();
-
-            if (textBox1.Text == "" || textBox2.Text == "")
+            string name = null, info = null;
+            if (!GetInput(out name, out info))
+                return;
+            using (OleDbConnection conn = new OleDbConnection(connStr))
             {
-                MessageBox.Show("空值没有任何意义！");
+                conn.Open();
+                string sql = "insert into [表1] ([姓名],[信息]) values (@name,@info)";
+                OleDbCommand cmd = new OleDbCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@info", info);
+                cmd.ExecuteNonQuery();
             }
-            else
-            {
-                string insStr1 = "insert into [表1] ([姓名],[信息]) values ('"
-                    + textBox1.Text + "', '"
-                    + textBox2.Text + "')";
-
-                OleDbCommand myCmd1 = new OleDbCommand(insStr1, myConn1);
-                myCmd1.ExecuteNonQuery();
-                myConn1.Close();
-                ConnAccess1();
-            }
+            this.FillGrid();
         }
 
         //删除DataGridView1选中行的数据，并更新数据表1
         private void DeleteAccess1()
         {
             OleDbConnection myConn1 = new OleDbConnection(connStr);
-            if (dataGridView1.CurrentRow == null)
+            DataGridViewRow selRow = this.GetSelectedRow();
+            if (selRow == null)
             {
                 MessageBox.Show("请先选中要删除的数据行");
+                return;
             }
-            else
+            using (OleDbConnection conn = new OleDbConnection(connStr))
             {
-
-                for (int i = 0; i < dataGridView1.RowCount; i++)
-                {
-                    myConn1.Open();
-                    string idname1 = dataGridView1[0, i].Value.ToString();
-                    //string idname1 = dataGridView1[0,i].Value.ToString();
-                    string delStr1 = "delete from [表1] where [编号]=" + idname1 + " ";
-                    OleDbCommand myCmd1 = new OleDbCommand(delStr1, myConn1);
-                    myCmd1.ExecuteNonQuery();
-                    myConn1.Close();
-                }
-                ConnAccess1();
+                conn.Open();
+                string sql = "delete from [表1] where [编号] = @id";
+                OleDbCommand cmd = new OleDbCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", selRow.Cells[0].Value);
+                cmd.ExecuteNonQuery();
             }
+            this.FillGrid();
         }
 
         //将DataGridView1中的数据保存到数据表1
@@ -114,9 +117,17 @@ namespace Access操作范例
             }
         }
 
+        DataGridViewRow GetSelectedRow()
+        {
+            if (dataGridView1.SelectedRows == null || dataGridView1.SelectedRows.Count == 0)
+                return null;
+            else
+                return dataGridView1.SelectedRows[0];
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            ConnAccess1();
+            FillGrid();
         }
 
         private void button5_Click(object sender, EventArgs e)
