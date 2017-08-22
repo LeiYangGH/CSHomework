@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "src\Calculator.csproj", "{21677168-5B54-4EF6-82BD-15246E94F247}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "src\Calculator.VS17.csproj", "{21677168-5B54-4EF6-82BD-15246E94F247}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
