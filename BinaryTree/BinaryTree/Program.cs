@@ -15,17 +15,39 @@ namespace BinaryTree
             int[] nums = { 6, 2, 1, 4, 3 };
             foreach (int n in nums)
                 root.Insert(n);
-            PrintTree(root);
+            PrintValues(root);
+            Console.WriteLine("==========");
+            PrintLevels(root);
             Console.ReadKey();
         }
 
-        static void PrintTree(Node nd)
+        static void PrintLevels(Node nd)
+        {
+            List<Node> level = new List<Node>() { nd };
+            List<List<Node>> levels = new List<List<Node>>() { level };
+
+            while (level.Count() > 0)
+            {
+                List<Node> tlevel = new List<Node>();
+                tlevel.AddRange(level.Select(x => x.Left).Where(x => x != null));
+                tlevel.AddRange(level.Select(x => x.Right).Where(x => x != null));
+                levels.Add(tlevel);
+                level = tlevel;
+            }
+            foreach (List<Node> alevel in levels)
+            {
+
+                Console.WriteLine(string.Join("\t", alevel.Select(x => x.Value)));
+            }
+        }
+
+        static void PrintValues(Node nd)
         {
             Console.WriteLine(nd.Value);
             if (nd.Left != null)
-                PrintTree(nd.Left);
+                PrintValues(nd.Left);
             if (nd.Right != null)
-                PrintTree(nd.Right);
+                PrintValues(nd.Right);
         }
     }
 
