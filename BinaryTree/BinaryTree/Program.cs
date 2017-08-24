@@ -27,7 +27,7 @@ namespace BinaryTree
             List<Node> level = new List<Node>() { nd };
             List<List<Node>> levels = new List<List<Node>>() { level };
 
-            while (level.Count() > 0)
+            while (level.Any())
             {
                 List<Node> tlevel = new List<Node>();
                 tlevel.AddRange(level.Select(x => x.Left).Where(x => x != null));
@@ -36,33 +36,32 @@ namespace BinaryTree
                     levels.Add(tlevel);
                 level = tlevel;
             }
-            Dictionary<Node, int> dicNodeX = new Dictionary<Node, int>();
-            int ndWidth = 5;
-            int totalWidth = ndWidth * levels.Max(x => x.Count);
 
-            nd.ColCount = levels.Count;
 
-            //foreach (List<Node> alevel in levels)
+            nd.X = 40;
+
             for (int lindex = 0; lindex < levels.Count; lindex++)
             {
                 int currentC = 0;
-                string spaces = new string(' ', (levels.Count - lindex) * ndWidth);
-                string space = new string(' ', 2 * ndWidth);
-                Console.Write(spaces);
-                //foreach (Node n in alevel)
+                 
+
                 foreach (Node n in levels[lindex])
                 {
-                    int ndiff = n.ColCount * ndWidth - currentC - 1;
-                    string diff = new string(' ', ndiff);
-                    Console.Write(diff);
+                    int xdiff = n.X   - currentC ;
+                    if(xdiff>0)
+                    {
+                    string sdiff = new string(' ', xdiff);
+                    Console.Write(sdiff);
                     Console.Write(n.Value);
+                    currentC+=xdiff+1;
+                    }
                     if (n.Left != null)
                     {
-                        n.Left.ColCount = n.ColCount - 1;
+                    	n.Left.X = n.X - 2*(int)Math.Pow(2,levels.Count-lindex);
                     }
                     if (n.Right != null)
                     {
-                        n.Right.ColCount = n.ColCount + 1;
+                        n.Right.X = n.X + 2*(int)Math.Pow(2,levels.Count-lindex);
                     }
                 }
                 Console.WriteLine();
@@ -92,9 +91,8 @@ namespace BinaryTree
             get; set;
         }
 
-        //public Node Parent { get; set; }
 
-        public int ColCount { get; set; }
+        public int X { get; set; }
         public Node Left { get; set; }
         public Node Right { get; set; }
 
@@ -107,7 +105,6 @@ namespace BinaryTree
                     Node nd = new Node();
                     nd.Value = value;
                     this.Left = nd;
-                    //nd.Parent = this;
                 }
                 else
                     this.Left.Insert(value);
@@ -119,7 +116,6 @@ namespace BinaryTree
                     Node nd = new Node();
                     nd.Value = value;
                     this.Right = nd;
-                    //nd.Parent = this;
                 }
                 else
                     this.Right.Insert(value);
