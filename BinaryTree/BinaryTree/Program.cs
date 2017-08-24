@@ -12,7 +12,8 @@ namespace BinaryTree
         {
             Node root = new Node();
             root.Value = 5;
-            int[] nums = { 6, 2, 1, 4, 3 };
+            //6  2  1  4  3  8  7  9
+            int[] nums = { 6, 2, 1, 4, 3, 8, 7, 9 };
             foreach (int n in nums)
                 root.Insert(n);
             PrintValues(root);
@@ -31,13 +32,41 @@ namespace BinaryTree
                 List<Node> tlevel = new List<Node>();
                 tlevel.AddRange(level.Select(x => x.Left).Where(x => x != null));
                 tlevel.AddRange(level.Select(x => x.Right).Where(x => x != null));
-                levels.Add(tlevel);
+                if (tlevel.Count > 0)
+                    levels.Add(tlevel);
                 level = tlevel;
             }
-            foreach (List<Node> alevel in levels)
-            {
+            Dictionary<Node, int> dicNodeX = new Dictionary<Node, int>();
+            int ndWidth = 5;
+            int totalWidth = ndWidth * levels.Max(x => x.Count);
 
-                Console.WriteLine(string.Join("\t", alevel.Select(x => x.Value)));
+            nd.ColCount = levels.Count;
+
+            //foreach (List<Node> alevel in levels)
+            for (int lindex = 0; lindex < levels.Count; lindex++)
+            {
+                int currentC = 0;
+                string spaces = new string(' ', (levels.Count - lindex) * ndWidth);
+                string space = new string(' ', 2 * ndWidth);
+                Console.Write(spaces);
+                //foreach (Node n in alevel)
+                foreach (Node n in levels[lindex])
+                {
+                    int ndiff = n.ColCount * ndWidth - currentC - 1;
+                    string diff = new string(' ', ndiff);
+                    Console.Write(diff);
+                    Console.Write(n.Value);
+                    if (n.Left != null)
+                    {
+                        n.Left.ColCount = n.ColCount - 1;
+                    }
+                    if (n.Right != null)
+                    {
+                        n.Right.ColCount = n.ColCount + 1;
+                    }
+                }
+                Console.WriteLine();
+                Console.WriteLine();
             }
         }
 
@@ -63,6 +92,9 @@ namespace BinaryTree
             get; set;
         }
 
+        //public Node Parent { get; set; }
+
+        public int ColCount { get; set; }
         public Node Left { get; set; }
         public Node Right { get; set; }
 
@@ -75,6 +107,7 @@ namespace BinaryTree
                     Node nd = new Node();
                     nd.Value = value;
                     this.Left = nd;
+                    //nd.Parent = this;
                 }
                 else
                     this.Left.Insert(value);
@@ -86,6 +119,7 @@ namespace BinaryTree
                     Node nd = new Node();
                     nd.Value = value;
                     this.Right = nd;
+                    //nd.Parent = this;
                 }
                 else
                     this.Right.Insert(value);
