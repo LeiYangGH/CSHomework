@@ -37,8 +37,10 @@ namespace BinaryTree
                 level = tlevel;
             }
 
+            int dx=2;
+            
 
-            nd.X = 40;
+            nd.X = dx*(int)Math.Pow(2,levels.Count+1);
 
             for (int lindex = 0; lindex < levels.Count; lindex++)
             {
@@ -57,11 +59,11 @@ namespace BinaryTree
                     }
                     if (n.Left != null)
                     {
-                    	n.Left.X = n.X - 2*(int)Math.Pow(2,levels.Count-lindex);
+                    	n.Left.X = n.X - dx*(int)Math.Pow(2,levels.Count-lindex);
                     }
                     if (n.Right != null)
                     {
-                        n.Right.X = n.X + 2*(int)Math.Pow(2,levels.Count-lindex);
+                        n.Right.X = n.X + dx*(int)Math.Pow(2,levels.Count-lindex);
                     }
                 }
                 Console.WriteLine();
